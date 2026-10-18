@@ -102,63 +102,63 @@ Capital social : 250 000 000 €</p>
   '/politique-confidentialite': {
     fr: { title: 'Politique de Confidentialité', content: `
 <h2>1. Responsable du traitement</h2>
-<p>AS Autohandel GmbH, Sprendlinger Straße 119, 63069 Offenbach am Main — kontakt@automatikgebrauchtwagen.com</p>
+<p>AS Autohandel GmbH, Sprendlinger Straße 119, 63069 Offenbach am Main — info@as-autohandelgmbh.com</p>
 <h2>2. Données collectées</h2>
 <ul><li>Nom, prénom, email, téléphone, adresse</li><li>Salaire mensuel (simulation financement)</li><li>Historique des commandes</li></ul>
 <h2>3. Base légale (RGPD)</h2>
 <ul><li>Exécution du contrat — Art. 6(1)(b)</li><li>Consentement — Art. 6(1)(a)</li><li>Intérêt légitime — Art. 6(1)(f)</li></ul>
 <h2>4. Vos droits</h2>
-<p>Accès, rectification, effacement, portabilité, opposition. Contact : kontakt@automatikgebrauchtwagen.com</p>
+<p>Accès, rectification, effacement, portabilité, opposition. Contact : info@as-autohandelgmbh.com</p>
 <h2>5. Sécurité</h2>
 <p>Mots de passe chiffrés (bcrypt), JWT avec expiration, connexions HTTPS.</p>` },
     en: { title: 'Privacy Policy', content: `
 <h2>1. Data Controller</h2>
-<p>AS Autohandel GmbH, Sprendlinger Straße 119, 63069 Offenbach am Main — kontakt@automatikgebrauchtwagen.com</p>
+<p>AS Autohandel GmbH, Sprendlinger Straße 119, 63069 Offenbach am Main — info@as-autohandelgmbh.com</p>
 <h2>2. Data Collected</h2>
 <ul><li>Name, email, phone, address</li><li>Monthly salary (financing simulation)</li><li>Order history</li></ul>
 <h2>3. Legal Basis (GDPR)</h2>
 <ul><li>Contract performance — Art. 6(1)(b)</li><li>Consent — Art. 6(1)(a)</li><li>Legitimate interest — Art. 6(1)(f)</li></ul>
 <h2>4. Your Rights</h2>
-<p>Access, rectify, erase, port, object. Contact: kontakt@automatikgebrauchtwagen.com</p>` },
+<p>Access, rectify, erase, port, object. Contact: info@as-autohandelgmbh.com</p>` },
     de: { title: 'Datenschutzerklärung', content: `
 <h2>1. Verantwortlicher</h2>
-<p>AS Autohandel GmbH, Sprendlinger Straße 119, 63069 Offenbach am Main — kontakt@automatikgebrauchtwagen.com</p>
+<p>AS Autohandel GmbH, Sprendlinger Straße 119, 63069 Offenbach am Main — info@as-autohandelgmbh.com</p>
 <h2>2. Erhobene Daten</h2>
 <ul><li>Name, E-Mail, Telefon, Adresse</li><li>Monatsgehalt (Finanzierungssimulation)</li><li>Bestellhistorie</li></ul>
 <h2>3. Rechtsgrundlage (DSGVO)</h2>
 <ul><li>Vertragserfüllung — Art. 6 Abs. 1 lit. b</li><li>Einwilligung — Art. 6 Abs. 1 lit. a</li></ul>
 <h2>4. Ihre Rechte</h2>
-<p>Auskunft, Berichtigung, Löschung, Widerspruch. Kontakt: kontakt@automatikgebrauchtwagen.com</p>` },
+<p>Auskunft, Berichtigung, Löschung, Widerspruch. Kontakt: info@as-autohandelgmbh.com</p>` },
     es: { title: 'Política de Privacidad', content: `
 <h2>1. Responsable</h2>
-<p>AS Autohandel GmbH — kontakt@automatikgebrauchtwagen.com</p>
+<p>AS Autohandel GmbH — info@as-autohandelgmbh.com</p>
 <h2>2. Datos recopilados</h2>
 <ul><li>Nombre, email, teléfono, dirección</li><li>Salario mensual (simulación)</li><li>Historial de pedidos</li></ul>
 <h2>3. Sus derechos (RGPD)</h2>
-<p>Acceso, rectificación, supresión, portabilidad, oposición. Contacto: kontakt@automatikgebrauchtwagen.com</p>` },
+<p>Acceso, rectificación, supresión, portabilidad, oposición. Contacto: info@as-autohandelgmbh.com</p>` },
     it: { title: 'Informativa sulla Privacy', content: `
 <h2>1. Titolare del trattamento</h2>
-<p>AS Autohandel GmbH — kontakt@automatikgebrauchtwagen.com</p>
+<p>AS Autohandel GmbH — info@as-autohandelgmbh.com</p>
 <h2>2. Dati raccolti</h2>
 <ul><li>Nome, email, telefono, indirizzo</li><li>Stipendio mensile (simulazione)</li><li>Storico ordini</li></ul>
 <h2>3. I vostri diritti (GDPR)</h2>
-<p>Accesso, rettifica, cancellazione, portabilità, opposizione. Contatto: kontakt@automatikgebrauchtwagen.com</p>` },
+<p>Accesso, rettifica, cancellazione, portabilità, opposizione. Contatto: info@as-autohandelgmbh.com</p>` },
     pt: { title: 'Política de Privacidade', content: `
 <h2>1. Responsável</h2>
-<p>AS Autohandel GmbH — kontakt@automatikgebrauchtwagen.com</p>
+<p>AS Autohandel GmbH — info@as-autohandelgmbh.com</p>
 <h2>2. Dados recolhidos</h2>
 <ul><li>Nome, email, telefone, endereço</li><li>Salário mensal (simulação)</li><li>Histórico de pedidos</li></ul>
 <h2>3. Os seus direitos (RGPD)</h2>
-<p>Acesso, retificação, eliminação, portabilidade, oposição. Contacto: kontakt@automatikgebrauchtwagen.com</p>` },
+<p>Acesso, retificação, eliminação, portabilidade, oposição. Contacto: info@as-autohandelgmbh.com</p>` },
     ro: { title: 'Politica de Confidențialitate', content: `
 <h2>1. Operatorul datelor</h2>
-<p>AS Autohandel GmbH — kontakt@automatikgebrauchtwagen.com</p>
+<p>AS Autohandel GmbH — info@as-autohandelgmbh.com</p>
 <h2>2. Date colectate</h2>
 <ul><li>Nume, prenume, email, telefon, adresă</li><li>Salariu lunar (simulare finanțare)</li><li>Istoricul comenzilor</li></ul>
 <h2>3. Baza legală (GDPR)</h2>
 <ul><li>Executarea contractului — Art. 6(1)(b)</li><li>Consimțământ — Art. 6(1)(a)</li><li>Interes legitim — Art. 6(1)(f)</li></ul>
 <h2>4. Drepturile dvs.</h2>
-<p>Acces, rectificare, ștergere, portabilitate, opoziție. Contact: kontakt@automatikgebrauchtwagen.com</p>
+<p>Acces, rectificare, ștergere, portabilitate, opoziție. Contact: info@as-autohandelgmbh.com</p>
 <h2>5. Securitate</h2>
 <p>Parole criptate (bcrypt), JWT cu expirare, conexiuni HTTPS.</p>` },
   },
@@ -240,7 +240,7 @@ Capital social : 250 000 000 €</p>
 <h2>Gestion</h2>
 <p>Via la bannière à la première visite ou via les paramètres de votre navigateur.</p>
 <h2>Contact</h2>
-<p>kontakt@automatikgebrauchtwagen.com</p>` },
+<p>info@as-autohandelgmbh.com</p>` },
     en: { title: 'Cookie Policy', content: `
 <h2>Cookies used</h2>
 <ul>
@@ -304,7 +304,7 @@ Capital social : 250 000 000 €</p>
 <h2>Gestionare</h2>
 <p>Prin banner la prima vizită sau prin setările browserului.</p>
 <h2>Contact</h2>
-<p>kontakt@automatikgebrauchtwagen.com</p>` },
+<p>info@as-autohandelgmbh.com</p>` },
   },
 };
 

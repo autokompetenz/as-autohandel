@@ -392,11 +392,11 @@ export default function Sell() {
               }}>
                 💬 WhatsApp
               </a>
-              <a href="mailto:kontakt@automatikgebrauchtwagen.com" style={{
+              <a href="mailto:info@as-autohandelgmbh.com" style={{
                 background:'rgba(255,255,255,0.1)', color:'#fff', textDecoration:'none', fontFamily:"var(--font)",
                 fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8, border:'1px solid rgba(255,255,255,0.3)', display:'inline-flex', alignItems:'center', gap:8
               }}>
-                ✉ kontakt@automatikgebrauchtwagen.com
+                ✉ info@as-autohandelgmbh.com
               </a>
             </div>
           </motion.div>

@@ -5,9 +5,9 @@ import { useLangStore, useThemeStore } from '../store';
 
 const WA = '+491630436338';
 const WA_DISPLAY = '+49 163 043 63 38';
-const EMAIL = 'kontakt@automatikgebrauchtwagen.com';
+const EMAIL = 'info@as-autohandelgmbh.com';
 const ADDRESS = 'Sprendlinger Straße 119, 63069 Offenbach am Main';
-const SITE_URL = 'automatikgebrauchtwagen.com';
+const SITE_URL = 'as-autohandelgmbh.com';
 
 /* ─── Knowledge Base ─── */
 const R = {

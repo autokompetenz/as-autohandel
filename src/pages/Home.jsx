@@ -488,7 +488,7 @@ function FAQSection({ l, isMobile }) {
               style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:13, fontWeight:700, padding:'11px 22px', borderRadius:8, display:'inline-flex', alignItems:'center', gap:8 }}>
               💬 WhatsApp
             </a>
-            <a href="mailto:kontakt@automatikgebrauchtwagen.com" className="btn-ghost" style={{ fontSize:13 }}>
+            <a href="mailto:info@as-autohandelgmbh.com" className="btn-ghost" style={{ fontSize:13 }}>
               ✉ Email
             </a>
           </div>
@@ -1643,7 +1643,7 @@ export default function Home() {
                 style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:13, fontWeight:600, padding:'14px 28px', borderRadius:8, display:'inline-flex', alignItems:'center', gap:8, letterSpacing:'0.02em' }}>
                 💬 WhatsApp
               </a>
-              <a href="mailto:kontakt@automatikgebrauchtwagen.com" className="btn-ghost" style={{ fontSize:13 }}>
+              <a href="mailto:info@as-autohandelgmbh.com" className="btn-ghost" style={{ fontSize:13 }}>
                 ✉ Email
               </a>
             </div>
@@ -1693,7 +1693,7 @@ export default function Home() {
                 <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:14 }}>Contact</p>
                 <p style={{ fontSize:13, color:'var(--text-3)', lineHeight:1.8, fontWeight:400 }}>
                   📞 +49 163 043 63 38<br/>
-                  ✉ kontakt@automatikgebrauchtwagen.com<br/>
+                  ✉ info@as-autohandelgmbh.com<br/>
                   💬 <a href="https://wa.me/491630436338" style={{ color:'var(--red)', textDecoration:'none' }}>WhatsApp</a>
                 </p>
               </div>
