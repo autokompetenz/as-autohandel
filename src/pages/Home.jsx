@@ -313,7 +313,7 @@ function StepCard({ data, step, align }) {
     <div style={{
       background:'var(--bg-card)',
       border:'1px solid var(--border)',
-      borderRadius:14,
+      borderRadius:18,
       padding:'24px 28px',
       boxShadow:'var(--shadow-sm)',
       maxWidth:420,
@@ -390,7 +390,7 @@ function FAQSection({ l, isMobile }) {
                 style={{
                   background:'var(--bg-card)',
                   border:`1px solid ${isOpen ? 'rgba(35,115,244,0.35)' : 'var(--border)'}`,
-                  borderRadius:14,
+                  borderRadius:18,
                   overflow:'hidden',
                   boxShadow: isOpen ? '0 4px 24px rgba(35,115,244,0.08)' : 'var(--shadow-sm)',
                   transition:'border-color 0.3s, box-shadow 0.3s',
@@ -1023,8 +1023,8 @@ export default function Home() {
                   <motion.div key={i} initial={{ opacity:0, x:-16 }} whileInView={{ opacity:1, x:0 }} viewport={{ once:true }} transition={{ duration:0.4, delay:i*0.08 }}
                     style={{ display:'flex', gap:16, paddingBottom: isLast ? 0 : 32, position:'relative' }}>
                     <div style={{ display:'flex', flexDirection:'column', alignItems:'center', flexShrink:0 }}>
-                      <div style={{ width:48, height:48, borderRadius:12, background:'var(--bg-card)', border:'1px solid var(--border)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-                        <span style={{ fontSize:22 }}>{s.icon}</span>
+                      <div style={{ width:46, height:46, borderRadius:13, background:'var(--red-bg)', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+                        <span style={{ fontSize:21 }}>{s.icon}</span>
                       </div>
                       {!isLast && <div style={{ width:1, flex:1, background:'var(--border)', marginTop:8, minHeight:24 }} />}
                     </div>
@@ -1071,8 +1071,8 @@ export default function Home() {
                 return (
                   <motion.div key={i} initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.12 }}
                     style={{ textAlign:'center', padding:'0 20px' }}>
-                    <div style={{ width:72, height:72, borderRadius:16, background:'var(--bg-card2)', border:'1px solid var(--border)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 20px' }}>
-                      <span style={{ fontSize:30 }}>{s.icon}</span>
+                    <div style={{ width:64, height:64, borderRadius:18, background:'var(--red-bg)', display:'flex', alignItems:'center', justifyContent:'center', margin:'0 auto 20px' }}>
+                      <span style={{ fontSize:27 }}>{s.icon}</span>
                     </div>
                     <span style={{ display:'block', fontSize:9, fontWeight:700, letterSpacing:'0.3em', color:'var(--red)', marginBottom:12 }}>
                       {s.step}
@@ -1405,10 +1405,10 @@ export default function Home() {
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(3,1fr)', gap: isMobile ? 12 : 16 }}>
             {SERVICES.map((s, i) => (
               <motion.div key={i} initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay:i*0.06, duration:0.5 }}
-                style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:12, padding:'24px 26px', transition:'all 0.35s cubic-bezier(0.16,1,0.3,1)' }}
-                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.12)'; e.currentTarget.style.transform='translateY(-2px)'; e.currentTarget.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)';}}
+                style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:18, padding:'26px 28px', transition:'border-color 0.3s, transform 0.3s, box-shadow 0.3s' }}
+                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.35)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='0 14px 34px rgba(35,115,244,0.12)';}}
                 onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='none';}}>
-                <div style={{ fontSize:28, marginBottom:16 }}>{s.icon}</div>
+                <div style={{ width:46, height:46, borderRadius:13, background:'var(--red-bg)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:21, marginBottom:16 }}>{s.icon}</div>
                 <h3 style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:17, color:'var(--text)', marginBottom:8 }}>{getServiceTitle(s)}</h3>
                 <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.65 }}>{getServiceDesc(s)}</p>
               </motion.div>
@@ -1521,10 +1521,10 @@ export default function Home() {
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(3,1fr)', gap: isMobile ? 16 : 24 }}>
             {/* Warranty Card */}
             <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }}
-              style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:16, padding: isMobile ? 24 : 32, boxShadow:'var(--shadow-sm)', transition:'all 0.3s' }}
+              style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:18, padding: isMobile ? 24 : 32, boxShadow:'var(--shadow-sm)', transition:'border-color 0.3s, transform 0.3s, box-shadow 0.3s' }}
               onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
               onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='var(--shadow-sm)';}}>
-              <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>🛡️</div>
+              <div style={{ width:46, height:46, borderRadius:13, background:'var(--red-bg)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:21, marginBottom:20 }}>🛡️</div>
               <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
                 {l==='fr'?'Garantie AS Autohandel GmbH':l==='en'?'AS Autohandel GmbH Warranty':l==='de'?'AS Autohandel GmbH Garantie':l==='es'?'Garantía AS Autohandel GmbH':l==='it'?'Garanzia AS Autohandel GmbH':'Garantia AS Autohandel GmbH'}
               </h3>
@@ -1533,7 +1533,7 @@ export default function Home() {
               </p>
               <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginBottom:20 }}>
                 {[l==='fr'?'✓ 12 mois':l==='en'?'✓ 12 months':l==='de'?'✓ 12 Monate':'✓ 12 meses', l==='fr'?'✓ 10 000 km':'✓ 10,000 km', l==='fr'?'✓ Moteur':l==='en'?'✓ Engine':l==='de'?'✓ Motor':'✓ Motor'].map((b,i)=>(
-                  <span key={i} style={{ fontSize:12, fontWeight:600, color:'var(--text-2)', background:'var(--bg-card2)', padding:'6px 12px', borderRadius:6 }}>{b}</span>
+                  <span key={i} style={{ fontSize:12, fontWeight:600, color:'var(--text-2)', background:'var(--bg-card2)', padding:'6px 14px', borderRadius:100 }}>{b}</span>
                 ))}
               </div>
               <Link to="/warranty" style={{ display:'inline-flex', alignItems:'center', gap:6, fontSize:13, fontWeight:700, color:'var(--red)', textDecoration:'none' }}>
@@ -1543,10 +1543,10 @@ export default function Home() {
 
             {/* Extension Options */}
             <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:0.1 }}
-              style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:16, padding: isMobile ? 24 : 32, boxShadow:'var(--shadow-sm)', transition:'all 0.3s' }}
+              style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:18, padding: isMobile ? 24 : 32, boxShadow:'var(--shadow-sm)', transition:'border-color 0.3s, transform 0.3s, box-shadow 0.3s' }}
               onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
               onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='var(--shadow-sm)';}}>
-              <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>📅</div>
+              <div style={{ width:46, height:46, borderRadius:13, background:'var(--red-bg)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:21, marginBottom:20 }}>📅</div>
               <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
                 {l==='fr'?'Options d\'extension':l==='en'?'Extension options':l==='de'?'Erweiterungsoptionen':l==='es'?'Opciones de extensión':l==='it'?'Opzioni di estensione':'Opções de extensão'}
               </h3>
@@ -1555,7 +1555,7 @@ export default function Home() {
               </p>
               <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginBottom:20 }}>
                 {['✓ 24 mois','✓ 36 mois','✓ 24/7'].map((b,i)=>(
-                  <span key={i} style={{ fontSize:12, fontWeight:600, color:'var(--text-2)', background:'var(--bg-card2)', padding:'6px 12px', borderRadius:6 }}>{b}</span>
+                  <span key={i} style={{ fontSize:12, fontWeight:600, color:'var(--text-2)', background:'var(--bg-card2)', padding:'6px 14px', borderRadius:100 }}>{b}</span>
                 ))}
               </div>
               <Link to="/warranty" style={{ display:'inline-flex', alignItems:'center', gap:6, fontSize:13, fontWeight:700, color:'var(--red)', textDecoration:'none' }}>
@@ -1565,10 +1565,10 @@ export default function Home() {
 
             {/* Insurance */}
             <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:0.2 }}
-              style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:16, padding: isMobile ? 24 : 32, boxShadow:'var(--shadow-sm)', transition:'all 0.3s' }}
+              style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:18, padding: isMobile ? 24 : 32, boxShadow:'var(--shadow-sm)', transition:'border-color 0.3s, transform 0.3s, box-shadow 0.3s' }}
               onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
               onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='var(--shadow-sm)';}}>
-              <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>💳</div>
+              <div style={{ width:46, height:46, borderRadius:13, background:'var(--red-bg)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:21, marginBottom:20 }}>💳</div>
               <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
                 {l==='fr'?'Assurance véhicule':l==='en'?'Vehicle insurance':l==='de'?'Fahrzeugversicherung':l==='es'?'Seguro de vehículo':l==='it'?'Assicurazione veicolo':'Seguro veículo'}
               </h3>
@@ -1577,7 +1577,7 @@ export default function Home() {
               </p>
               <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginBottom:20 }}>
                 {[l==='fr'?'✓ RC':l==='en'?'✓ Liability':'✓ RC', l==='fr'?'✓ Tous risques':l==='en'?'✓ Full coverage':'✓ RC', l==='fr'?'✓ Vol':l==='en'?'✓ Theft':'✓ Vol'].map((b,i)=>(
-                  <span key={i} style={{ fontSize:12, fontWeight:600, color:'var(--text-2)', background:'var(--bg-card2)', padding:'6px 12px', borderRadius:6 }}>{b}</span>
+                  <span key={i} style={{ fontSize:12, fontWeight:600, color:'var(--text-2)', background:'var(--bg-card2)', padding:'6px 14px', borderRadius:100 }}>{b}</span>
                 ))}
               </div>
               <Link to="/insurance" style={{ display:'inline-flex', alignItems:'center', gap:6, fontSize:13, fontWeight:700, color:'var(--red)', textDecoration:'none' }}>
@@ -1594,7 +1594,7 @@ export default function Home() {
               { text: l==='fr'?'✓ Assurance sur mesure':l==='en'?'✓ Tailored insurance':l==='de'?'✓ Maßgeschneiderte Versicherung':l==='es'?'✓ Seguro a medida':l==='it'?'✓ Assicurazione su misura':'✓ Seguro sob medida' },
               { text: l==='fr'?'✓ Assistance 24/7':l==='en'?'✓ 24/7 assistance':l==='de'?'✓ 24/7 Assistance':l==='es'?'✓ Asistencia 24/7':l==='it'?'✓ Assistenza 24/7':'✓ Assistência 24/7' },
             ].map((badge, i) => (
-              <div key={i} style={{ padding:'10px 20px', background:'var(--bg-card2)', border:'1px solid rgba(35,115,244,0.2)', borderRadius:8, fontSize:13, fontWeight:700, color:'var(--red)' }}>
+              <div key={i} style={{ padding:'10px 20px', background:'var(--bg-card2)', border:'1px solid rgba(35,115,244,0.2)', borderRadius:100, fontSize:13, fontWeight:700, color:'var(--red)' }}>
                 {badge.text}
               </div>
             ))}
@@ -1614,14 +1614,16 @@ export default function Home() {
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(3,1fr)', gap: isMobile ? 12 : 20 }}>
             {ALL_REVIEWS.slice(0, 6).map((r, i) => (
               <motion.div key={i} initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay:i*0.08, duration:0.5 }}
-                style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:12, padding:'22px 24px', boxShadow:'var(--shadow-sm)' }}>
+                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.35)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='0 14px 34px rgba(35,115,244,0.12)';}}
+                onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='var(--shadow-sm)';}}
+                style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:18, padding:'24px 26px', boxShadow:'var(--shadow-sm)', transition:'border-color 0.3s, transform 0.3s, box-shadow 0.3s' }}>
                 <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:14 }}>
                   <div style={{ width:44, height:44, borderRadius:'50%', background:'linear-gradient(135deg,var(--red-dark),var(--red))', display:'flex', alignItems:'center', justifyContent:'center', fontFamily:"var(--font)", fontWeight:800, fontSize:14, color:'#fff', flexShrink:0 }}>{r.avatar}</div>
                   <div>
                     <p style={{ fontWeight:700, fontSize:15, color:'var(--text)' }}>{r.name}</p>
                     <Stars n={r.rating} />
                   </div>
-                  <span style={{ marginLeft:'auto', fontSize:11, fontWeight:600, background:'rgba(34,197,94,0.08)', border:'1px solid rgba(34,197,94,0.2)', color:'var(--green)', padding:'3px 10px', borderRadius:4 }}>✓ {t('verified', l)}</span>
+                  <span style={{ marginLeft:'auto', fontSize:11, fontWeight:600, background:'rgba(34,197,94,0.08)', border:'1px solid rgba(34,197,94,0.2)', color:'var(--green)', padding:'3px 10px', borderRadius:100 }}>✓ {t('verified', l)}</span>
                 </div>
                 <p style={{ fontSize:14, color:'var(--text-2)', lineHeight:1.7 }}>"{getReviewText(r)}"</p>
               </motion.div>
