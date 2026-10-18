@@ -627,6 +627,8 @@ export default function Home() {
   const [brands, setBrands]             = useState([]);
   const [sf, setSf] = useState({ brand:'', category:'', fuelType:'', transmission:'', minYear:'', maxYear:'', minPrice:'', maxPrice:'', maxMileage:'' });
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [searchTab, setSearchTab]     = useState('prix');   // 'prix' | 'mensualite' (façon Spoticar)
+  const [maxMonthly, setMaxMonthly]   = useState('');
   const heroRef = useRef(null);
   const navigate = useNavigate();
   const l = lang || 'fr';
@@ -635,6 +637,18 @@ export default function Home() {
     const params = new URLSearchParams();
     if (searchQuery.trim()) params.set('search', searchQuery.trim());
     Object.entries(sf).forEach(([k, v]) => { if (v) params.set(k, v); });
+    navigate(`/catalog?${params.toString()}`);
+  };
+
+  // Recherche par mensualité (onglet façon Spoticar) : convertit la mensualité
+  // max en budget total selon nos conditions (25% acompte, 60 mois, 6%)
+  const goSearchMonthly = () => {
+    const params = new URLSearchParams();
+    if (searchQuery.trim()) params.set('search', searchQuery.trim());
+    if (sf.brand) params.set('brand', sf.brand);
+    if (sf.category) params.set('category', sf.category);
+    const m = Number(maxMonthly);
+    if (m > 0) params.set('maxPrice', String(Math.round((m * 65) / 500) * 500));
     navigate(`/catalog?${params.toString()}`);
   };
 
@@ -691,145 +705,101 @@ export default function Home() {
   return (
     <div style={{ minHeight:'100vh', background:'var(--bg)' }}>
 
-      {/* ── HERO ── */}
-      <section ref={heroRef} style={{ position:'relative', height: isMobile ? '100svh' : '100vh', minHeight:580, display:'flex', alignItems:'center', overflow:'hidden' }}>
+      {/* ── HERO — template type Spoticar : photo pleine largeur + recherche en overlay ── */}
+      <section ref={heroRef} style={{ position:'relative', minHeight: isMobile ? 620 : 640, display:'flex', alignItems:'center', overflow:'hidden', paddingTop: 76 }}>
         <HeroSlider y={heroY} />
+        <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.40)', zIndex:1 }} />
 
-        <motion.div style={{ position:'relative', zIndex:2, padding: isMobile ? '0 6%' : '0 8%', maxWidth:720, opacity:heroO }}>
-          <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, delay:0.1 }}>
-            <div style={{ display:'inline-flex', alignItems:'center', gap:8, marginBottom:32 }}>
+        <motion.div style={{ position:'relative', zIndex:2, width:'100%', maxWidth:1160, margin:'0 auto', padding: isMobile ? '36px 4% 44px' : '48px 24px 56px', opacity: heroO }}>
+          <motion.div initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7, delay:0.1 }}>
+            <div style={{ display:'inline-flex', alignItems:'center', gap:8, marginBottom:18 }}>
               <span style={{ width:24, height:1, background:'rgba(255,255,255,0.4)' }} />
-              <span style={{ fontSize:10, fontWeight:600, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.6)' }}>
+              <span style={{ fontSize:10, fontWeight:600, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.7)' }}>
                 {t('hero_badge', l)}
               </span>
             </div>
+            <h1 style={{ fontFamily:"var(--font-title)", fontWeight:600, fontSize: isMobile ? 'clamp(28px,7vw,40px)' : 'clamp(34px,4vw,52px)', color:'#fff', letterSpacing:'-0.01em', lineHeight:1.12, marginBottom:12 }}>
+              {l==='fr'?'Trouvez la voiture qu\'il vous faut':l==='en'?'Find the car that fits you':l==='de'?'Finden Sie das passende Auto':l==='es'?'Encuentre el coche que necesita':l==='it'?'Trova l\'auto che fa per voi':'Encontre o carro certo para si'}
+            </h1>
+            <p style={{ fontSize: isMobile ? 14 : 16, color:'rgba(255,255,255,0.75)', lineHeight:1.6, marginBottom:26, maxWidth:560, fontWeight:400 }}>
+              {t('hero_subtitle', l)}
+            </p>
           </motion.div>
 
-          <motion.h1 initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.9, delay:0.2 }}
-            style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 'clamp(36px,10vw,52px)' : 'clamp(48px,5.5vw,80px)', color:'#fff', letterSpacing:'-0.03em', lineHeight:1.0, marginBottom:24 }}>
-            AS Autohandel<br/><span style={{ color:'rgba(255,255,255,0.55)' }}>GmbH</span>
-          </motion.h1>
-
-          <motion.p initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, delay:0.35 }}
-            style={{ fontSize: isMobile ? 15 : 17, color:'rgba(255,255,255,0.55)', lineHeight:1.7, marginBottom:40, maxWidth:480, fontWeight:300 }}>
-            {t('hero_subtitle', l)}
-          </motion.p>
-
-          <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7, delay:0.5 }}
-            style={{ display:'flex', gap:14, flexWrap:'wrap' }}>
-            <Link to="/catalog" className="btn-primary" style={{ fontSize: isMobile ? 13 : 14, background:'#fff', color:'var(--red)', boxShadow:'0 2px 8px rgba(0,0,0,0.25)' }}>
-              {t('hero_cta1', l)} →
-            </Link>
-            <Link to="/simulation" className="btn-ghost" style={{ fontSize: isMobile ? 13 : 14, background:'transparent', borderColor:'rgba(255,255,255,0.3)', color:'rgba(255,255,255,0.85)' }}>
-              {t('hero_cta2', l)}
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:1.2, duration:0.6 }}
-          style={{ position:'absolute', bottom:32, left:'50%', transform:'translateX(-50%)', display:'flex', flexDirection:'column', alignItems:'center', gap:8, zIndex:2 }}>
-          <span style={{ fontSize:9, fontWeight:600, letterSpacing:'0.2em', color:'rgba(255,255,255,0.4)', textTransform:'uppercase' }}>
-            {l==='fr'?'Défiler':l==='en'?'Scroll':l==='de'?'Scrollen':l==='es'?'Desplazar':l==='it'?'Scorri':'Deslizar'}
-          </span>
-          <motion.div animate={{ y:[0,6,0] }} transition={{ repeat:Infinity, duration:1.5, ease:'easeInOut' }}
-            style={{ width:1, height:20, background:'linear-gradient(to bottom, rgba(255,255,255,0.4), transparent)' }} />
-        </motion.div>
-      </section>
-
-      {/* ── MOTEUR DE RECHERCHE (barre compacte) ── */}
-      <section style={{ background:'var(--bg)', position:'relative', zIndex:10, marginTop:-56 }}>
-        <div style={{ width:'100%', maxWidth:1100, margin:'0 auto', padding: isMobile ? '0 4%' : 0 }}>
+          {/* Panneau de recherche blanc en overlay */}
           <motion.div
             initial={{ opacity:0, y:24 }}
             animate={{ opacity:1, y:0 }}
-            transition={{ duration:0.6, delay:0.5 }}
-            style={{
-              background:'var(--bg-card)',
-              border:'1px solid var(--border)',
-              borderRadius: 'var(--radius-lg)',
-              overflow:'hidden',
-              boxShadow: isDark ? '0 12px 32px rgba(0,0,0,0.4)' : '0 8px 28px rgba(19,24,38,0.14)',
-            }}
+            transition={{ duration:0.6, delay:0.3 }}
+            className="mk-panel"
+            style={{ borderRadius:'var(--radius-lg)', overflow:'hidden', maxWidth:920, boxShadow:'0 16px 48px rgba(0,0,0,0.28)' }}
           >
-            {/* Onglets — recherche rapide par catégorie */}
-            <div style={{ display:'flex', overflowX:'auto', borderBottom:'1px solid var(--border)', background:'var(--bg-card2)' }}>
+            {/* Onglets — pilule noire + texte cyan (Spoticar) */}
+            <div style={{ display:'flex', gap:8, padding:'16px 20px 0' }}>
               {[
-                { v:'', label: l==='fr'?'Toutes':l==='en'?'All':l==='de'?'Alle':'Todas' },
-                { v:'Berline',   label:'Berline' },
-                { v:'SUV',       label:'SUV' },
-                { v:'Citadine',  label: l==='de'?'Kleinwagen':'Citadine' },
-                { v:'Break',     label: l==='de'?'Kombi':'Break' },
-                { v:'Utilitaire',label: l==='de'?'Transporter':'Utilitaire' },
-              ].map(({ v, label }) => {
-                const active = sf.category === v;
+                { v:'prix',       label: l==='fr'?'Prix':l==='en'?'Price':l==='de'?'Preis':l==='es'?'Precio':l==='it'?'Prezzo':'Preço' },
+                { v:'mensualite', label: l==='fr'?'Mensualité':l==='en'?'Monthly payment':l==='de'?'Monatsrate':l==='es'?'Cuota mensual':l==='it'?'Rata mensile':'Prestação mensal' },
+              ].map(tab => {
+                const on = searchTab === tab.v;
                 return (
-                  <button key={v || 'all'} onClick={() => setF('category', v)}
+                  <button key={tab.v} onClick={() => setSearchTab(tab.v)}
                     style={{
-                      padding:'12px 16px', border:'none', cursor:'pointer', whiteSpace:'nowrap',
-                      background:'transparent', fontFamily:'var(--font)',
-                      fontSize:14, fontWeight: active ? 700 : 500,
-                      color: active ? 'var(--red)' : 'var(--text-2)',
-                      borderBottom:`2px solid ${active ? 'var(--red)' : 'transparent'}`,
-                      transition:'color 0.15s, border-color 0.15s',
+                      border:'none', cursor:'pointer', padding:'9px 22px', borderRadius:100,
+                      background: on ? 'var(--red)' : 'transparent',
+                      color: on ? 'var(--red-light)' : 'var(--text-2)',
+                      fontFamily:'var(--font)', fontSize:15, fontWeight: on ? 700 : 500,
+                      transition:'all 0.15s',
                     }}>
-                    {label}
+                    {tab.label}
                   </button>
                 );
               })}
             </div>
 
-            {/* Barre principale */}
-            <div style={{ display:'flex', flexWrap:'wrap', gap:10, alignItems:'center', padding: isMobile ? '16px' : '16px 18px' }}>
-              {/* Marque */}
+            {/* Barre de champs */}
+            <div style={{ display:'flex', flexWrap:'wrap', gap:10, padding:'14px 20px 18px' }}>
               <div style={{ flex: isMobile ? '1 1 100%' : '1 1 150px', minWidth:0 }}>
-                <select
-                  value={sf.brand}
-                  onChange={e => setF('brand', e.target.value)}
-                  className="input-luxury"
-                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px' }}
-                >
+                <select value={sf.brand} onChange={e => setF('brand', e.target.value)} className="input-luxury"
+                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px', borderRadius:16 }}>
                   <option value="">{l==='fr'?'Toutes marques':l==='en'?'All brands':l==='de'?'Alle Marken':'Todas las marcas'}</option>
                   {brands.map(b => <option key={b} value={b}>{b}</option>)}
                 </select>
               </div>
 
-              {/* Catégorie */}
               <div style={{ flex: isMobile ? '1 1 100%' : '1 1 140px', minWidth:0 }}>
-                <select
-                  value={sf.category}
-                  onChange={e => setF('category', e.target.value)}
-                  className="input-luxury"
-                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px' }}
-                >
+                <select value={sf.category} onChange={e => setF('category', e.target.value)} className="input-luxury"
+                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px', borderRadius:16 }}>
                   <option value="">{l==='fr'?'Toutes catégories':l==='en'?'All categories':l==='de'?'Alle Kategorien':'Todas las categorías'}</option>
                   {['Berline','SUV','Citadine','Break','Coupe','Monospace','Utilitaire','FourX4'].map(c => <option key={c} value={c}>{c}</option>)}
                 </select>
               </div>
 
-              {/* Prix max (liste pré-calée façon Hollyroad) */}
-              <div style={{ flex: isMobile ? '1 1 100%' : '1 1 130px', minWidth:0 }}>
-                <select
-                  value={sf.maxPrice}
-                  onChange={e => setF('maxPrice', e.target.value)}
-                  className="input-luxury"
-                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px' }}
-                >
-                  <option value="">{l==='fr'?'Prix max':l==='en'?'Max price':l==='de'?'Max. Preis':'Precio máx.'}</option>
-                  {['10000','15000','20000','25000','30000','40000','50000','75000'].map(v => (
-                    <option key={v} value={v}>{Number(v).toLocaleString('fr-FR')} €</option>
-                  ))}
-                </select>
-              </div>
+              {/* Champ budget : prix OU mensualité selon l'onglet */}
+              {searchTab === 'prix' ? (
+                <div style={{ flex: isMobile ? '1 1 100%' : '1 1 130px', minWidth:0 }}>
+                  <select value={sf.maxPrice} onChange={e => setF('maxPrice', e.target.value)} className="input-luxury"
+                    style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px', borderRadius:16 }}>
+                    <option value="">{l==='fr'?'Prix max':l==='en'?'Max price':l==='de'?'Max. Preis':'Precio máx.'}</option>
+                    {['10000','15000','20000','25000','30000','40000','50000','75000'].map(v => (
+                      <option key={v} value={v}>{Number(v).toLocaleString('fr-FR')} €</option>
+                    ))}
+                  </select>
+                </div>
+              ) : (
+                <div style={{ flex: isMobile ? '1 1 100%' : '1 1 150px', minWidth:0 }}>
+                  <select value={maxMonthly} onChange={e => setMaxMonthly(e.target.value)} className="input-luxury"
+                    style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px', borderRadius:16 }}>
+                    <option value="">{l==='fr'?'Mensualité max':l==='en'?'Max monthly':l==='de'?'Max. Rate':'Cuota máx.'}</option>
+                    {['150','200','250','300','400','500','600','800'].map(v => (
+                      <option key={v} value={v}>{v} € / {l==='fr'?'mois':l==='en'?'month':l==='de'?'Monat':'mes'}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
-              {/* KM max */}
               <div style={{ flex: isMobile ? '1 1 100%' : '1 1 130px', minWidth:0 }}>
-                <select
-                  value={sf.maxMileage}
-                  onChange={e => setF('maxMileage', e.target.value)}
-                  className="input-luxury"
-                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px' }}
-                >
+                <select value={sf.maxMileage} onChange={e => setF('maxMileage', e.target.value)} className="input-luxury"
+                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px', borderRadius:16 }}>
                   <option value="">{l==='fr'?'KM max':l==='en'?'Max km':l==='de'?'Max. km':'Km máx.'}</option>
                   {['20000','50000','80000','100000','150000','200000'].map(v => (
                     <option key={v} value={v}>{Number(v).toLocaleString('fr-FR')} km</option>
@@ -837,32 +807,20 @@ export default function Home() {
                 </select>
               </div>
 
-              {/* Bouton Rechercher */}
               <button
-                onClick={goSearch}
-                style={{
-                  flex: isMobile ? '1 1 100%' : '0 0 auto',
-                  background:'var(--red)',
-                  border:'none', borderRadius:'var(--radius)',
-                  padding:'14px 28px', color:'#fff', fontWeight:700, fontSize:15,
-                  fontFamily:"var(--font)",
-                  cursor:'pointer', whiteSpace:'nowrap', letterSpacing:'0.01em',
-                  boxShadow:'0 1px 2px rgba(7,187,216,0.3)',
-                  transition:'background 0.2s',
-                }}
-                onMouseOver={e => { e.currentTarget.style.background='var(--red-dark)'; }}
-                onMouseOut={e => { e.currentTarget.style.background='var(--red)'; }}
+                onClick={searchTab === 'prix' ? goSearch : goSearchMonthly}
+                className="btn-primary"
+                style={{ flex: isMobile ? '1 1 100%' : '0 0 auto', padding:'13px 30px', fontSize:15, borderRadius:100 }}
               >
                 {l==='fr'?'Rechercher':l==='en'?'Search':l==='de'?'Suchen':l==='es'?'Buscar':l==='it'?'Cerca':l==='pt'?'Pesquisar':'بحث'} →
               </button>
 
-              {/* Filtres avancés */}
               <button
                 onClick={() => setShowAdvanced(v => !v)}
                 style={{
                   flex: isMobile ? '1 1 100%' : '0 0 auto',
                   background:'transparent',
-                  border:'1px solid var(--border)', borderRadius:'var(--radius)',
+                  border:'1px solid var(--border)', borderRadius:100,
                   padding:'13px 18px', color:'var(--text-2)', fontWeight:600, fontSize:13,
                   fontFamily:"var(--font)",
                   cursor:'pointer', whiteSpace:'nowrap',
@@ -885,19 +843,19 @@ export default function Home() {
                 transition={{ duration:0.35, ease:'easeInOut' }}
                 style={{ overflow:'hidden', borderTop:'1px solid var(--border)' }}
               >
-                <div style={{ padding: isMobile ? '16px' : '18px' }}>
-                  {/* Mot-clé */}
+                <div style={{ padding: isMobile ? '16px' : '18px 20px' }}>
                   <div style={{ position:'relative', marginBottom:14 }}>
                     <span style={{ position:'absolute', left:14, top:'50%', transform:'translateY(-50%)', fontSize:15, opacity:0.4, pointerEvents:'none' }}>🔎</span>
                     <input
+                      type="text"
                       value={searchQuery}
                       onChange={e => setSearchQuery(e.target.value)}
                       onKeyDown={e => e.key === 'Enter' && goSearch()}
                       placeholder={l==='fr' ? 'Marque, modèle, mot-clé...' : l==='en' ? 'Brand, model, keyword...' : l==='de' ? 'Marke, Modell, Stichwort...' : 'Marca, modelo, palabra-clave...'}
                       style={{
                         width:'100%', boxSizing:'border-box',
-                        background: isDark ? 'rgba(255,255,255,0.05)' : 'var(--bg-card2)',
-                        border:'1px solid var(--border)', borderRadius:'var(--radius)',
+                        background:'var(--bg-card2)',
+                        border:'1px solid var(--border)', borderRadius:16,
                         padding:'13px 16px 13px 42px', fontSize:15,
                         fontFamily:"var(--font)",
                         color:'var(--text)', outline:'none', transition:'border-color 0.2s',
@@ -936,20 +894,15 @@ export default function Home() {
 
                   <div style={{ display:'flex', gap:12, flexWrap:'wrap', alignItems:'center' }}>
                     <button
-                      onClick={() => { setSearchQuery(''); setSf({ brand:'', category:'', fuelType:'', transmission:'', minYear:'', maxYear:'', minPrice:'', maxPrice:'', maxMileage:'' }); }}
+                      onClick={() => { setSearchQuery(''); setMaxMonthly(''); setSf({ brand:'', category:'', fuelType:'', transmission:'', minYear:'', maxYear:'', minPrice:'', maxPrice:'', maxMileage:'' }); }}
                       style={{ background:'none', border:'none', color:'var(--red)', cursor:'pointer', fontSize:13, fontWeight:600, padding:0 }}
                     >
                       {l==='fr'?'✕ Réinitialiser':l==='en'?'✕ Reset':l==='de'?'✕ Zurücksetzen':'✕ Restablecer'}
                     </button>
                     <button
                       onClick={() => { goSearch(); setShowAdvanced(false); }}
-                      style={{
-                        marginLeft:'auto',
-                        background:'var(--red)',
-                        border:'none', borderRadius:'var(--radius)', padding:'13px 26px',
-                        color:'#fff', fontWeight:700, fontSize:14,
-                        fontFamily:"var(--font)", cursor:'pointer',
-                      }}
+                      className="btn-primary"
+                      style={{ marginLeft:'auto', padding:'12px 26px', fontSize:14 }}
                     >
                       {l==='fr'?'Appliquer':l==='en'?'Apply':l==='de'?'Anwenden':'Aplicar'} →
                     </button>
@@ -959,8 +912,40 @@ export default function Home() {
             )}
           </motion.div>
 
-          {/* Tuiles de catégories */}
-          <div style={{ display:'grid', gridTemplateColumns: isMobile ? 'repeat(4,1fr)' : 'repeat(8,1fr)', gap:10, marginTop:22 }}>
+          {/* Suggestions — chips façon Spoticar */}
+          <div style={{ display:'flex', gap:8, flexWrap:'wrap', alignItems:'center', marginTop:18 }}>
+            <span style={{ fontSize:11, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'rgba(255,255,255,0.6)' }}>
+              {l==='fr'?'Suggestions':l==='en'?'Suggestions':l==='de'?'Vorschläge':l==='es'?'Sugerencias':l==='it'?'Suggerimenti':'Sugestões'}
+            </span>
+            {[
+              { to:'/catalog?category=Citadine&maxPrice=20000', label: l==='fr'?'Citadine à moins de 20K':l==='en'?'City car under 20K':l==='de'?'Kleinwagen unter 20K':l==='es'?'Ciudad menos de 20K':'Citadina sotto i 20K' },
+              { to:'/catalog?category=SUV',                    label: l==='fr'?'Un SUV familial':l==='en'?'A family SUV':l==='de'?'Ein Familien-SUV':l==='es'?'Un SUV familiar':'Un SUV familiare' },
+              { to:'/catalog?fuelType=Diesel&maxMileage=100000', label: l==='fr'?'Diesel moins de 100 000 km':l==='en'?'Diesel under 100,000 km':l==='de'?'Diesel unter 100.000 km':l==='es'?'Diésel menos de 100.000 km':'Diesel sotto i 100.000 km' },
+              { to:'/catalog?transmission=Automatique',        label: l==='fr'?'Boîte automatique':l==='en'?'Automatic gearbox':l==='de'?'Automatikgetriebe':l==='es'?'Caja automática':'Cambio automatico' },
+              { to:'/catalog?fuelType=Electrique',             label: l==='fr'?'Électrique':l==='en'?'Electric':l==='de'?'Elektrisch':l==='es'?'Eléctrico':'Elettrica' },
+            ].map(s => (
+              <Link key={s.to} to={s.to}
+                style={{
+                  fontSize:13, fontWeight:600, padding:'8px 16px', borderRadius:100,
+                  background:'rgba(255,255,255,0.92)', color:'#101820', textDecoration:'none',
+                  border:'1px solid transparent', transition:'background 0.15s, border-color 0.15s',
+                }}
+                onMouseOver={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.borderColor = 'var(--red-light)'; }}
+                onMouseOut={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.92)'; e.currentTarget.style.borderColor = 'transparent'; }}>
+                {s.label}
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ── CATÉGORIES ── */}
+      <section className="section-pad" style={{ background:'var(--bg)', borderBottom:'1px solid var(--border)' }}>
+        <div style={{ maxWidth:1160, margin:'0 auto', padding: isMobile ? '0 4%' : 0 }}>
+          <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:18 }}>
+            {l==='fr'?'Nos catégories':l==='en'?'Our categories':l==='de'?'Unsere Kategorien':l==='es'?'Nuestras categorías':l==='it'?'Le nostre categorie':'As nossas categorias'}
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns: isMobile ? 'repeat(4,1fr)' : 'repeat(8,1fr)', gap:12 }}>
             {[
               { c:'Berline',    i:'🚗' },
               { c:'SUV',        i:'🛻' },
@@ -973,16 +958,17 @@ export default function Home() {
             ].map(({ c, i }) => (
               <Link key={c} to={`/catalog?category=${encodeURIComponent(c)}`}
                 className="mk-panel"
-                style={{ padding: isMobile ? '12px 6px' : '16px 8px', textAlign:'center', textDecoration:'none', transition:'border-color 0.15s, box-shadow 0.15s' }}
+                style={{ padding: isMobile ? '14px 6px' : '18px 8px', textAlign:'center', textDecoration:'none', borderRadius:'var(--radius-lg)', transition:'border-color 0.15s, box-shadow 0.15s' }}
                 onMouseOver={e => { e.currentTarget.style.borderColor = 'var(--red)'; }}
                 onMouseOut={e => { e.currentTarget.style.borderColor = 'var(--border)'; }}>
-                <div style={{ fontSize: isMobile ? 20 : 24, lineHeight:1 }}>{i}</div>
-                <div style={{ fontSize: isMobile ? 11 : 12, fontWeight:600, color:'var(--text-2)', marginTop:7 }}>{c}</div>
+                <div style={{ fontSize: isMobile ? 22 : 26, lineHeight:1 }}>{i}</div>
+                <div style={{ fontSize: isMobile ? 11 : 12, fontWeight:600, color:'var(--text-2)', marginTop:8 }}>{c}</div>
               </Link>
             ))}
           </div>
         </div>
       </section>
+
 
 
       {/* ── PROMO VIDEO ── */}
