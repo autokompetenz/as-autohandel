@@ -15,10 +15,10 @@
   --red-bg:      rgba(219,48,0,0.06);
   --red-border:  rgba(219,48,0,0.2);
 
-  /* Surfaces — marketplace (fond gris clair, cartes blanches) */
-  --bg:          #EBECEE;
+  /* Surfaces — fond bleu très pâle (hellblau), cartes blanches */
+  --bg:          #EDF4FB;
   --bg-card:     #FFFFFF;
-  --bg-card2:    #F5F6F7;
+  --bg-card2:    #F6F9FD;
   --bg-input:    #FFFFFF;
   --bg-nav:      rgba(255,255,255,0.96);
   --bg-dropdown: #FFFFFF;
