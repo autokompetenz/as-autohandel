@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useAuthStore, useLangStore } from '../store';
+import { useAuthStore, useLangStore, useFavStore } from '../store';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import { t } from '../utils/i18n';
 
@@ -10,6 +10,8 @@ function pathMatchesClientNav(pathname) {
   if (/^\/order-confirm\//.test(pathname)) return true;
   if (/^\/track/.test(pathname)) return true;
   if (/^\/catalog\/?$/.test(pathname)) return true;
+  if (/^\/favoris\/?$/.test(pathname)) return true;
+  if (/^\/comparateur\/?$/.test(pathname)) return true;
   return false;
 }
 
@@ -25,12 +27,13 @@ export default function ClientBottomNav() {
   const { lang } = useLangStore();
   const { isMobile } = useBreakpoint();
   const l = lang || 'fr';
+  const favCount = useFavStore(s => s.ids.length);
 
   if (!isMobile || !pathMatchesClientNav(pathname)) return null;
 
   const items = [
     { to: '/catalog', label: t('nav_vehicles', l), icon: '🚗', match: (p) => p === '/catalog' },
-    { to: '/mes-commandes', label: l==='fr'?'Commandes':l==='en'?'Orders':l==='de'?'Bestellungen':'Pedidos', icon: '📦', match: (p) => p === '/mes-commandes' },
+    { to: '/favoris', label: l==='fr'?'Favoris': l==='en'?'Favorites': l==='de'?'Favoriten': l==='es'?'Favoritos': l==='it'?'Preferiti': l==='pt'?'Favoritos': l==='ro'?'Preferate' : 'Favoris', icon: '♥', match: (p) => p === '/favoris', badge: favCount },
     { to: '/simulation', label: t('nav_financing', l), icon: '🧮', match: (p) => p === '/simulation' },
     { to: '/track', label: t('nav_track', l) || 'Suivi', icon: '📍', match: (p) => p.startsWith('/track') },
   ];
