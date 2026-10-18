@@ -9,8 +9,8 @@ export default {
         surface:'#2A2A2D',
       },
       fontFamily: {
-        sans:  ['Inter', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
-        serif: ['Sora', 'Inter', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        sans:  ['Outfit', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
       },
     },
   },
