@@ -16,7 +16,7 @@ export default function About() {
     text: 'var(--text)',
     text2: 'var(--text-2)',
     text3: 'var(--text-3)',
-    red: '#DB3000',
+    red: 'var(--red)',
     shadow: '0 4px 24px rgba(0,0,0,0.08)',
   };
 
@@ -67,8 +67,8 @@ export default function About() {
           transition={{ duration:0.8, delay:0.2 }}
           style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(219,48,0,0.3)', border:'1px solid rgba(219,48,0,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
-            <span style={{ width:8, height:8, borderRadius:'50%', background:'#DB3000', display:'inline-block' }} />
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(7,187,216,0.3)', border:'1px solid rgba(7,187,216,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+            <span style={{ width:8, height:8, borderRadius:'50%', background:'var(--red)', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               {t({ fr:'À propos', en:'About us', de:'Über uns', es:'Sobre nosotros', it:'Chi siamo', pt:'Sobre nós', ro:'Despre noi' })}
             </span>
@@ -85,10 +85,10 @@ export default function About() {
           </p>
           <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
             <Link to="/catalog" style={{
-              background:'linear-gradient(135deg,#DB3000,#B02500)', color:'#fff', textDecoration:'none',
+              background:'linear-gradient(135deg,var(--red),var(--red-dark))', color:'#fff', textDecoration:'none',
               fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
               borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
-              boxShadow:'0 4px 16px rgba(219,48,0,0.4)'
+              boxShadow:'0 4px 16px rgba(7,187,216,0.4)'
             }}>
               {t({ fr:'Voir notre catalogue', en:'View our catalog', de:'Zum Katalog', es:'Ver catálogo', it:'Vedi il catalogo', pt:'Ver catálogo', ro:'Vezi catalogul nostru' })} →
             </Link>
@@ -142,7 +142,7 @@ export default function About() {
             <p style={{ fontSize:15, color:C.text2, lineHeight:1.8, marginBottom:24 }}>
               {t({ fr:'Chaque véhicule présenté sur notre site est inspecté dans notre atelier, préparé avec soin et livré avec toutes les démarches administratives effectuées, partout en Europe.', en:'Every vehicle on our site is inspected in our workshop, carefully prepared and delivered with all administrative formalities completed, across Europe.', de:'Jedes Fahrzeug auf unserer Website wird in unserer Werkstatt geprüft, sorgfältig aufbereitet und mit allen Formalitäten europaweit geliefert.', es:'Cada vehículo de nuestro sitio se inspecciona en nuestro taller y se entrega con todos los trámites realizados.', it:'Ogni veicolo sul nostro sito viene ispezionato in officina e consegnato con tutte le formalità completate.', pt:'Cada veículo do nosso site é inspecionado na oficina e entregue com todas as formalidades tratadas.', ro:'Fiecare vehicul prezentat pe site-ul nostru este inspectat în atelier, pregătit cu grijă și livrat cu toate formalitățile administrative îndeplinite, în toată Europa.' })}
             </p>
-            <Link to="/contact" style={{ color:'#DB3000', fontFamily:"var(--font)", fontSize:14, fontWeight:800, textDecoration:'none', display:'inline-flex', alignItems:'center', gap:8 }}>
+            <Link to="/contact" style={{ color:'var(--red)', fontFamily:"var(--font)", fontSize:14, fontWeight:800, textDecoration:'none', display:'inline-flex', alignItems:'center', gap:8 }}>
               {t({ fr:'En savoir plus', en:'Learn more', de:'Mehr erfahren', es:'Más información', it:'Scopri di più', pt:'Saber mais', ro:'Aflați mai multe' })} →
             </Link>
           </motion.div>
@@ -189,7 +189,7 @@ export default function About() {
                 transition={{ duration:0.5, delay:i*0.08 }}
                 style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:18, padding: isMobile ? 24 : 32, boxShadow:C.shadow, transition:'transform 0.3s, border-color 0.3s' }}
               >
-                <div style={{ width:52, height:52, borderRadius:14, background:'linear-gradient(135deg,#DB3000,#B02500)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:24, marginBottom:18 }}>
+                <div style={{ width:52, height:52, borderRadius:14, background:'linear-gradient(135deg,var(--red),var(--red-dark))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:24, marginBottom:18 }}>
                   {v.icon}
                 </div>
                 <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:19, color:C.text, marginBottom:10 }}>{v.title}</h3>
@@ -211,7 +211,7 @@ export default function About() {
             style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:18, padding: isMobile ? 24 : 32, boxShadow:C.shadow }}
           >
             <div style={{ display:'flex', alignItems:'center', gap:14, marginBottom:20 }}>
-              <div style={{ width:44, height:44, borderRadius:12, background:'linear-gradient(135deg,#DB3000,#B02500)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:20 }}>🏢</div>
+              <div style={{ width:44, height:44, borderRadius:12, background:'linear-gradient(135deg,var(--red),var(--red-dark))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:20 }}>🏢</div>
               <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:19, color:C.text, margin:0 }}>{t({ fr:'Mentions légales', en:'Legal information', de:'Rechtliche Informationen', es:'Información legal', it:'Informazioni legali', pt:'Informação legal', ro:'Informații legale' })}</h3>
             </div>
             <div style={{ display:'flex', flexDirection:'column', gap:14, fontSize:14, color:C.text2, lineHeight:1.7 }}>

@@ -69,7 +69,7 @@ export default function AdminSidebar({ mobileOpen = false, onClose }) {
               width: 52,
               height: 52,
               borderRadius: '50%',
-              background: 'linear-gradient(135deg,#B02500,#DB3000)',
+              background: 'linear-gradient(135deg,var(--red-dark),var(--red))',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -78,7 +78,7 @@ export default function AdminSidebar({ mobileOpen = false, onClose }) {
               fontSize: 17,
               color: '#fff',
               margin: '0 auto 12px',
-              boxShadow: '0 6px 18px rgba(219,48,0,0.28)',
+              boxShadow: '0 6px 18px rgba(7,187,216,0.28)',
             }}
           >
             {getInitials(user?.firstName, user?.lastName)}

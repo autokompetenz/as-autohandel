@@ -72,7 +72,7 @@ export default function AdminOrders() {
             {id && countFor(id) > 0 && (
               <span style={{
                 marginLeft:8,
-                background: activeTab===id ? 'rgba(219,48,0,0.2)' : 'var(--bg-card2)',
+                background: activeTab===id ? 'rgba(7,187,216,0.2)' : 'var(--bg-card2)',
                 padding:'2px 7px',
                 borderRadius:8,
                 fontSize:11,

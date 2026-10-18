@@ -1,5 +1,5 @@
 export default function BrandLogo({ brand, height = 26, width, color, style }) {
-  const tint = (color || brand.color || '#DB3000').replace('#', '');
+  const tint = (color || brand.color || '#0A0A0A').replace('#', '');
 
   if (brand.slug) {
     return (

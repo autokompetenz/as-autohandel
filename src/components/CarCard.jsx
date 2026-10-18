@@ -28,12 +28,12 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
   const Badges = ({ stack }) => (
     <div style={{ display:'flex', flexDirection: stack ? 'column' : 'row', gap:6, alignItems:'flex-start' }}>
       {car.featured && (
-        <span style={{ background:'var(--red)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase', padding:'3px 8px', borderRadius:4 }}>
+        <span style={{ background:'var(--red)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase', padding:'3px 10px', borderRadius:100 }}>
           ★ {l==='fr'?'À la une':l==='en'?'Featured':l==='de'?'Empfohlen':l==='es'?'Destacado':l==='it'?'In evidenza':'Destacado'}
         </span>
       )}
       {car.promotional && (
-        <span style={{ background:'#350051', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase', padding:'3px 8px', borderRadius:4 }}>
+        <span style={{ background:'var(--red-light)', color:'#0A0A0A', fontSize:10, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase', padding:'3px 10px', borderRadius:100 }}>
           {l==='fr'?'Promo':l==='en'?'Sale':l==='de'?'Aktion':l==='es'?'Oferta':l==='it'?'Promo':'Promoção'}
         </span>
       )}
@@ -76,7 +76,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
       style={{
         display:'flex', alignItems:'center', justifyContent:'center', gap:8,
         width: block ? '100%' : 'auto',
-        padding:'11px 20px', borderRadius:'var(--radius)',
+        padding:'11px 22px', borderRadius:'var(--radius-pill)',
         fontSize:14, fontWeight:700, cursor:'pointer', border:'none', fontFamily:F,
         background:'var(--red)', color:'#fff', transition:'background 0.15s',
       }}
@@ -165,7 +165,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
         <img src={img} alt={`${car.make} ${car.model}`}
           style={{ width:'100%', height:190, objectFit:'cover', display:'block', transition:'transform 0.4s var(--ease)' }} />
         <div style={{ position:'absolute', top:10, left:10 }}><Badges /></div>
-        <span style={{ position:'absolute', top:10, right:10, background:'rgba(255,255,255,0.94)', color:'var(--text-2)', fontSize:10, fontWeight:700, letterSpacing:'0.04em', textTransform:'uppercase', padding:'3px 8px', borderRadius:4 }}>
+        <span style={{ position:'absolute', top:10, right:10, background:'rgba(255,255,255,0.94)', color:'var(--text-2)', fontSize:10, fontWeight:700, letterSpacing:'0.04em', textTransform:'uppercase', padding:'3px 10px', borderRadius:100 }}>
           {car.category}
         </span>
       </Link>

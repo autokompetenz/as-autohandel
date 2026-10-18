@@ -112,7 +112,7 @@ export default function Reviews() {
               transition={{ delay: i * 0.1, duration: 0.4 }}
               style={{ textAlign: 'center' }}
             >
-              <p style={{ fontFamily: "var(--font)", fontWeight: 900, fontSize: isMobile ? 26 : 32, color: '#DB3000', lineHeight: 1 }}>{stat.value}</p>
+              <p style={{ fontFamily: "var(--font)", fontWeight: 900, fontSize: isMobile ? 26 : 32, color: 'var(--red)', lineHeight: 1 }}>{stat.value}</p>
               <p style={{ fontSize: 12, color: 'var(--text-3)', fontWeight: 600, marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{stat.label}</p>
             </motion.div>
           ))}
@@ -137,8 +137,8 @@ export default function Reviews() {
                   padding: '9px 22px',
                   borderRadius: 100,
                   border: '1.5px solid',
-                  borderColor: filter === pill.key ? '#DB3000' : 'var(--border)',
-                  background: filter === pill.key ? '#DB3000' : 'var(--bg-card)',
+                  borderColor: filter === pill.key ? 'var(--red)' : 'var(--border)',
+                  background: filter === pill.key ? 'var(--red)' : 'var(--bg-card)',
                   color: filter === pill.key ? '#fff' : 'var(--text-2)',
                   fontFamily: "var(--font)",
                   fontWeight: 700,
@@ -186,7 +186,7 @@ export default function Reviews() {
                       width: 46,
                       height: 46,
                       borderRadius: '50%',
-                      background: 'linear-gradient(135deg, #B02500, #DB3000)',
+                      background: 'linear-gradient(135deg, var(--red-dark), var(--red))',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',

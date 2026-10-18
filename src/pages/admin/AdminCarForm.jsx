@@ -377,7 +377,7 @@ export default function AdminCarForm() {
                   >
                     ✕
                   </button>
-                  <div style={{ position:'absolute', top:8, left:8, background:'linear-gradient(135deg,#DB3000,#B02500)', color:'#fff', borderRadius:'50%', width:28, height:28, display:'flex', alignItems:'center', justifyContent:'center', fontSize:13, fontWeight:'bold', boxShadow:'0 2px 8px rgba(219,48,0,0.4)' }}>
+                  <div style={{ position:'absolute', top:8, left:8, background:'linear-gradient(135deg,var(--red),var(--red-dark))', color:'#fff', borderRadius:'50%', width:28, height:28, display:'flex', alignItems:'center', justifyContent:'center', fontSize:13, fontWeight:'bold', boxShadow:'0 2px 8px rgba(7,187,216,0.4)' }}>
                     {index === 0 ? '★' : index + 1}
                   </div>
                 </div>

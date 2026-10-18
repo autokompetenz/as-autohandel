@@ -18,7 +18,7 @@ export default function Brands() {
     text: 'var(--text)',
     text2: 'var(--text-2)',
     text3: 'var(--text-3)',
-    red: '#DB3000',
+    red: 'var(--red)',
     shadow: '0 4px 24px rgba(0,0,0,0.08)',
   };
 
@@ -55,8 +55,8 @@ export default function Brands() {
           transition={{ duration:0.8, delay:0.2 }}
           style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(219,48,0,0.3)', border:'1px solid rgba(219,48,0,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
-            <span style={{ width:8, height:8, borderRadius:'50%', background:'#DB3000', display:'inline-block' }} />
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(7,187,216,0.3)', border:'1px solid rgba(7,187,216,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+            <span style={{ width:8, height:8, borderRadius:'50%', background:'var(--red)', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               {t({ fr:'Marques', en:'Brands', de:'Marken', es:'Marcas', it:'Marchi', pt:'Marcas', ro:'Mărci' })}
             </span>
@@ -153,10 +153,10 @@ export default function Brands() {
             style={{ textAlign:'center', marginTop:48 }}
           >
             <Link to="/catalog" style={{
-              background:'linear-gradient(135deg,#DB3000,#B02500)', color:'#fff', textDecoration:'none',
+              background:'linear-gradient(135deg,var(--red),var(--red-dark))', color:'#fff', textDecoration:'none',
               fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
               borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
-              boxShadow:'0 4px 16px rgba(219,48,0,0.4)'
+              boxShadow:'0 4px 16px rgba(7,187,216,0.4)'
             }}>
               {t({ fr:'Voir tout le catalogue', en:'View full catalog', de:'Zum kompletten Katalog', es:'Ver catálogo completo', it:'Vedi catalogo completo', pt:'Ver catálogo completo', ro:'Vezi tot catalogul' })} →
             </Link>
@@ -181,7 +181,7 @@ export default function Brands() {
           </p>
           <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
             <Link to="/contact" style={{
-              background:'linear-gradient(135deg,#DB3000,#B02500)', color:'#fff', textDecoration:'none',
+              background:'linear-gradient(135deg,var(--red),var(--red-dark))', color:'#fff', textDecoration:'none',
               fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8
             }}>
               {t({ fr:'Nous contacter', en:'Contact us', de:'Kontakt', es:'Contáctenos', it:'Contattaci', pt:'Fale connosco', ro:'Contactați-ne' })} →

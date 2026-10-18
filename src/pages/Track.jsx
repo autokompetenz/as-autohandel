@@ -216,7 +216,7 @@ export default function Track() {
                 <p style={{ fontSize:11, fontWeight:800, letterSpacing:'0.3em', textTransform:'uppercase', color:'var(--text-3)', marginBottom: isMobile ? 28 : 40 }}>{L.progress[l]}</p>
                 <div style={{ position:'relative', display:'flex', justifyContent:'space-between' }}>
                   <div style={{ position:'absolute', top:22, left:0, right:0, height:2, background:'var(--border)', zIndex:0 }} />
-                  <div style={{ position:'absolute', top:22, left:0, height:2, background:'linear-gradient(90deg,#B02500,#DB3000)', zIndex:0, transition:'width 0.8s var(--ease)', width:currentStep>=0?`${(currentStep/(STATUS_STEPS.length-1))*100}%`:'0%' }} />
+                  <div style={{ position:'absolute', top:22, left:0, height:2, background:'linear-gradient(90deg,var(--red-dark),var(--red))', zIndex:0, transition:'width 0.8s var(--ease)', width:currentStep>=0?`${(currentStep/(STATUS_STEPS.length-1))*100}%`:'0%' }} />
                   {STATUS_STEPS.map((step, i) => {
                     const done = i < currentStep, active = i === currentStep;
                     return (
