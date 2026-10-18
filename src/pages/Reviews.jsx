@@ -112,7 +112,7 @@ export default function Reviews() {
               transition={{ delay: i * 0.1, duration: 0.4 }}
               style={{ textAlign: 'center' }}
             >
-              <p style={{ fontFamily: "var(--font)", fontWeight: 900, fontSize: isMobile ? 26 : 32, color: 'var(--red)', lineHeight: 1 }}>{stat.value}</p>
+              <p style={{ fontFamily: "var(--font-title)", fontWeight: 600, fontSize: isMobile ? 26 : 32, color: 'var(--red)', lineHeight: 1 }}>{stat.value}</p>
               <p style={{ fontSize: 12, color: 'var(--text-3)', fontWeight: 600, marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{stat.label}</p>
             </motion.div>
           ))}
