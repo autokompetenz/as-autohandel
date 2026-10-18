@@ -226,7 +226,7 @@ export default function CarDetails() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
               style={{
-                position: 'relative', borderRadius: 12, overflow: 'hidden',
+                position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden',
                 aspectRatio: '4/3', background: C.card, boxShadow: C.shadow,
               }}
             >
@@ -239,8 +239,8 @@ export default function CarDetails() {
                 <div style={{
                   position: 'absolute', top: 18, left: 18,
                   background: 'var(--red)', color: '#fff',
-                  fontSize: 11, fontWeight: 800, letterSpacing: '0.15em',
-                  textTransform: 'uppercase', padding: '6px 14px', borderRadius: 4,
+                  fontSize: 11, fontWeight: 700, letterSpacing: '0.15em',
+                  textTransform: 'uppercase', padding: '6px 14px', borderRadius: 100,
                 }}>
                   ★ {lang === 'fr' ? 'Recommandé' : lang === 'en' ? 'Featured' : lang === 'de' ? 'Empfohlen' : 'مميز'}
                 </div>
@@ -291,16 +291,16 @@ export default function CarDetails() {
               </span>
             </div>
             <h1 style={{
-              fontFamily: "var(--font)", fontWeight: 800,
-              fontSize: isMobile ? 36 : 52, color: C.text,
-              letterSpacing: '-0.025em', lineHeight: 1, marginBottom: 24,
+              fontFamily: "var(--font-title)", fontWeight: 600,
+              fontSize: isMobile ? 34 : 48, color: C.text,
+              letterSpacing: '-0.01em', lineHeight: 1.1, marginBottom: 24,
             }}>
               {car.make} {car.model}
             </h1>
 
             {/* Price */}
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 16 }}>
-              <span style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: 40, color: C.text, letterSpacing: '-0.025em' }}>
+              <span style={{ fontFamily: "var(--font-title)", fontWeight: 600, fontSize: 38, color: C.text, letterSpacing: '-0.01em' }}>
                 {formatEuro(car.price)}
               </span>
               {car.monthlyPayment && (
@@ -421,11 +421,11 @@ export default function CarDetails() {
                   {INFO_TITLE[lang] || INFO_TITLE.fr}
                 </h3>
                 {hasStructuredInfo ? (
-                  <div style={{ background: C.card2, border: `1px solid ${C.border}`, borderRadius: 12, padding: isMobile ? '16px 14px' : '18px 20px' }}>
+                  <div style={{ background: C.card2, border: `1px solid ${C.border}`, borderRadius: 'var(--radius-lg)', padding: isMobile ? '16px 14px' : '18px 20px' }}>
                     {infoSections.map((sec, si) => (
                       <div key={si} style={{ marginTop: si === 0 ? 0 : (isMobile ? 18 : 22) }}>
                         {sec.title && (
-                          <p style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.red, marginBottom: 8 }}>
+                          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.red, marginBottom: 8 }}>
                             {sec.title}
                           </p>
                         )}
@@ -456,17 +456,16 @@ export default function CarDetails() {
               onClick={handleAddToCart}
               disabled={adding}
               style={{
-                width: '100%', padding: isMobile ? '18px' : '20px', borderRadius: 12,
-                fontFamily: "var(--font)", fontSize: isMobile?14:15, fontWeight:800,
-                letterSpacing: '0.1em', textTransform: 'uppercase', border: 'none',
+                width: '100%', padding: isMobile ? '16px' : '18px', borderRadius: 100,
+                fontFamily: "var(--font)", fontSize: isMobile?14:15, fontWeight:600,
+                letterSpacing: '0', border: 'none',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                background: adding ? 'rgba(7,187,216,0.7)' : 'linear-gradient(135deg,var(--red),var(--red-dark))',
+                transition: 'all 0.2s ease',
+                background: adding ? 'rgba(16,24,32,0.5)' : 'var(--red)',
                 color: '#fff',
-                boxShadow: !adding ? '0 4px 16px rgba(7,187,216,0.3)' : 'none',
               }}
-              onMouseOver={e => { if (!adding) { e.currentTarget.style.background='linear-gradient(135deg,var(--red-dark),#7A0818)'; e.currentTarget.style.transform='scale(1.02)'; }}}
-              onMouseOut={e => { if (!adding) { e.currentTarget.style.background='linear-gradient(135deg,var(--red),var(--red-dark))'; e.currentTarget.style.transform='scale(1)'; }}}
+              onMouseOver={e => { if (!adding) { e.currentTarget.style.background='var(--red-dark)'; }}}
+              onMouseOut={e => { if (!adding) { e.currentTarget.style.background='var(--red)'; }}}
             >
               {adding ? '...' : addBtn[lang]||addBtn.fr}
             </button>
@@ -494,7 +493,7 @@ export default function CarDetails() {
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
                 {lang === 'fr' ? 'Performance' : lang === 'en' ? 'Performance' : lang === 'de' ? 'Leistung' : 'الأداء'}
               </span>
-              <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+              <h2 style={{ fontFamily: "var(--font-title)", fontWeight: 600, fontSize: isMobile ? 26 : 38, color: C.text, letterSpacing: '-0.01em', marginTop: 8 }}>
                 {lang === 'fr' ? 'Au cœur de la puissance' : lang === 'en' ? 'The heart of the power' : lang === 'de' ? 'Im Herzen der Kraft' : 'قلب القوة'}
               </h2>
             </div>
@@ -536,7 +535,7 @@ export default function CarDetails() {
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
               {lang === 'fr' ? 'Protection' : lang === 'en' ? 'Protection' : lang === 'de' ? 'Schutz' : 'حماية'}
             </span>
-            <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+            <h2 style={{ fontFamily: "var(--font-title)", fontWeight: 600, fontSize: isMobile ? 26 : 38, color: C.text, letterSpacing: '-0.01em', marginTop: 8 }}>
               {lang === 'fr' ? 'Protection adaptée à vos besoins' : lang === 'en' ? 'Protection tailored to your needs' : lang === 'de' ? 'Schutz maßgeschneidert für Ihre Bedürfnisse' : 'حماية مخصصة لاحتياجاتك'}
             </h2>
           </div>
@@ -544,7 +543,7 @@ export default function CarDetails() {
           {/* Main warranty card */}
           <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, padding: isMobile ? 24 : 32, marginBottom: 24, boxShadow: C.shadow }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
-              <div style={{ width: 56, height: 56, borderRadius: 12, background: 'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>
+              <div style={{ width: 56, height: 56, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>
                 🛡️
               </div>
               <div>
@@ -576,7 +575,7 @@ export default function CarDetails() {
             {/* Warranty badge */}
             <div style={{ background: isDark ? 'rgba(7,187,216,0.1)' : 'rgba(7,187,216,0.08)', border: '1px solid rgba(7,187,216,0.25)', borderRadius: 10, padding: 16, textAlign: 'center' }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--red)' }}>
+                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--red)' }}>
                   {lang === 'fr' ? 'Garantie incluse – 12 mois' : lang === 'en' ? 'Warranty included – 12 months' : lang === 'de' ? 'Garantie enthalten – 12 Monate' : 'الضمان مشمول – 12 شهرًا'}
                 </span>
               </div>
@@ -645,7 +644,7 @@ export default function CarDetails() {
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
               {lang === 'fr' ? 'Livraison' : lang === 'en' ? 'Delivery' : lang === 'de' ? 'Lieferung' : 'توصيل'}
             </span>
-            <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+            <h2 style={{ fontFamily: "var(--font-title)", fontWeight: 600, fontSize: isMobile ? 26 : 38, color: C.text, letterSpacing: '-0.01em', marginTop: 8 }}>
               {lang === 'fr' ? 'Livraison véhicule' : lang === 'en' ? 'Vehicle delivery' : lang === 'de' ? 'Fahrzeuglieferung' : 'توصيل المركبة'}
             </h2>
             <p style={{ fontSize: isMobile ? 15 : 17, color: C.text2, marginTop: 12, maxWidth: 700, lineHeight: 1.6 }}>
@@ -717,7 +716,7 @@ export default function CarDetails() {
                 { step: '5', text: lang === 'fr' ? 'Remise des clés' : lang === 'en' ? 'Key handover' : lang === 'de' ? 'Schlüsselübergabe' : 'تسليم المفاتيح', icon: '🔑' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 12 }}>
-                  <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'linear-gradient(135deg,var(--red),var(--red-dark))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 900, color: '#fff' }}>
+                  <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'var(--red)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, fontWeight: 700, color: '#fff' }}>
                     {item.step}
                   </div>
                   <span style={{ fontSize: 28 }}>{item.icon}</span>
@@ -754,7 +753,7 @@ export default function CarDetails() {
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
               {lang === 'fr' ? 'Qualité' : lang === 'en' ? 'Quality' : lang === 'de' ? 'Qualität' : 'جودة'}
             </span>
-            <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+            <h2 style={{ fontFamily: "var(--font-title)", fontWeight: 600, fontSize: isMobile ? 26 : 38, color: C.text, letterSpacing: '-0.01em', marginTop: 8 }}>
               {lang === 'fr' ? 'Inspection technique certifiée' : lang === 'en' ? 'Certified technical inspection' : lang === 'de' ? 'Zertifizierte technische Inspektion' : 'فحص فني معتمد'}
             </h2>
             <p style={{ fontSize: isMobile ? 15 : 17, color: C.text2, marginTop: 12, maxWidth: 700, lineHeight: 1.6 }}>
@@ -773,10 +772,10 @@ export default function CarDetails() {
                 { title: lang === 'fr' ? 'Fluides & filtres' : lang === 'en' ? 'Fluids & filters' : lang === 'de' ? 'Flüssigkeiten & Filter' : 'السوائل والمرشحات', desc: lang === 'fr' ? 'Remplacement si nécessaire' : lang === 'en' ? 'Replacement if necessary' : lang === 'de' ? 'Ersetzung bei Bedarf' : 'الاستبدال عند الضرورة', icon: '💧' },
                 { title: lang === 'fr' ? 'Pneus & jantes' : lang === 'en' ? 'Tires & wheels' : lang === 'de' ? 'Reifen & Felgen' : 'الإطارات والعجلات', desc: lang === 'fr' ? 'Contrôle usure et profondeur' : lang === 'en' ? 'Wear and depth check' : lang === 'de' ? 'Verschleiß- und Tiefenprüfung' : 'فحص التآكل والعمق', icon: '🛞' },
               ].map((item, i) => (
-                <div key={i} style={{ display: 'flex', gap: 16, padding: '20px', background: C.card2, borderRadius: 12, transition: 'all 0.2s' }}
+                <div key={i} style={{ display: 'flex', gap: 16, padding: '20px', background: C.card2, borderRadius: 'var(--radius-lg)', transition: 'all 0.2s' }}
                   onMouseOver={e => { e.currentTarget.style.borderColor='rgba(7,187,216,0.3)'; e.currentTarget.style.transform='translateY(-2px)'; }}
                   onMouseOut={e => { e.currentTarget.style.transform='translateY(0)'; }}>
-                  <div style={{ width: 52, height: 52, borderRadius: 12, background: 'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, flexShrink: 0 }}>
+                  <div style={{ width: 52, height: 52, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, flexShrink: 0 }}>
                     {item.icon}
                   </div>
                   <div>
@@ -793,7 +792,7 @@ export default function CarDetails() {
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
               <span style={{ fontSize: 48 }}>✓</span>
               <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--red)' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--red)' }}>
                   {lang === 'fr' ? 'Certifié AS Autohandel GmbH' : lang === 'en' ? 'Certified AS Autohandel GmbH' : lang === 'de' ? 'Zertifiziert AS Autohandel GmbH' : 'معتمد من AS Autohandel GmbH'}
                 </div>
                 <p style={{ fontSize: isMobile ? 16 : 18, fontWeight: 700, color: C.text, marginTop: 4 }}>
@@ -816,18 +815,18 @@ export default function CarDetails() {
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
               {lang === 'fr' ? 'Transparence' : lang === 'en' ? 'Transparency' : lang === 'de' ? 'Transparenz' : 'شفافية'}
             </span>
-            <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+            <h2 style={{ fontFamily: "var(--font-title)", fontWeight: 600, fontSize: isMobile ? 26 : 38, color: C.text, letterSpacing: '-0.01em', marginTop: 8 }}>
               {lang === 'fr' ? 'Historique d\u2019entretien' : lang === 'en' ? 'Maintenance history' : lang === 'de' ? 'Wartungshistorie' : 'سجل الصيانة'}
             </h2>
           </div>
 
           {/* Transparency badge */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
-            <div style={{ padding: '12px 24px', background: 'linear-gradient(135deg,var(--red),var(--red-dark))', borderRadius: 10, fontSize: 14, fontWeight: 800, color: '#fff', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+            <div style={{ padding: '8px 20px', background: 'var(--red)', borderRadius: 100, fontSize: 12, fontWeight: 700, color: '#fff', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
               {lang === 'fr' ? 'Transparence totale' : lang === 'en' ? 'Total transparency' : lang === 'de' ? 'Volle Transparenz' : 'شفافية كاملة'}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ fontSize: 36, fontWeight: 900, color: 'var(--red)' }}>100%</span>
+              <span style={{ fontSize: 32, fontWeight: 700, color: 'var(--red)' }}>100%</span>
               <span style={{ fontSize: 14, fontWeight: 700, color: C.text2 }}>
                 {lang === 'fr' ? 'Traçabilité vérifiée' : lang === 'en' ? 'Verified traceability' : lang === 'de' ? 'Verifizierte Rückverfolgbarkeit' : 'قابلية التتبع موثقة'}
               </span>
@@ -850,7 +849,7 @@ export default function CarDetails() {
                 onMouseOver={e => { e.currentTarget.style.borderColor='rgba(7,187,216,0.4)'; e.currentTarget.style.transform='translateY(-4px)'; }}
                 onMouseOut={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform='translateY(0)'; }}>
                 <div style={{ display: 'flex', gap: 16, marginBottom: 16 }}>
-                  <div style={{ width: 56, height: 56, borderRadius: 12, background: 'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, flexShrink: 0 }}>
+                  <div style={{ width: 56, height: 56, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, flexShrink: 0 }}>
                     {item.icon}
                   </div>
                   <div>
@@ -876,7 +875,7 @@ export default function CarDetails() {
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
                 {lang==='fr'?'VOUS POURRIEZ AUSSI AIMER':lang==='en'?'YOU MIGHT ALSO LIKE':lang==='de'?'SIE KÖNNTEN AUCH GEFALLEN':lang==='es'?'TAMBIÉN PODRÍA GUSTARLE':lang==='it'?'POTREBBE PIACERTI ANCHE':'VOCÊ TAMBÉM PODE GOSTAR'}
               </span>
-              <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+              <h2 style={{ fontFamily: "var(--font-title)", fontWeight: 600, fontSize: isMobile ? 26 : 38, color: C.text, letterSpacing: '-0.01em', marginTop: 8 }}>
                 {lang==='fr'?'Véhicules similaires':lang==='en'?'Similar Vehicles':lang==='de'?'Ähnliche Fahrzeuge':lang==='es'?'Vehículos Similares':lang==='it'?'Veicoli Simili':'Veículos Similares'}
               </h2>
             </div>
@@ -907,7 +906,7 @@ export default function CarDetails() {
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
                 {lang==='fr'?'NOS MARQUES':lang==='en'?'OUR BRANDS':lang==='de'?'UNSERE MARKEN':lang==='es'?'NUESTRAS MARCAS':lang==='it'?'I NOSTRI MARCHI':'AS NOSSAS MARCAS'}
               </span>
-              <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+              <h2 style={{ fontFamily: "var(--font-title)", fontWeight: 600, fontSize: isMobile ? 26 : 38, color: C.text, letterSpacing: '-0.01em', marginTop: 8 }}>
                 {lang==='fr'?'Explorez notre gamme':lang==='en'?'Explore our range':lang==='de'?'Erkunden Sie unsere Auswahl':lang==='es'?'Explore nuestra gama':lang==='it'?'Esplora la nostra gamma':'Explore nossa gama'}
               </h2>
             </div>

@@ -166,6 +166,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-title); font-weight:600; line-height:1.1
   white-space:nowrap;
 }
 
+/* Option de filtre active — pilule noire, texte cyan (signature Spoticar) */
+.opt-active { background:var(--red) !important; color:var(--red-light) !important; border-radius:var(--radius-pill); }
+[data-theme="dark"] .opt-active { color:#0A0A0A !important; }
+
 /* ── Cards ── */
 .card {
   background:var(--bg-card);
