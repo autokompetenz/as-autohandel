@@ -94,7 +94,21 @@ export default function Commander() {
         <h1 style={{ fontFamily:"var(--font-title)", fontWeight:600, fontSize:'clamp(24px,4vw,36px)', color:'var(--text)', marginBottom:8, letterSpacing:'-0.01em', lineHeight:1.1 }}>
           {car.make} {car.model}
         </h1>
-        <p style={{ fontSize:15, color:'var(--text-3)', marginBottom:24 }}>{car.year} · {formatEuro(car.price)}</p>
+        <p style={{ fontSize:15, color:'var(--text-3)', marginBottom:20 }}>{car.year} · {formatEuro(car.price)}</p>
+
+        <div className="mk-panel" style={{ display:'flex', gap: isMobile ? 14 : 20, alignItems:'center', padding: isMobile ? '14px 16px' : '18px 20px', borderRadius:'var(--radius-lg)', marginBottom:18 }}>
+          <div style={{ width: isMobile ? 88 : 128, height: isMobile ? 66 : 96, borderRadius:'var(--radius-lg)', overflow:'hidden', background:'var(--bg-card2)', flexShrink:0 }}>
+            <img src={car.imageUrl || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=70'} alt={`${car.make} ${car.model}`} style={{ width:'100%', height:'100%', objectFit:'cover' }} />
+          </div>
+          <div style={{ minWidth:0 }}>
+            <h2 style={{ fontFamily:'var(--font-title)', fontWeight:600, fontSize: isMobile ? 16 : 18, color:'var(--text)', letterSpacing:'-0.01em', lineHeight:1.2, marginBottom:6, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
+              {car.make} {car.model}
+            </h2>
+            <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
+              {[car.year, car.mileage ? `${Number(car.mileage).toLocaleString('fr-FR')} km` : null, car.fuelType, car.transmission].filter(Boolean).map((s, i) => <span key={i} className="mk-chip">{s}</span>)}
+            </div>
+          </div>
+        </div>
 
         <form onSubmit={submit} className="mk-panel" style={{ padding: isMobile ? '22px 18px 26px' : '28px 32px 32px', borderRadius:'var(--radius-lg)' }}>
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:12, marginBottom:14 }}>
