@@ -11,13 +11,13 @@ export default function Sell() {
   const l = lang || 'fr';
 
   const C = {
-    bg: '#f5f5f5',
-    card: '#ffffff',
-    card2: '#ececec',
-    border: 'rgba(0,0,0,0.1)',
-    text: '#111111',
-    text2: '#444444',
-    text3: '#888888',
+    bg: 'var(--bg)',
+    card: 'var(--bg-card)',
+    card2: 'var(--bg-card2)',
+    border: 'var(--border)',
+    text: 'var(--text)',
+    text2: 'var(--text-2)',
+    text3: 'var(--text-3)',
     red: '#132853',
     shadow: '0 4px 24px rgba(0,0,0,0.08)',
   };

@@ -195,7 +195,7 @@ function PurchaseStepsSection({ l, isMobile }) {
 
   return (
     <section style={{ background:'var(--bg)', borderTop:'1px solid var(--border)' }} className="section-pad">
-      <div style={{ maxWidth:1200, margin:'0 auto' }}>
+      <div className="mk-section" style={{ maxWidth:1200, margin:'0 auto' }}>
         <div style={{ textAlign:'center', marginBottom:56 }}>
           <div className="section-eyebrow" style={{ justifyContent:'center' }}>{sectionEyebrow[l] || sectionEyebrow.fr}</div>
           <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:'var(--text)', letterSpacing:'-0.02em', whiteSpace:'pre-line' }}>
@@ -364,7 +364,7 @@ function FAQSection({ l, isMobile }) {
   };
 
   return (
-    <section style={{ background:'var(--bg-card2)', borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)' }} className="section-pad">
+    <section style={{ background:'transparent', borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)' }} className="section-pad">
       <div style={{ maxWidth:900, margin:'0 auto' }}>
         <div style={{ textAlign:'center', marginBottom:48 }}>
           <div className="section-eyebrow" style={{ justifyContent:'center' }}>{sectionEyebrow[l]}</div>
@@ -499,6 +499,58 @@ function FAQSection({ l, isMobile }) {
 }
 
 // ── VIDEO PROMO SECTION ────────────────────────────────────────────────────
+// ── HERO BACKGROUND SLIDER ────────────────────────────────────────────────────
+const HERO_IMAGES = [
+  'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1800&q=80&auto=format',
+  'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1800&q=80&auto=format',
+  'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1800&q=80&auto=format',
+  'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=1800&q=80&auto=format',
+  'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1800&q=80&auto=format',
+];
+
+function HeroSlider({ y }) {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setIndex(i => (i + 1) % HERO_IMAGES.length), 2200);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <motion.div style={{ position:'absolute', inset:0, y }}>
+      {HERO_IMAGES.map(src => (
+        <img key={src} src={src} alt="" aria-hidden="true"
+          style={{ position:'absolute', width:0, height:0, opacity:0 }} />
+      ))}
+
+      <AnimatePresence>
+        <motion.img
+          key={index}
+          src={HERO_IMAGES[index]}
+          alt=""
+          initial={{ opacity:0, scale:1.08 }}
+          animate={{ opacity:1, scale:1 }}
+          exit={{ opacity:0 }}
+          transition={{ opacity:{ duration:0.5, ease:'easeInOut' }, scale:{ duration:3, ease:'linear' } }}
+          style={{ position:'absolute', inset:0, width:'100%', height:'110%', objectFit:'cover', display:'block' }}
+        />
+      </AnimatePresence>
+
+      <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.2) 100%)' }} />
+
+      <div style={{ position:'absolute', bottom:20, right:'8%', display:'flex', gap:6, zIndex:3 }}>
+        {HERO_IMAGES.map((_, i) => (
+          <span key={i} style={{
+            width: i===index ? 18 : 6, height:6, borderRadius:3,
+            background: i===index ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.35)',
+            transition:'width 0.4s, background 0.4s',
+          }} />
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 function VideoSection({ isMobile }) {
   const { lang } = useLangStore();
   const l = lang || 'fr';
@@ -574,6 +626,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery]   = useState('');
   const [brands, setBrands]             = useState([]);
   const [sf, setSf] = useState({ brand:'', category:'', fuelType:'', transmission:'', minYear:'', maxYear:'', minPrice:'', maxPrice:'', maxMileage:'' });
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const heroRef = useRef(null);
   const navigate = useNavigate();
   const l = lang || 'fr';
@@ -640,11 +693,7 @@ export default function Home() {
 
       {/* ── HERO ── */}
       <section ref={heroRef} style={{ position:'relative', height: isMobile ? '100svh' : '100vh', minHeight:580, display:'flex', alignItems:'center', overflow:'hidden' }}>
-        <motion.div style={{ position:'absolute', inset:0, y:heroY }}>
-          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1800&q=80&auto=format"
-            alt="Hero" style={{ width:'100%', height:'110%', objectFit:'cover', display:'block' }} />
-          <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.2) 100%)' }} />
-        </motion.div>
+        <HeroSlider y={heroY} />
 
         <motion.div style={{ position:'relative', zIndex:2, padding: isMobile ? '0 6%' : '0 8%', maxWidth:720, opacity:heroO }}>
           <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, delay:0.1 }}>
@@ -658,7 +707,7 @@ export default function Home() {
 
           <motion.h1 initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.9, delay:0.2 }}
             style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 'clamp(36px,10vw,52px)' : 'clamp(48px,5.5vw,80px)', color:'#fff', letterSpacing:'-0.03em', lineHeight:1.0, marginBottom:24 }}>
-            AS Autohandel<br/><span style={{ color:'#132853' }}>GmbH</span>
+            AS Autohandel<br/><span style={{ color:'rgba(255,255,255,0.55)' }}>GmbH</span>
           </motion.h1>
 
           <motion.p initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, delay:0.35 }}
@@ -668,10 +717,10 @@ export default function Home() {
 
           <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7, delay:0.5 }}
             style={{ display:'flex', gap:14, flexWrap:'wrap' }}>
-            <Link to="/catalog" className="btn-primary" style={{ fontSize: isMobile ? 12 : 13 }}>
+            <Link to="/catalog" className="btn-primary" style={{ fontSize: isMobile ? 13 : 14, background:'#fff', color:'var(--red)', boxShadow:'0 2px 8px rgba(0,0,0,0.25)' }}>
               {t('hero_cta1', l)} →
             </Link>
-            <Link to="/simulation" className="btn-ghost" style={{ fontSize: isMobile ? 12 : 13, borderColor:'rgba(255,255,255,0.2)', color:'rgba(255,255,255,0.75)' }}>
+            <Link to="/simulation" className="btn-ghost" style={{ fontSize: isMobile ? 13 : 14, background:'transparent', borderColor:'rgba(255,255,255,0.3)', color:'rgba(255,255,255,0.85)' }}>
               {t('hero_cta2', l)}
             </Link>
           </motion.div>
@@ -688,136 +737,199 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* ── MOTEUR DE RECHERCHE ── */}
-      <section style={{ background:'var(--bg)', position:'relative', zIndex:10, marginTop:-48 }}>
-        <div style={{ width:'100%', margin:'0 auto', padding: isMobile ? '0 4%' : 0 }}>
+      {/* ── MOTEUR DE RECHERCHE (barre compacte) ── */}
+      <section style={{ background:'var(--bg)', position:'relative', zIndex:10, marginTop:-56 }}>
+        <div style={{ width:'100%', maxWidth:1100, margin:'0 auto', padding: isMobile ? '0 4%' : 0 }}>
           <motion.div
-            initial={{ opacity:0, y:20 }}
+            initial={{ opacity:0, y:24 }}
             animate={{ opacity:1, y:0 }}
-            transition={{ duration:0.6, delay:0.6 }}
+            transition={{ duration:0.6, delay:0.5 }}
             style={{
               background:'var(--bg-card)',
               border:'1px solid var(--border)',
-              borderRadius: isMobile ? 20 : 0,
-              borderLeft: isMobile ? '1px solid var(--border)' : 'none',
-              borderRight: isMobile ? '1px solid var(--border)' : 'none',
+              borderRadius: 'var(--radius-lg)',
               overflow:'hidden',
-              boxShadow: isDark ? '0 12px 40px rgba(0,0,0,0.3)' : '0 16px 48px rgba(19,40,83,0.12)',
+              boxShadow: isDark ? '0 12px 32px rgba(0,0,0,0.4)' : '0 8px 28px rgba(19,24,38,0.14)',
             }}
           >
-            {/* Header */}
-            <div style={{ display:'flex', alignItems:'center', gap:12, padding: isMobile ? '18px 20px' : '22px 6%', borderBottom:'1px solid var(--border)' }}>
-              <div style={{ width:40, height:40, borderRadius:12, background:'linear-gradient(135deg,#132853,#0E1E3D)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:18 }}>🔍</div>
-              <div style={{ flex:1 }}>
-                <h3 style={{ fontWeight:800, fontSize:17, color:'var(--text)', margin:0, letterSpacing:'-0.01em' }}>
-                  {l==='fr'?'Rechercher un véhicule':l==='en'?'Find your vehicle':l==='de'?'Fahrzeug finden':l==='es'?'Buscar un vehículo':l==='it'?'Cerca un veicolo':l==='pt'?'Encontrar um veículo':'ابحث عن مركبة'}
-                </h3>
-                <p style={{ margin:0, fontSize:12, color:'var(--text-3)' }}>
-                  {l==='fr'?'Filtrez par marque, budget, année et plus':l==='en'?'Filter by brand, budget, year and more':l==='de'?'Nach Marke, Budget, Baujahr und mehr filtern':'Filtra por marca, presupuesto, año y más'}
-                </p>
+            {/* Barre principale */}
+            <div style={{ display:'flex', flexWrap:'wrap', gap:10, alignItems:'center', padding: isMobile ? '16px' : '16px 18px' }}>
+              {/* Marque */}
+              <div style={{ flex: isMobile ? '1 1 100%' : '1 1 150px', minWidth:0 }}>
+                <select
+                  value={sf.brand}
+                  onChange={e => setF('brand', e.target.value)}
+                  className="input-luxury"
+                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px' }}
+                >
+                  <option value="">{l==='fr'?'Toutes marques':l==='en'?'All brands':l==='de'?'Alle Marken':'Todas las marcas'}</option>
+                  {brands.map(b => <option key={b} value={b}>{b}</option>)}
+                </select>
               </div>
+
+              {/* Catégorie */}
+              <div style={{ flex: isMobile ? '1 1 100%' : '1 1 140px', minWidth:0 }}>
+                <select
+                  value={sf.category}
+                  onChange={e => setF('category', e.target.value)}
+                  className="input-luxury"
+                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px' }}
+                >
+                  <option value="">{l==='fr'?'Toutes catégories':l==='en'?'All categories':l==='de'?'Alle Kategorien':'Todas las categorías'}</option>
+                  {['Berline','SUV','Citadine','Break','Coupe','Monospace','Utilitaire','FourX4'].map(c => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </div>
+
+              {/* Prix max (liste pré-calée façon Hollyroad) */}
+              <div style={{ flex: isMobile ? '1 1 100%' : '1 1 130px', minWidth:0 }}>
+                <select
+                  value={sf.maxPrice}
+                  onChange={e => setF('maxPrice', e.target.value)}
+                  className="input-luxury"
+                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px' }}
+                >
+                  <option value="">{l==='fr'?'Prix max':l==='en'?'Max price':l==='de'?'Max. Preis':'Precio máx.'}</option>
+                  {['10000','15000','20000','25000','30000','40000','50000','75000'].map(v => (
+                    <option key={v} value={v}>{Number(v).toLocaleString('fr-FR')} €</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* KM max */}
+              <div style={{ flex: isMobile ? '1 1 100%' : '1 1 130px', minWidth:0 }}>
+                <select
+                  value={sf.maxMileage}
+                  onChange={e => setF('maxMileage', e.target.value)}
+                  className="input-luxury"
+                  style={{ width:'100%', boxSizing:'border-box', fontSize:14, padding:'13px 14px' }}
+                >
+                  <option value="">{l==='fr'?'KM max':l==='en'?'Max km':l==='de'?'Max. km':'Km máx.'}</option>
+                  {['20000','50000','80000','100000','150000','200000'].map(v => (
+                    <option key={v} value={v}>{Number(v).toLocaleString('fr-FR')} km</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Bouton Rechercher */}
               <button
-                onClick={() => { setSearchQuery(''); setSf({ brand:'', category:'', fuelType:'', transmission:'', minYear:'', maxYear:'', minPrice:'', maxPrice:'', maxMileage:'' }); }}
-                style={{ background:'none', border:'none', color:'var(--red)', cursor:'pointer', fontSize:12, fontWeight:600 }}
+                onClick={goSearch}
+                style={{
+                  flex: isMobile ? '1 1 100%' : '0 0 auto',
+                  background:'var(--red)',
+                  border:'none', borderRadius:'var(--radius)',
+                  padding:'14px 28px', color:'#fff', fontWeight:700, fontSize:15,
+                  fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                  cursor:'pointer', whiteSpace:'nowrap', letterSpacing:'0.01em',
+                  boxShadow:'0 1px 2px rgba(19,40,83,0.3)',
+                  transition:'background 0.2s',
+                }}
+                onMouseOver={e => { e.currentTarget.style.background='var(--red-dark)'; }}
+                onMouseOut={e => { e.currentTarget.style.background='var(--red)'; }}
               >
-                {l==='fr'?'✕ Réinitialiser':l==='en'?'✕ Reset':l==='de'?'✕ Zurücksetzen':'✕ Restablecer'}
+                {l==='fr'?'Rechercher':l==='en'?'Search':l==='de'?'Suchen':l==='es'?'Buscar':l==='it'?'Cerca':l==='pt'?'Pesquisar':'بحث'} →
+              </button>
+
+              {/* Filtres avancés */}
+              <button
+                onClick={() => setShowAdvanced(v => !v)}
+                style={{
+                  flex: isMobile ? '1 1 100%' : '0 0 auto',
+                  background:'transparent',
+                  border:'1px solid var(--border)', borderRadius:'var(--radius)',
+                  padding:'13px 18px', color:'var(--text-2)', fontWeight:600, fontSize:13,
+                  fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                  cursor:'pointer', whiteSpace:'nowrap',
+                  display:'flex', alignItems:'center', gap:7,
+                  transition:'border-color 0.2s, color 0.2s',
+                }}
+                onMouseOver={e => { e.currentTarget.style.borderColor='var(--red)'; e.currentTarget.style.color='var(--red)'; }}
+                onMouseOut={e => { e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.color='var(--text-2)'; }}
+              >
+                <span style={{ display:'inline-block', transform: showAdvanced ? 'rotate(180deg)' : 'none', transition:'transform 0.3s', fontSize:10 }}>▾</span>
+                {l==='fr'?'Filtres avancés':l==='en'?'Advanced filters':l==='de'?'Erweiterte Filter':'Filtros avanzados'}
               </button>
             </div>
 
-            <div style={{ padding: isMobile ? '18px 20px' : '28px 6%' }}>
-              {/* Mot-clé */}
-              <div style={{ position:'relative', marginBottom:16 }}>
-                <span style={{ position:'absolute', left:16, top:'50%', transform:'translateY(-50%)', fontSize:16, opacity:0.4, pointerEvents:'none' }}>🔎</span>
-                <input
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  onKeyDown={e => e.key === 'Enter' && goSearch()}
-                  placeholder={l==='fr' ? 'Marque, modèle, mot-clé...' : l==='en' ? 'Brand, model, keyword...' : l==='de' ? 'Marke, Modell, Stichwort...' : 'Marca, modelo, palabra-clave...'}
-                  style={{
-                    width:'100%', boxSizing:'border-box',
-                    background: isDark ? 'rgba(255,255,255,0.05)' : '#F5F5F7',
-                    border:'1px solid var(--border)', borderRadius:12,
-                    padding:'14px 16px 14px 44px', fontSize:15,
-                    fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
-                    color:'var(--text)', outline:'none', transition:'border-color 0.2s',
-                  }}
-                />
-              </div>
+            {/* Panneau avancé (dépliable) */}
+            {showAdvanced && (
+              <motion.div
+                initial={{ height:0, opacity:0 }}
+                animate={{ height:'auto', opacity:1 }}
+                transition={{ duration:0.35, ease:'easeInOut' }}
+                style={{ overflow:'hidden', borderTop:'1px solid var(--border)' }}
+              >
+                <div style={{ padding: isMobile ? '16px' : '18px' }}>
+                  {/* Mot-clé */}
+                  <div style={{ position:'relative', marginBottom:14 }}>
+                    <span style={{ position:'absolute', left:14, top:'50%', transform:'translateY(-50%)', fontSize:15, opacity:0.4, pointerEvents:'none' }}>🔎</span>
+                    <input
+                      value={searchQuery}
+                      onChange={e => setSearchQuery(e.target.value)}
+                      onKeyDown={e => e.key === 'Enter' && goSearch()}
+                      placeholder={l==='fr' ? 'Marque, modèle, mot-clé...' : l==='en' ? 'Brand, model, keyword...' : l==='de' ? 'Marke, Modell, Stichwort...' : 'Marca, modelo, palabra-clave...'}
+                      style={{
+                        width:'100%', boxSizing:'border-box',
+                        background: isDark ? 'rgba(255,255,255,0.05)' : 'var(--bg-card2)',
+                        border:'1px solid var(--border)', borderRadius:'var(--radius)',
+                        padding:'13px 16px 13px 42px', fontSize:15,
+                        fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                        color:'var(--text)', outline:'none', transition:'border-color 0.2s',
+                      }}
+                    />
+                  </div>
 
-              {/* Champs */}
-              <div style={{ display:'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)', gap:12, marginBottom:16 }}>
-                <div>
-                  <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Marque':l==='en'?'Brand':l==='de'?'Marke':'Marca'}</label>
-                  <select value={sf.brand} onChange={e => setF('brand', e.target.value)} className="input-luxury" style={{ fontSize:14 }}>
-                    <option value="">{l==='fr'?'Toutes':l==='en'?'All':l==='de'?'Alle':'Todas'}</option>
-                    {brands.map(b => <option key={b} value={b}>{b}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Catégorie':l==='en'?'Category':l==='de'?'Kategorie':'Categoría'}</label>
-                  <select value={sf.category} onChange={e => setF('category', e.target.value)} className="input-luxury" style={{ fontSize:14 }}>
-                    <option value="">{l==='fr'?'Toutes':l==='en'?'All':l==='de'?'Alle':'Todas'}</option>
-                    {['Berline','SUV','Citadine','Break','Coupe','Monospace','Utilitaire','FourX4'].map(c => <option key={c} value={c}>{c}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Carburant':l==='en'?'Fuel':l==='de'?'Kraftstoff':'Combustible'}</label>
-                  <select value={sf.fuelType} onChange={e => setF('fuelType', e.target.value)} className="input-luxury" style={{ fontSize:14 }}>
-                    <option value="">{l==='fr'?'Tous':l==='en'?'All':l==='de'?'Alle':'Todos'}</option>
-                    {['Essence','Diesel','Electrique','Hybride'].map(f => <option key={f} value={f}>{f}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Boîte':l==='en'?'Gearbox':l==='de'?'Getriebe':'Cambio'}</label>
-                  <select value={sf.transmission} onChange={e => setF('transmission', e.target.value)} className="input-luxury" style={{ fontSize:14 }}>
-                    <option value="">{l==='fr'?'Toutes':l==='en'?'All':l==='de'?'Alle':'Todas'}</option>
-                    {['Manuelle','Automatique'].map(tr => <option key={tr} value={tr}>{tr}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Année min':l==='en'?'Year from':l==='de'?'Ab Baujahr':'Desde año'}</label>
-                  <input type="number" placeholder="2015" value={sf.minYear} onChange={e => setF('minYear', e.target.value)} className="input-luxury" style={{ fontSize:14 }} />
-                </div>
-                <div>
-                  <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Année max':l==='en'?'Year to':l==='de'?'Bis Baujahr':'Hasta año'}</label>
-                  <input type="number" placeholder="2026" value={sf.maxYear} onChange={e => setF('maxYear', e.target.value)} className="input-luxury" style={{ fontSize:14 }} />
-                </div>
-                <div>
-                  <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Prix min (€)':l==='en'?'Min price (€)':l==='de'?'Min. Preis (€)':'Precio min (€)'}</label>
-                  <input type="number" placeholder="5000" value={sf.minPrice} onChange={e => setF('minPrice', e.target.value)} className="input-luxury" style={{ fontSize:14 }} />
-                </div>
-                <div>
-                  <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Prix max (€)':l==='en'?'Max price (€)':l==='de'?'Max. Preis (€)':'Precio max (€)'}</label>
-                  <input type="number" placeholder="50000" value={sf.maxPrice} onChange={e => setF('maxPrice', e.target.value)} className="input-luxury" style={{ fontSize:14 }} />
-                </div>
-              </div>
+                  <div style={{ display:'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)', gap:12, marginBottom:14 }}>
+                    <div>
+                      <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Carburant':l==='en'?'Fuel':l==='de'?'Kraftstoff':'Combustible'}</label>
+                      <select value={sf.fuelType} onChange={e => setF('fuelType', e.target.value)} className="input-luxury" style={{ fontSize:14, width:'100%', boxSizing:'border-box' }}>
+                        <option value="">{l==='fr'?'Tous':l==='en'?'All':l==='de'?'Alle':'Todos'}</option>
+                        {['Essence','Diesel','Electrique','Hybride'].map(f => <option key={f} value={f}>{f}</option>)}
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Boîte':l==='en'?'Gearbox':l==='de'?'Getriebe':'Cambio'}</label>
+                      <select value={sf.transmission} onChange={e => setF('transmission', e.target.value)} className="input-luxury" style={{ fontSize:14, width:'100%', boxSizing:'border-box' }}>
+                        <option value="">{l==='fr'?'Toutes':l==='en'?'All':l==='de'?'Alle':'Todas'}</option>
+                        {['Manuelle','Automatique'].map(tr => <option key={tr} value={tr}>{tr}</option>)}
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Année min':l==='en'?'Year from':l==='de'?'Ab Baujahr':'Desde año'}</label>
+                      <input type="number" placeholder="2015" value={sf.minYear} onChange={e => setF('minYear', e.target.value)} className="input-luxury" style={{ fontSize:14, width:'100%', boxSizing:'border-box' }} />
+                    </div>
+                    <div>
+                      <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Année max':l==='en'?'Year to':l==='de'?'Bis Baujahr':'Hasta año'}</label>
+                      <input type="number" placeholder="2026" value={sf.maxYear} onChange={e => setF('maxYear', e.target.value)} className="input-luxury" style={{ fontSize:14, width:'100%', boxSizing:'border-box' }} />
+                    </div>
+                    <div>
+                      <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>{l==='fr'?'Prix min (€)':l==='en'?'Min price (€)':l==='de'?'Min. Preis (€)':'Precio min (€)'}</label>
+                      <input type="number" placeholder="5000" value={sf.minPrice} onChange={e => setF('minPrice', e.target.value)} className="input-luxury" style={{ fontSize:14, width:'100%', boxSizing:'border-box' }} />
+                    </div>
+                  </div>
 
-              <div style={{ display:'flex', gap:12, alignItems:'flex-end', flexWrap:'wrap' }}>
-                <div style={{ flex: isMobile ? '1 1 100%' : '0 1 220px' }}>
-                  <label style={{ display:'block', fontSize:10, fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:5 }}>
-                    {l==='fr'?'Kilométrage max':l==='en'?'Max mileage':l==='de'?'Max. Kilometerstand':'Kilometraje máx.'}
-                  </label>
-                  <input type="number" placeholder="150000" value={sf.maxMileage} onChange={e => setF('maxMileage', e.target.value)} className="input-luxury" style={{ fontSize:14 }} />
+                  <div style={{ display:'flex', gap:12, flexWrap:'wrap', alignItems:'center' }}>
+                    <button
+                      onClick={() => { setSearchQuery(''); setSf({ brand:'', category:'', fuelType:'', transmission:'', minYear:'', maxYear:'', minPrice:'', maxPrice:'', maxMileage:'' }); }}
+                      style={{ background:'none', border:'none', color:'var(--red)', cursor:'pointer', fontSize:13, fontWeight:600, padding:0 }}
+                    >
+                      {l==='fr'?'✕ Réinitialiser':l==='en'?'✕ Reset':l==='de'?'✕ Zurücksetzen':'✕ Restablecer'}
+                    </button>
+                    <button
+                      onClick={() => { goSearch(); setShowAdvanced(false); }}
+                      style={{
+                        marginLeft:'auto',
+                        background:'var(--red)',
+                        border:'none', borderRadius:'var(--radius)', padding:'13px 26px',
+                        color:'#fff', fontWeight:700, fontSize:14,
+                        fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", cursor:'pointer',
+                      }}
+                    >
+                      {l==='fr'?'Appliquer':l==='en'?'Apply':l==='de'?'Anwenden':'Aplicar'} →
+                    </button>
+                  </div>
                 </div>
-                <button
-                  onClick={goSearch}
-                  style={{
-                    flex: isMobile ? '1 1 100%' : '0 0 auto', marginLeft: isMobile ? 0 : 'auto',
-                    background:'linear-gradient(135deg, #1E3A6E, #132853)',
-                    border:'none', borderRadius:12,
-                    padding:'14px 36px', color:'#fff', fontWeight:800, fontSize:15,
-                    fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
-                    cursor:'pointer', whiteSpace:'nowrap', letterSpacing:'0.02em',
-                    boxShadow:'0 8px 24px rgba(19,40,83,0.35)',
-                    transition:'transform 0.15s, box-shadow 0.15s',
-                  }}
-                  onMouseOver={e => { e.currentTarget.style.transform='translateY(-2px)'; e.currentTarget.style.boxShadow='0 12px 28px rgba(19,40,83,0.45)'; }}
-                  onMouseOut={e => { e.currentTarget.style.transform=''; e.currentTarget.style.boxShadow='0 8px 24px rgba(19,40,83,0.35)'; }}
-                >
-                  {l==='fr'?'Rechercher':l==='en'?'Search':l==='de'?'Suchen':l==='es'?'Buscar':l==='it'?'Cerca':l==='pt'?'Pesquisar':'بحث'} →
-                </button>
-              </div>
-            </div>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </section>
@@ -828,7 +940,7 @@ export default function Home() {
 
       {/* ── COMMENT ÇA MARCHE ── */}
       <section style={{ background:'var(--bg)', borderBottom:'1px solid var(--border)' }} className="section-pad">
-        <div style={{ maxWidth:1200, margin:'0 auto' }}>
+        <div className="mk-section" style={{ maxWidth:1200, margin:'0 auto' }}>
 
           {/* Header */}
           <div style={{ textAlign:'center', marginBottom: isMobile ? 40 : 60 }}>
@@ -941,7 +1053,7 @@ export default function Home() {
 
       {/* ── FEATURED VEHICLES ── */}
       <section className="section-pad">
-        <div style={{ maxWidth:1400, margin:'0 auto' }}>
+        <div className="mk-section" style={{ maxWidth:1400, margin:'0 auto' }}>
           <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', flexWrap:'wrap', gap:16, marginBottom:44 }}>
             <div>
               <div className="section-eyebrow">{t('catalog_title', l)}</div>
@@ -1025,7 +1137,7 @@ export default function Home() {
 
       {/* ── BRANDS ── */}
       <section className="section-pad">
-        <div style={{ maxWidth:1400, margin:'0 auto' }}>
+        <div className="mk-section" style={{ maxWidth:1400, margin:'0 auto' }}>
           <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', flexWrap:'wrap', gap:16, marginBottom:44 }}>
             <div>
               <div className="section-eyebrow">
@@ -1077,7 +1189,7 @@ export default function Home() {
           className="section-pad"
           style={{ borderTop:'1px solid var(--border)', background:'linear-gradient(180deg, var(--bg) 0%, var(--bg-card) 100%)' }}
         >
-          <div style={{ maxWidth:1400, margin:'0 auto' }}>
+          <div className="mk-section" style={{ maxWidth:1400, margin:'0 auto' }}>
             <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', flexWrap:'wrap', gap:16, marginBottom:44 }}>
               <div>
                 <div className="section-eyebrow">
@@ -1166,7 +1278,7 @@ export default function Home() {
       {/* ── PROMOTIONS ── */}
       {promotions.length > 0 && (
         <section style={{ borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)' }} className="section-pad">
-          <div style={{ maxWidth:1400, margin:'0 auto' }}>
+          <div className="mk-section" style={{ maxWidth:1400, margin:'0 auto' }}>
             {/* Header */}
             <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', flexWrap:'wrap', gap:16, marginBottom:44 }}>
               <div>
@@ -1197,8 +1309,8 @@ export default function Home() {
 
       {/* ── CAMPING CARS ── */}
       {campingCars.length > 0 && (
-        <section style={{ background:'var(--bg-card2)', borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)' }} className="section-pad">
-          <div style={{ maxWidth:1400, margin:'0 auto' }}>
+        <section style={{ background:'transparent', borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)' }} className="section-pad">
+          <div className="mk-section" style={{ maxWidth:1400, margin:'0 auto' }}>
             {/* Header */}
             <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', flexWrap:'wrap', gap:16, marginBottom:44 }}>
               <div>
@@ -1245,8 +1357,8 @@ export default function Home() {
       <PurchaseStepsSection l={l} isMobile={isMobile} />
 
       {/* ── SERVICES ── */}
-      <section style={{ background:'var(--bg-card2)', borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)' }} className="section-pad">
-        <div style={{ maxWidth:1300, margin:'0 auto' }}>
+      <section style={{ background:'transparent', borderTop:'1px solid var(--border)', borderBottom:'1px solid var(--border)' }} className="section-pad">
+        <div className="mk-section" style={{ maxWidth:1300, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:52 }}>
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>{t('services_label', l)}</div>
             <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
@@ -1274,7 +1386,7 @@ export default function Home() {
 
       {/* ── WHY CHOOSE US (Stats + Q&A cards) ── */}
       <section className="section-pad">
-        <div style={{ maxWidth:1300, margin:'0 auto' }}>
+        <div className="mk-section" style={{ maxWidth:1300, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:52 }}>
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {l==='fr'?'Notre Force':l==='en'?'Our Strength':l==='de'?'Unsere Stärke':l==='es'?'Nuestra Fuerza':l==='it'?'La Nostra Forza':'Nossa Força'}
@@ -1349,7 +1461,7 @@ export default function Home() {
 
       {/* ── WARRANTY & INSURANCE ── */}
       <section className="section-pad">
-        <div style={{ maxWidth:1300, margin:'0 auto' }}>
+        <div className="mk-section" style={{ maxWidth:1300, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:52 }}>
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {l==='fr'?'Protection':l==='en'?'Protection':l==='de'?'Schutz':l==='es'?'Protección':l==='it'?'Protezione':'Proteção'}
@@ -1447,8 +1559,8 @@ export default function Home() {
       </section>
 
       {/* ── REVIEWS ── */}
-      <section className="section-pad" style={{ background:'var(--bg-card2)', borderTop:'1px solid var(--border)' }}>
-        <div style={{ maxWidth:1200, margin:'0 auto' }}>
+      <section className="section-pad" style={{ background:'transparent', borderTop:'1px solid var(--border)' }}>
+        <div className="mk-section" style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>{t('reviews_label', l)}</div>
             <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
@@ -1481,7 +1593,7 @@ export default function Home() {
 
       {/* ── CONTACT ── */}
       <section style={{ borderTop:'1px solid var(--border)' }} className="section-pad">
-        <div style={{ maxWidth:1100, margin:'0 auto', display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 36 : 64, alignItems:'center' }}>
+        <div className="mk-section" style={{ maxWidth:1100, margin:'0 auto', display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 36 : 64, alignItems:'center' }}>
           <div>
             <div className="section-eyebrow">{t('contact_label', l)}</div>
             <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', marginBottom:20 }}>

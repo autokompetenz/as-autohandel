@@ -89,13 +89,13 @@ export default function CarDetails() {
 
   // Theme-aware color tokens — computed from isDark
   const C = {
-    bg:      isDark ? '#0a0a0a'                  : '#f5f5f5',
-    card:    isDark ? '#141414'                  : '#ffffff',
-    card2:   isDark ? '#1a1a1a'                  : '#ececec',
-    border:  isDark ? 'rgba(255,255,255,0.08)'   : 'rgba(0,0,0,0.1)',
-    text:    isDark ? '#ffffff'                  : '#111111',
-    text2:   isDark ? 'rgba(255,255,255,0.65)'   : '#444444',
-    text3:   isDark ? 'rgba(255,255,255,0.35)'   : '#888888',
+    bg:      isDark ? '#0a0a0a'                  : 'var(--bg)',
+    card:    isDark ? '#141414'                  : 'var(--bg-card)',
+    card2:   isDark ? '#1a1a1a'                  : 'var(--bg-card2)',
+    border:  isDark ? 'rgba(255,255,255,0.08)'   : 'var(--border)',
+    text:    isDark ? '#ffffff'                  : 'var(--text)',
+    text2:   isDark ? 'rgba(255,255,255,0.65)'   : 'var(--text-2)',
+    text3:   isDark ? 'rgba(255,255,255,0.35)'   : 'var(--text-3)',
     red:     '#132853',
     shadow:  isDark ? '0 4px 24px rgba(0,0,0,0.4)' : '0 4px 24px rgba(0,0,0,0.08)',
     disabledBg:   isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
@@ -140,7 +140,7 @@ export default function CarDetails() {
   };
 
   if (loading) return (
-    <div style={{ paddingTop: 100, background: isDark ? '#0a0a0a' : '#f5f5f5', minHeight: '100vh' }}>
+    <div style={{ paddingTop: 100, background: isDark ? '#0a0a0a' : 'var(--bg)', minHeight: '100vh' }}>
       <Loader text="Chargement..." />
     </div>
   );

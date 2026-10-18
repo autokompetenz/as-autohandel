@@ -75,10 +75,10 @@ export default function Navbar() {
     const active = location.pathname.startsWith(to) && to !== '/';
     return (
       <Link to={to} style={{
-        fontSize: 11, fontWeight: 500, letterSpacing: '0.14em', textTransform: 'uppercase',
+        fontSize: 14, fontWeight: 600, letterSpacing: '-0.01em',
         color: active ? 'var(--red)' : navTextColor,
         textDecoration: 'none', transition: 'color 0.25s',
-        position: 'relative', paddingBottom: 4,
+        position: 'relative', paddingBottom: 6,
       }}
         onMouseOver={e => e.currentTarget.style.color = 'var(--red)'}
         onMouseOut={e => e.currentTarget.style.color = active ? 'var(--red)' : navTextColor}>
@@ -142,7 +142,6 @@ export default function Navbar() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 32, position: 'relative', zIndex: 1 }}>
             <NavLink to="/catalog"     label={t('nav_vehicles', lang)} />
             <NavLink to="/simulation"  label={t('nav_financing', lang)} />
-            <NavLink to="/vendre"      label={t('nav_sell', lang)} />
             <NavLink to="/contact"     label={t('nav_contact', lang)} />
 
             {/* More dropdown */}
@@ -150,7 +149,7 @@ export default function Navbar() {
               <button
                 onClick={() => setPlusOpen(!plusOpen)}
                 style={{
-                  fontSize: 11, fontWeight: 500, letterSpacing: '0.14em', textTransform: 'uppercase',
+                  fontSize: 14, fontWeight: 600, letterSpacing: '-0.01em',
                   color: plusOpen ? 'var(--red)' : navTextColor,
                   textDecoration: 'none', transition: 'color 0.25s', cursor: 'pointer',
                   background: 'transparent', border: 'none', padding: 0, fontFamily: F,
@@ -207,6 +206,23 @@ export default function Navbar() {
 
         {/* Right side */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 1 }}>
+
+          {/* CTA — téléphone */}
+          {!isMobile && (
+            <a href="tel:+491630436338" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              background: isHero ? '#fff' : 'var(--red)',
+              color: isHero ? 'var(--red)' : '#fff',
+              fontFamily: F, fontSize: 14, fontWeight: 700, letterSpacing: '-0.01em',
+              textDecoration: 'none', padding: '9px 20px', borderRadius: 6,
+              height: 38, transition: 'all 0.2s var(--ease)',
+              boxShadow: isHero ? '0 1px 3px rgba(0,0,0,0.2)' : '0 1px 2px rgba(19,40,83,0.25)',
+            }}
+              onMouseOver={e => { e.currentTarget.style.background = isHero ? 'rgba(255,255,255,0.88)' : 'var(--red-dark)'; }}
+              onMouseOut={e => { e.currentTarget.style.background = isHero ? '#fff' : 'var(--red)'; }}>
+              📞 +49 163 043 63 38
+            </a>
+          )}
 
           {/* Menu button */}
           <div style={{ position: 'relative' }} ref={menuRef}>
@@ -276,7 +292,6 @@ export default function Navbar() {
                         { to: '/marques',     icon: '🏷️', label: t('nav_brands', lang) },
                         { to: '/camping-car', icon: '🚐', label: 'Camping Car' },
                         { to: '/simulation',  icon: '💳', label: t('nav_financing', lang) },
-                        { to: '/vendre',      icon: '💰', label: t('nav_sell', lang) },
                         { to: '/warranty',    icon: '🛡️', label: t('nav_warranty', lang) || 'Garantie' },
                         { to: '/contact',     icon: '📞', label: t('nav_contact', lang) },
                         { to: '/faq',         icon: '❓', label: t('nav_faq', lang) },
