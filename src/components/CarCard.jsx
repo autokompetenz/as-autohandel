@@ -205,6 +205,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
       transition={{ delay: Math.min(index,8)*0.06, duration:0.5, ease:[0.16,1,0.3,1] }}
       onMouseOver={() => setHovered(true)}
       onMouseOut={() => setHovered(false)}
+      className="car-card"
       style={{
         background:'var(--bg-card)', borderRadius:'var(--radius-lg)', overflow:'hidden',
         border:`1px solid ${hovered ? 'var(--red)' : 'var(--border)'}`,
@@ -214,7 +215,8 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
       {/* Image */}
       <Link to={`/cars/${car.id}`} style={{ display:'block', position:'relative', overflow:'hidden' }}>
         <img src={img} alt={`${car.make} ${car.model}`}
-          style={{ width:'100%', height:190, objectFit:'cover', display:'block', transition:'transform 0.4s var(--ease)' }} />
+          className="car-img-zoom"
+          style={{ width:'100%', height:190, objectFit:'cover', display:'block' }} />
         <div style={{ position:'absolute', top:10, left:10 }}><Badges /></div>
         <OverlayBtns />
         <span style={{ position:'absolute', bottom:10, right:10, background:'rgba(255,255,255,0.94)', color:'var(--text-2)', fontSize:10, fontWeight:700, letterSpacing:'0.04em', textTransform:'uppercase', padding:'3px 10px', borderRadius:100 }}>

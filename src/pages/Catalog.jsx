@@ -261,7 +261,9 @@ export default function Catalog() {
               style={{ flex:1, display:'flex', alignItems:'center', justifyContent:'center', gap:8, background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:'var(--radius-pill)', padding:'11px 14px', color:'var(--text)', fontFamily:"var(--font)", fontSize:14, fontWeight:700, cursor:'pointer' }}>
               ⚙ {t('filters', l)} {(brand)&&`· ${brand||''}`}
             </button>
-            <SortSelect />
+            <div style={{ width:150, flexShrink:0 }}>
+              <SortSelect />
+            </div>
           </div>
         )}
 
@@ -317,8 +319,7 @@ export default function Catalog() {
                   <button onClick={resetAll} style={{ fontSize:13, color:'var(--red)', background:'none', border:'none', cursor:'pointer', fontFamily:"var(--font)", fontWeight:700 }}>
                     ✕ {t('reset', l)}
                   </button>
-                )}
-                {/* Alerte e-mail « nouveau stock » */}
+                )}                {/* Alerte e-mail « nouveau stock » */}
                 <button
                   onClick={() => { setAlertStatus('idle'); setAlertToken(null); setAlertMsg(''); setAlertOpen(true); }}
                   style={{
@@ -344,7 +345,7 @@ export default function Catalog() {
                   </div>
                 )}
                 <div style={{ minWidth:200 }}>
-                  <SortSelect />
+                  {!isMobile && <SortSelect />}
                 </div>
               </div>
             </div>
@@ -367,7 +368,7 @@ export default function Catalog() {
                 gap: isMobile ? 12 : (view==='list' ? 12 : 18),
               }}>
                 <AnimatePresence>
-                  {cars.map((car, i) => <CarCard key={car.id} car={car} index={i} variant={view === 'grid' && !isMobile ? 'grid' : 'row'} />)}
+                  {cars.map((car, i) => <CarCard key={car.id} car={car} index={i} variant={isMobile || view === 'grid' ? 'grid' : 'row'} />)}
                 </AnimatePresence>
               </div>
             )}
