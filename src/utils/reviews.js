@@ -60,8 +60,8 @@ export const ALL_REVIEWS = [
   },
   {
     name: 'Amélie Bernard', avatar: 'AB', rating: 5, date: 'Avril 2024',
-    textFr: 'Automatik m\'a aidée à trouver le financement idéal pour ma Citroën C3. Service client 5 étoiles !',
-    textEn: 'Automatik helped me find the ideal financing for my Citroën C3. 5-star customer service!',
+    textFr: 'AS Autohandel m\'a aidée à trouver le financement idéal pour ma Citroën C3. Service client 5 étoiles !',
+    textEn: 'AS Autohandel helped me find the ideal financing for my Citroën C3. 5-star customer service!',
   },
   {
     name: 'Hans-Peter Braun', avatar: 'HB', rating: 5, date: 'Mai 2024',
@@ -100,8 +100,8 @@ export const ALL_REVIEWS = [
   },
   {
     name: 'Nathalie Rousseau', avatar: 'NR', rating: 5, date: 'Août 2024',
-    textFr: 'Je suis cliente depuis 2 ans et je reviens toujours chez Automatik. Fiabilité et sérieux au rendez-vous.',
-    textEn: 'I have been a customer for 2 years and I always come back to Automatik. Reliability and professionalism guaranteed.',
+    textFr: 'Je suis cliente depuis 2 ans et je reviens toujours chez AS Autohandel. Fiabilité et sérieux au rendez-vous.',
+    textEn: 'I have been a customer for 2 years and I always come back to AS Autohandel. Reliability and professionalism guaranteed.',
   },
   {
     name: 'Jürgen Fischer', avatar: 'JF', rating: 4, date: 'Septembre 2024',
@@ -145,8 +145,8 @@ export const ALL_REVIEWS = [
   },
   {
     name: 'Roberto Esposito', avatar: 'RE', rating: 5, date: 'Janvier 2025',
-    textFr: 'Automatik a dépassé toutes mes attentes. La Toyota RAV4 est parfaite et le service était irréprochable.',
-    textEn: 'Automatik exceeded all my expectations. The Toyota RAV4 is perfect and the service was flawless.',
+    textFr: 'AS Autohandel a dépassé toutes mes attentes. La Toyota RAV4 est parfaite et le service était irréprochable.',
+    textEn: 'AS Autohandel exceeded all my expectations. The Toyota RAV4 is perfect and the service was flawless.',
   },
   {
     name: 'Brigitte Schulz', avatar: 'BS', rating: 5, date: 'Février 2025',

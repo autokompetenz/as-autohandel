@@ -130,10 +130,10 @@ export default function Navbar() {
             color: scrolled ? (isDark ? '#fff' : '#111') : isHero ? '#fff' : (isDark ? '#fff' : '#111'),
             letterSpacing: '0.08em', transition: 'color 0.4s',
           }}>
-            AUTOMATIK
+            AS AUTOHANDEL
           </span>
           <span style={{ fontSize: 8, fontWeight: 500, letterSpacing: '0.25em', color: 'var(--red)', textTransform: 'uppercase', opacity: 0.7 }}>
-            Gebrauchtwagen
+            GmbH
           </span>
         </Link>
 

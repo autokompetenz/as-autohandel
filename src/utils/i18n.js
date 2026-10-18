@@ -85,7 +85,7 @@ export const translations = {
   status_delivered: { fr:'Livrée',              en:'Delivered',         de:'Geliefert',         es:'Entregado',        it:'Consegnato',       pt:'Entregue',         ro:'Livrată' },
   status_cancelled: { fr:'Annulée',             en:'Cancelled',         de:'Storniert',         es:'Cancelado',        it:'Annullato',        pt:'Cancelado',        ro:'Anulată' },
   login_title:      { fr:'Connexion',           en:'Sign in',           de:'Anmelden',          es:'Iniciar sesión',   it:'Accedi',           pt:'Entrar',           ro:'Autentificare' },
-  login_sub:        { fr:'Accédez à votre espace Automatik', en:'Access your Automatik account', de:'Zugang zu Ihrem Konto', es:'Acceda a su cuenta', it:'Accedi al tuo spazio', pt:'Acesse sua conta', ro:'Accesați contul dvs. Automatik' },
+  login_sub:        { fr:'Accédez à votre espace AS Autohandel', en:'Access your AS Autohandel account', de:'Zugang zu Ihrem Konto', es:'Acceda a su cuenta', it:'Accedi al tuo spazio', pt:'Acesse sua conta', ro:'Accesați contul dvs. AS Autohandel' },
   email:            { fr:'Email',               en:'Email',             de:'E-Mail',            es:'Email',            it:'Email',            pt:'Email',            ro:'Email' },
   password:         { fr:'Mot de passe',        en:'Password',          de:'Passwort',          es:'Contraseña',       it:'Password',         pt:'Senha',            ro:'Parolă' },
   no_account:       { fr:'Pas encore de compte ?', en:'No account yet?', de:'Noch kein Konto?', es:'¿Sin cuenta?',    it:'Nessun account?',  pt:'Sem conta?',       ro:'Nu aveți încă un cont?' },

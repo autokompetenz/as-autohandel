@@ -538,9 +538,9 @@ function VideoSection({ isMobile }) {
           color:'#fff', letterSpacing:'-0.03em', lineHeight:0.98, marginBottom:24,
           textShadow:'0 4px 40px rgba(0,0,0,0.5)',
         }}>
-          AUTOMATIK{' '}
+          AS AUTOHANDEL{' '}
           <span style={{ background:'linear-gradient(120deg,#FFD24D,#FF9F2E)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>
-            GEBRAUCHTWAGEN
+            GMBH
           </span>
         </h2>
 
@@ -658,7 +658,7 @@ export default function Home() {
 
           <motion.h1 initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.9, delay:0.2 }}
             style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 'clamp(36px,10vw,52px)' : 'clamp(48px,5.5vw,80px)', color:'#fff', letterSpacing:'-0.03em', lineHeight:1.0, marginBottom:24 }}>
-            Automatik<br/><span style={{ color:'#132853' }}>Gebrauchtwagen</span>
+            AS Autohandel<br/><span style={{ color:'#132853' }}>GmbH</span>
           </motion.h1>
 
           <motion.p initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, delay:0.35 }}
@@ -1141,7 +1141,7 @@ export default function Home() {
                   <Speedometer value={14 - Number(perf.accel)} displayValue={Number(perf.accel)} max={14} unit="s" label="0–100 km/h" size={isMobile ? 140 : 300} dark={isDark} />
                 </div>
                 <p style={{ textAlign:'center', fontSize:12, color:'var(--text-3)', marginTop: isMobile ? 16 : 32 }}>
-                  AUTOMATIK GEBRAUCHTWAGEN
+                  AS AUTOHANDEL GMBH
                 </p>
               </div>
             </motion.div>
@@ -1527,8 +1527,8 @@ export default function Home() {
         <div style={{ maxWidth:1300, margin:'0 auto' }}>
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr auto', gap: isMobile ? 28 : 48, alignItems:'start' }}>
             <div>
-              <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:15, fontWeight:800, color:'var(--text)', letterSpacing:'0.08em' }}>AUTOMATIK</div>
-              <div style={{ fontSize:8, letterSpacing:'0.35em', color:'var(--red)', textTransform:'uppercase', marginTop:3, marginBottom:14, fontWeight:500 }}>Gebrauchtwagen · Offenbach am Main</div>
+              <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:15, fontWeight:800, color:'var(--text)', letterSpacing:'0.08em' }}>AS AUTOHANDEL</div>
+              <div style={{ fontSize:8, letterSpacing:'0.35em', color:'var(--red)', textTransform:'uppercase', marginTop:3, marginBottom:14, fontWeight:500 }}>GmbH · Offenbach am Main</div>
               <p style={{ fontSize:13, color:'var(--text-3)', lineHeight:1.6, maxWidth:240, fontWeight:300 }}>
                 {l==='fr'?'Votre partenaire automobile de confiance en Allemagne.':l==='en'?'Your trusted car partner in Germany.':l==='de'?'Ihr vertrauenswürdiger Autopartner in Deutschland.':l==='es'?'Su socio de confianza en Alemania.':l==='it'?'Il vostro partner automobilistico di fiducia in Germania.':'Seu parceiro automobilístico de confiança na Alemanha.'}
               </p>

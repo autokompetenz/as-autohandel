@@ -240,7 +240,7 @@ export default function About() {
           >
             <div style={{ fontSize:40 }}>📞</div>
             <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 22 : 26, color:'#fff', margin:0, letterSpacing:'-0.02em' }}>
-              {t({ fr:'Prêt à rouler avec Automatik ?', en:'Ready to drive with Automatik?', de:'Bereit mit Automatik zu fahren?', es:'¿Listo para conducir con Automatik?', it:'Pronto a guidare con Automatik?', pt:'Pronto a conduzir com a Automatik?', ro:'Gata să plecați la drum cu Automatik?' })}
+              {t({ fr:'Prêt à rouler avec AS Autohandel ?', en:'Ready to drive with AS Autohandel?', de:'Bereit mit AS Autohandel zu fahren?', es:'¿Listo para conducir con AS Autohandel?', it:'Pronto a guidare con AS Autohandel?', pt:'Pronto a conduzir com a AS Autohandel?', ro:'Gata să plecați la drum cu AS Autohandel?' })}
             </h3>
             <p style={{ fontSize:14, color:'rgba(255,255,255,0.7)', lineHeight:1.7, margin:0 }}>
               {t({ fr:'Notre équipe vous accompagne dans le choix de votre prochain véhicule, de la première visite à la livraison.', en:'Our team supports you in choosing your next vehicle, from first visit to delivery.', de:'Unser Team begleitet Sie bei der Wahl Ihres nächsten Fahrzeugs.', es:'Nuestro equipo le acompaña en la elección de su próximo vehículo.', it:'Il nostro team vi accompagna nella scelta del vostro prossimo veicolo.', pt:'A nossa equipa acompanha-o na escolha do seu próximo veículo.', ro:'Echipa noastră vă însoțește în alegerea următorului vehicul, de la prima vizită până la livrare.' })}

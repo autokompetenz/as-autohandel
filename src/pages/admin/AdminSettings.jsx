@@ -8,7 +8,7 @@ const L = {
   title:     { fr:'Coordonnées bancaires', en:'Bank details', de:'Bankdaten', es:'Datos bancarios', it:'Coordinate bancarie', pt:'Dados bancários' },
   subtitle:  { fr:'Ces informations sont affichées sur la confirmation de commande pour les paiements par virement.', en:'These details are shown on the order confirmation for wire transfer payments.', de:'Diese Angaben werden auf der Bestellbestätigung für Überweisungen angezeigt.', es:'Estos datos se muestran en la confirmación del pedido para pagos por transferencia.', it:'Questi dati vengono mostrati sulla conferma d\'ordine per i pagamenti tramite bonifico.', pt:'Esses dados são exibidos na confirmação do pedido para pagamentos por transferência.' },
   holder:    { fr:'Titulaire du compte', en:'Account holder', de:'Kontoinhaber', es:'Titular de la cuenta', it:'Titolare del conto', pt:'Titular da conta' },
-  holderPh:  { fr:'Ex : AUTOMATIK GEBRAUCHTWAGEN', en:'e.g. AUTOMATIK GEBRAUCHTWAGEN', de:'z. B. AUTOMATIK GEBRAUCHTWAGEN', es:'Ej.: AUTOMATIK GEBRAUCHTWAGEN', it:'Es.: AUTOMATIK GEBRAUCHTWAGEN', pt:'Ex.: AUTOMATIK GEBRAUCHTWAGEN' },
+  holderPh:  { fr:'Ex : AS AUTOHANDEL GMBH', en:'e.g. AS AUTOHANDEL GMBH', de:'z. B. AS AUTOHANDEL GMBH', es:'Ej.: AS AUTOHANDEL GMBH', it:'Es.: AS AUTOHANDEL GMBH', pt:'Ex.: AS AUTOHANDEL GMBH' },
   iban:      { fr:'IBAN', en:'IBAN', de:'IBAN', es:'IBAN', it:'IBAN', pt:'IBAN' },
   ibanPh:    { fr:'Ex : DE89 3704 0044 0532 0130 00', en:'e.g. DE89 3704 0044 0532 0130 00', de:'z. B. DE89 3704 0044 0532 0130 00', es:'Ej.: DE89 3704 0044 0532 0130 00', it:'Es.: DE89 3704 0044 0532 0130 00', pt:'Ex.: DE89 3704 0044 0532 0130 00' },
   bic:       { fr:'BIC', en:'BIC', de:'BIC', es:'BIC', it:'BIC', pt:'BIC' },
@@ -27,7 +27,7 @@ export default function AdminSettings() {
   const { addToast } = useToastStore();
   const { lang } = useLangStore();
   const l = lang || 'fr';
-  const [form, setForm] = useState({ iban:'', bic:'', beneficiary:'AUTOMATIK GEBRAUCHTWAGEN', transferType:'SEPA' });
+  const [form, setForm] = useState({ iban:'', bic:'', beneficiary:'AS AUTOHANDEL GMBH', transferType:'SEPA' });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -35,7 +35,7 @@ export default function AdminSettings() {
     bankAPI.getAdmin()
       .then(r => {
         const b = r.data.bank || {};
-        setForm({ iban: b.iban || '', bic: b.bic || '', beneficiary: b.beneficiary || 'AUTOMATIK GEBRAUCHTWAGEN', transferType: b.transferType || 'SEPA' });
+        setForm({ iban: b.iban || '', bic: b.bic || '', beneficiary: b.beneficiary || 'AS AUTOHANDEL GMBH', transferType: b.transferType || 'SEPA' });
         setLoading(false);
       })
       .catch(() => setLoading(false));

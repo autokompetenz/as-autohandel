@@ -22,7 +22,7 @@ export default function AdminOrderDetail() {
   const [paySaving, setPaySaving] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
   const [addForm, setAddForm] = useState({ type:'monthly', amount:'', dueDate:'' });
-  const [bankInfo, setBankInfo] = useState({ iban:'', bic:'', beneficiary:'AUTOMATIK GEBRAUCHTWAGEN', transferType:'SEPA' });
+  const [bankInfo, setBankInfo] = useState({ iban:'', bic:'', beneficiary:'AS AUTOHANDEL GMBH', transferType:'SEPA' });
 
   const load = () => {
     orderAPI.getAdminDetail(id)
@@ -34,9 +34,9 @@ export default function AdminOrderDetail() {
           .then(b => {
             const od = r.data.order;
             if (od.paymentIban || od.paymentBic || od.paymentBeneficiary) {
-              setBankInfo({ iban: od.paymentIban || '', bic: od.paymentBic || '', beneficiary: od.paymentBeneficiary || 'AUTOMATIK GEBRAUCHTWAGEN', transferType: od.paymentTransferType || 'SEPA' });
+              setBankInfo({ iban: od.paymentIban || '', bic: od.paymentBic || '', beneficiary: od.paymentBeneficiary || 'AS AUTOHANDEL GMBH', transferType: od.paymentTransferType || 'SEPA' });
             } else {
-              setBankInfo({ iban: b.data.bank?.iban || '', bic: b.data.bank?.bic || '', beneficiary: b.data.bank?.beneficiary || 'AUTOMATIK GEBRAUCHTWAGEN', transferType: b.data.bank?.transferType || 'SEPA' });
+              setBankInfo({ iban: b.data.bank?.iban || '', bic: b.data.bank?.bic || '', beneficiary: b.data.bank?.beneficiary || 'AS AUTOHANDEL GMBH', transferType: b.data.bank?.transferType || 'SEPA' });
             }
           })
           .catch(() => {});
