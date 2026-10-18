@@ -14,6 +14,7 @@ const Home         = lazy(() => import('./pages/Home'));
 const HomeMinimal  = lazy(() => import('./pages/HomeMinimal'));
 const Favorites    = lazy(() => import('./pages/Favorites'));
 const Compare      = lazy(() => import('./pages/Compare'));
+const AlertManage  = lazy(() => import('./pages/AlertManage'));
 const Catalog      = lazy(() => import('./pages/Catalog'));
 const CarDetails   = lazy(() => import('./pages/CarDetails'));
 const Simulation   = lazy(() => import('./pages/Simulation'));
@@ -66,6 +67,9 @@ function SeoTitle() {
       '/maintenance': lang==='fr'? `${base} — Entretien` : `${base} — Maintenance`,
       '/warranty': lang==='fr'? `${base} — Garantie` : `${base} — Warranty`,
       '/insurance': lang==='fr'? `${base} — Assurance` : `${base} — Insurance`,
+      '/favoris': lang==='fr'? `${base} — Mes favoris` : `${base} — My favorites`,
+      '/comparateur': lang==='fr'? `${base} — Comparateur` : `${base} — Comparison`,
+      '/accueil2': lang==='fr'? `${base} — Accueil premium` : `${base} — Premium homepage`,
     };
     document.title = titles[pathname] || base;
   }, [pathname, lang]);
@@ -180,6 +184,7 @@ export default function App() {
         <Route path="/accueil2"  element={<MainLayout><HomeMinimal /></MainLayout>} />
         <Route path="/favoris"   element={<MainLayout><Favorites /></MainLayout>} />
         <Route path="/comparateur" element={<MainLayout><Compare /></MainLayout>} />
+        <Route path="/alerte/:token" element={<MainLayout><AlertManage /></MainLayout>} />
         <Route path="/catalog"   element={<MainLayout><Catalog /></MainLayout>} />
         <Route path="/cars/:id"  element={<MainLayout><CarDetails /></MainLayout>} />
         <Route path="/simulation"element={<MainLayout><Simulation /></MainLayout>} />

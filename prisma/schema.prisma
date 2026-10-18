@@ -231,3 +231,20 @@ model BankInfo {
 
   @@map("bank_info")
 }
+
+// Alerte e-mail « nouveau stock » — l'utilisateur abonne une recherche,
+// il reçoit un e-mail quand un véhicule correspondant est ajouté.
+model SearchAlert {
+  id            Int      @id @default(autoincrement())
+  email         String
+  lang          String   @default("fr")
+  params        String   @default("{}")   // critères JSON (brand, category, prix…)
+  token         String   @unique          // lien de gestion / désabonnement
+  active        Boolean  @default(true)
+  notifiedCount Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([email])
+  @@index([active])
+}

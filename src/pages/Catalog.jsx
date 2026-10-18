@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
-import { carAPI } from '../services/api';
+import { useSearchParams, Link } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { carAPI, alertAPI } from '../services/api';
 import CarCard from '../components/CarCard';
 import { Loader } from '../components/UI';
 import { useLangStore } from '../store';
@@ -16,6 +16,11 @@ export default function Catalog() {
   const [loading, setLoading]       = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [view, setView]             = useState('list');
+  const [alertOpen, setAlertOpen]   = useState(false);
+  const [alertEmail, setAlertEmail] = useState('');
+  const [alertStatus, setAlertStatus] = useState('idle'); // idle | loading | done | error
+  const [alertToken, setAlertToken] = useState(null);
+  const [alertMsg, setAlertMsg]     = useState('');
   const { lang } = useLangStore();
   const { isMobile, isTablet } = useBreakpoint();
   const l = lang || 'fr';
@@ -68,6 +73,37 @@ export default function Catalog() {
 
   const resetAll = () => { setSearchParams({}); setDrawerOpen(false); };
 
+  /* ── Alerte « nouveau stock » : envoie les filtres courants à l'API ── */
+  const ALERT_LABELS = {
+    fr: { brand:'Marque', search:'Recherche', category:'Catégorie', fuelType:'Énergie', transmission:'Boîte', minPrice:'Prix min', maxPrice:'Prix max', minYear:'Année min', maxYear:'Année max', maxMileage:'Km max' },
+    en: { brand:'Brand', search:'Search', category:'Category', fuelType:'Fuel', transmission:'Gearbox', minPrice:'Min price', maxPrice:'Max price', minYear:'Min year', maxYear:'Max year', maxMileage:'Max mileage' },
+    de: { brand:'Marke', search:'Suche', category:'Kategorie', fuelType:'Kraftstoff', transmission:'Getriebe', minPrice:'Preis min', maxPrice:'Preis max', minYear:'Baujahr min', maxYear:'Baujahr max', maxMileage:'km max' },
+    es: { brand:'Marca', search:'Búsqueda', category:'Categoría', fuelType:'Combustible', transmission:'Caja', minPrice:'Precio mín', maxPrice:'Precio máx', minYear:'Año mín', maxYear:'Año máx', maxMileage:'km máx' },
+    it: { brand:'Marca', search:'Ricerca', category:'Categoria', fuelType:'Carburante', transmission:'Cambio', minPrice:'Prezzo min', maxPrice:'Prezzo max', minYear:'Anno min', maxYear:'Anno max', maxMileage:'km max' },
+    pt: { brand:'Marca', search:'Pesquisa', category:'Categoria', fuelType:'Combustível', transmission:'Caixa', minPrice:'Preço mín', maxPrice:'Preço máx', minYear:'Ano mín', maxYear:'Ano máx', maxMileage:'km máx' },
+    ro: { brand:'Marcă', search:'Căutare', category:'Categorie', fuelType:'Combustibil', transmission:'Cutie', minPrice:'Preț min', maxPrice:'Preț max', minYear:'An min', maxYear:'An max', maxMileage:'km max' },
+  };
+  const lbl = ALERT_LABELS[l] || ALERT_LABELS.fr;
+  const m = (fr, en, de, es, it, pt, ro) => ({ fr, en, de, es, it, pt, ro }[l] || fr);
+
+  const activeAlertParams = () => {
+    const p = { brand, search, category, fuelType, transmission, minPrice, maxPrice, minYear, maxYear, maxMileage };
+    return Object.fromEntries(Object.entries(p).filter(([, v]) => v));
+  };
+
+  const submitAlert = async () => {
+    setAlertStatus('loading');
+    setAlertMsg('');
+    try {
+      const { data } = await alertAPI.create({ email: alertEmail, lang: l, params: activeAlertParams() });
+      setAlertToken(data.token);
+      setAlertStatus('done');
+    } catch (e) {
+      setAlertStatus('error');
+      setAlertMsg(e.response?.data?.error || (l==='fr' ? 'Erreur, réessayez plus tard.' : l==='en' ? 'Error, please try again later.' : l==='de' ? 'Fehler, bitte später erneut versuchen.' : l==='es' ? 'Error, inténtelo más tarde.' : l==='it' ? 'Errore, riprova più tardi.' : l==='pt' ? 'Erro, tente novamente mais tarde.' : 'Eroare, încercați mai târziu.'));
+    }
+  };
+
   const activeCount = [brand, search, sort, category, fuelType, transmission, minPrice, maxPrice, minYear, maxYear, maxMileage].filter(Boolean).length;
 
   const SortSelect = () => (
@@ -81,7 +117,7 @@ export default function Catalog() {
     </select>
   );
 
-  const lbl = (fr, en, de) => l==='fr'?fr:l==='en'?en:de;
+  const fmt = (fr, en, de) => l==='fr'?fr:l==='en'?en:de;
 
   const FacetGroup = ({ title, children }) => (
     <div style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:'var(--radius-lg)', overflow:'hidden', marginBottom:10 }}>
@@ -282,6 +318,17 @@ export default function Catalog() {
                     ✕ {t('reset', l)}
                   </button>
                 )}
+                {/* Alerte e-mail « nouveau stock » */}
+                <button
+                  onClick={() => { setAlertStatus('idle'); setAlertToken(null); setAlertMsg(''); setAlertOpen(true); }}
+                  style={{
+                    display:'flex', alignItems:'center', gap:7, padding:'8px 16px',
+                    borderRadius:'var(--radius-pill)', border:'1px solid var(--border)',
+                    background:'var(--bg-card)', color:'var(--text)', fontFamily:'var(--font)',
+                    fontSize:13, fontWeight:700, cursor:'pointer', whiteSpace:'nowrap',
+                  }}>
+                  🔔 {l==='fr'?'Créer une alerte':l==='en'?'Create alert':l==='de'?'Warnung erstellen':l==='es'?'Crear alerta':l==='it'?'Crea avviso':l==='pt'?'Criar alerta':l==='ro'?'Creează alertă':'Create alert'}
+                </button>
                 {/* Bascule liste / grille */}
                 {!isMobile && (
                   <div style={{ display:'flex', border:'1px solid var(--border)', borderRadius:'var(--radius)', overflow:'hidden' }}>
@@ -327,6 +374,102 @@ export default function Catalog() {
           </div>
         </div>
       </div>
+
+      {/* ── Modale : création d'alerte e-mail « nouveau stock » ── */}
+      <AnimatePresence>
+        {alertOpen && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setAlertOpen(false)}
+            style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.55)', zIndex:10000, display:'flex', alignItems:'center', justifyContent:'center', padding:'5%' }}>
+            <motion.div
+              initial={{ opacity:0, y:24, scale:0.97 }} animate={{ opacity:1, y:0, scale:1 }} exit={{ opacity:0, y:24, scale:0.97 }}
+              transition={{ duration:0.28, ease:[0.16,1,0.3,1] }}
+              onClick={e => e.stopPropagation()}
+              className="mk-panel"
+              style={{ width:'100%', maxWidth:470, padding: isMobile ? '26px 20px' : '34px 32px', maxHeight:'90vh', overflow:'auto', position:'relative' }}>
+              <button onClick={() => setAlertOpen(false)} aria-label="fermer"
+                style={{ position:'absolute', top:12, right:12, width:32, height:32, borderRadius:'50%', border:'1px solid var(--border)', background:'var(--bg-card2)', color:'var(--text-2)', cursor:'pointer', fontSize:14, display:'flex', alignItems:'center', justifyContent:'center' }}>✕</button>
+
+              {alertStatus === 'done' ? (
+                <div style={{ textAlign:'center' }}>
+                  <div style={{ fontSize:44, marginBottom:12 }}>✅</div>
+                  <h3 style={{ fontFamily:'var(--font-title)', fontWeight:600, fontSize:24, color:'var(--text)', marginBottom:10 }}>
+                    {m('Alerte créée !','Alert created!','Warnung erstellt!','¡Alerta creada!','Avviso creato!','Alerta criada!','Alertă creată!')}
+                  </h3>
+                  <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.6, marginBottom:20 }}>
+                    {m(`Vous recevrez un e-mail à ${alertEmail} dès qu'un véhicule correspondant est ajouté.`, `You will receive an email at ${alertEmail} when a matching vehicle is added.`, `Sie erhalten eine E-Mail an ${alertEmail}, sobald ein passendes Fahrzeug hinzugefügt wird.`, `Recibirá un correo en ${alertEmail} cuando se añada un vehículo coincidente.`, `Riceverai un'e-mail su ${alertEmail} quando viene aggiunto un veicolo corrispondente.`, `Receberá um e-mail em ${alertEmail} quando for adicionado um veículo correspondente.`, `Veți primi un e-mail la ${alertEmail} când este adăugat un vehicul corespunzător.`)}
+                  </p>
+                  <Link to={`/alerte/${alertToken}`} className="btn-primary" style={{ display:'inline-block', marginBottom:10 }} onClick={() => setAlertOpen(false)}>
+                    {m('Gérer mon alerte','Manage my alert','Warnung verwalten','Gestionar mi alerta','Gestisci il mio avviso','Gerir o meu alerta','Gestionează alerta')}
+                  </Link>
+                  <div>
+                    <button onClick={() => setAlertOpen(false)} className="btn-outline" style={{ fontSize:13 }}>
+                      {m('Fermer','Close','Schließen','Cerrar','Chiudi','Fechar','Închide')}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div style={{ fontSize:34, marginBottom:10 }}>🔔</div>
+                  <h3 style={{ fontFamily:'var(--font-title)', fontWeight:600, fontSize:22, color:'var(--text)', marginBottom:8 }}>
+                    {m('Alerte « nouveau stock »','Stock alert','Bestand-Warnung','Alerta de stock','Avviso disponibilità','Alerta de stock','Alertă stoc')}
+                  </h3>
+                  <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.6, marginBottom:16 }}>
+                    {m("Vous serez prévenu par e-mail dès qu'un véhicule correspondant à cette recherche est ajouté.", 'You will be notified by email as soon as a vehicle matching this search is added.', 'Sie werden per E-Mail benachrichtigt, sobald ein passendes Fahrzeug hinzugefügt wird.', 'Le avisará por correo en cuanto se añada un vehículo que coincida con esta búsqueda.', "Riceverai un'e-mail non appena viene aggiunto un veicolo corrispondente a questa ricerca.", 'Será notificado por e-mail assim que for adicionado um veículo correspondente a esta pesquisa.', 'Veți fi notificat prin e-mail imediat ce este adăugat un vehicul care corespunde acestei căutări.')}
+                  </p>
+
+                  {/* Critères courants (filtres de la page) */}
+                  <div style={{ marginBottom:16 }}>
+                    <p style={{ fontSize:11, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:8 }}>
+                      {m('Critères','Criteria','Kriterien','Criterios','Criteri','Critérii','Criterii')}
+                    </p>
+                    {Object.keys(activeAlertParams()).length === 0 ? (
+                      <span className="mk-chip" style={{ background:'var(--red-bg)', border:'1px solid var(--red-border)', color:'var(--red-light)' }}>
+                        {m('Tous les véhicules','All vehicles','Alle Fahrzeuge','Todos los vehículos','Tutti i veicoli','Todos os veículos','Toate vehiculele')}
+                      </span>
+                    ) : (
+                      Object.entries(activeAlertParams()).map(([k, v]) => (
+                        <span key={k} className="mk-chip" style={{ marginRight:6, marginBottom:6 }}>
+                          {lbl[k] || k} : {v}
+                        </span>
+                      ))
+                    )}
+                  </div>
+
+                  <label style={{ fontSize:12, fontWeight:700, color:'var(--text-2)', display:'block', marginBottom:6 }}>
+                    {m('Votre e-mail','Your email','Ihre E-Mail','Su correo','La tua e-mail','O seu e-mail','E-mailul dvs.')}
+                  </label>
+                  <input
+                    type="email" required value={alertEmail}
+                    onChange={e => setAlertEmail(e.target.value)}
+                    onKeyDown={e => { if (e.key === 'Enter' && alertStatus !== 'loading') submitAlert(); }}
+                    placeholder="vous@exemple.com"
+                    className="input-luxury"
+                    style={{ width:'100%', marginBottom:12, boxSizing:'border-box' }}
+                  />
+                  {alertStatus === 'error' && (
+                    <p style={{ fontSize:13, color:'#DC2626', marginBottom:12 }}>{alertMsg}</p>
+                  )}
+                  <button
+                    onClick={submitAlert}
+                    disabled={alertStatus === 'loading' || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(alertEmail)}
+                    className="btn-primary"
+                    style={{ width:'100%', opacity: alertStatus === 'loading' ? 0.6 : 1, cursor: alertStatus === 'loading' ? 'wait' : 'pointer' }}>
+                    {alertStatus === 'loading'
+                      ? '…'
+                      : m("M'abonner", 'Subscribe', 'Abonnieren', 'Suscribirme', 'Iscrivimi', 'Subscrever', 'Abonează-mă')}
+                  </button>
+                  <p style={{ fontSize:11, color:'var(--text-3)', marginTop:10, textAlign:'center' }}>
+                    {m('Désabonnement en un clic depuis chaque e-mail.', 'One-click unsubscribe from every email.', 'Abmeldung mit einem Klick aus jeder E-Mail.', 'Baja con un clic desde cada correo.', 'Disiscrizione con un clic da ogni e-mail.', 'Cancelamento com um clique em cada e-mail.', 'Dezabonare cu un clic din fiecare e-mail.')}
+                  </p>
+                </>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

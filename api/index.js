@@ -4,8 +4,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
+const crypto = require('crypto');
 const { prisma } = require('../lib/prisma.js');
-const { sendWelcomeEmail, sendOrderConfirmationEmail, sendOrderStatusUpdateEmail, sendLeadEmail, sendAdminOrderNotificationEmail } = require('../lib/mailer.js');
+const { sendWelcomeEmail, sendOrderConfirmationEmail, sendOrderStatusUpdateEmail, sendLeadEmail, sendAdminOrderNotificationEmail, sendSearchAlertEmail } = require('../lib/mailer.js');
 const { calculateMonthlyPayment, generatePaymentReference } = require('../lib/helpers.js');
 
 // Initialize Express app
@@ -539,6 +540,8 @@ app.post('/api/cars', authenticateToken, requireAdmin, upload.any(), async (req,
     console.log('Final carData:', carData);
     const car = await prisma.car.create({ data: carData });
     console.log('Car created:', car);
+    // Alerte « nouveau stock » — e-mails envoyés en tâche de fond, sans bloquer la réponse
+    notifyAlerts(car).catch(e => console.error('Alert notify error:', e.message));
     res.status(201).json({ car });
   } catch (error) {
     console.error('Create car error:', error);
@@ -1604,6 +1607,156 @@ app.get('/api/simulation', async (req, res) => {
     res.json({ count: cars.length, salary, maxMonthly, cars });
   } catch (e) {
     console.error('Simulation error:', e);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+// ─── Alertes « nouveau stock » ─────────────────────────────────────────────
+const ALERT_PARAM_KEYS = ['brand','category','fuelType','transmission','minPrice','maxPrice','minYear','maxYear','maxMileage','search'];
+
+function sanitizeAlertParams(params) {
+  const clean = {};
+  if (!params || typeof params !== 'object') return clean;
+  for (const k of ALERT_PARAM_KEYS) {
+    const v = params[k];
+    if (v !== undefined && v !== null && String(v).trim() !== '') clean[k] = String(v).trim().slice(0, 120);
+  }
+  return clean;
+}
+
+function alertMatches(car, params) {
+  const num = v => { const n = Number(v); return Number.isFinite(n) ? n : null; };
+  if (params.brand && String(car.make).toLowerCase() !== String(params.brand).toLowerCase()) return false;
+  if (params.category && car.category !== params.category) return false;
+  if (params.fuelType && car.fuelType !== params.fuelType) return false;
+  if (params.transmission && car.transmission !== params.transmission) return false;
+  const minPrice = num(params.minPrice), maxPrice = num(params.maxPrice);
+  if (minPrice !== null && car.price < minPrice) return false;
+  if (maxPrice !== null && car.price > maxPrice) return false;
+  const minYear = num(params.minYear), maxYear = num(params.maxYear);
+  if (minYear !== null && car.year < minYear) return false;
+  if (maxYear !== null && car.year > maxYear) return false;
+  const maxMileage = num(params.maxMileage);
+  if (maxMileage !== null && car.mileage != null && Number(car.mileage) > maxMileage) return false;
+  if (params.search) {
+    const hay = `${car.make} ${car.model} ${car.description || ''} ${car.category || ''}`.toLowerCase();
+    if (!hay.includes(String(params.search).toLowerCase())) return false;
+  }
+  return true;
+}
+
+async function notifyAlerts(car) {
+  try {
+    const alerts = await prisma.searchAlert.findMany({ where: { active: true } });
+    if (!alerts.length) return;
+    const seen = new Set(); // un seul e-mail par destinataire et création
+    for (const a of alerts) {
+      let params = {};
+      try { params = JSON.parse(a.params || '{}'); } catch {}
+      if (!alertMatches(car, params)) continue;
+      const key = String(a.email).toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      try {
+        await sendSearchAlertEmail({ email: a.email, lang: a.lang, car, token: a.token, params });
+        await prisma.searchAlert.update({ where: { id: a.id }, data: { notifiedCount: { increment: 1 } } });
+      } catch (e) {
+        console.error('Alert email error:', e.message);
+      }
+    }
+  } catch (e) {
+    console.error('Notify alerts error:', e.message);
+  }
+}
+
+// Créer une alerte (les critères sont ceux de la recherche catalogue en cours)
+app.post('/api/alerts', async (req, res) => {
+  try {
+    const { email, lang, params } = req.body || {};
+    const cleanEmail = String(email || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cleanEmail) || cleanEmail.length > 254) {
+      return res.status(400).json({ error: 'Adresse e-mail invalide' });
+    }
+    const clean = sanitizeAlertParams(params);
+    const paramsJson = JSON.stringify(clean);
+
+    // Même e-mail + mêmes critères → réactiver l'abonnement existant (pas de doublon)
+    const existing = await prisma.searchAlert.findFirst({
+      where: { email: cleanEmail, params: paramsJson },
+    });
+    if (existing) {
+      if (!existing.active) {
+        await prisma.searchAlert.update({ where: { id: existing.id }, data: { active: true } });
+      }
+      return res.status(200).json({ success: true, token: existing.token, existing: true });
+    }
+
+    const count = await prisma.searchAlert.count({ where: { email: cleanEmail } });
+    if (count >= 20) {
+      return res.status(429).json({ error: 'Trop d\'alertes pour cette adresse' });
+    }
+
+    const alert = await prisma.searchAlert.create({
+      data: {
+        email: cleanEmail,
+        lang: String(lang || 'fr').toLowerCase().slice(0, 5),
+        params: paramsJson,
+        token: crypto.randomBytes(24).toString('hex'),
+      },
+    });
+    res.status(201).json({ success: true, token: alert.token });
+  } catch (e) {
+    console.error('Alert create error:', e);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+// Consulter une alerte (via son jeton de gestion)
+app.get('/api/alerts/:token', async (req, res) => {
+  try {
+    const alert = await prisma.searchAlert.findUnique({ where: { token: req.params.token } });
+    if (!alert) return res.status(404).json({ error: 'Alerte introuvable' });
+    let params = {};
+    try { params = JSON.parse(alert.params || '{}'); } catch {}
+    res.json({
+      success: true,
+      alert: {
+        email: alert.email,
+        params,
+        active: alert.active,
+        notifiedCount: alert.notifiedCount,
+        createdAt: alert.createdAt,
+      },
+    });
+  } catch (e) {
+    console.error('Alert get error:', e);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+// Activer / désactiver
+app.patch('/api/alerts/:token', async (req, res) => {
+  try {
+    const alert = await prisma.searchAlert.findUnique({ where: { token: req.params.token } });
+    if (!alert) return res.status(404).json({ error: 'Alerte introuvable' });
+    const active = req.body && req.body.active !== undefined ? !!req.body.active : !alert.active;
+    await prisma.searchAlert.update({ where: { id: alert.id }, data: { active } });
+    res.json({ success: true, active });
+  } catch (e) {
+    console.error('Alert patch error:', e);
+    res.status(500).json({ error: 'Erreur serveur' });
+  }
+});
+
+// Supprimer (désabonnement définitif)
+app.delete('/api/alerts/:token', async (req, res) => {
+  try {
+    const alert = await prisma.searchAlert.findUnique({ where: { token: req.params.token } });
+    if (!alert) return res.status(404).json({ error: 'Alerte introuvable' });
+    await prisma.searchAlert.delete({ where: { id: alert.id } });
+    res.json({ success: true });
+  } catch (e) {
+    console.error('Alert delete error:', e);
     res.status(500).json({ error: 'Erreur serveur' });
   }
 });

@@ -82,6 +82,12 @@ export const bankAPI = {
 export const simAPI = {
   simulate: (salary) => api.get('/simulation', { params: { salary } }),
 };
+export const alertAPI = {
+  create:  (d)   => api.post('/alerts', d),
+  get:     (token) => api.get(`/alerts/${token}`),
+  setActive: (token, active) => api.patch(`/alerts/${token}`, { active }),
+  remove:  (token) => api.delete(`/alerts/${token}`),
+};
 export const adminAPI = {
   stats:        () => api.get('/admin/stats'),
   clients:      () => api.get('/admin/clients'),
