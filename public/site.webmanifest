@@ -1,11 +1,11 @@
 {
-  "name": "Automatik Gebrauchtwagen",
-  "short_name": "Automatik",
-  "description": "Véhicules neufs et d'occasion à Naumburg, Allemagne.",
+  "name": "AS Autohandel GmbH",
+  "short_name": "AS Autohandel",
+  "description": "Véhicules neufs et d'occasion à Offenbach am Main, Allemagne.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0a0a",
-  "theme_color": "#132853",
+  "background_color": "#ffffff",
+  "theme_color": "#2373F4",
   "icons": [
     {
       "src": "/favicon.svg",
