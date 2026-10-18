@@ -68,7 +68,7 @@ export default function Reviews() {
 
             <h1
               style={{
-                fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+                fontFamily: "var(--font)",
                 fontWeight: 900,
                 fontSize: 'clamp(28px, 5vw, 56px)',
                 color: 'var(--text)',
@@ -83,7 +83,7 @@ export default function Reviews() {
 
             {/* Star summary */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 16 }}>
-              <span style={{ fontSize: 28, fontWeight: 900, fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", color: 'var(--text)' }}>4.9</span>
+              <span style={{ fontSize: 28, fontWeight: 900, fontFamily: "var(--font)", color: 'var(--text)' }}>4.9</span>
               <Stars n={5} />
               <span style={{ fontSize: 14, color: 'var(--text-3)', fontWeight: 600 }}>
                 ({l === 'fr' ? '30 avis' : l === 'en' ? '30 reviews' : l === 'de' ? '30 Bewertungen' : l === 'es' ? '30 opiniones' : l === 'it' ? '30 recensioni' : '30 avaliações'})
@@ -112,7 +112,7 @@ export default function Reviews() {
               transition={{ delay: i * 0.1, duration: 0.4 }}
               style={{ textAlign: 'center' }}
             >
-              <p style={{ fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 900, fontSize: isMobile ? 26 : 32, color: '#132853', lineHeight: 1 }}>{stat.value}</p>
+              <p style={{ fontFamily: "var(--font)", fontWeight: 900, fontSize: isMobile ? 26 : 32, color: '#132853', lineHeight: 1 }}>{stat.value}</p>
               <p style={{ fontSize: 12, color: 'var(--text-3)', fontWeight: 600, marginTop: 4, textTransform: 'uppercase', letterSpacing: '0.06em' }}>{stat.label}</p>
             </motion.div>
           ))}
@@ -140,7 +140,7 @@ export default function Reviews() {
                   borderColor: filter === pill.key ? '#132853' : 'var(--border)',
                   background: filter === pill.key ? '#132853' : 'var(--bg-card)',
                   color: filter === pill.key ? '#fff' : 'var(--text-2)',
-                  fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif",
+                  fontFamily: "var(--font)",
                   fontWeight: 700,
                   fontSize: 14,
                   cursor: 'pointer',
@@ -190,7 +190,7 @@ export default function Reviews() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif",
+                      fontFamily: "var(--font)",
                       fontWeight: 800,
                       fontSize: 14,
                       color: '#fff',

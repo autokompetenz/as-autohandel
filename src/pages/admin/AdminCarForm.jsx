@@ -278,7 +278,7 @@ export default function AdminCarForm() {
     <div style={{ padding:'clamp(24px,5vw,48px) clamp(16px,4vw,44px) 60px', minHeight:'100vh', background:'var(--bg)' }}>
       <div style={{ marginBottom:32 }}>
         <div className="section-eyebrow">{isEdit ? 'Modifier' : 'Ajouter'}</div>
-        <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,44px)', color:'var(--text)', letterSpacing:'-0.02em' }}>
+        <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,44px)', color:'var(--text)', letterSpacing:'-0.02em' }}>
           {isEdit ? 'Modifier le véhicule' : 'Nouveau véhicule'}
         </h1>
       </div>

@@ -339,14 +339,14 @@ export default function Legal() {
           <Link to="/" style={{ display:'inline-flex', alignItems:'center', gap:8, fontSize:12, color:'var(--text-3)', textDecoration:'none', marginBottom:20, letterSpacing:'0.1em', textTransform:'uppercase', fontWeight:600 }}>
             ← {lang==='fr'?'Retour':lang==='en'?'Back':lang==='de'?'Zurück':lang==='es'?'Volver':lang==='it'?'Indietro':lang==='ro'?'Înapoi':'Voltar'}
           </Link>
-          <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,5vw,60px)', color:'var(--text)', letterSpacing:'-0.02em', marginBottom:20 }}>
+          <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,5vw,60px)', color:'var(--text)', letterSpacing:'-0.02em', marginBottom:20 }}>
             {content.title}
           </h1>
           {/* Language switcher — only available langs for this page */}
           <div style={{ display:'flex', gap:8, flexWrap:'wrap' }}>
             {availableLangs.map(l => (
               <button key={l} onClick={() => setLang(l)}
-                style={{ padding:'6px 14px', borderRadius:6, fontSize:12, fontWeight:700, cursor:'pointer', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", border:`1px solid ${l===lang?'var(--red)':'var(--border-2)'}`, background:l===lang?'var(--red-bg)':'transparent', color:l===lang?'var(--red)':'var(--text-3)', transition:'all 0.2s' }}>
+                style={{ padding:'6px 14px', borderRadius:6, fontSize:12, fontWeight:700, cursor:'pointer', fontFamily:"var(--font)", border:`1px solid ${l===lang?'var(--red)':'var(--border-2)'}`, background:l===lang?'var(--red-bg)':'transparent', color:l===lang?'var(--red)':'var(--text-3)', transition:'all 0.2s' }}>
                 {LANG_LABELS[l] || l.toUpperCase()}
               </button>
             ))}
@@ -361,8 +361,8 @@ export default function Legal() {
 
       <style>{`
         [dangerouslySetInnerHTML] h2, div > div h2 { color: var(--text) !important; }
-        .legal-body h2 { color: var(--text); font-size: ${isMobile?'18px':'22px'}; font-weight: 800; margin: 32px 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-        .legal-body h3 { color: var(--text-2); font-size: ${isMobile?'16px':'18px'}; font-weight: 700; margin: 22px 0 10px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        .legal-body h2 { color: var(--text); font-size: ${isMobile?'18px':'22px'}; font-weight: 800; margin: 32px 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); font-family: var(--font); }
+        .legal-body h3 { color: var(--text-2); font-size: ${isMobile?'16px':'18px'}; font-weight: 700; margin: 22px 0 10px; font-family: var(--font); }
         .legal-body p  { color: var(--text-2); font-size: ${isMobile?'15px':'16px'}; line-height: 1.8; margin-bottom: 14px; }
         .legal-body ul { padding-left: 22px; margin-bottom: 14px; }
         .legal-body li { color: var(--text-2); font-size: ${isMobile?'15px':'16px'}; line-height: 1.8; margin-bottom: 7px; }

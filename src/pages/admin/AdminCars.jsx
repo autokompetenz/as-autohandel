@@ -77,7 +77,7 @@ export default function AdminCars() {
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20, marginBottom: 32 }}>
         <div>
           <div className="section-eyebrow">Inventaire</div>
-          <h1 style={{ fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 900, fontSize: 'clamp(28px,4vw,48px)', color: 'var(--text)', letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontFamily: "var(--font)", fontWeight: 900, fontSize: 'clamp(28px,4vw,48px)', color: 'var(--text)', letterSpacing: '-0.02em' }}>
             Véhicules <span style={{ color: 'var(--text-3)', fontSize: '0.55em', fontWeight: 600 }}>({cars.length})</span>
           </h1>
         </div>
@@ -162,11 +162,11 @@ export default function AdminCars() {
                           Modifier
                         </Link>
                         <button type="button" onClick={() => { if (window.confirm(`${car.isActive ? 'Désactiver' : 'Activer'} ce véhicule ?`)) handleToggle(car); }}
-                          style={{ fontSize: 13, color: car.isActive ? '#DC2626' : 'var(--green)', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 700 }}>
+                          style={{ fontSize: 13, color: car.isActive ? '#DC2626' : 'var(--green)', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "var(--font)", fontWeight: 700 }}>
                           {car.isActive ? 'Désactiver' : 'Activer'}
                         </button>
                         <button type="button" onClick={() => handleDelete(car)}
-                          style={{ fontSize: 13, color: '#991B1B', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 800 }}>
+                          style={{ fontSize: 13, color: '#991B1B', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "var(--font)", fontWeight: 800 }}>
                           Supprimer
                         </button>
                       </div>

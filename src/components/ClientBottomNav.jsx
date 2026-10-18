@@ -73,7 +73,7 @@ export default function ClientBottomNav() {
               color: active ? 'var(--red)' : 'var(--text-3)',
               fontSize: 10,
               fontWeight: active ? 800 : 600,
-              fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif",
+              fontFamily: "var(--font)",
               borderRadius: 10,
               background: active ? 'var(--red-bg)' : 'transparent',
               border: active ? '1px solid var(--red-border)' : '1px solid transparent',

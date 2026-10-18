@@ -62,7 +62,7 @@ export default function Brands() {
             </span>
           </div>
           <h1 style={{
-            fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900,
+            fontFamily:"var(--font)", fontWeight:900,
             fontSize: isMobile ? 'clamp(36px,8vw,64px)' : 'clamp(48px,6vw,88px)',
             color:'#fff', letterSpacing:'-0.03em', lineHeight:1.1, marginBottom:20
           }}>
@@ -79,7 +79,7 @@ export default function Brands() {
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div className="section-eyebrow">{t({ fr:'Marques populaires', en:'Popular brands', de:'Beliebte Marken', es:'Marcas populares', it:'Marchi popolari', pt:'Marcas populares', ro:'Mărci populare' })}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'Nos marques phares', en:'Our flagship brands', de:'Unsere Top-Marken', es:'Nuestras marcas principales', it:'I nostri marchi di punta', pt:'As nossas marcas principais', ro:'Mărcile noastre de top' })}
             </h2>
           </div>
@@ -101,7 +101,7 @@ export default function Brands() {
                     <div style={{ margin:'0 auto 14px', display:'flex', alignItems:'center', justifyContent:'center', minHeight:40 }}>
                       <BrandLogo brand={b} height={isMobile ? 30 : 36} />
                     </div>
-                    <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:16, color:C.text }}>{b.name}</div>
+                    <div style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:16, color:C.text }}>{b.name}</div>
                     <div style={{ fontSize:12, color:C.text3, marginTop:6, fontWeight:600 }}>
                       {t({ fr:'Voir les modèles', en:'View models', de:'Modelle ansehen', es:'Ver modelos', it:'Vedi i modelli', pt:'Ver modelos', ro:'Vezi modelele' })} →
                     </div>
@@ -118,7 +118,7 @@ export default function Brands() {
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div className="section-eyebrow">{t({ fr:'Catalogue complet', en:'Full catalog', de:'Vollständiger Katalog', es:'Catálogo completo', it:'Catalogo completo', pt:'Catálogo completo', ro:'Catalog complet' })}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'Toutes les marques disponibles', en:'All available brands', de:'Alle verfügbaren Marken', es:'Todas las marcas disponibles', it:'Tutti i marchi disponibili', pt:'Todas as marcas disponíveis', ro:'Toate mărcile disponibile' })}
             </h2>
           </div>
@@ -138,7 +138,7 @@ export default function Brands() {
                     borderRadius:12, padding:'10px 18px', transition:'all 0.25s', cursor:'pointer'
                   }}>
                     <BrandLogo brand={b} height={20} width={24} style={{ flexShrink:0, margin:0 }} />
-                    <span style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700, fontSize:14, color:C.text }}>{b.name}</span>
+                    <span style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:14, color:C.text }}>{b.name}</span>
                   </div>
                 </Link>
               </motion.div>
@@ -154,7 +154,7 @@ export default function Brands() {
           >
             <Link to="/catalog" style={{
               background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none',
-              fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'14px 28px',
+              fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
               borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
               boxShadow:'0 4px 16px rgba(19,40,83,0.4)'
             }}>
@@ -173,7 +173,7 @@ export default function Brands() {
           transition={{ duration:0.5 }}
           style={{ maxWidth:1200, margin:'0 auto', background:'linear-gradient(135deg,#0a0a0a,#1a1a1a)', borderRadius:20, padding: isMobile ? 32 : 48, textAlign:'center' }}
         >
-          <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 24 : 30, color:'#fff', marginBottom:12 }}>
+          <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 24 : 30, color:'#fff', marginBottom:12 }}>
             {t({ fr:'Vous ne trouvez pas votre marque ?', en:'Can\'t find your brand?', de:'Ihre Marke ist nicht dabei?', es:'¿No encuentra su marca?', it:'Non trovate il vostro marchio?', pt:'Não encontra a sua marca?', ro:'Nu găsiți marca dumneavoastră?' })}
           </h2>
           <p style={{ fontSize:14.5, color:'rgba(255,255,255,0.7)', lineHeight:1.7, maxWidth:600, margin:'0 auto 24px' }}>
@@ -182,12 +182,12 @@ export default function Brands() {
           <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
             <Link to="/contact" style={{
               background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none',
-              fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8
+              fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8
             }}>
               {t({ fr:'Nous contacter', en:'Contact us', de:'Kontakt', es:'Contáctenos', it:'Contattaci', pt:'Fale connosco', ro:'Contactați-ne' })} →
             </Link>
             <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{
-              background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+              background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)",
               fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8
             }}>
               💬 WhatsApp

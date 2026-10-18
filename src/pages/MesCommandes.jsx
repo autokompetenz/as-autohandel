@@ -42,7 +42,7 @@ export default function MesCommandes() {
       <div style={{ padding: '52px 6% 32px', background:'var(--bg-card2)', borderBottom:'1px solid var(--border)' }}>
         <div style={{ maxWidth:900, margin:'0 auto' }}>
           <div className="section-eyebrow">{l==='fr'?'Espace client':l==='en'?'Customer area':l==='de'?'Kundenbereich':'Área cliente'}</div>
-          <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.02em' }}>
+          <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.02em' }}>
             {l==='fr'?'Mes commandes':l==='en'?'My orders':l==='de'?'Meine Bestellungen':'Mis pedidos'}
           </h1>
         </div>
@@ -72,7 +72,7 @@ export default function MesCommandes() {
               <Link key={o.id} to={`/track/${o.orderNumber}`} style={{ textDecoration:'none', display:'block', background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:12, padding:'18px 20px' }}>
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:8 }}>
                   <div>
-                    <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:16, color:'var(--text)', margin:0 }}>{o.orderNumber}</p>
+                    <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:16, color:'var(--text)', margin:0 }}>{o.orderNumber}</p>
                     <p style={{ fontSize:13, color:'var(--text-3)', margin:'2px 0 0' }}>{new Date(o.createdAt).toLocaleDateString(l === 'fr' ? 'fr-FR' : l === 'de' ? 'de-DE' : 'en-GB')} · {(o.items || []).map(i => `${i.car?.make} ${i.car?.model}`).join(', ')}</p>
                   </div>
                   <span className={`badge badge-${o.status}`}>{statusLabel(o.status)}</span>

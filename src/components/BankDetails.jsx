@@ -27,7 +27,7 @@ function CopyRow({ label, value, copy, l, L, mono, highlight, compact }) {
           {label}
         </p>
         <p style={{
-          fontFamily: mono ? 'monospace' : "'Helvetica Neue',Helvetica,Arial,sans-serif",
+          fontFamily: mono ? 'monospace' : "var(--font)",
           fontWeight: highlight ? 900 : 700,
           fontSize: compact ? 13 : (mono ? 15 : 16),
           color: highlight ? 'var(--red)' : 'var(--text)',

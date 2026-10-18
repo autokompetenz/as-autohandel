@@ -41,17 +41,17 @@ export default function Maintenance() {
               {t({ fr:'Entretien & réparations', en:'Maintenance & repairs', de:'Wartung & Reparatur', es:'Mantenimiento y reparaciones', it:'Manutenzione e riparazioni', pt:'Manutenção e reparações',ro:'Întreținere și reparații' })}
             </span>
           </div>
-          <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:isMobile?'clamp(36px,8vw,64px)':'clamp(48px,6vw,88px)', color:'#fff', letterSpacing:'-0.03em', lineHeight:1.1, marginBottom:20 }}>
+          <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:isMobile?'clamp(36px,8vw,64px)':'clamp(48px,6vw,88px)', color:'#fff', letterSpacing:'-0.03em', lineHeight:1.1, marginBottom:20 }}>
             {t({ fr:'Votre atelier\nautomobile', en:'Your auto\nworkshop', de:'Ihre Auto-\nwerkstatt', es:'Su taller\nautomóvil', it:'La vostra\nofficina', pt:'A sua oficina\nautomóvel',ro:'Atelierul tău\nauto' })}
           </h1>
           <p style={{ fontSize:isMobile?16:18, color:'rgba(255,255,255,0.7)', lineHeight:1.7, maxWidth:600, marginBottom:32 }}>
             {t({ fr:'Toutes marques, toutes réparations. Pièces d\'origine, garantie sur les interventions et devis gratuit.', en:'All brands, all repairs. Original parts, warranty on work and free quotes.', de:'Alle Marken, alle Reparaturen. Originalteile, Garantie und kostenlose Angebote.', es:'Todas las marcas, todas las reparaciones. Piezas originales y presupuesto gratuito.', it:'Tutti i marchi, tutte le riparazioni. Ricambi originali e preventivo gratuito.', pt:'Todas as marcas, todas as reparações. Peças originais e orçamento gratuito.',ro:'Toate mărcile, toate reparațiile. Piese originale, garanție la intervenții și deviz gratuit.' })}
           </p>
           <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
-            <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8 }}>
+            <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8 }}>
               💬 {t({ fr:'Prendre rendez-vous', en:'Book an appointment', de:'Termin vereinbaren', es:'Pedir cita', it:'Prenota un appuntamento', pt:'Marcar uma visita',ro:'Programează o vizită' })}
             </a>
-            <Link to="/contact" style={{ background:'transparent', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8, border:'1px solid rgba(255,255,255,0.3)' }}>
+            <Link to="/contact" style={{ background:'transparent', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8, border:'1px solid rgba(255,255,255,0.3)' }}>
               {t({ fr:'Nous contacter', en:'Contact us', de:'Kontakt', es:'Contáctenos', it:'Contattaci', pt:'Fale connosco',ro:'Contactează-ne' })}
             </Link>
           </div>
@@ -62,7 +62,7 @@ export default function Maintenance() {
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div className="section-eyebrow">{t({ fr:'Nos services', en:'Our services', de:'Unsere Leistungen', es:'Nuestros servicios', it:'I nostri servizi', pt:'Os nossos serviços',ro:'Serviciile noastre' })}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:isMobile?28:40, color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:isMobile?28:40, color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'Tout pour votre véhicule', en:'Everything for your vehicle', de:'Alles für Ihr Fahrzeug', es:'Todo para su vehículo', it:'Tutto per il vostro veicolo', pt:'Tudo para o seu veículo',ro:'Totul pentru vehiculul tău' })}
             </h2>
           </div>
@@ -70,7 +70,7 @@ export default function Maintenance() {
             {services.map((s,i) => (
               <motion.div key={i} initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:(i%4)*0.08 }} style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:18, padding:isMobile?22:26, boxShadow:C.shadow }}>
                 <div style={{ width:52, height:52, borderRadius:14, background:'linear-gradient(135deg,#132853,#0E1E3D)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:24, marginBottom:16 }}>{s.icon}</div>
-                <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:16.5, color:C.text, marginBottom:8 }}>{s.title}</h3>
+                <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:16.5, color:C.text, marginBottom:8 }}>{s.title}</h3>
                 <p style={{ fontSize:13, color:C.text2, lineHeight:1.75, margin:0 }}>{s.desc}</p>
               </motion.div>
             ))}
@@ -82,7 +82,7 @@ export default function Maintenance() {
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div className="section-eyebrow">{t({ fr:'Nos engagements', en:'Our promises', de:'Unsere Versprechen', es:'Nuestros compromisos', it:'I nostri impegni', pt:'Os nossos compromissos',ro:'Angajamentele noastre' })}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:isMobile?28:40, color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:isMobile?28:40, color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'La confiance, en toute transparence', en:'Trust, in full transparency', de:'Vertrauen in voller Transparenz', es:'Confianza con total transparencia', it:'Fiducia in piena trasparenza', pt:'Confiança com total transparência',ro:'Încredere, în deplină transparență' })}
             </h2>
           </div>
@@ -90,7 +90,7 @@ export default function Maintenance() {
             {promises.map((p,i) => (
               <motion.div key={i} initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.08 }} style={{ textAlign:'center', background:C.bg, border:`1px solid ${C.border}`, borderRadius:18, padding:isMobile?28:36 }}>
                 <div style={{ fontSize:38, marginBottom:14 }}>{p.icon}</div>
-                <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:18, color:C.text, marginBottom:10 }}>{p.title}</h3>
+                <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:18, color:C.text, marginBottom:10 }}>{p.title}</h3>
                 <p style={{ fontSize:13.5, color:C.text2, lineHeight:1.8, margin:0 }}>{p.desc}</p>
               </motion.div>
             ))}
@@ -101,14 +101,14 @@ export default function Maintenance() {
       <section className="section-pad">
         <motion.div initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }} style={{ maxWidth:1200, margin:'0 auto', background:'linear-gradient(135deg,#0a0a0a,#1a1a1a)', borderRadius:20, padding:isMobile?32:48, display:'flex', flexDirection:isMobile?'column':'row', alignItems:'center', gap:24, justifyContent:'space-between' }}>
           <div style={{ maxWidth:620 }}>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:isMobile?22:30, color:'#fff', marginBottom:12, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:isMobile?22:30, color:'#fff', marginBottom:12, letterSpacing:'-0.02em' }}>
               {t({ fr:'Un doute ? Un bruit suspect ?', en:'Not sure? A suspicious noise?', de:'Unsicher? Ein verdächtiges Geräusch?', es:'¿Duda? ¿Un ruido extraño?', it:'Un dubbio? Un rumore sospetto?', pt:'Alguma dúvida? Um ruído estranho?',ro:'Ai o îndoială? Un zgomot suspect?' })}
             </h2>
             <p style={{ fontSize:14, color:'rgba(255,255,255,0.7)', lineHeight:1.7, margin:0 }}>
               {t({ fr:'Confiez-nous votre véhicule. Diagnostic gratuit à l\'atelier, devis sous 24h.', en:'Entrust us with your vehicle. Free workshop diagnostics, quote within 24h.', de:'Vertrauen Sie uns Ihr Fahrzeug an. Kostenlose Diagnose, Angebot in 24h.', es:'Confíenos su vehículo. Diagnóstico gratuito en el taller.', it:'Affidateci il vostro veicolo. Diagnosi gratuita in officina.', pt:'Confie-nos o seu veículo. Diagnóstico gratuito na oficina.',ro:'Încredințează-ne vehiculul tău. Diagnostic gratuit în atelier, deviz în 24h.' })}
             </p>
           </div>
-          <Link to="/contact" style={{ background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8, whiteSpace:'nowrap' }}>
+          <Link to="/contact" style={{ background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8, whiteSpace:'nowrap' }}>
             {t({ fr:'Prendre rendez-vous', en:'Book an appointment', de:'Termin vereinbaren', es:'Pedir cita', it:'Prenota un appuntamento', pt:'Marcar uma visita',ro:'Programează o vizită' })} →
           </Link>
         </motion.div>

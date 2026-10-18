@@ -15,7 +15,7 @@ export default class AdminErrorBoundary extends Component {
     if (this.state.hasError) {
       return (
         <div style={{ padding: '48px 24px', minHeight: '50vh', background: 'var(--bg)' }}>
-          <h2 style={{ fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 800, fontSize: 24, color: 'var(--text)', marginBottom: 12 }}>
+          <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: 24, color: 'var(--text)', marginBottom: 12 }}>
             Une erreur est survenue
           </h2>
           <p style={{ color: 'var(--text-3)', marginBottom: 24, lineHeight: 1.6 }}>

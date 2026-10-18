@@ -160,7 +160,7 @@ function CookieBanner({ lang }) {
     <div className="cookie-banner" style={{ display:'flex', alignItems:'center', justifyContent:'space-between', gap:20, flexWrap:'wrap' }}>
       <p style={{ fontSize:14, color:'var(--text-2)', flex:1 }}>🍪 {msg[lang] || msg.fr}</p>
       <div style={{ display:'flex', gap:10 }}>
-        <button onClick={decline} style={{ padding:'9px 18px', background:'var(--bg-card2)', border:'1px solid var(--border)', borderRadius:6, color:'var(--text-3)', fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif" }}>{decline_l[lang]||'Refuser'}</button>
+        <button onClick={decline} style={{ padding:'9px 18px', background:'var(--bg-card2)', border:'1px solid var(--border)', borderRadius:6, color:'var(--text-3)', fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:"var(--font)" }}>{decline_l[lang]||'Refuser'}</button>
         <button onClick={accept} className="btn-gold" style={{ fontSize:13, padding:'9px 20px' }}>{accept_l[lang]||'Accepter'}</button>
       </div>
     </div>
@@ -198,7 +198,7 @@ function PurchaseStepsSection({ l, isMobile }) {
       <div className="mk-section" style={{ maxWidth:1200, margin:'0 auto' }}>
         <div style={{ textAlign:'center', marginBottom:56 }}>
           <div className="section-eyebrow" style={{ justifyContent:'center' }}>{sectionEyebrow[l] || sectionEyebrow.fr}</div>
-          <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:'var(--text)', letterSpacing:'-0.02em', whiteSpace:'pre-line' }}>
+          <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:'var(--text)', letterSpacing:'-0.02em', whiteSpace:'pre-line' }}>
             {sectionTitle[l] || sectionTitle.fr}
           </h2>
           <p style={{ fontSize:16, color:'var(--text-3)', marginTop:12, maxWidth:560, margin:'12px auto 0' }}>
@@ -294,7 +294,7 @@ function PurchaseStepsSection({ l, isMobile }) {
                       <span style={{ fontSize:10, fontWeight:800, letterSpacing:'0.25em', color:'var(--red)', background:'var(--red-bg)', border:'1px solid var(--red-border)', padding:'2px 8px', borderRadius:3 }}>
                         {s.step}
                       </span>
-                      <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:15, color:'var(--text)' }}>{data.title}</h3>
+                      <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:15, color:'var(--text)' }}>{data.title}</h3>
                     </div>
                     <p style={{ fontSize:13, color:'var(--text-3)', lineHeight:1.65 }}>{data.desc}</p>
                   </div>
@@ -329,7 +329,7 @@ function StepCard({ data, step, align }) {
           STEP {step}
         </span>
       </div>
-      <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:18, color:'var(--text)', marginBottom:10 }}>
+      <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:18, color:'var(--text)', marginBottom:10 }}>
         {data.title}
       </h3>
       <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.7 }}>{data.desc}</p>
@@ -368,7 +368,7 @@ function FAQSection({ l, isMobile }) {
       <div style={{ maxWidth:900, margin:'0 auto' }}>
         <div style={{ textAlign:'center', marginBottom:48 }}>
           <div className="section-eyebrow" style={{ justifyContent:'center' }}>{sectionEyebrow[l]}</div>
-          <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(26px,4vw,50px)', color:'var(--text)', letterSpacing:'-0.02em', whiteSpace:'pre-line', lineHeight:1.1 }}>
+          <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(26px,4vw,50px)', color:'var(--text)', letterSpacing:'-0.02em', whiteSpace:'pre-line', lineHeight:1.1 }}>
             {sectionTitle[l] || sectionTitle.fr}
           </h2>
           <p style={{ fontSize:15, color:'var(--text-3)', marginTop:14, maxWidth:580, margin:'14px auto 0' }}>
@@ -413,12 +413,12 @@ function FAQSection({ l, isMobile }) {
                       display:'flex', alignItems:'center', justifyContent:'center',
                       transition:'all 0.3s',
                     }}>
-                      <span style={{ fontSize:14, fontWeight:900, color: isOpen ? '#fff' : 'var(--red)', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif" }}>
+                      <span style={{ fontSize:14, fontWeight:900, color: isOpen ? '#fff' : 'var(--red)', fontFamily:"var(--font)" }}>
                         {String(i + 1).padStart(2, '0')}
                       </span>
                     </div>
                     <span style={{
-                      fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700,
+                      fontFamily:"var(--font)", fontWeight:700,
                       fontSize: isMobile ? 14 : 16,
                       color: isOpen ? 'var(--text)' : 'var(--text)',
                       lineHeight:1.4,
@@ -477,7 +477,7 @@ function FAQSection({ l, isMobile }) {
           transition={{ duration:0.5, delay:0.3 }}
           style={{ marginTop:40, textAlign:'center', padding: isMobile ? '24px 20px' : '32px 40px', background:'linear-gradient(135deg,rgba(19,40,83,0.06),rgba(19,40,83,0.02))', border:'1px solid rgba(19,40,83,0.15)', borderRadius:16 }}
         >
-          <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700, fontSize: isMobile ? 15 : 17, color:'var(--text)', marginBottom:8 }}>
+          <p style={{ fontFamily:"var(--font)", fontWeight:700, fontSize: isMobile ? 15 : 17, color:'var(--text)', marginBottom:8 }}>
             {l==='fr'?'Une autre question ?':l==='en'?'Another question?':l==='de'?'Noch eine Frage?':l==='es'?'¿Otra pregunta?':l==='it'?'Un\'altra domanda?':'Outra pergunta?'}
           </p>
           <p style={{ fontSize:14, color:'var(--text-3)', marginBottom:20 }}>
@@ -485,7 +485,7 @@ function FAQSection({ l, isMobile }) {
           </p>
           <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
             <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer"
-              style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:13, fontWeight:700, padding:'11px 22px', borderRadius:8, display:'inline-flex', alignItems:'center', gap:8 }}>
+              style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:13, fontWeight:700, padding:'11px 22px', borderRadius:8, display:'inline-flex', alignItems:'center', gap:8 }}>
               💬 WhatsApp
             </a>
             <a href="mailto:kontakt@automatikgebrauchtwagen.com" className="btn-ghost" style={{ fontSize:13 }}>
@@ -585,7 +585,7 @@ function VideoSection({ isMobile }) {
         </div>
 
         <h2 style={{
-          fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900,
+          fontFamily:"var(--font)", fontWeight:900,
           fontSize: isMobile ? 'clamp(40px,12vw,64px)' : 'clamp(56px,9vw,120px)',
           color:'#fff', letterSpacing:'-0.03em', lineHeight:0.98, marginBottom:24,
           textShadow:'0 4px 40px rgba(0,0,0,0.5)',
@@ -602,7 +602,7 @@ function VideoSection({ isMobile }) {
 
         <Link to="/catalog" style={{
           background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none',
-          fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:13, fontWeight:700, padding:'15px 32px',
+          fontFamily:"var(--font)", fontSize:13, fontWeight:700, padding:'15px 32px',
           borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
           boxShadow:'0 8px 30px rgba(0,0,0,0.4)',
         }}>
@@ -706,7 +706,7 @@ export default function Home() {
           </motion.div>
 
           <motion.h1 initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.9, delay:0.2 }}
-            style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 'clamp(36px,10vw,52px)' : 'clamp(48px,5.5vw,80px)', color:'#fff', letterSpacing:'-0.03em', lineHeight:1.0, marginBottom:24 }}>
+            style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 'clamp(36px,10vw,52px)' : 'clamp(48px,5.5vw,80px)', color:'#fff', letterSpacing:'-0.03em', lineHeight:1.0, marginBottom:24 }}>
             AS Autohandel<br/><span style={{ color:'rgba(255,255,255,0.55)' }}>GmbH</span>
           </motion.h1>
 
@@ -818,7 +818,7 @@ export default function Home() {
                   background:'var(--red)',
                   border:'none', borderRadius:'var(--radius)',
                   padding:'14px 28px', color:'#fff', fontWeight:700, fontSize:15,
-                  fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                  fontFamily:"var(--font)",
                   cursor:'pointer', whiteSpace:'nowrap', letterSpacing:'0.01em',
                   boxShadow:'0 1px 2px rgba(19,40,83,0.3)',
                   transition:'background 0.2s',
@@ -837,7 +837,7 @@ export default function Home() {
                   background:'transparent',
                   border:'1px solid var(--border)', borderRadius:'var(--radius)',
                   padding:'13px 18px', color:'var(--text-2)', fontWeight:600, fontSize:13,
-                  fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                  fontFamily:"var(--font)",
                   cursor:'pointer', whiteSpace:'nowrap',
                   display:'flex', alignItems:'center', gap:7,
                   transition:'border-color 0.2s, color 0.2s',
@@ -872,7 +872,7 @@ export default function Home() {
                         background: isDark ? 'rgba(255,255,255,0.05)' : 'var(--bg-card2)',
                         border:'1px solid var(--border)', borderRadius:'var(--radius)',
                         padding:'13px 16px 13px 42px', fontSize:15,
-                        fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                        fontFamily:"var(--font)",
                         color:'var(--text)', outline:'none', transition:'border-color 0.2s',
                       }}
                     />
@@ -921,7 +921,7 @@ export default function Home() {
                         background:'var(--red)',
                         border:'none', borderRadius:'var(--radius)', padding:'13px 26px',
                         color:'#fff', fontWeight:700, fontSize:14,
-                        fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", cursor:'pointer',
+                        fontFamily:"var(--font)", cursor:'pointer',
                       }}
                     >
                       {l==='fr'?'Appliquer':l==='en'?'Apply':l==='de'?'Anwenden':'Aplicar'} →
@@ -947,7 +947,7 @@ export default function Home() {
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {l==='fr'?'Comment ça marche':l==='en'?'How it works':l==='de'?'So funktioniert es':l==='es'?'Cómo funciona':l==='it'?'Come funziona':'Como funciona'}
             </div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05, marginBottom:14 }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05, marginBottom:14 }}>
               {l==='fr'?'Simple, rapide, transparent':l==='en'?'Simple, fast, transparent':l==='de'?'Einfach, schnell, transparent':l==='es'?'Simple, rápido, transparente':l==='it'?'Semplice, rapido, trasparente':'Simples, rápido, transparente'}
             </h2>
           </div>
@@ -996,7 +996,7 @@ export default function Home() {
                       <span style={{ fontSize:9, fontWeight:700, letterSpacing:'0.25em', color:'var(--red)', marginBottom:6, display:'block' }}>
                         {s.step}
                       </span>
-                      <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700, fontSize:17, color:'var(--text)', marginBottom:6, lineHeight:1.2 }}>{data.title}</h3>
+                      <h3 style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:17, color:'var(--text)', marginBottom:6, lineHeight:1.2 }}>{data.title}</h3>
                       <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.65, margin:0 }}>{data.desc}</p>
                     </div>
                   </motion.div>
@@ -1041,7 +1041,7 @@ export default function Home() {
                     <span style={{ display:'block', fontSize:9, fontWeight:700, letterSpacing:'0.3em', color:'var(--red)', marginBottom:12 }}>
                       {s.step}
                     </span>
-                    <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700, fontSize:18, color:'var(--text)', marginBottom:10 }}>{data.title}</h3>
+                    <h3 style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:18, color:'var(--text)', marginBottom:10 }}>{data.title}</h3>
                     <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.65, margin:0 }}>{data.desc}</p>
                   </motion.div>
                 );
@@ -1057,7 +1057,7 @@ export default function Home() {
           <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', flexWrap:'wrap', gap:16, marginBottom:44 }}>
             <div>
               <div className="section-eyebrow">{t('catalog_title', l)}</div>
-              <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
+              <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
                 {l==='fr'?'Nos Véhicules\nà la Une':l==='en'?'Featured\nVehicles':l==='de'?'Ausgewählte\nFahrzeuge':l==='es'?'Vehículos\nDestacados':l==='it'?'Veicoli\nin evidenza':'Veículos\nDestacados'}
               </h2>
             </div>
@@ -1143,7 +1143,7 @@ export default function Home() {
               <div className="section-eyebrow">
                 {l==='fr'?'NOS MARQUES':l==='en'?'OUR BRANDS':l==='de'?'UNSERE MARKEN':l==='es'?'NUESTRAS MARCAS':l==='it'?'I NOSTRI MARCHI':'AS NOSSAS MARCAS'}
               </div>
-              <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
+              <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
                 {l==='fr'?'Les plus grandes\nmarques':l==='en'?'The world\'s\nbiggest brands':l==='de'?'Die größten\nMarken der Welt':l==='es'?'Las marcas\nmás grandes':l==='it'?'I marchi più\ngrandi al mondo':'As maiores\nmarcas do mundo'}
               </h2>
             </div>
@@ -1164,7 +1164,7 @@ export default function Home() {
                     <div style={{ margin:'0 auto 10px', display:'flex', alignItems:'center', justifyContent:'center', minHeight: isMobile ? 26 : 34 }}>
                       <BrandLogo brand={b} height={isMobile ? 24 : 32} />
                     </div>
-                    <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:600, fontSize: isMobile ? 12 : 14, color:'var(--text)', lineHeight:1.2 }}>{b.name}</div>
+                    <div style={{ fontFamily:"var(--font)", fontWeight:600, fontSize: isMobile ? 12 : 14, color:'var(--text)', lineHeight:1.2 }}>{b.name}</div>
                   </div>
                 </Link>
               </motion.div>
@@ -1195,7 +1195,7 @@ export default function Home() {
                 <div className="section-eyebrow">
                   {l==='fr'?'PERFORMANCE':l==='en'?'PERFORMANCE':l==='de'?'LEISTUNG':l==='es'?'RENDIMIENTO':l==='it'?'PRESTAZIONI':'DESEMPENHO'}
                 </div>
-                <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
+                <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
                   {l==='fr'?'La performance\nincarnée':l==='en'?'Performance\nembodied':l==='de'?'Leistung,\ndie man erlebt':l==='es'?'El rendimiento\nen su máxima expresión':l==='it'?'La prestazione\nin persona':'O desempenho\nencarnado'}
                 </h2>
               </div>
@@ -1230,7 +1230,7 @@ export default function Home() {
                   <div style={{ position:'absolute', left:28, bottom:26, right:28, display:'flex', alignItems:'flex-end', justifyContent:'space-between', gap:16 }}>
                     <AnimatePresence mode="wait">
                       <motion.div key={showCar.id} initial={{ opacity:0, y:10 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0, y:-10 }} transition={{ duration:0.35 }}>
-                        <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 24 : 38, color:'#fff', letterSpacing:'-0.025em' }}>
+                        <div style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 24 : 38, color:'#fff', letterSpacing:'-0.025em' }}>
                           {showCar.make} {showCar.model}
                         </div>
                         <div style={{ fontSize: isMobile ? 14 : 16, color:'rgba(255,255,255,0.8)', marginTop:4, fontWeight:600 }}>
@@ -1286,7 +1286,7 @@ export default function Home() {
                   <span style={{ width:20, height:1, background:'#FF8C00' }} />
                   <span style={{ fontSize:10, fontWeight:600, letterSpacing:'0.25em', textTransform:'uppercase', color:'#FF8C00' }}>PROMOTIONS</span>
                 </div>
-                <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
+                <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
                   {l==='fr'?'Offres Spéciales':l==='en'?'Special Deals':l==='de'?'Angebote':l==='es'?'Ofertas Especiales':l==='it'?'Offerte Speciali':'Ofertas Especiais'}
                 </h2>
               </div>
@@ -1317,7 +1317,7 @@ export default function Home() {
                 <div className="section-eyebrow">
                   {l==='fr'?'CAMPING CAR':l==='en'?'MOTORHOME':l==='de'?'WOHNMOBIL':l==='es'?'AUTOCARAVANA':l==='it'?'CAMPER':'AUTOCARAVANA'}
                 </div>
-                <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
+                <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
                   {l==='fr'?'Nos Camping Cars':l==='en'?'Our Motorhomes':l==='de'?'Unsere Wohnmobile':l==='es'?'Nuestras Autocaravanas':l==='it'?'I Nostri Camper':'As Nossas Autocaravanas'}
                 </h2>
               </div>
@@ -1338,7 +1338,7 @@ export default function Home() {
               initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:0.3 }}
               style={{ marginTop:32, padding: isMobile ? '24px 20px' : '28px 40px', background:'linear-gradient(135deg,rgba(19,40,83,0.07),rgba(19,40,83,0.02))', border:'1px solid rgba(19,40,83,0.15)', borderRadius:16, display:'flex', alignItems:'center', justifyContent:'space-between', gap:20, flexWrap:'wrap' }}>
               <div>
-                <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--text)', marginBottom:4 }}>
+                <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--text)', marginBottom:4 }}>
                   🚐 {l==='fr'?"L'aventure commence ici":l==='en'?'The adventure starts here':l==='de'?'Das Abenteuer beginnt hier':l==='es'?'La aventura empieza aquí':l==='it'?"L'avventura inizia qui":'A aventura começa aqui'}
                 </p>
                 <p style={{ fontSize:14, color:'var(--text-3)' }}>
@@ -1361,7 +1361,7 @@ export default function Home() {
         <div className="mk-section" style={{ maxWidth:1300, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:52 }}>
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>{t('services_label', l)}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
               {l==='fr'?'Ce que nous faisons\npour vous':l==='en'?'What we do\nfor you':l==='de'?'Was wir für\nSie tun':l==='es'?'Lo que hacemos\npor usted':l==='it'?'Cosa facciamo\nper voi':'O que fazemos\npor você'}
             </h2>
             <p style={{ fontSize:15, color:'var(--text-3)', marginTop:14, maxWidth:480, margin:'14px auto 0', lineHeight:1.6 }}>{t('services_sub', l)}</p>
@@ -1373,7 +1373,7 @@ export default function Home() {
                 onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(19,40,83,0.12)'; e.currentTarget.style.transform='translateY(-2px)'; e.currentTarget.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)';}}
                 onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='none';}}>
                 <div style={{ fontSize:28, marginBottom:16 }}>{s.icon}</div>
-                <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700, fontSize:17, color:'var(--text)', marginBottom:8 }}>{getServiceTitle(s)}</h3>
+                <h3 style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:17, color:'var(--text)', marginBottom:8 }}>{getServiceTitle(s)}</h3>
                 <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.65 }}>{getServiceDesc(s)}</p>
               </motion.div>
             ))}
@@ -1391,7 +1391,7 @@ export default function Home() {
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {l==='fr'?'Notre Force':l==='en'?'Our Strength':l==='de'?'Unsere Stärke':l==='es'?'Nuestra Fuerza':l==='it'?'La Nostra Forza':'Nossa Força'}
             </div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
               {l==='fr'?'Ce qui nous\ndistingue':l==='en'?'What sets\nus apart':l==='de'?'Was uns\nauszeichnet':l==='es'?'Lo que nos\ndistingue':l==='it'?'Cosa ci\ndistingue':'O que nos\ndistingue'}
             </h2>
             <p style={{ fontSize:15, color:'var(--text-3)', marginTop:14, maxWidth:520, margin:'14px auto 0', lineHeight:1.6 }}>
@@ -1430,7 +1430,7 @@ export default function Home() {
                   <img src={item.img} alt={item.alt} style={{ width:'100%', height:'100%', objectFit:'cover' }} />
                 </div>
                 <div style={{ flex:1 }}>
-                  <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--text)', marginBottom:8 }}>
+                  <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--text)', marginBottom:8 }}>
                     {item.title[l] || item.title.fr}
                   </h3>
                   <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.6 }}>
@@ -1451,7 +1451,7 @@ export default function Home() {
               { value:'24/7', label:l==='fr'?'Support disponible':l==='en'?'Support available':l==='de'?'Support verfügbar':l==='es'?'Soporte disponible':l==='it'?'Supporto disponibile':'Suporte disponível' },
             ].map(({ value, label }) => (
               <div key={label}>
-                <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 32 : 40, color:'#132853', lineHeight:1 }}>{value}</div>
+                <div style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 32 : 40, color:'#132853', lineHeight:1 }}>{value}</div>
                 <div style={{ fontSize: isMobile ? 12 : 13, color:'var(--text-3)', marginTop:6, fontWeight:600 }}>{label}</div>
               </div>
             ))}
@@ -1466,7 +1466,7 @@ export default function Home() {
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {l==='fr'?'Protection':l==='en'?'Protection':l==='de'?'Schutz':l==='es'?'Protección':l==='it'?'Protezione':'Proteção'}
             </div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
               {l==='fr'?'Garanties &\nAssurances':l==='en'?'Warranties &\nInsurance':l==='de'?'Garantien &\nVersicherungen':l==='es'?'Garantías &\nSeguros':l==='it'?'Garanzie &\nAssicurazioni':'Garantias &\nSeguros'}
             </h2>
             <p style={{ fontSize:15, color:'var(--text-3)', marginTop:14, maxWidth:520, margin:'14px auto 0', lineHeight:1.6 }}>
@@ -1481,7 +1481,7 @@ export default function Home() {
               onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(19,40,83,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
               onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='var(--shadow-sm)';}}>
               <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(19,40,83,0.15),rgba(19,40,83,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>🛡️</div>
-              <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
+              <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
                 {l==='fr'?'Garantie AS Autohandel GmbH':l==='en'?'AS Autohandel GmbH Warranty':l==='de'?'AS Autohandel GmbH Garantie':l==='es'?'Garantía AS Autohandel GmbH':l==='it'?'Garanzia AS Autohandel GmbH':'Garantia AS Autohandel GmbH'}
               </h3>
               <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.6, marginBottom:20 }}>
@@ -1503,7 +1503,7 @@ export default function Home() {
               onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(19,40,83,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
               onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='var(--shadow-sm)';}}>
               <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(19,40,83,0.15),rgba(19,40,83,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>📅</div>
-              <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
+              <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
                 {l==='fr'?'Options d\'extension':l==='en'?'Extension options':l==='de'?'Erweiterungsoptionen':l==='es'?'Opciones de extensión':l==='it'?'Opzioni di estensione':'Opções de extensão'}
               </h3>
               <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.6, marginBottom:20 }}>
@@ -1525,7 +1525,7 @@ export default function Home() {
               onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(19,40,83,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
               onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='var(--shadow-sm)';}}>
               <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(19,40,83,0.15),rgba(19,40,83,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>💳</div>
-              <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
+              <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
                 {l==='fr'?'Assurance véhicule':l==='en'?'Vehicle insurance':l==='de'?'Fahrzeugversicherung':l==='es'?'Seguro de vehículo':l==='it'?'Assicurazione veicolo':'Seguro veículo'}
               </h3>
               <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.6, marginBottom:20 }}>
@@ -1563,7 +1563,7 @@ export default function Home() {
         <div className="mk-section" style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>{t('reviews_label', l)}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
               {l==='fr'?'Ce que disent\nnos clients':l==='en'?'What our\ncustomers say':l==='de'?'Was unsere Kunden\nsagen':l==='es'?'Lo que dicen\nnuestros clientes':l==='it'?'Cosa dicono\ni nostri clienti':'O que dizem\nnosssos clientes'}
             </h2>
           </div>
@@ -1572,7 +1572,7 @@ export default function Home() {
               <motion.div key={i} initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay:i*0.08, duration:0.5 }}
                 style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:12, padding:'22px 24px', boxShadow:'var(--shadow-sm)' }}>
                 <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:14 }}>
-                  <div style={{ width:44, height:44, borderRadius:'50%', background:'linear-gradient(135deg,#0E1E3D,#132853)', display:'flex', alignItems:'center', justifyContent:'center', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:14, color:'#fff', flexShrink:0 }}>{r.avatar}</div>
+                  <div style={{ width:44, height:44, borderRadius:'50%', background:'linear-gradient(135deg,#0E1E3D,#132853)', display:'flex', alignItems:'center', justifyContent:'center', fontFamily:"var(--font)", fontWeight:800, fontSize:14, color:'#fff', flexShrink:0 }}>{r.avatar}</div>
                   <div>
                     <p style={{ fontWeight:700, fontSize:15, color:'var(--text)' }}>{r.name}</p>
                     <Stars n={r.rating} />
@@ -1596,7 +1596,7 @@ export default function Home() {
         <div className="mk-section" style={{ maxWidth:1100, margin:'0 auto', display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 36 : 64, alignItems:'center' }}>
           <div>
             <div className="section-eyebrow">{t('contact_label', l)}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', marginBottom:20 }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', marginBottom:20 }}>
               {t('contact_title', l)}
             </h2>
             <p style={{ fontSize:15, color:'var(--text-3)', lineHeight:1.7, marginBottom:32, fontWeight:300 }}>
@@ -1604,7 +1604,7 @@ export default function Home() {
             </p>
             <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
               <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer"
-                style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:13, fontWeight:600, padding:'14px 28px', borderRadius:8, display:'inline-flex', alignItems:'center', gap:8, letterSpacing:'0.02em' }}>
+                style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:13, fontWeight:600, padding:'14px 28px', borderRadius:8, display:'inline-flex', alignItems:'center', gap:8, letterSpacing:'0.02em' }}>
                 💬 WhatsApp
               </a>
               <a href="mailto:kontakt@automatikgebrauchtwagen.com" className="btn-ghost" style={{ fontSize:13 }}>
@@ -1639,7 +1639,7 @@ export default function Home() {
         <div style={{ maxWidth:1300, margin:'0 auto' }}>
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr auto', gap: isMobile ? 28 : 48, alignItems:'start' }}>
             <div>
-              <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:15, fontWeight:800, color:'var(--text)', letterSpacing:'0.08em' }}>AS AUTOHANDEL</div>
+              <div style={{ fontFamily:"var(--font)", fontSize:15, fontWeight:800, color:'var(--text)', letterSpacing:'0.08em' }}>AS AUTOHANDEL</div>
               <div style={{ fontSize:8, letterSpacing:'0.35em', color:'var(--red)', textTransform:'uppercase', marginTop:3, marginBottom:14, fontWeight:500 }}>GmbH · Offenbach am Main</div>
               <p style={{ fontSize:13, color:'var(--text-3)', lineHeight:1.6, maxWidth:240, fontWeight:300 }}>
                 {l==='fr'?'Votre partenaire automobile de confiance en Allemagne.':l==='en'?'Your trusted car partner in Germany.':l==='de'?'Ihr vertrauenswürdiger Autopartner in Deutschland.':l==='es'?'Su socio de confianza en Alemania.':l==='it'?'Il vostro partner automobilistico di fiducia in Germania.':'Seu parceiro automobilístico de confiança na Alemanha.'}

@@ -97,7 +97,7 @@ export default function Simulation() {
         <div style={{ position:'absolute', top:0, right:0, bottom:0, width:'40%', background:'radial-gradient(ellipse at right, rgba(19,40,83,0.07), transparent 70%)', pointerEvents:'none' }} />
         <div style={{ position:'relative', zIndex:1, maxWidth:1100, margin:'0 auto' }}>
           <div className="section-eyebrow">{L.label[l]}</div>
-          <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(40px,6vw,88px)', color:'var(--text)', letterSpacing:'-0.02em', lineHeight:1, marginBottom:16 }}>
+          <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(40px,6vw,88px)', color:'var(--text)', letterSpacing:'-0.02em', lineHeight:1, marginBottom:16 }}>
             <span style={{ display:'block' }}>{L.title1[l]}</span>
             <span style={{ display:'block', color:'var(--red)' }}>{L.title2[l]}</span>
           </h1>
@@ -122,7 +122,7 @@ export default function Simulation() {
             <motion.p variants={fadeUp} transition={{ duration:0.45 }} style={{ fontSize:11, fontWeight:800, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)', marginBottom:10 }}>
               {L.introTag[l]}
             </motion.p>
-            <motion.h2 variants={fadeUp} transition={{ duration:0.5 }} style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 26 : 34, color:'var(--text)', lineHeight:1.2, marginBottom:10 }}>
+            <motion.h2 variants={fadeUp} transition={{ duration:0.5 }} style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 26 : 34, color:'var(--text)', lineHeight:1.2, marginBottom:10 }}>
               {L.introTitle[l]}
             </motion.h2>
             <motion.p variants={fadeUp} transition={{ duration:0.52 }} style={{ fontSize: isMobile ? 14 : 16, color:'var(--text-3)', lineHeight:1.7, marginBottom:18 }}>
@@ -142,14 +142,14 @@ export default function Simulation() {
                   whileHover={{ y:-4, borderColor:'var(--red)' }}
                   style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:12, padding: isMobile ? 14 : 16 }}
                 >
-                  <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:15, color:'var(--text)', marginBottom:7 }}>{item.t}</p>
+                  <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:15, color:'var(--text)', marginBottom:7 }}>{item.t}</p>
                   <p style={{ fontSize:13, color:'var(--text-3)', lineHeight:1.6 }}>{item.d}</p>
                 </motion.div>
               ))}
             </motion.div>
 
             <motion.div variants={fadeUp} transition={{ duration:0.52 }} style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:12, padding: isMobile ? 14 : 18, marginBottom:16 }}>
-              <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:8 }}>
+              <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:8 }}>
                 {L.introExplainT[l]}
               </p>
               <p style={{ fontSize:14, color:'var(--text-3)', lineHeight:1.75 }}>
@@ -170,7 +170,7 @@ export default function Simulation() {
                   whileHover={{ scale: 1.01 }}
                   style={{ background:'linear-gradient(135deg, var(--bg-card), var(--bg-card2))', border:'1px solid var(--border)', borderRadius:12, padding: isMobile ? 14 : 16 }}
                 >
-                  <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:14, color:'var(--text)', marginBottom:6 }}>{item.t}</p>
+                  <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:14, color:'var(--text)', marginBottom:6 }}>{item.t}</p>
                   <p style={{ fontSize:13, color:'var(--text-3)', lineHeight:1.6 }}>{item.d}</p>
                 </motion.div>
               ))}
@@ -209,10 +209,10 @@ export default function Simulation() {
               </div>
               <div style={{ display:'flex', gap:10, alignItems:'center' }}>
                 <div style={{ position:'relative', flex:1 }}>
-                  <span style={{ position:'absolute', left:14, top:'50%', transform:'translateY(-50%)', fontSize:18, fontWeight:800, color:'var(--text-3)', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif" }}>€</span>
+                  <span style={{ position:'absolute', left:14, top:'50%', transform:'translateY(-50%)', fontSize:18, fontWeight:800, color:'var(--text-3)', fontFamily:"var(--font)" }}>€</span>
                   <input type="text" value={inputVal} onChange={handleInput}
                     className="input-luxury"
-                    style={{ paddingLeft:34, fontSize:20, fontWeight:800, fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif" }} />
+                    style={{ paddingLeft:34, fontSize:20, fontWeight:800, fontFamily:"var(--font)" }} />
                 </div>
                 <span style={{ fontSize:13, color:'var(--text-3)', fontWeight:600, flexShrink:0 }}>{L.per_month[l]}</span>
               </div>
@@ -230,7 +230,7 @@ export default function Simulation() {
                   ].map(({ label, value, color }) => (
                     <div key={label} style={{ display:'flex', justifyContent:'space-between', alignItems:'center' }}>
                       <span style={{ fontSize:14, color:'var(--text-3)' }}>{label}</span>
-                      <span style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 18 : 20, color }}>{value}</span>
+                      <span style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color }}>{value}</span>
                     </div>
                   ))}
                 </div>
@@ -251,7 +251,7 @@ export default function Simulation() {
             <div style={{ textAlign:'center', marginBottom:40 }}>
               {result.count > 0 ? (
                 <>
-                  <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 64 : 88, color:'var(--red)', lineHeight:1, letterSpacing:'-0.03em' }}>{result.count}</p>
+                  <p style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 64 : 88, color:'var(--red)', lineHeight:1, letterSpacing:'-0.03em' }}>{result.count}</p>
                   <p style={{ fontSize: isMobile ? 15 : 18, color:'var(--text-2)', marginTop:8, lineHeight:1.6 }}>
                     {L.results[l]} <strong style={{ color:'var(--text)' }}>{formatEuro(result.salary)}</strong>
                   </p>
@@ -262,7 +262,7 @@ export default function Simulation() {
               ) : (
                 <div style={{ padding:'40px 0' }}>
                   <p style={{ fontSize:52, marginBottom:16 }}>🔍</p>
-                  <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 24 : 30, color:'var(--text)', marginBottom:12 }}>{L.noResult[l]}</h3>
+                  <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 24 : 30, color:'var(--text)', marginBottom:12 }}>{L.noResult[l]}</h3>
                   <p style={{ fontSize:15, color:'var(--text-3)', maxWidth:460, margin:'0 auto', lineHeight:1.7 }}>
                     {L.noResultSub[l]} <strong style={{ color:'var(--red)' }}>{formatEuro(result.maxMonthly)}</strong>{L.noResultSub2[l]}
                   </p>

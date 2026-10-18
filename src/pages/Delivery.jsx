@@ -82,7 +82,7 @@ export default function Delivery() {
             </span>
           </div>
           <h1 style={{
-            fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900,
+            fontFamily:"var(--font)", fontWeight:900,
             fontSize: isMobile ? 'clamp(36px,8vw,64px)' : 'clamp(48px,6vw,88px)',
             color:'#fff', letterSpacing:'-0.03em', lineHeight:1.1, marginBottom:20
           }}>
@@ -99,7 +99,7 @@ export default function Delivery() {
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div className="section-eyebrow">{t({ fr:'Comment ça marche', en:'How it works', de:'So funktioniert\'s', es:'Cómo funciona', it:'Come funziona', pt:'Como funciona', ro:'Cum funcționează' })}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'4 étapes jusqu\'à votre porte', en:'4 steps to your door', de:'4 Schritte bis vor Ihre Tür', es:'4 pasos hasta su puerta', it:'4 passi fino a casa', pt:'4 passos até à sua porta', ro:'4 pași până la ușa dumneavoastră' })}
             </h2>
           </div>
@@ -114,13 +114,13 @@ export default function Delivery() {
                 transition={{ duration:0.5, delay:i*0.1 }}
                 style={{ position:'relative', background:C.card, border:`1px solid ${C.border}`, borderRadius:18, padding: isMobile ? 24 : 28, boxShadow:C.shadow }}
               >
-                <div style={{ position:'absolute', top:20, right:20, fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:40, color:C.card2, lineHeight:1 }}>
+                <div style={{ position:'absolute', top:20, right:20, fontFamily:"var(--font)", fontWeight:900, fontSize:40, color:C.card2, lineHeight:1 }}>
                   {String(i+1).padStart(2,'0')}
                 </div>
                 <div style={{ width:52, height:52, borderRadius:14, background:'linear-gradient(135deg,#132853,#0E1E3D)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:24, marginBottom:18 }}>
                   {s.icon}
                 </div>
-                <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:17, color:C.text, marginBottom:10 }}>{s.title}</h3>
+                <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:17, color:C.text, marginBottom:10 }}>{s.title}</h3>
                 <p style={{ fontSize:13.5, color:C.text2, lineHeight:1.8, margin:0 }}>{s.desc}</p>
               </motion.div>
             ))}
@@ -133,7 +133,7 @@ export default function Delivery() {
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div className="section-eyebrow">{t({ fr:'Europe entière', en:'Across Europe', de:'Ganz Europa', es:'Toda Europa', it:'Tutta Europa', pt:'Toda a Europa', ro:'Întreaga Europă' })}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'Délais de livraison indicatifs', en:'Indicative delivery times', de:'Indikative Lieferzeiten', es:'Plazos de entrega orientativos', it:'Tempi di consegna indicativi', pt:'Prazos de entrega indicativos', ro:'Termene de livrare orientative' })}
             </h2>
           </div>
@@ -150,7 +150,7 @@ export default function Delivery() {
               >
                 <div style={{ display:'flex', alignItems:'center', gap:10 }}>
                   <span style={{ fontSize:22 }}>{c.flag}</span>
-                  <span style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700, fontSize:14, color:C.text }}>{c.name}</span>
+                  <span style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:14, color:C.text }}>{c.name}</span>
                 </div>
                 <span style={{ fontSize:12, fontWeight:700, color:'#132853', background:'rgba(19,40,83,0.1)', padding:'4px 10px', borderRadius:6, whiteSpace:'nowrap' }}>⏱ {c.time}</span>
               </motion.div>
@@ -173,7 +173,7 @@ export default function Delivery() {
             transition={{ duration:0.6 }}
             style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:18, padding: isMobile ? 24 : 36, boxShadow:C.shadow }}
           >
-            <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 20 : 24, color:C.text, marginBottom:20, display:'flex', alignItems:'center', gap:10 }}>
+            <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 20 : 24, color:C.text, marginBottom:20, display:'flex', alignItems:'center', gap:10 }}>
               ✅ {t({ fr:'Inclus dans la livraison', en:'Included in delivery', de:'In der Lieferung enthalten', es:'Incluido en la entrega', it:'Incluso nella consegna', pt:'Incluído na entrega', ro:'Inclus în livrare' })}
             </h3>
             {[
@@ -198,17 +198,17 @@ export default function Delivery() {
             style={{ background:'linear-gradient(135deg,#0a0a0a,#1a1a1a)', borderRadius:18, padding: isMobile ? 24 : 36, boxShadow:C.shadow, display:'flex', flexDirection:'column', justifyContent:'center', gap:20 }}
           >
             <div style={{ fontSize:40 }}>🚚</div>
-            <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 22 : 26, color:'#fff', margin:0, letterSpacing:'-0.02em' }}>
+            <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 22 : 26, color:'#fff', margin:0, letterSpacing:'-0.02em' }}>
               {t({ fr:'Organisez votre livraison', en:'Arrange your delivery', de:'Organisieren Sie Ihre Lieferung', es:'Organice su entrega', it:'Organizzate la consegna', pt:'Organize a sua entrega', ro:'Organizați-vă livrarea' })}
             </h3>
             <p style={{ fontSize:14, color:'rgba(255,255,255,0.7)', lineHeight:1.7, margin:0 }}>
               {t({ fr:'Un conseiller dédié s\'occupe de tout : transport, assurance, immatriculation. Vous n\'avez qu\'à réceptionner les clés.', en:'A dedicated advisor handles everything: transport, insurance, registration. You just receive the keys.', de:'Ein persönlicher Berater kümmert sich um alles: Transport, Versicherung, Zulassung. Sie erhalten nur die Schlüssel.', es:'Un asesor dedicado se encarga de todo. Usted solo recibe las llaves.', it:'Un consulente dedicato si occupa di tutto. Voi ricevete solo le chiavi.', pt:'Um consultor dedicado trata de tudo. Só recebe as chaves.', ro:'Un consultant dedicat se ocupă de tot: transport, asigurare, înmatriculare. Voi trebuie doar să primiți cheile.' })}
             </p>
             <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
-              <Link to="/contact" style={{ background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
+              <Link to="/contact" style={{ background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
                 {t({ fr:'Demander un devis', en:'Request a quote', de:'Angebot anfordern', es:'Solicitar presupuesto', it:'Richiedi preventivo', pt:'Pedir orçamento', ro:'Cereți o ofertă' })} →
               </Link>
-              <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
+              <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
                 💬 WhatsApp
               </a>
             </div>

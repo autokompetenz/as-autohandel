@@ -40,7 +40,7 @@ export default function Navbar() {
   const handleLogout = () => { logout(); navigate('/'); setMenuOpen(false); };
 
   const isHero = location.pathname === '/' && !scrolled;
-  const F = "'Helvetica Neue',Helvetica,Arial,sans-serif";
+  const F = "var(--font)";
 
   const iconColor = scrolled
     ? (isDark ? 'rgba(255,255,255,0.85)' : '#222')

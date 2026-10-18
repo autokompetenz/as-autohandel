@@ -14,7 +14,7 @@ export default function Blog() {
       <div style={{ padding:'52px 6% 32px', background:'var(--bg-card2)', borderBottom:'1px solid var(--border)' }}>
         <div style={{ maxWidth:1100, margin:'0 auto' }}>
           <div className="section-eyebrow">{l==='fr'?'Actualités':l==='en'?'News':'News'}</div>
-          <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)' }}>
+          <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)' }}>
             {l==='fr'?'Blog & conseils automobiles':l==='en'?'Blog & car advice':l==='de'?'Blog & Auto-Tipps':'Blog y consejos de coche'}
           </h1>
         </div>
@@ -24,7 +24,7 @@ export default function Blog() {
           <article key={a.id} style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:16, padding:24, boxShadow:'var(--shadow-sm)' }}>
             <div style={{ fontSize:36, marginBottom:12 }}>{a.icon}</div>
             <p style={{ fontSize:12, color:'var(--text-3)', marginBottom:6 }}>{new Date(a.date).toLocaleDateString(l==='fr'?'fr-FR':l==='de'?'de-DE':'en-GB')}</p>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:19, color:'var(--text)', marginBottom:8, lineHeight:1.25 }}>{a.title[l] || a.title.fr}</h2>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:19, color:'var(--text)', marginBottom:8, lineHeight:1.25 }}>{a.title[l] || a.title.fr}</h2>
             <p style={{ fontSize:14, color:'var(--text-2)', lineHeight:1.6 }}>{a.excerpt[l] || a.excerpt.fr}</p>
           </article>
         ))}

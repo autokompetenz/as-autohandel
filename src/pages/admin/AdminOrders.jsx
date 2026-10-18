@@ -49,7 +49,7 @@ export default function AdminOrders() {
     <div style={{ padding:'clamp(24px,5vw,48px) clamp(16px,4vw,44px) 60px', minHeight:'100vh', background:'var(--bg)' }}>
       <div style={{ marginBottom:28 }}>
         <div className="section-eyebrow">Gestion</div>
-        <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.02em' }}>Commandes</h1>
+        <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.02em' }}>Commandes</h1>
       </div>
 
       <div style={{ display:'flex', gap:8, flexWrap:'wrap', marginBottom:24 }}>
@@ -61,7 +61,7 @@ export default function AdminOrders() {
               fontSize:13,
               fontWeight:700,
               cursor:'pointer',
-              fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+              fontFamily:"var(--font)",
               transition:'all 0.2s var(--ease)',
               border:`1px solid ${activeTab===id ? 'var(--red)' : 'var(--border)'}`,
               background: activeTab===id ? 'var(--red-bg)' : 'var(--bg-card)',
@@ -127,7 +127,7 @@ export default function AdminOrders() {
                             fontSize:12, padding:'10px 14px', letterSpacing:'0.05em',
                             border:'1px solid rgba(220,38,38,0.35)', borderRadius:8,
                             background:'rgba(220,38,38,0.08)', color:'#DC2626',
-                            cursor:'pointer', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700,
+                            cursor:'pointer', fontFamily:"var(--font)", fontWeight:700,
                             opacity: deletingId === order.id ? 0.5 : 1,
                             transition:'all 0.2s var(--ease)',
                           }}

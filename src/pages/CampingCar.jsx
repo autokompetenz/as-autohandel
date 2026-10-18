@@ -40,7 +40,7 @@ export default function CampingCar() {
           <div className="section-eyebrow" style={{ color: 'var(--red)', fontSize: 11, fontWeight: 800, letterSpacing: '0.3em', textTransform: 'uppercase', marginBottom: 10 }}>
             CAMPING CAR
           </div>
-          <h1 style={{ fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 900, fontSize: 'clamp(30px,5vw,64px)', color: 'var(--text)', letterSpacing: '-0.02em', marginBottom: 10 }}>
+          <h1 style={{ fontFamily: "var(--font)", fontWeight: 900, fontSize: 'clamp(30px,5vw,64px)', color: 'var(--text)', letterSpacing: '-0.02em', marginBottom: 10 }}>
             {l.title}
           </h1>
           <p style={{ fontSize: 16, color: 'var(--text-3)', maxWidth: 560 }}>
@@ -64,7 +64,7 @@ export default function CampingCar() {
         ) : cars.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '80px 0' }}>
             <div style={{ fontSize: 64, marginBottom: 16 }}>🚐</div>
-            <h3 style={{ fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 800, fontSize: 24, color: 'var(--text)', marginBottom: 10 }}>
+            <h3 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: 24, color: 'var(--text)', marginBottom: 10 }}>
               {l.empty}
             </h3>
             <a href="/catalog" style={{ display: 'inline-block', marginTop: 16, fontSize: 14, color: 'var(--red)', textDecoration: 'none', fontWeight: 600 }}>

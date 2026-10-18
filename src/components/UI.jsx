@@ -36,7 +36,7 @@ export function PageHeader({ title, subtitle, children }) {
     <div style={{ position:'relative', paddingTop:120, paddingBottom:60, paddingLeft:'6%', paddingRight:'6%', background:'var(--bg-card2)', borderBottom:'1px solid var(--border)', overflow:'hidden' }}>
       <div style={{ position:'absolute', top:0, left:0, right:0, bottom:0, background:'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(19,40,83,0.05) 0%, transparent 70%)' }} />
       <motion.div initial={{ opacity:0, y:24 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.6, ease:[0.16,1,0.3,1] }} style={{ position:'relative', zIndex:1 }}>
-        <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(36px,5vw,76px)', color:'var(--text)', letterSpacing:'-0.02em', lineHeight:1, marginBottom:14 }}>
+        <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(36px,5vw,76px)', color:'var(--text)', letterSpacing:'-0.02em', lineHeight:1, marginBottom:14 }}>
           {title}
         </h1>
         {subtitle && <p style={{ fontSize:17, color:'var(--text-3)', maxWidth:520, lineHeight:1.65 }}>{subtitle}</p>}
@@ -50,7 +50,7 @@ export function EmptyState({ icon, title, subtitle, action }) {
   return (
     <div style={{ textAlign:'center', padding:'80px 20px' }}>
       <div style={{ fontSize:64, marginBottom:20 }}>{icon}</div>
-      <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:26, color:'var(--text)', marginBottom:10 }}>{title}</h3>
+      <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:26, color:'var(--text)', marginBottom:10 }}>{title}</h3>
       <p style={{ fontSize:15, color:'var(--text-3)', marginBottom:32, lineHeight:1.65 }}>{subtitle}</p>
       {action}
     </div>

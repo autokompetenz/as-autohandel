@@ -44,7 +44,7 @@ export default function AdminSidebar({ mobileOpen = false, onClose }) {
     >
       <div style={{ padding: '20px 18px', borderBottom: '1px solid var(--border)' }}>
         <NavLink to="/admin" onClick={closeIfMobile} style={{ textDecoration: 'none' }}>
-          <div style={{ fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize: 16, fontWeight: 900, color: 'var(--text)', letterSpacing: '0.04em' }}>
+          <div style={{ fontFamily: "var(--font)", fontSize: 16, fontWeight: 900, color: 'var(--text)', letterSpacing: '0.04em' }}>
             AUTO <span style={{ color: 'var(--red)' }}>PARK</span>
           </div>
           <div style={{ fontSize: 9, letterSpacing: '0.28em', color: 'var(--text-3)', textTransform: 'uppercase', marginTop: 6, fontWeight: 700 }}>
@@ -73,7 +73,7 @@ export default function AdminSidebar({ mobileOpen = false, onClose }) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif",
+              fontFamily: "var(--font)",
               fontWeight: 900,
               fontSize: 17,
               color: '#fff',
@@ -137,7 +137,7 @@ export default function AdminSidebar({ mobileOpen = false, onClose }) {
             background: 'var(--bg-card)',
             border: '1px solid var(--border)',
             cursor: 'pointer',
-            fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif",
+            fontFamily: "var(--font)",
             fontWeight: 600,
             textAlign: 'left',
             marginBottom: 8,
@@ -175,7 +175,7 @@ export default function AdminSidebar({ mobileOpen = false, onClose }) {
             background: 'rgba(239,68,68,0.06)',
             border: '1px solid rgba(239,68,68,0.18)',
             cursor: 'pointer',
-            fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif",
+            fontFamily: "var(--font)",
             fontWeight: 700,
             textAlign: 'left',
             marginBottom: 6,

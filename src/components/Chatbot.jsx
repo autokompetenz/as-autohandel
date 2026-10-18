@@ -358,7 +358,7 @@ export default function Chatbot() {
             🔧
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 800, fontSize: 15, color: '#fff' }}>
+            <div style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: 15, color: '#fff' }}>
               AS Autohandel GmbH
             </div>
             <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)', display: 'flex', alignItems: 'center', gap: 5, marginTop: 2 }}>
@@ -383,7 +383,7 @@ export default function Chatbot() {
                 style={{
                   maxWidth: '88%', padding: '10px 14px', borderRadius: 10,
                   fontSize: 13.5, lineHeight: 1.6, whiteSpace: 'pre-wrap', wordBreak: 'break-word',
-                  fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+                  fontFamily: "var(--font)",
                   background: m.from === 'bot' ? msgBotBg : '#132853',
                   color: m.from === 'bot' ? msgBotText : '#fff',
                   alignSelf: m.from === 'bot' ? 'flex-start' : 'flex-end',
@@ -415,7 +415,7 @@ export default function Chatbot() {
                 style={{
                   background: quickBg, border: `1px solid ${quickBd}`, color: quickText,
                   fontSize: 11.5, fontWeight: 600, padding: '5px 10px', borderRadius: 16,
-                  cursor: 'pointer', fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", transition: 'all 0.15s',
+                  cursor: 'pointer', fontFamily: "var(--font)", transition: 'all 0.15s',
                 }}
                 onMouseOver={e => { e.currentTarget.style.background = quickHoverBg; e.currentTarget.style.color = '#132853'; }}
                 onMouseOut={e => { e.currentTarget.style.background = quickBg; e.currentTarget.style.color = quickText; }}>
@@ -457,7 +457,7 @@ export default function Chatbot() {
             placeholder={PLACEHOLDERS[L] || PLACEHOLDERS.fr}
             style={{
               flex: 1, background: inputBg, border: `1px solid ${inputBorder}`, color: inputText,
-              borderRadius: 8, padding: '9px 12px', fontSize: 13.5, fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+              borderRadius: 8, padding: '9px 12px', fontSize: 13.5, fontFamily: "var(--font)",
               outline: 'none', transition: 'border-color 0.15s',
             }}
             onFocus={e => e.target.style.borderColor = '#132853'}

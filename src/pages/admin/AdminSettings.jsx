@@ -68,7 +68,7 @@ export default function AdminSettings() {
     <div style={{ padding:'clamp(24px,5vw,48px) clamp(16px,4vw,44px) 60px', minHeight:'100vh', background:'var(--bg)' }}>
       <div style={{ marginBottom:32 }}>
         <div className="section-eyebrow">{L.eyebrow[l]}</div>
-        <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(26px,3.5vw,40px)', color:'var(--red)', letterSpacing:'-0.02em', marginBottom:8 }}>
+        <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(26px,3.5vw,40px)', color:'var(--red)', letterSpacing:'-0.02em', marginBottom:8 }}>
           {L.title[l]}
         </h1>
         <p style={{ fontSize:15, color:'var(--text-3)', maxWidth:560, lineHeight:1.7 }}>{L.subtitle[l]}</p>
@@ -138,7 +138,7 @@ export default function AdminSettings() {
                 <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:4 }}>
                   {typeof label === 'object' ? label[l] : label}
                 </p>
-                <p style={{ fontFamily: mono ? 'monospace' : "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700, fontSize:15, color:'var(--text)', letterSpacing:mono ? '0.04em' : 0, wordBreak:'break-all' }}>
+                <p style={{ fontFamily: mono ? 'monospace' : "var(--font)", fontWeight:700, fontSize:15, color:'var(--text)', letterSpacing:mono ? '0.04em' : 0, wordBreak:'break-all' }}>
                   {value || '—'}
                 </p>
               </div>

@@ -80,7 +80,7 @@ function RouteFallback() {
           border: '3px solid rgba(19,40,83,0.2)', borderTopColor: '#132853',
           animation: 'automatik-spin 0.8s linear infinite',
         }} />
-        <div style={{ fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
+        <div style={{ fontFamily: "var(--font)", fontSize: 13, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>
           AS Autohandel GmbH
         </div>
       </div>
@@ -114,7 +114,7 @@ function AdminGate({ children }) {
     <div style={{ minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center', background:'var(--bg)' }}>
       <form onSubmit={submit} style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:16, padding:36, width:'92%', maxWidth:380, textAlign:'center' }}>
         <div style={{ fontSize:36, marginBottom:10 }}>🔒</div>
-        <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:22, color:'var(--text)', marginBottom:6 }}>Accès administrateur</h2>
+        <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:22, color:'var(--text)', marginBottom:6 }}>Accès administrateur</h2>
         <p style={{ fontSize:14, color:'var(--text-3)', marginBottom:20 }}>Entrez le code d'accès pour continuer.</p>
         <input type="password" value={code} onChange={e => setCode(e.target.value)} autoFocus className="input-luxury" placeholder="Code d'accès" style={{ marginBottom:14, textAlign:'center', letterSpacing:'0.1em' }} />
         <button type="submit" className="btn-primary" disabled={loading} style={{ width:'100%', justifyContent:'center', padding:13 }}>{loading ? '⏳' : 'Accéder'}</button>
@@ -219,8 +219,8 @@ export default function App() {
           <MainLayout>
             <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', background: 'var(--black)' }}>
               <div>
-                <p style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: 120, fontWeight: 900, color: '#132853', lineHeight: 1, letterSpacing: '-0.05em' }}>404</p>
-                <h1 style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontSize: 32, fontWeight: 700, color: '#fff', marginBottom: 32 }}>
+                <p style={{ fontFamily: "var(--font)", fontSize: 120, fontWeight: 900, color: '#132853', lineHeight: 1, letterSpacing: '-0.05em' }}>404</p>
+                <h1 style={{ fontFamily: "var(--font)", fontSize: 32, fontWeight: 700, color: '#fff', marginBottom: 32 }}>
                   {l==='fr'?'Page introuvable':l==='en'?'Page not found':l==='de'?'Seite nicht gefunden':l==='es'?'Página no encontrada':l==='it'?'Pagina non trovata':'Página não encontrada'}
                 </h1>
                 <a href="/" className="btn-primary" style={{ fontSize: 14, padding: '16px 40px' }}>

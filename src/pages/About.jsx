@@ -74,7 +74,7 @@ export default function About() {
             </span>
           </div>
           <h1 style={{
-            fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900,
+            fontFamily:"var(--font)", fontWeight:900,
             fontSize: isMobile ? 'clamp(36px,8vw,64px)' : 'clamp(48px,6vw,88px)',
             color:'#fff', letterSpacing:'-0.03em', lineHeight:1.1, marginBottom:20
           }}>
@@ -86,14 +86,14 @@ export default function About() {
           <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
             <Link to="/catalog" style={{
               background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none',
-              fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'14px 28px',
+              fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
               borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
               boxShadow:'0 4px 16px rgba(19,40,83,0.4)'
             }}>
               {t({ fr:'Voir notre catalogue', en:'View our catalog', de:'Zum Katalog', es:'Ver catálogo', it:'Vedi il catalogo', pt:'Ver catálogo', ro:'Vezi catalogul nostru' })} →
             </Link>
             <Link to="/contact" style={{
-              background:'transparent', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+              background:'transparent', color:'#fff', textDecoration:'none', fontFamily:"var(--font)",
               fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8, border:'1px solid rgba(255,255,255,0.3)',
               display:'inline-flex', alignItems:'center', gap:8
             }}>
@@ -116,7 +116,7 @@ export default function About() {
               style={{ textAlign:'center', padding:'12px 8px' }}
             >
               <div style={{ fontSize:34, marginBottom:10 }}>{s.icon}</div>
-              <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 22 : 30, color:C.text, letterSpacing:'-0.02em' }}>{s.value}</div>
+              <div style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 22 : 30, color:C.text, letterSpacing:'-0.02em' }}>{s.value}</div>
               <div style={{ fontSize:12.5, color:C.text3, marginTop:6, letterSpacing:'0.08em', textTransform:'uppercase', fontWeight:600 }}>{s.label}</div>
             </motion.div>
           ))}
@@ -133,7 +133,7 @@ export default function About() {
             transition={{ duration:0.7 }}
           >
             <div className="section-eyebrow">{t({ fr:'Notre histoire', en:'Our story', de:'Unsere Geschichte', es:'Nuestra historia', it:'La nostra storia', pt:'A nossa história', ro:'Povestea noastră' })}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em', lineHeight:1.15, marginBottom:20 }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em', lineHeight:1.15, marginBottom:20 }}>
               {t({ fr:'Une entreprise familiale allemande depuis 2018', en:'A German family business since 2018', de:'Ein deutsches Familienunternehmen seit 2018', es:'Una empresa familiar alemana desde 2018', it:'Un\'azienda familiare tedesca dal 2018', pt:'Uma empresa familiar alemã desde 2018', ro:'O afacere de familie germană din 2018' })}
             </h2>
             <p style={{ fontSize:15, color:C.text2, lineHeight:1.8, marginBottom:16 }}>
@@ -142,7 +142,7 @@ export default function About() {
             <p style={{ fontSize:15, color:C.text2, lineHeight:1.8, marginBottom:24 }}>
               {t({ fr:'Chaque véhicule présenté sur notre site est inspecté dans notre atelier, préparé avec soin et livré avec toutes les démarches administratives effectuées, partout en Europe.', en:'Every vehicle on our site is inspected in our workshop, carefully prepared and delivered with all administrative formalities completed, across Europe.', de:'Jedes Fahrzeug auf unserer Website wird in unserer Werkstatt geprüft, sorgfältig aufbereitet und mit allen Formalitäten europaweit geliefert.', es:'Cada vehículo de nuestro sitio se inspecciona en nuestro taller y se entrega con todos los trámites realizados.', it:'Ogni veicolo sul nostro sito viene ispezionato in officina e consegnato con tutte le formalità completate.', pt:'Cada veículo do nosso site é inspecionado na oficina e entregue com todas as formalidades tratadas.', ro:'Fiecare vehicul prezentat pe site-ul nostru este inspectat în atelier, pregătit cu grijă și livrat cu toate formalitățile administrative îndeplinite, în toată Europa.' })}
             </p>
-            <Link to="/contact" style={{ color:'#132853', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:800, textDecoration:'none', display:'inline-flex', alignItems:'center', gap:8 }}>
+            <Link to="/contact" style={{ color:'#132853', fontFamily:"var(--font)", fontSize:14, fontWeight:800, textDecoration:'none', display:'inline-flex', alignItems:'center', gap:8 }}>
               {t({ fr:'En savoir plus', en:'Learn more', de:'Mehr erfahren', es:'Más información', it:'Scopri di più', pt:'Saber mais', ro:'Aflați mai multe' })} →
             </Link>
           </motion.div>
@@ -159,7 +159,7 @@ export default function About() {
             </div>
             <div style={{ background:'linear-gradient(135deg,#0a0a0a,#1a1a1a)', borderRadius:20, padding: isMobile ? 24 : 32, boxShadow:C.shadow }}>
               <div style={{ fontSize: isMobile ? 26 : 34, marginBottom:12 }}>🏆</div>
-              <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 20 : 24, color:'#fff', marginBottom:8 }}>
+              <div style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 20 : 24, color:'#fff', marginBottom:8 }}>
                 {t({ fr:'50 ans d\'expertise', en:'50 years of expertise', de:'50 Jahre Erfahrung', es:'50 años de experiencia', it:'50 anni di esperienza', pt:'50 anos de experiência', ro:'50 de ani de expertiză' })}
               </div>
               <p style={{ fontSize:13.5, color:'rgba(255,255,255,0.7)', lineHeight:1.7, margin:0 }}>
@@ -175,7 +175,7 @@ export default function About() {
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div className="section-eyebrow">{t({ fr:'Nos valeurs', en:'Our values', de:'Unsere Werte', es:'Nuestros valores', it:'I nostri valori', pt:'Os nossos valores', ro:'Valorile noastre' })}</div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 28 : 40, color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'Pourquoi nous choisir', en:'Why choose us', de:'Warum uns wählen', es:'Por qué elegirnos', it:'Perché sceglierci', pt:'Porquê escolher-nos', ro:'De ce să ne alegeți' })}
             </h2>
           </div>
@@ -192,7 +192,7 @@ export default function About() {
                 <div style={{ width:52, height:52, borderRadius:14, background:'linear-gradient(135deg,#132853,#0E1E3D)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:24, marginBottom:18 }}>
                   {v.icon}
                 </div>
-                <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:19, color:C.text, marginBottom:10 }}>{v.title}</h3>
+                <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:19, color:C.text, marginBottom:10 }}>{v.title}</h3>
                 <p style={{ fontSize:14, color:C.text2, lineHeight:1.8, margin:0 }}>{v.desc}</p>
               </motion.div>
             ))}
@@ -212,7 +212,7 @@ export default function About() {
           >
             <div style={{ display:'flex', alignItems:'center', gap:14, marginBottom:20 }}>
               <div style={{ width:44, height:44, borderRadius:12, background:'linear-gradient(135deg,#132853,#0E1E3D)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:20 }}>🏢</div>
-              <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:19, color:C.text, margin:0 }}>{t({ fr:'Mentions légales', en:'Legal information', de:'Rechtliche Informationen', es:'Información legal', it:'Informazioni legali', pt:'Informação legal', ro:'Informații legale' })}</h3>
+              <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:19, color:C.text, margin:0 }}>{t({ fr:'Mentions légales', en:'Legal information', de:'Rechtliche Informationen', es:'Información legal', it:'Informazioni legali', pt:'Informação legal', ro:'Informații legale' })}</h3>
             </div>
             <div style={{ display:'flex', flexDirection:'column', gap:14, fontSize:14, color:C.text2, lineHeight:1.7 }}>
               {[
@@ -239,17 +239,17 @@ export default function About() {
             style={{ background:'linear-gradient(135deg,#0a0a0a,#1a1a1a)', borderRadius:18, padding: isMobile ? 24 : 32, boxShadow:C.shadow, display:'flex', flexDirection:'column', justifyContent:'center', gap:20 }}
           >
             <div style={{ fontSize:40 }}>📞</div>
-            <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 22 : 26, color:'#fff', margin:0, letterSpacing:'-0.02em' }}>
+            <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 22 : 26, color:'#fff', margin:0, letterSpacing:'-0.02em' }}>
               {t({ fr:'Prêt à rouler avec AS Autohandel ?', en:'Ready to drive with AS Autohandel?', de:'Bereit mit AS Autohandel zu fahren?', es:'¿Listo para conducir con AS Autohandel?', it:'Pronto a guidare con AS Autohandel?', pt:'Pronto a conduzir com a AS Autohandel?', ro:'Gata să plecați la drum cu AS Autohandel?' })}
             </h3>
             <p style={{ fontSize:14, color:'rgba(255,255,255,0.7)', lineHeight:1.7, margin:0 }}>
               {t({ fr:'Notre équipe vous accompagne dans le choix de votre prochain véhicule, de la première visite à la livraison.', en:'Our team supports you in choosing your next vehicle, from first visit to delivery.', de:'Unser Team begleitet Sie bei der Wahl Ihres nächsten Fahrzeugs.', es:'Nuestro equipo le acompaña en la elección de su próximo vehículo.', it:'Il nostro team vi accompagna nella scelta del vostro prossimo veicolo.', pt:'A nossa equipa acompanha-o na escolha do seu próximo veículo.', ro:'Echipa noastră vă însoțește în alegerea următorului vehicul, de la prima vizită până la livrare.' })}
             </p>
             <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
-              <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
+              <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
                 💬 WhatsApp
               </a>
-              <Link to="/contact" style={{ background:'transparent', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8, border:'1px solid rgba(255,255,255,0.3)' }}>
+              <Link to="/contact" style={{ background:'transparent', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8, border:'1px solid rgba(255,255,255,0.3)' }}>
                 {t({ fr:'Nous contacter', en:'Contact us', de:'Kontakt', es:'Contáctenos', it:'Contattaci', pt:'Fale connosco', ro:'Contactați-ne' })}
               </Link>
             </div>

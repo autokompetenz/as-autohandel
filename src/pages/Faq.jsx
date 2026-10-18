@@ -117,7 +117,7 @@ export default function Faq() {
             </span>
           </div>
           <h1 style={{
-            fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900,
+            fontFamily:"var(--font)", fontWeight:900,
             fontSize: isMobile ? 'clamp(36px,8vw,64px)' : 'clamp(48px,6vw,88px)',
             color:'#fff', letterSpacing:'-0.03em', lineHeight:1.1, marginBottom:20
           }}>
@@ -145,7 +145,7 @@ export default function Faq() {
                 <div style={{ width:44, height:44, borderRadius:12, background:'linear-gradient(135deg,#132853,#0E1E3D)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:20, flexShrink:0 }}>
                   {cat.icon}
                 </div>
-                <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 22 : 28, color:C.text }}>
+                <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 22 : 28, color:C.text }}>
                   {cat.label}
                 </h2>
               </div>
@@ -163,7 +163,7 @@ export default function Faq() {
                         style={{
                           width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between',
                           gap:16, padding: isMobile ? '18px 20px' : '20px 24px', background:'transparent',
-                          border:'none', cursor:'pointer', textAlign:'left', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif"
+                          border:'none', cursor:'pointer', textAlign:'left', fontFamily:"var(--font)"
                         }}
                       >
                         <span style={{ fontSize: isMobile ? 15 : 16, fontWeight:700, color:C.text, lineHeight:1.5 }}>{item.q}</span>
@@ -207,7 +207,7 @@ export default function Faq() {
             transition={{ duration:0.5 }}
             style={{ textAlign:'center', background:'linear-gradient(135deg,#0a0a0a,#1a1a1a)', borderRadius:20, padding: isMobile ? 32 : 48, marginTop:16 }}
           >
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 24 : 30, color:'#fff', marginBottom:12 }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 24 : 30, color:'#fff', marginBottom:12 }}>
               {t({ fr:'Votre question n\'est pas dans la liste ?', en:'Your question is not listed?', de:'Ihre Frage ist nicht dabei?', es:'¿Su pregunta no está en la lista?', it:'La tua domanda non è in elenco?', pt:'A sua pergunta não está na lista?', ro:'Întrebarea dumneavoastră nu se află în listă?' })}
             </h2>
             <p style={{ fontSize:14.5, color:'rgba(255,255,255,0.7)', lineHeight:1.7, marginBottom:24 }}>
@@ -216,14 +216,14 @@ export default function Faq() {
             <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
               <Link to="/contact" style={{
                 background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none',
-                fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'14px 28px',
+                fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
                 borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
                 boxShadow:'0 4px 16px rgba(19,40,83,0.4)'
               }}>
                 {t({ fr:'Nous contacter', en:'Contact us', de:'Kontakt', es:'Contáctenos', it:'Contattaci', pt:'Fale connosco', ro:'Contactați-ne' })} →
               </Link>
               <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{
-                background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)",
                 fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
                 boxShadow:'0 4px 16px rgba(37,211,102,0.3)'
               }}>

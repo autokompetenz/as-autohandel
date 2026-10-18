@@ -151,7 +151,7 @@ export default function Track() {
       <div style={{ padding: isMobile ? '48px 4% 36px' : '72px 6% 56px', background:'var(--bg-card2)', borderBottom:'1px solid var(--border)' }}>
         <div style={{ maxWidth:860, margin:'0 auto' }}>
           <div className="section-eyebrow">{L.label[l]}</div>
-          <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(36px,6vw,76px)', color:'var(--text)', letterSpacing:'-0.02em', marginBottom:28 }}>
+          <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(36px,6vw,76px)', color:'var(--text)', letterSpacing:'-0.02em', marginBottom:28 }}>
             {L.title[l]}
           </h1>
           <form onSubmit={handleSearch} style={{ display:'flex', gap:12, maxWidth:520, flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
@@ -200,12 +200,12 @@ export default function Track() {
             <div style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:12, padding: isMobile ? 20 : 28, display:'flex', flexWrap:'wrap', alignItems:'flex-start', justifyContent:'space-between', gap:16, boxShadow:'var(--shadow-sm)' }}>
               <div>
                 <p style={{ fontSize:11, fontWeight:800, letterSpacing:'0.3em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:8 }}>{L.order[l]}</p>
-                <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 24 : 36, color:'var(--red)', letterSpacing:'0.05em' }}>{order.orderNumber}</p>
+                <p style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 24 : 36, color:'var(--red)', letterSpacing:'0.05em' }}>{order.orderNumber}</p>
                 <p style={{ fontSize:13, color:'var(--text-3)', marginTop:6 }}>{L.placed[l]} {formatDate(order.createdAt)}</p>
               </div>
               <div style={{ textAlign:'right' }}>
                 <StatusBadge status={order.status} />
-                <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 24 : 32, color:'var(--text)', marginTop:10, letterSpacing:'-0.02em' }}>{formatEuro(order.totalPrice)}</p>
+                <p style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 24 : 32, color:'var(--text)', marginTop:10, letterSpacing:'-0.02em' }}>{formatEuro(order.totalPrice)}</p>
                 <p style={{ fontSize:13, color:'var(--text-3)', marginTop:4 }}>{PL[order.paymentType]}</p>
               </div>
             </div>
@@ -258,7 +258,7 @@ export default function Track() {
                       <p style={{ fontWeight:700, color:'var(--text)', fontSize: isMobile ? 14 : 17 }}>{item.car.make} {item.car.model} {item.car.year}</p>
                       <p style={{ fontSize:13, color:'var(--text-3)', marginTop:3 }}>{item.car.fuelType} · {item.car.transmission}</p>
                     </div>
-                    <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 18 : 22, color:'var(--red)', flexShrink:0 }}>{formatEuro(item.unitPrice)}</p>
+                    <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 22, color:'var(--red)', flexShrink:0 }}>{formatEuro(item.unitPrice)}</p>
                   </div>
                 ))}
               </div>
@@ -289,7 +289,7 @@ export default function Track() {
                 <div style={{ height:1, background:'var(--border)', margin:'4px 0' }} />
                 <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline' }}>
                   <span style={{ fontWeight:700, color:'var(--text)', fontSize:17 }}>{L.total[l]}</span>
-                  <span style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 26 : 32, color:'var(--text)', letterSpacing:'-0.02em' }}>{formatEuro(order.totalPrice)}</span>
+                  <span style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 26 : 32, color:'var(--text)', letterSpacing:'-0.02em' }}>{formatEuro(order.totalPrice)}</span>
                 </div>
               </div>
             </div>
@@ -329,7 +329,7 @@ export default function Track() {
                         </div>
                       </div>
                       <div style={{ display:'flex', alignItems:'center', gap:14 }}>
-                        <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:16, color:'var(--red)', flexShrink:0 }}>{formatEuro(p.amount)}</p>
+                        <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:16, color:'var(--red)', flexShrink:0 }}>{formatEuro(p.amount)}</p>
                         <span style={{
                           fontSize:11, fontWeight:800, letterSpacing:'0.06em', textTransform:'uppercase', flexShrink:0,
                           color:statusColor[p.status]||'var(--text-3)',

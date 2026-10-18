@@ -128,7 +128,7 @@ export default function AdminOrderDetail() {
       <div style={{ display:'flex', alignItems:'center', gap:20, marginBottom:32, flexWrap:'wrap' }}>
         <div>
           <div className="section-eyebrow">Commande</div>
-          <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(26px,3.5vw,40px)', color:'var(--red)', letterSpacing:'-0.02em' }}>
+          <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(26px,3.5vw,40px)', color:'var(--red)', letterSpacing:'-0.02em' }}>
             {order.orderNumber}
           </h1>
         </div>
@@ -166,7 +166,7 @@ export default function AdminOrderDetail() {
                     <p style={{ fontSize:13, color:'var(--text-3)', marginTop:3 }}>{item.car.category} · {item.car.fuelType}</p>
                     <p style={{ fontSize:12, color:'var(--text-3)', marginTop:2 }}>Qté : {item.quantity}</p>
                   </div>
-                  <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:20, color:'var(--red)', flexShrink:0 }}>{formatEuro(item.unitPrice)}</p>
+                  <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:20, color:'var(--red)', flexShrink:0 }}>{formatEuro(item.unitPrice)}</p>
                 </div>
               ))}
             </div>
@@ -199,7 +199,7 @@ export default function AdminOrderDetail() {
               <div style={{ height:1, background:'var(--border)', margin:'4px 0' }} />
               <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline' }}>
                 <span style={{ fontWeight:700, color:'var(--text)' }}>Total</span>
-                <span style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:28, color:'var(--text)', letterSpacing:'-0.02em' }}>{formatEuro(order.totalPrice)}</span>
+                <span style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:28, color:'var(--text)', letterSpacing:'-0.02em' }}>{formatEuro(order.totalPrice)}</span>
               </div>
             </div>
             {order.paymentProofUrl && (
@@ -267,7 +267,7 @@ export default function AdminOrderDetail() {
                     </p>
                   </div>
                   <div style={{ display:'flex', alignItems:'center', gap:10 }}>
-                    <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:16, color:'var(--red)', flexShrink:0 }}>{formatEuro(p.amount)}</p>
+                    <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:16, color:'var(--red)', flexShrink:0 }}>{formatEuro(p.amount)}</p>
                     <span style={{
                       fontSize:11, fontWeight:800, letterSpacing:'0.06em', textTransform:'uppercase', flexShrink:0,
                       color:PAY_STATUS_COLORS[p.status]||'var(--text-3)', border:`1px solid ${PAY_STATUS_COLORS[p.status]||'var(--border)'}`,

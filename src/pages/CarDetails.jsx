@@ -291,7 +291,7 @@ export default function CarDetails() {
               </span>
             </div>
             <h1 style={{
-              fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 800,
+              fontFamily: "var(--font)", fontWeight: 800,
               fontSize: isMobile ? 36 : 52, color: C.text,
               letterSpacing: '-0.025em', lineHeight: 1, marginBottom: 24,
             }}>
@@ -300,7 +300,7 @@ export default function CarDetails() {
 
             {/* Price */}
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 16 }}>
-              <span style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 800, fontSize: 40, color: C.text, letterSpacing: '-0.025em' }}>
+              <span style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: 40, color: C.text, letterSpacing: '-0.025em' }}>
                 {formatEuro(car.price)}
               </span>
               {car.monthlyPayment && (
@@ -329,7 +329,7 @@ export default function CarDetails() {
                       <input type="range" min="12" max="84" step="12" value={financeMonths} onChange={e => setFinanceMonths(Number(e.target.value))} style={{ width:'100%' }} />
                     </div>
                   </div>
-                  <p style={{ fontSize: isMobile ? 20 : 24, fontWeight:800, color:C.text, fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif" }}>
+                  <p style={{ fontSize: isMobile ? 20 : 24, fontWeight:800, color:C.text, fontFamily:"var(--font)" }}>
                     ≈ {formatEuro(monthly)}{l==='fr'?'/mois':l==='en'?'/month':l==='de'?'/Monat':'/mes'}
                     <span style={{ fontSize:12, fontWeight:500, color:C.text3, marginLeft:8 }}>(financement 6%/an, acompte {formatEuro(car.price * depositPct / 100)})</span>
                   </p>
@@ -414,7 +414,7 @@ export default function CarDetails() {
             {car.description && (
               <div style={{ marginBottom: 32 }}>
                 <h3 style={{
-                  fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 700,
+                  fontFamily: "var(--font)", fontWeight: 700,
                   fontSize: isMobile ? 18 : 20, color: C.text,
                   letterSpacing: '-0.02em', marginBottom: 12, lineHeight: 1.2,
                 }}>
@@ -457,7 +457,7 @@ export default function CarDetails() {
               disabled={adding}
               style={{
                 width: '100%', padding: isMobile ? '18px' : '20px', borderRadius: 12,
-                fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize: isMobile?14:15, fontWeight:800,
+                fontFamily: "var(--font)", fontSize: isMobile?14:15, fontWeight:800,
                 letterSpacing: '0.1em', textTransform: 'uppercase', border: 'none',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
@@ -494,7 +494,7 @@ export default function CarDetails() {
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
                 {lang === 'fr' ? 'Performance' : lang === 'en' ? 'Performance' : lang === 'de' ? 'Leistung' : 'الأداء'}
               </span>
-              <h2 style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+              <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
                 {lang === 'fr' ? 'Au cœur de la puissance' : lang === 'en' ? 'The heart of the power' : lang === 'de' ? 'Im Herzen der Kraft' : 'قلب القوة'}
               </h2>
             </div>
@@ -536,7 +536,7 @@ export default function CarDetails() {
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
               {lang === 'fr' ? 'Protection' : lang === 'en' ? 'Protection' : lang === 'de' ? 'Schutz' : 'حماية'}
             </span>
-            <h2 style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+            <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
               {lang === 'fr' ? 'Protection adaptée à vos besoins' : lang === 'en' ? 'Protection tailored to your needs' : lang === 'de' ? 'Schutz maßgeschneidert für Ihre Bedürfnisse' : 'حماية مخصصة لاحتياجاتك'}
             </h2>
           </div>
@@ -548,7 +548,7 @@ export default function CarDetails() {
                 🛡️
               </div>
               <div>
-                <h3 style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 700, fontSize: isMobile ? 18 : 22, color: C.text, marginBottom: 4 }}>
+                <h3 style={{ fontFamily: "var(--font)", fontWeight: 700, fontSize: isMobile ? 18 : 22, color: C.text, marginBottom: 4 }}>
                   {lang === 'fr' ? 'Garantie basique AS Autohandel GmbH' : lang === 'en' ? 'AS Autohandel GmbH Basic Warranty' : lang === 'de' ? 'AS Autohandel GmbH Basisgarantie' : 'ضمان AS Autohandel GmbH الأساسي'}
                 </h3>
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(19,40,83,0.1)', border: '1px solid rgba(19,40,83,0.25)', padding: '4px 12px', borderRadius: 6 }}>
@@ -645,7 +645,7 @@ export default function CarDetails() {
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
               {lang === 'fr' ? 'Livraison' : lang === 'en' ? 'Delivery' : lang === 'de' ? 'Lieferung' : 'توصيل'}
             </span>
-            <h2 style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+            <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
               {lang === 'fr' ? 'Livraison véhicule' : lang === 'en' ? 'Vehicle delivery' : lang === 'de' ? 'Fahrzeuglieferung' : 'توصيل المركبة'}
             </h2>
             <p style={{ fontSize: isMobile ? 15 : 17, color: C.text2, marginTop: 12, maxWidth: 700, lineHeight: 1.6 }}>
@@ -754,7 +754,7 @@ export default function CarDetails() {
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
               {lang === 'fr' ? 'Qualité' : lang === 'en' ? 'Quality' : lang === 'de' ? 'Qualität' : 'جودة'}
             </span>
-            <h2 style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+            <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
               {lang === 'fr' ? 'Inspection technique certifiée' : lang === 'en' ? 'Certified technical inspection' : lang === 'de' ? 'Zertifizierte technische Inspektion' : 'فحص فني معتمد'}
             </h2>
             <p style={{ fontSize: isMobile ? 15 : 17, color: C.text2, marginTop: 12, maxWidth: 700, lineHeight: 1.6 }}>
@@ -816,7 +816,7 @@ export default function CarDetails() {
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
               {lang === 'fr' ? 'Transparence' : lang === 'en' ? 'Transparency' : lang === 'de' ? 'Transparenz' : 'شفافية'}
             </span>
-            <h2 style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+            <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
               {lang === 'fr' ? 'Historique d\u2019entretien' : lang === 'en' ? 'Maintenance history' : lang === 'de' ? 'Wartungshistorie' : 'سجل الصيانة'}
             </h2>
           </div>
@@ -876,7 +876,7 @@ export default function CarDetails() {
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
                 {lang==='fr'?'VOUS POURRIEZ AUSSI AIMER':lang==='en'?'YOU MIGHT ALSO LIKE':lang==='de'?'SIE KÖNNTEN AUCH GEFALLEN':lang==='es'?'TAMBIÉN PODRÍA GUSTARLE':lang==='it'?'POTREBBE PIACERTI ANCHE':'VOCÊ TAMBÉM PODE GOSTAR'}
               </span>
-              <h2 style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+              <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
                 {lang==='fr'?'Véhicules similaires':lang==='en'?'Similar Vehicles':lang==='de'?'Ähnliche Fahrzeuge':lang==='es'?'Vehículos Similares':lang==='it'?'Veicoli Simili':'Veículos Similares'}
               </h2>
             </div>
@@ -907,7 +907,7 @@ export default function CarDetails() {
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: C.red }}>
                 {lang==='fr'?'NOS MARQUES':lang==='en'?'OUR BRANDS':lang==='de'?'UNSERE MARKEN':lang==='es'?'NUESTRAS MARCAS':lang==='it'?'I NOSTRI MARCHI':'AS NOSSAS MARCAS'}
               </span>
-              <h2 style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
+              <h2 style={{ fontFamily: "var(--font)", fontWeight: 800, fontSize: isMobile ? 28 : 42, color: C.text, letterSpacing: '-0.025em', marginTop: 8 }}>
                 {lang==='fr'?'Explorez notre gamme':lang==='en'?'Explore our range':lang==='de'?'Erkunden Sie unsere Auswahl':lang==='es'?'Explore nuestra gama':lang==='it'?'Esplora la nostra gamma':'Explore nossa gama'}
               </h2>
             </div>

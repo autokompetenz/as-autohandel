@@ -105,7 +105,7 @@ export default function Catalog() {
     <button onClick={onClick}
       style={{ width:'100%', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'8px 10px', marginBottom:2,
         background:active?'var(--red-bg)':'transparent', border:'none', borderRadius:'var(--radius)',
-        color:active?'var(--red)':'var(--text-2)', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+        color:active?'var(--red)':'var(--text-2)', fontFamily:"var(--font)",
         fontSize:14, fontWeight:active?700:500, cursor:'pointer', textAlign:'left', transition:'all 0.15s' }}
       onMouseOver={e=>{ if(!active) e.currentTarget.style.background='var(--bg-card2)'; }}
       onMouseOut={e=>{ if(!active) e.currentTarget.style.background='transparent'; }}>
@@ -174,7 +174,7 @@ export default function Catalog() {
       {/* Reset */}
       {activeCount > 0 && (
         <button onClick={resetAll}
-          style={{ width:'100%', padding:'11px', background:'var(--bg-card)', border:'1px solid var(--border-2)', borderRadius:'var(--radius)', color:'var(--red)', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, cursor:'pointer' }}>
+          style={{ width:'100%', padding:'11px', background:'var(--bg-card)', border:'1px solid var(--border-2)', borderRadius:'var(--radius)', color:'var(--red)', fontFamily:"var(--font)", fontSize:14, fontWeight:700, cursor:'pointer' }}>
           ✕ {t('reset', l)}{activeCount>1 ? ` (${activeCount})` : ''}
         </button>
       )}
@@ -189,7 +189,7 @@ export default function Catalog() {
           <div className="section-eyebrow">
             {l==='fr'?'Catalogue':l==='en'?'Catalog':l==='de'?'Katalog':l==='es'?'Catálogo':l==='it'?'Catalogo':'Catálogo'}
           </div>
-          <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:'clamp(30px,5vw,56px)', color:'var(--text)', letterSpacing:'-0.025em', marginBottom:10 }}>
+          <h1 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(30px,5vw,56px)', color:'var(--text)', letterSpacing:'-0.025em', marginBottom:10 }}>
             {t('catalog_title', l)}
           </h1>
           <p style={{ fontSize:16, color:'var(--text-3)', maxWidth:560 }}>
@@ -220,7 +220,7 @@ export default function Catalog() {
         {isMobile && (
           <div style={{ display:'flex', gap:10, marginBottom:16 }}>
             <button onClick={() => setDrawerOpen(true)}
-              style={{ flex:1, display:'flex', alignItems:'center', justifyContent:'center', gap:8, background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:8, padding:'11px 14px', color:'var(--text)', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, cursor:'pointer', boxShadow:'var(--shadow-sm)' }}>
+              style={{ flex:1, display:'flex', alignItems:'center', justifyContent:'center', gap:8, background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:8, padding:'11px 14px', color:'var(--text)', fontFamily:"var(--font)", fontSize:14, fontWeight:700, cursor:'pointer', boxShadow:'var(--shadow-sm)' }}>
               ⚙ {t('filters', l)} {(brand)&&`· ${brand||''}`}
             </button>
             <SortSelect />
@@ -276,7 +276,7 @@ export default function Catalog() {
               </p>
               <div style={{ display:'flex', gap:8, alignItems:'center' }}>
                 {!isMobile && (activeCount > 0) && (
-                  <button onClick={resetAll} style={{ fontSize:13, color:'var(--red)', background:'none', border:'none', cursor:'pointer', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700 }}>
+                  <button onClick={resetAll} style={{ fontSize:13, color:'var(--red)', background:'none', border:'none', cursor:'pointer', fontFamily:"var(--font)", fontWeight:700 }}>
                     ✕ {t('reset', l)}
                   </button>
                 )}
@@ -291,7 +291,7 @@ export default function Catalog() {
             ) : cars.length === 0 ? (
               <div className="mk-panel" style={{ textAlign:'center', padding:'64px 24px' }}>
                 <div style={{ fontSize:56, marginBottom:14 }}>🔍</div>
-                <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700, fontSize:22, color:'var(--text)', marginBottom:8 }}>{t('no_results', l)}</h3>
+                <h3 style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:22, color:'var(--text)', marginBottom:8 }}>{t('no_results', l)}</h3>
                 <p style={{ fontSize:15, color:'var(--text-3)', marginBottom:22 }}>
                   {lang==='fr'?'Essayez une autre marque ou un autre terme.':lang==='en'?'Try another brand or term.':lang==='de'?'Versuchen Sie eine andere Marke oder einen anderen Begriff.':lang==='es'?'Pruebe otra marca u otro término.':lang==='it'?'Prova un\'altra marca o un altro termine.':'Tente outra marca ou outro termo.'}
                 </p>

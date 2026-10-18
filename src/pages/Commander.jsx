@@ -65,7 +65,7 @@ export default function Commander() {
     <div style={{ minHeight:'100vh', background:'var(--bg)', display:'flex', alignItems:'center', justifyContent:'center', paddingTop:72 }}>
       <div style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:16, padding:40, maxWidth:480, width:'90%', textAlign:'center' }}>
         <div style={{ fontSize:48, marginBottom:12 }}>✅</div>
-        <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:24, color:'var(--text)', marginBottom:8 }}>{l==='fr'?'Commande enregistrée !':l==='en'?'Order registered!':l==='de'?'Bestellung erfasst!':'¡Pedido registrado!'}</h2>
+        <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:24, color:'var(--text)', marginBottom:8 }}>{l==='fr'?'Commande enregistrée !':l==='en'?'Order registered!':l==='de'?'Bestellung erfasst!':'¡Pedido registrado!'}</h2>
         <p style={{ fontSize:15, color:'var(--text-2)', marginBottom:16 }}>{l==='fr'?'Votre numéro de commande :':l==='en'?'Your order number:':l==='de'?'Ihre Bestellnummer:':'Su número de pedido:'} <strong>{done}</strong></p>
         <p style={{ fontSize:14, color:'var(--text-3)', marginBottom:20 }}>{l==='fr'?'Un email de confirmation (avec les coordonnées de paiement) vous sera envoyé dès validation par notre équipe.':l==='en'?'A confirmation email (with payment details) will be sent once our team validates your order.':l==='de'?'Eine Bestätigungs-E-Mail (mit Zahlungsdaten) erhalten Sie nach Freigabe.':'Recibirá un email de confirmación (con los datos de pago) una vez validado.'}</p>
         <div style={{ display:'flex', gap:10, justifyContent:'center' }}>
@@ -79,7 +79,7 @@ export default function Commander() {
   return (
     <div style={{ minHeight:'100vh', background:'var(--bg)', paddingTop:72 }}>
       <div style={{ maxWidth:720, margin:'0 auto', padding:'36px 4% 80px' }}>
-        <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(24px,4vw,36px)', color:'var(--text)', marginBottom:8 }}>
+        <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(24px,4vw,36px)', color:'var(--text)', marginBottom:8 }}>
           {l==='fr'?'Commander':l==='en'?'Order now':l==='de'?'Bestellen':'Pedir'} — {car.make} {car.model}
         </h1>
         <p style={{ fontSize:15, color:'var(--text-3)', marginBottom:20 }}>{car.year} · {formatEuro(car.price)}</p>

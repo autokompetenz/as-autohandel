@@ -26,7 +26,7 @@ export default function Insurance() {
     <div style={{ minHeight:'100vh', background:C.bg, paddingTop:76 }}>
       <section style={{ position:'relative', height: isMobile ? '60vh' : '70vh', display:'flex', alignItems:'center', background:'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%)' }}>
         <motion.div initial={{ opacity:0, y:40 }} animate={{ opacity:1, y:0 }} style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}>
-          <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 48 : 72, color:'#fff', lineHeight:1.1, marginBottom:20 }}>
+          <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 48 : 72, color:'#fff', lineHeight:1.1, marginBottom:20 }}>
             {getText({ fr:'Assurances Véhicules', en:'Vehicle Insurance', de:'Fahrzeugversicherung', es:'Seguros de Vehículos', it:'Assicurazioni Veicoli' })}
           </h1>
           <p style={{ fontSize:16, color:'rgba(255,255,255,0.7)', marginBottom:32, maxWidth:600 }}>
@@ -40,7 +40,7 @@ export default function Insurance() {
 
       <section className="section-pad">
         <div style={{ maxWidth:1300, margin:'0 auto' }}>
-          <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:42, color:C.text, marginBottom:40, textAlign:'center' }}>
+          <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:42, color:C.text, marginBottom:40, textAlign:'center' }}>
             {getText({ fr:'Types de Couverture', en:'Coverage Types', de:'Versicherungsarten' })}
           </h2>
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap:24 }}>
@@ -60,7 +60,7 @@ export default function Insurance() {
 
       <section style={{ background:C.card2, padding:isMobile ? 48 : 72 }}>
         <div style={{ maxWidth:900, margin:'0 auto', textAlign:'center' }}>
-          <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:36, color:C.text, marginBottom:20 }}>
+          <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:36, color:C.text, marginBottom:20 }}>
             {getText({ fr:'Besoin d\'un devis?', en:'Need a quote?', de:'Angebot benötigt?' })}
           </h2>
           <a href="https://wa.me/491630436338" target="_blank" style={{ background:'#25D366', color:'#fff', textDecoration:'none', padding:'14px 28px', borderRadius:8, fontWeight:700, display:'inline-flex', alignItems:'center', gap:8 }}>

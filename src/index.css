@@ -7,6 +7,8 @@
    LIGHT THEME (default)
 ══════════════════════════════════════════════════════ */
 :root {
+  --font:         'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
   --red:         #132853;
   --red-dark:    #0E1E3D;
   --red-light:   #1E3A6E;
@@ -80,7 +82,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font);
   font-weight: 400;
   line-height: 1.6;
   overflow-x: hidden;
@@ -95,13 +97,13 @@ body {
 ::selection { background: rgba(19,40,83,0.15); color: var(--red-dark); }
 
 /* ── Typography ── */
-h1,h2,h3,h4,h5 { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-weight:800; line-height:1.05; letter-spacing:-0.025em; color: var(--text); }
+h1,h2,h3,h4,h5 { font-family:var(--font); font-weight:800; line-height:1.05; letter-spacing:-0.025em; color: var(--text); }
 
 /* ── Buttons (marketplace) ── */
 .btn-primary {
   display:inline-flex; align-items:center; gap:8px;
   background:var(--red); color:#fff; border:none; cursor:pointer;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:14px; font-weight:700;
+  font-family:var(--font); font-size:14px; font-weight:700;
   letter-spacing:0.01em; text-decoration:none;
   padding:13px 28px; border-radius:var(--radius);
   transition:all 0.2s var(--ease);
@@ -112,7 +114,7 @@ h1,h2,h3,h4,h5 { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-w
 .btn-ghost {
   display:inline-flex; align-items:center; gap:8px;
   background:#fff; color:var(--text); border:1px solid var(--border-2);
-  cursor:pointer; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:14px; font-weight:600;
+  cursor:pointer; font-family:var(--font); font-size:14px; font-weight:600;
   letter-spacing:0.01em; text-decoration:none;
   padding:12px 28px; border-radius:var(--radius);
   transition:all 0.2s var(--ease);
@@ -122,7 +124,7 @@ h1,h2,h3,h4,h5 { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-w
 .btn-gold {
   display:inline-flex; align-items:center; gap:8px;
   background:var(--red); color:#fff; border:none; cursor:pointer;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px; font-weight:700;
+  font-family:var(--font); font-size:13px; font-weight:700;
   letter-spacing:0.02em; text-decoration:none;
   padding:12px 26px; border-radius:var(--radius);
   transition:all 0.2s var(--ease);
@@ -133,7 +135,7 @@ h1,h2,h3,h4,h5 { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-w
 .btn-outline {
   display:inline-flex; align-items:center; gap:8px;
   background:#fff; color:var(--text-2); border:1px solid var(--border-2);
-  cursor:pointer; font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px; font-weight:600;
+  cursor:pointer; font-family:var(--font); font-size:13px; font-weight:600;
   letter-spacing:0.02em; text-decoration:none;
   padding:11px 22px; border-radius:var(--radius);
   transition:all 0.2s var(--ease);
@@ -175,7 +177,7 @@ h1,h2,h3,h4,h5 { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-w
   width:100%; background:var(--bg-input);
   border:1px solid var(--border); color:var(--text);
   border-radius:var(--radius); padding:14px 18px;
-  font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; font-weight:400;
+  font-family:var(--font); font-size:15px; font-weight:400;
   transition:all 0.3s; outline:none;
   -webkit-appearance: none;
 }

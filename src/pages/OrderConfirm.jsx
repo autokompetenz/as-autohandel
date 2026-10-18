@@ -65,7 +65,7 @@ export default function OrderConfirm() {
   if (!order) return (
     <div style={{ paddingTop:120, textAlign:'center', background:'var(--bg)', minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center' }}>
       <div>
-        <p style={{ fontSize:80, fontWeight:900, color:'var(--red)', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif" }}>404</p>
+        <p style={{ fontSize:80, fontWeight:900, color:'var(--red)', fontFamily:"var(--font)" }}>404</p>
         <Link to="/" className="btn-primary" style={{ marginTop:20, display:'inline-flex' }}>Accueil</Link>
       </div>
     </div>
@@ -88,7 +88,7 @@ export default function OrderConfirm() {
         {/* Title */}
         <motion.div initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.2, duration:0.6 }}
           style={{ textAlign:'center', marginBottom:40 }}>
-          <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(32px,5vw,56px)', color:'var(--text)', letterSpacing:'-0.02em', marginBottom:12 }}>
+          <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(32px,5vw,56px)', color:'var(--text)', letterSpacing:'-0.02em', marginBottom:12 }}>
             {L.title[l]}
           </h1>
           <p style={{ fontSize:16, color:'var(--text-3)', lineHeight:1.6 }}>{L.email[l]}</p>
@@ -99,7 +99,7 @@ export default function OrderConfirm() {
           <p style={{ fontSize:11, fontWeight:800, letterSpacing:'0.35em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:10 }}>
             {L.bcLabel[l]}
           </p>
-          <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 28 : 40, color:'var(--red)', letterSpacing:'0.08em' }}>
+          <p style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 28 : 40, color:'var(--red)', letterSpacing:'0.08em' }}>
             {order.orderNumber}
           </p>
           <p style={{ fontSize:13, color:'var(--text-3)', marginTop:8 }}>
@@ -128,7 +128,7 @@ export default function OrderConfirm() {
                     {item.car.fuelType} · {item.car.transmission}
                   </p>
                 </div>
-                <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 18 : 22, color:'var(--red)', flexShrink:0 }}>
+                <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 22, color:'var(--red)', flexShrink:0 }}>
                   {formatEuro(item.unitPrice)}
                 </p>
               </div>
@@ -150,7 +150,7 @@ export default function OrderConfirm() {
                       {l==='fr'?'Garantie':l==='en'?'Warranty':l==='de'?'Garantie':'Garantía'} - {order.warranty.months} {l==='fr'?'mois':l==='en'?'months':l==='de'?'Monate':'meses'}
                     </p>
                   </div>
-                  <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--red)' }}>
+                  <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--red)' }}>
                     {formatEuro(order.warranty.price)}
                   </p>
                 </div>
@@ -162,7 +162,7 @@ export default function OrderConfirm() {
                       {l==='fr'?'Service d\'immatriculation':l==='en'?'Registration service':l==='de'?'Zulassungsservice':'Servicio de matriculación'}
                     </p>
                   </div>
-                  <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--red)' }}>
+                  <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--red)' }}>
                     {formatEuro(order.registration.price)}
                   </p>
                 </div>
@@ -174,7 +174,7 @@ export default function OrderConfirm() {
                       {service.label || service.id}
                     </p>
                   </div>
-                  <p style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--red)' }}>
+                  <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--red)' }}>
                     {formatEuro(service.price)}
                   </p>
                 </div>
@@ -214,7 +214,7 @@ export default function OrderConfirm() {
             <div style={{ height:1, background:'var(--border)', margin:'4px 0' }} />
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'baseline' }}>
               <span style={{ fontWeight:700, color:'var(--text)' }}>{L.total[l]}</span>
-              <span style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 26 : 34, color:'var(--text)', letterSpacing:'-0.02em' }}>
+              <span style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 26 : 34, color:'var(--text)', letterSpacing:'-0.02em' }}>
                 {formatEuro(order.totalPrice)}
               </span>
             </div>

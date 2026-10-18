@@ -136,7 +136,7 @@ export default function Sell() {
             </span>
           </div>
           <h1 style={{
-            fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900,
+            fontFamily:"var(--font)", fontWeight:900,
             fontSize: isMobile ? 'clamp(36px,8vw,64px)' : 'clamp(48px,6vw,88px)',
             color:'#fff', letterSpacing:'-0.03em', lineHeight:1.1, marginBottom:20
           }}>
@@ -148,7 +148,7 @@ export default function Sell() {
           <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
             <a href="#form" style={{
               background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none',
-              fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'14px 28px',
+              fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
               borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
               boxShadow:'0 4px 16px rgba(19,40,83,0.4)'
             }}>
@@ -156,7 +156,7 @@ export default function Sell() {
             </a>
             <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{
               background:'rgba(255,255,255,0.1)', color:'#fff', textDecoration:'none',
-              fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:14, fontWeight:700, padding:'14px 28px',
+              fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
               borderRadius:8, border:'1px solid rgba(255,255,255,0.3)', display:'inline-flex', alignItems:'center', gap:8
             }}>
               💬 WhatsApp
@@ -178,7 +178,7 @@ export default function Sell() {
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {t({ fr:'COMMENT ÇA MARCHE ?', en:'HOW IT WORKS?', de:'SO FUNKTIONIERT ES', es:'¿CÓMO FUNCIONA?', it:'COME FUNZIONA?', pt:'COMO FUNCIONA?', ro:'CUM FUNCȚIONEAZĂ?' })}
             </div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'3 étapes simples', en:'3 simple steps', de:'3 einfache Schritte', es:'3 pasos sencillos', it:'3 semplici passaggi', pt:'3 passos simples', ro:'3 pași simpli' })}
             </h2>
           </motion.div>
@@ -202,8 +202,8 @@ export default function Sell() {
                   {step.icon}
                 </div>
                 <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:10 }}>
-                  <span style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:14, color:'#fff', background:'#132853', borderRadius:'50%', width:26, height:26, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>{i+1}</span>
-                  <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:18, color:C.text }}>{step.title}</h3>
+                  <span style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:14, color:'#fff', background:'#132853', borderRadius:'50%', width:26, height:26, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>{i+1}</span>
+                  <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:18, color:C.text }}>{step.title}</h3>
                 </div>
                 <p style={{ fontSize:14, color:C.text2, lineHeight:1.7 }}>{step.desc}</p>
               </motion.div>
@@ -225,7 +225,7 @@ export default function Sell() {
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {t({ fr:'ESTIMATION GRATUITE', en:'FREE ESTIMATION', de:'KOSTENLOSE BEWERTUNG', es:'ESTIMACIÓN GRATUITA', it:'STIMA GRATUITA', pt:'ESTIMATIVA GRATUITA', ro:'ESTIMARE GRATUITĂ' })}
             </div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'Décrivez votre véhicule', en:'Describe your vehicle', de:'Beschreiben Sie Ihr Fahrzeug', es:'Describa su vehículo', it:'Descrivete il vostro veicolo', pt:'Descreva o seu veículo', ro:'Descrieți vehiculul dumneavoastră' })}
             </h2>
           </motion.div>
@@ -324,7 +324,7 @@ export default function Sell() {
             <button type="submit" disabled={submitting} style={{
               width:'100%', padding:'18px 36px', background:'linear-gradient(135deg,#132853,#0E1E3D)',
               color:'#fff', border:'none', borderRadius:10, fontSize:15, fontWeight:700,
-              fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", cursor:'pointer', letterSpacing:'0.05em',
+              fontFamily:"var(--font)", cursor:'pointer', letterSpacing:'0.05em',
               boxShadow:'0 4px 16px rgba(19,40,83,0.3)', opacity: submitting ? 0.6 : 1,
               transition:'all 0.3s'
             }}>
@@ -349,7 +349,7 @@ export default function Sell() {
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {t({ fr:'POURQUOI NOUS ?', en:'WHY US?', de:'WARUM WIR?', es:'¿POR QUÉ NOSOTROS?', it:'PERCHÉ NOI?', pt:'PORQUÊ NÓS?', ro:'DE CE NOI?' })}
             </div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'Vendez en toute confiance', en:'Sell with confidence', de:'Sicher verkaufen', es:'Venda con confianza', it:'Vendete in sicurezza', pt:'Venda com confiança', ro:'Vindeți cu încredere' })}
             </h2>
           </motion.div>
@@ -365,7 +365,7 @@ export default function Sell() {
                 style={{ textAlign:'center', background:C.card, border:`1px solid ${C.border}`, borderRadius:16, padding:28, boxShadow:C.shadow }}
               >
                 <div style={{ fontSize:36, marginBottom:12 }}>{item.icon}</div>
-                <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:16, color:C.text }}>{item.title}</h3>
+                <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:16, color:C.text }}>{item.title}</h3>
               </motion.div>
             ))}
           </div>
@@ -381,19 +381,19 @@ export default function Sell() {
             viewport={{ once:true }}
             transition={{ duration:0.6 }}
           >
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 32 : 42, color:'#fff', letterSpacing:'-0.02em', marginBottom:20 }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 32 : 42, color:'#fff', letterSpacing:'-0.02em', marginBottom:20 }}>
               {t({ fr:'Une question sur la vente ?', en:'A question about selling?', de:'Fragen zum Verkauf?', es:'¿Preguntas sobre la venta?', it:'Domande sulla vendita?', pt:'Perguntas sobre a venda?', ro:'Aveți o întrebare despre vânzare?' })}
             </h2>
             <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
               <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{
-                background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)",
                 fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
                 boxShadow:'0 4px 16px rgba(37,211,102,0.3)'
               }}>
                 💬 WhatsApp
               </a>
               <a href="mailto:kontakt@automatikgebrauchtwagen.com" style={{
-                background:'rgba(255,255,255,0.1)', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                background:'rgba(255,255,255,0.1)', color:'#fff', textDecoration:'none', fontFamily:"var(--font)",
                 fontSize:14, fontWeight:700, padding:'14px 28px', borderRadius:8, border:'1px solid rgba(255,255,255,0.3)', display:'inline-flex', alignItems:'center', gap:8
               }}>
                 ✉ kontakt@automatikgebrauchtwagen.com

@@ -23,7 +23,7 @@ export default function BrandLogo({ brand, height = 26, width, color, style }) {
   return (
     <div
       style={{
-        fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif",
+        fontFamily: "var(--font)",
         fontWeight: 800,
         color: brand.color,
         fontSize,

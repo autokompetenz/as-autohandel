@@ -129,7 +129,7 @@ export default function Warranty() {
             </span>
           </div>
           <h1 style={{ 
-            fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", 
+            fontFamily:"var(--font)", 
             fontWeight:900, 
             fontSize: isMobile ? 'clamp(36px,8vw,64px)' : 'clamp(48px,6vw,88px)', 
             color:'#fff', 
@@ -147,7 +147,7 @@ export default function Warranty() {
               background:'linear-gradient(135deg,#132853,#0E1E3D)', 
               color:'#fff', 
               textDecoration:'none', 
-              fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", 
+              fontFamily:"var(--font)", 
               fontSize:14, 
               fontWeight:700, 
               padding:'14px 28px', 
@@ -163,7 +163,7 @@ export default function Warranty() {
               background:'rgba(255,255,255,0.1)', 
               color:'#fff', 
               textDecoration:'none', 
-              fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", 
+              fontFamily:"var(--font)", 
               fontSize:14, 
               fontWeight:700, 
               padding:'14px 28px', 
@@ -192,7 +192,7 @@ export default function Warranty() {
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {t({ fr:'INCLUSE', en:'INCLUDED', de:'INKLUSIVE', es:'INCLUIDO', it:'INCLUSO', pt:'INCLUÍDO', ro:'INCLUSĂ' })}
             </div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'Garantie Basique\nAS Autohandel GmbH', en:'AS Autohandel GmbH\nBasic Warranty', de:'AS Autohandel GmbH\nBasisgarantie', es:'Garantía Básica\nAS Autohandel GmbH', it:'Garanzia Base\nAS Autohandel GmbH', pt:'Garantia Básica\nAS Autohandel GmbH', ro:'Garanție de Bază\nAS Autohandel GmbH' })}
             </h2>
             <p style={{ fontSize:16, color:C.text3, marginTop:12, maxWidth:600, margin:'12px auto 0' }}>
@@ -215,7 +215,7 @@ export default function Warranty() {
               ].map((stat, i) => (
                 <div key={i} style={{ textAlign:'center', padding:24, background:C.card2, borderRadius:16 }}>
                   <div style={{ fontSize:32, marginBottom:12 }}>{stat.icon}</div>
-                  <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:48, color:C.red, lineHeight:1 }}>{stat.value}</div>
+                  <div style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:48, color:C.red, lineHeight:1 }}>{stat.value}</div>
                   <div style={{ fontSize:12, fontWeight:700, letterSpacing:'0.2em', textTransform:'uppercase', color:C.text3, marginTop:8 }}>{stat.label}</div>
                 </div>
               ))}
@@ -253,7 +253,7 @@ export default function Warranty() {
                     {item.icon}
                   </div>
                   <div>
-                    <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:18, color:C.text, marginBottom:8 }}>{item.title}</h3>
+                    <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:18, color:C.text, marginBottom:8 }}>{item.title}</h3>
                   </div>
                 </div>
                 <p style={{ fontSize:14, color:C.text2, lineHeight:1.7 }}>{item.desc}</p>
@@ -276,7 +276,7 @@ export default function Warranty() {
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {t({ fr:'EXTENSIONS', en:'EXTENSIONS', de:'ERWEITERUNGEN', es:'EXTENSIONES', it:'ESTENSIONI', pt:'EXTENSÕES', ro:'EXTENSII' })}
             </div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'Options d\'Extension\nde Garantie', en:'Warranty\nExtension Options', de:'Garantie-\nErweiterungsoptionen', es:'Opciones de\nExtensión de Garantía', it:'Opzioni di\nEstensione Garanzia', pt:'Opções de\nExtensão de Garantia', ro:'Opțiuni de\nExtensie a Garanției' })}
             </h2>
             <p style={{ fontSize:16, color:C.text3, marginTop:12, maxWidth:600, margin:'12px auto 0' }}>
@@ -310,7 +310,7 @@ export default function Warranty() {
                     {t({ fr:'POPULAIRE', en:'POPULAR', de:'BELIEBT', es:'POPULAR', it:'POPOLARE', pt:'POPULAR', ro:'POPULAR' })}
                   </div>
                 )}
-                <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:22, color:C.text, marginBottom:12 }}>{option.title}</h3>
+                <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:22, color:C.text, marginBottom:12 }}>{option.title}</h3>
                 <div style={{ fontSize:28, fontWeight:900, color:C.red, marginBottom:24 }}>{option.price}</div>
                 <div style={{ display:'flex', flexDirection:'column', gap:12 }}>
                   {option.features.map((feature, fi) => (
@@ -327,7 +327,7 @@ export default function Warranty() {
                   borderRadius:10, 
                   fontSize:14, 
                   fontWeight:700, 
-                  fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                  fontFamily:"var(--font)",
                   cursor:'pointer',
                   transition:'all 0.3s'
                 }}>
@@ -352,7 +352,7 @@ export default function Warranty() {
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {t({ fr:'EXCLUSIONS', en:'EXCLUSIONS', de:'AUSSCHLÜSSE', es:'EXCLUSIONES', it:'ESCLUSIONI', pt:'EXCLUSÕES', ro:'EXCLUDERI' })}
             </div>
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,52px)', color:C.text, letterSpacing:'-0.02em' }}>
               {t({ fr:'Ce qui n\'est pas\ncouvert', en:'What is not\ncovered', de:'Was nicht\nabgedeckt ist', es:'Lo que no está\ncubierto', it:'Cosa non è\ncoperto', pt:'O que não está\ncoberto', ro:'Ce nu este\nacoperit' })}
             </h2>
           </motion.div>
@@ -389,7 +389,7 @@ export default function Warranty() {
             viewport={{ once:true }}
             transition={{ duration:0.6 }}
           >
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 32 : 42, color:'#fff', letterSpacing:'-0.02em', marginBottom:20 }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 32 : 42, color:'#fff', letterSpacing:'-0.02em', marginBottom:20 }}>
               {t({ fr:'Prêt à protéger votre véhicule?', en:'Ready to protect your vehicle?', de:'Bereit, Ihr Fahrzeug zu schützen?', es:'¿Listo para proteger su vehículo?', it:'Pronto a proteggere il tuo veicolo?', pt:'Pronto para proteger seu veículo?', ro:'Gata să vă protejați vehiculul?' })}
             </h2>
             <p style={{ fontSize:16, color:'rgba(255,255,255,0.7)', lineHeight:1.7, marginBottom:32 }}>
@@ -400,7 +400,7 @@ export default function Warranty() {
                 background:'#25D366', 
                 color:'#fff', 
                 textDecoration:'none', 
-                fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", 
+                fontFamily:"var(--font)", 
                 fontSize:14, 
                 fontWeight:700, 
                 padding:'14px 28px', 
@@ -416,7 +416,7 @@ export default function Warranty() {
                 background:'rgba(255,255,255,0.1)', 
                 color:'#fff', 
                 textDecoration:'none', 
-                fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", 
+                fontFamily:"var(--font)", 
                 fontSize:14, 
                 fontWeight:700, 
                 padding:'14px 28px', 

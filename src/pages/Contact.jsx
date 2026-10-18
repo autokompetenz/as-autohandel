@@ -124,7 +124,7 @@ export default function Contact() {
             </span>
           </div>
           <h1 style={{
-            fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900,
+            fontFamily:"var(--font)", fontWeight:900,
             fontSize: isMobile ? 'clamp(36px,8vw,64px)' : 'clamp(48px,6vw,88px)',
             color:'#fff', letterSpacing:'-0.03em', lineHeight:1.1, marginBottom:20
           }}>
@@ -154,7 +154,7 @@ export default function Contact() {
                 <div style={{ width:56, height:56, margin:'0 auto 16px', borderRadius:12, background:'linear-gradient(135deg,rgba(19,40,83,0.15),rgba(19,40,83,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:26 }}>
                   {card.icon}
                 </div>
-                <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:16, color:C.text, marginBottom:8 }}>{card.title}</h3>
+                <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:16, color:C.text, marginBottom:8 }}>{card.title}</h3>
                 {card.lines.map((line, j) => (
                   <p key={j} style={{ fontSize:13, color:C.text2, lineHeight:1.6, fontWeight: line.startsWith('+') || line.includes('@') ? 700 : 500 }}>
                     {line}
@@ -175,7 +175,7 @@ export default function Contact() {
               onSubmit={handleSubmit}
               style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:20, padding: isMobile ? 24 : 36, boxShadow:C.shadow }}
             >
-              <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:26, color:C.text, marginBottom:8 }}>
+              <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:26, color:C.text, marginBottom:8 }}>
                 {t({ fr:'Envoyez-nous un message', en:'Send us a message', de:'Schreiben Sie uns', es:'Envíenos un mensaje', it:'Inviateci un messaggio', pt:'Envie-nos uma mensagem', ro:'Trimiteți-ne un mesaj' })}
               </h2>
               <p style={{ fontSize:13, color:C.text3, marginBottom:24 }}>
@@ -214,7 +214,7 @@ export default function Contact() {
               <button type="submit" disabled={submitting} style={{
                 width:'100%', padding:'18px 36px', background:'linear-gradient(135deg,#132853,#0E1E3D)',
                 color:'#fff', border:'none', borderRadius:10, fontSize:15, fontWeight:700,
-                fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", cursor:'pointer', letterSpacing:'0.05em',
+                fontFamily:"var(--font)", cursor:'pointer', letterSpacing:'0.05em',
                 boxShadow:'0 4px 16px rgba(19,40,83,0.3)', opacity: submitting ? 0.6 : 1, transition:'all 0.3s'
               }}>
                 {submitting
@@ -232,7 +232,7 @@ export default function Contact() {
               style={{ display:'flex', flexDirection:'column', gap:24 }}
             >
               <div style={{ background:C.card, border:`1px solid ${C.border}`, borderRadius:20, padding: isMobile ? 24 : 32, boxShadow:C.shadow }}>
-                <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:20, color:C.text, marginBottom:20 }}>
+                <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:20, color:C.text, marginBottom:20 }}>
                   {t({ fr:'Horaires d\'ouverture', en:'Opening hours', de:'Öffnungszeiten', es:'Horarios', it:'Orari', pt:'Horários', ro:'Program de lucru' })}
                 </h3>
                 <div style={{ display:'flex', flexDirection:'column', gap:14 }}>
@@ -266,7 +266,7 @@ export default function Contact() {
                   />
                   <span style={{
                     position:'absolute', bottom:18, left:0, right:0, textAlign:'center', zIndex:1,
-                    color:'#fff', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontSize:13, fontWeight:700, letterSpacing:'0.08em', textShadow:'0 1px 4px rgba(0,0,0,0.6)'
+                    color:'#fff', fontFamily:"var(--font)", fontSize:13, fontWeight:700, letterSpacing:'0.08em', textShadow:'0 1px 4px rgba(0,0,0,0.6)'
                   }}>
                     Sprendlinger Straße 119, 63069 Offenbach am Main
                   </span>
@@ -286,11 +286,11 @@ export default function Contact() {
             viewport={{ once:true }}
             transition={{ duration:0.6 }}
           >
-            <h2 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize: isMobile ? 32 : 42, color:'#fff', letterSpacing:'-0.02em', marginBottom:20 }}>
+            <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 32 : 42, color:'#fff', letterSpacing:'-0.02em', marginBottom:20 }}>
               {t({ fr:'Besoin d\'une réponse immédiate ?', en:'Need an immediate answer?', de:'Brauchen Sie eine sofortige Antwort?', es:'¿Necesita una respuesta inmediata?', it:'Serve una risposta immediata?', pt:'Precisa de uma resposta imediata?', ro:'Aveți nevoie de un răspuns imediat?' })}
             </h2>
             <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{
-              background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+              background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)",
               fontSize:15, fontWeight:700, padding:'16px 32px', borderRadius:10, display:'inline-flex', alignItems:'center', gap:10,
               boxShadow:'0 4px 16px rgba(37,211,102,0.3)'
             }}>

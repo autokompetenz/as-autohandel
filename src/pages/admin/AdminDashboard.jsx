@@ -35,7 +35,7 @@ export default function AdminDashboard() {
     <div style={{ padding:'clamp(24px,5vw,48px) clamp(16px,4vw,44px) 60px', minHeight:'100vh', background:'var(--bg)' }}>
       <div style={{ marginBottom:36 }}>
         <div className="section-eyebrow">Administration</div>
-        <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.02em' }}>
+        <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.02em' }}>
           Tableau de bord
         </h1>
       </div>
@@ -71,7 +71,7 @@ export default function AdminDashboard() {
                 <span style={{ fontSize:10, background:'rgba(255,170,0,0.15)', color:'#D97706', padding:'4px 10px', borderRadius:12, fontWeight:800, letterSpacing:'0.1em', border:'1px solid rgba(255,170,0,0.28)' }}>ACTION</span>
               )}
             </div>
-            <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,3.5vw,40px)', color, lineHeight:1, letterSpacing:'-0.03em', position:'relative', zIndex:1 }}>{value}</div>
+            <div style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,3.5vw,40px)', color, lineHeight:1, letterSpacing:'-0.03em', position:'relative', zIndex:1 }}>{value}</div>
             <div style={{ fontSize:13, color:'var(--text-2)', marginTop:8, fontWeight:700, position:'relative', zIndex:1 }}>{label}</div>
             <div style={{ fontSize:11, color:'var(--text-3)', marginTop:4, position:'relative', zIndex:1 }}>{sub}</div>
           </motion.div>

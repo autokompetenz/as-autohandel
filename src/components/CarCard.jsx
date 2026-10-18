@@ -74,7 +74,7 @@ export default function CarCard({ car, index = 0 }) {
       {/* Info */}
       <div style={{ padding:'14px 16px 16px' }}>
         <Link to={`/cars/${car.id}`} style={{ textDecoration:'none' }}>
-          <h3 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700, fontSize:17, color:'var(--text)', letterSpacing:'-0.02em', marginBottom:3, lineHeight:1.25, transition:'color 0.2s' }}
+          <h3 style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:17, color:'var(--text)', letterSpacing:'-0.02em', marginBottom:3, lineHeight:1.25, transition:'color 0.2s' }}
             onMouseOver={e=>e.target.style.color='var(--red)'} onMouseOut={e=>e.target.style.color='var(--text)'}>
             {car.make} {car.model}
           </h3>
@@ -94,7 +94,7 @@ export default function CarCard({ car, index = 0 }) {
         {/* Price row */}
         <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', gap:10, marginTop:14, paddingTop:14, borderTop:'1px solid var(--border)' }}>
           <div>
-            <div style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:800, fontSize:23, color:'var(--text)', letterSpacing:'-0.03em', lineHeight:1 }}>
+            <div style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:23, color:'var(--text)', letterSpacing:'-0.03em', lineHeight:1 }}>
               {formatEuro(car.price)}
             </div>
             {car.monthlyPayment && (
@@ -104,7 +104,7 @@ export default function CarCard({ car, index = 0 }) {
             )}
           </div>
           <button onClick={handleAddToCart} disabled={adding}
-            style={{ padding:'9px 16px', borderRadius:6, fontSize:13, fontWeight:700, cursor:'pointer', border:'none', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", transition:'all 0.2s', background:adding?'var(--red-dark)':'var(--red)', color:'#fff', flexShrink:0 }}
+            style={{ padding:'9px 16px', borderRadius:6, fontSize:13, fontWeight:700, cursor:'pointer', border:'none', fontFamily:"var(--font)", transition:'all 0.2s', background:adding?'var(--red-dark)':'var(--red)', color:'#fff', flexShrink:0 }}
             onMouseOver={e=>{ if(!adding) e.currentTarget.style.background='var(--red-dark)'; }}
             onMouseOut={e=>{ if(!adding) e.currentTarget.style.background='var(--red)'; }}>
             {adding?'...':(l==='fr'?'Commander':l==='en'?'Order':l==='de'?'Bestellen':'Pedir')}

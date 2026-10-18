@@ -100,7 +100,7 @@ export default function PendingOrderReminder() {
             }}
           >
             <div style={{ fontSize: 34, marginBottom: 8 }}>💳</div>
-            <h3 style={{ fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 900, fontSize: 16, color: 'var(--red)', marginBottom: 6 }}>
+            <h3 style={{ fontFamily: "var(--font)", fontWeight: 900, fontSize: 16, color: 'var(--red)', marginBottom: 6 }}>
               {t('reminder_title', l)}
             </h3>
             <p style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.6, marginBottom: 14 }}>
@@ -112,7 +112,7 @@ export default function PendingOrderReminder() {
               </p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                 <span style={{ fontSize: 11, color: 'var(--text-3)', fontWeight: 700, textTransform: 'uppercase' }}>{t('reminder_amount', l)}</span>
-                <span style={{ fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 900, fontSize: 18, color: 'var(--text)' }}>{formatEuro(amountDue)}</span>
+                <span style={{ fontFamily: "var(--font)", fontWeight: 900, fontSize: 18, color: 'var(--text)' }}>{formatEuro(amountDue)}</span>
               </div>
             </div>
             <Link to={`/track/${pendingOrder.orderNumber}`} className="btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: 13, marginBottom: 8, boxSizing: 'border-box' }} onClick={() => setOpen(false)}>

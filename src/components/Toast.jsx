@@ -26,7 +26,7 @@ export default function Toast() {
               <span style={{ width: 32, height: 32, borderRadius: '50%', background: cfg.bg, color: cfg.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 800, flexShrink: 0 }}>
                 {cfg.icon}
               </span>
-              <p style={{ fontSize: 14, color: '#E8E8E8', flex: 1, lineHeight: 1.4, fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>{toast.message}</p>
+              <p style={{ fontSize: 14, color: '#E8E8E8', flex: 1, lineHeight: 1.4, fontFamily: "var(--font)" }}>{toast.message}</p>
             </motion.div>
           );
         })}

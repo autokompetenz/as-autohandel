@@ -39,7 +39,7 @@ export default function AdminClients() {
     <div style={{ padding:'clamp(24px,5vw,48px) clamp(16px,4vw,44px) 60px', minHeight:'100vh', background:'var(--bg)' }}>
       <div style={{ marginBottom:32 }}>
         <div className="section-eyebrow">CRM</div>
-        <h1 style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.02em' }}>
+        <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.02em' }}>
           Clients <span style={{ color:'var(--text-3)', fontSize:'0.55em', fontWeight:600 }}>({clients.length})</span>
         </h1>
       </div>
@@ -69,7 +69,7 @@ export default function AdminClients() {
                         display:'flex',
                         alignItems:'center',
                         justifyContent:'center',
-                        fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif",
+                        fontFamily:"var(--font)",
                         fontWeight:900,
                         fontSize:16,
                         color:'#fff',
@@ -93,7 +93,7 @@ export default function AdminClients() {
                     {client.monthlySalary ? formatEuro(client.monthlySalary) : '—'}
                   </td>
                   <td style={{ padding:'14px 20px' }}>
-                    <span style={{ fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:900, fontSize:26, color:'var(--red)', letterSpacing:'-0.02em' }}>{client.orderCount}</span>
+                    <span style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:26, color:'var(--red)', letterSpacing:'-0.02em' }}>{client.orderCount}</span>
                   </td>
                   <td style={{ padding:'14px 20px', fontWeight:800, color:'var(--text)', fontSize:16, letterSpacing:'-0.01em' }}>
                     {client.totalSpent > 0 ? formatEuro(client.totalSpent) : '—'}
@@ -110,7 +110,7 @@ export default function AdminClients() {
                         fontSize:12, padding:'8px 14px', letterSpacing:'0.05em',
                         border:'1px solid rgba(220,38,38,0.35)', borderRadius:8,
                         background:'rgba(220,38,38,0.08)', color:'#DC2626',
-                        cursor:'pointer', fontFamily:"'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight:700,
+                        cursor:'pointer', fontFamily:"var(--font)", fontWeight:700,
                         opacity: deletingId === client.id ? 0.5 : 1,
                         transition:'all 0.2s var(--ease)',
                       }}

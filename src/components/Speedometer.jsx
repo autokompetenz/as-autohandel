@@ -79,7 +79,7 @@ export default function Speedometer({
               key={f}
               x={cx + lr * Math.cos(ang)} y={pivotY - lr * Math.sin(ang) + size * 0.028}
               textAnchor="middle" fill={subColor}
-              style={{ fontSize: size * 0.052, fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 700 }}
+              style={{ fontSize: size * 0.052, fontFamily: "var(--font)", fontWeight: 700 }}
             >
               {Math.round(max * f)}
             </text>
@@ -96,7 +96,7 @@ export default function Speedometer({
         <circle cx={cx} cy={pivotY} r={size * 0.013} fill={dark ? '#0a0a0a' : '#ffffff'} />
       </svg>
 
-      <div style={{ marginTop: -size * 0.05, fontFamily: "'Helvetica Neue',Helvetica,Arial,sans-serif", fontWeight: 800, fontSize: size * 0.135, color: textColor, letterSpacing: '-0.02em', lineHeight: 1 }}>
+      <div style={{ marginTop: -size * 0.05, fontFamily: "var(--font)", fontWeight: 800, fontSize: size * 0.135, color: textColor, letterSpacing: '-0.02em', lineHeight: 1 }}>
         {display}
         {unit && <span style={{ fontSize: size * 0.065, color: subColor, fontWeight: 600, marginLeft: 5 }}>{unit}</span>}
       </div>
