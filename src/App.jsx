@@ -10,6 +10,7 @@ import ClientBottomNav, { useClientBottomNavPadding } from './components/ClientB
 
 // Pages (code-split, chargées à la demande)
 const Home         = lazy(() => import('./pages/Home'));
+const HomeMinimal  = lazy(() => import('./pages/HomeMinimal'));
 const Catalog      = lazy(() => import('./pages/Catalog'));
 const CarDetails   = lazy(() => import('./pages/CarDetails'));
 const Simulation   = lazy(() => import('./pages/Simulation'));
@@ -172,6 +173,7 @@ export default function App() {
         <Routes>
         {/* Public */}
         <Route path="/"          element={<MainLayout><Home /></MainLayout>} />
+        <Route path="/accueil2"  element={<MainLayout><HomeMinimal /></MainLayout>} />
         <Route path="/catalog"   element={<MainLayout><Catalog /></MainLayout>} />
         <Route path="/cars/:id"  element={<MainLayout><CarDetails /></MainLayout>} />
         <Route path="/simulation"element={<MainLayout><Simulation /></MainLayout>} />
