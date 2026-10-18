@@ -287,16 +287,24 @@ export default function Navbar() {
                   {/* Mobile nav links */}
                   {isMobile && (
                     <div>
+                      {/* Appel direct */}
+                      <a href="tel:+491630436338"
+                        onClick={() => setMenuOpen(false)}
+                        style={{
+                          display:'flex', alignItems:'center', justifyContent:'center', gap:10,
+                          padding:'13px 0', marginBottom:14, borderRadius:'var(--radius)',
+                          background:'var(--red)', color:'#fff', fontFamily:F,
+                          fontSize:15, fontWeight:700, textDecoration:'none',
+                        }}>
+                        📞 +49 163 043 63 38
+                      </a>
+
                       {[
-                        { to: '/catalog',     icon: '🚗', label: t('nav_vehicles', lang) },
-                        { to: '/marques',     icon: '🏷️', label: t('nav_brands', lang) },
-                        { to: '/camping-car', icon: '🚐', label: 'Camping Car' },
-                        { to: '/simulation',  icon: '💳', label: t('nav_financing', lang) },
-                        { to: '/warranty',    icon: '🛡️', label: t('nav_warranty', lang) || 'Garantie' },
-                        { to: '/contact',     icon: '📞', label: t('nav_contact', lang) },
-                        { to: '/faq',         icon: '❓', label: t('nav_faq', lang) },
-                        { to: '/blog',        icon: '📰', label: 'Blog' },
-                        { to: '/track',       icon: '📍', label: t('nav_track', lang) },
+                        { to: '/catalog',    icon: '🚗', label: t('nav_vehicles', lang) },
+                        { to: '/simulation', icon: '💳', label: t('nav_financing', lang) },
+                        { to: '/track',      icon: '📍', label: t('nav_track', lang) },
+                        { to: '/contact',    icon: '📞', label: t('nav_contact', lang) },
+                        { to: '/faq',        icon: '❓', label: t('nav_faq', lang) },
                       ].map(({ to, icon, label }) => (
                         <Link key={to} to={to} onClick={() => setMenuOpen(false)}
                           style={{
@@ -327,6 +335,7 @@ export default function Navbar() {
                   )}
 
                   {/* Account links */}
+                  {isAuthenticated && (
                   <div style={{ padding: isMobile ? '16px 0' : '6px 0' }}>
                     <Link to="/mes-commandes" onClick={() => setMenuOpen(false)}
                       style={{ ...itemStyle(isMobile), display: 'flex', color: menuText2 }}
@@ -345,6 +354,7 @@ export default function Navbar() {
                       </Link>
                     )}
                   </div>
+                  )}
 
                   <div style={{ height: 1, background: menuBorder, margin: isMobile ? '8px 0' : 0 }} />
 
@@ -371,23 +381,26 @@ export default function Navbar() {
                     }}>
                       {lang === 'fr' ? 'Langue' : lang === 'en' ? 'Language' : lang === 'de' ? 'Sprache' : 'Idioma'}
                     </p>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? 8 : 4, padding: isMobile ? 0 : '0 10px 6px' }}>
+                    <div style={ isMobile
+                      ? { display:'flex', gap:6, flexWrap:'wrap' }
+                      : { display:'grid', gridTemplateColumns:'1fr 1fr', gap:4, padding:'0 10px 6px' } }>
                       {LANGUAGES.map(l => (
                         <button key={l.code} onClick={() => { setLang(l.code); setMenuOpen(false); }}
                           style={{
                             display: 'flex', alignItems: 'center', gap: 7,
-                            padding: isMobile ? '10px 6px' : '8px 10px',
+                            padding: isMobile ? '8px 10px' : '8px 10px',
                             background: l.code === lang ? 'rgba(19,40,83,0.08)' : 'transparent',
-                            border: `1px solid ${l.code === lang ? 'rgba(19,40,83,0.2)' : 'transparent'}`,
+                            border: `1px solid ${l.code === lang ? 'rgba(19,40,83,0.2)' : 'var(--border)'}`,
                             borderRadius: 6, cursor: 'pointer',
-                            fontSize: isMobile ? 13 : 12,
+                            fontSize: isMobile ? 16 : 12,
                             color: l.code === lang ? 'var(--red)' : menuText2,
                             fontFamily: F, fontWeight: l.code === lang ? 600 : 400,
                             transition: 'all 0.15s',
                           }}
                           onMouseOver={e => { if (l.code !== lang) e.currentTarget.style.background = menuHover; }}
                           onMouseOut={e => { if (l.code !== lang) e.currentTarget.style.background = 'transparent'; }}>
-                          <span style={{ fontSize: isMobile ? 16 : 14 }}>{l.flag}</span> {l.label}
+                          <span style={{ fontSize: isMobile ? 16 : 14 }}>{l.flag}</span>
+                          {!isMobile && l.label}
                         </button>
                       ))}
                     </div>
