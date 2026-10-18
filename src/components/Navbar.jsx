@@ -29,6 +29,14 @@ export default function Navbar() {
   useEffect(() => {}, []);
   useEffect(() => { setMenuOpen(false); setPlusOpen(false); }, [location.pathname]);
 
+  // Verrouille le scroll derrière la modale mobile
+  useEffect(() => {
+    if (!menuOpen || !isMobile) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prev; };
+  }, [menuOpen, isMobile]);
+
   useEffect(() => {
     const h = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
@@ -259,27 +267,63 @@ export default function Navbar() {
 
             <AnimatePresence>
               {menuOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 6, scale: 0.97 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 6, scale: 0.97 }}
-                  transition={{ duration: 0.2, ease: [0.16,1,0.3,1] }}
-                  style={{
-                    position: isMobile ? 'fixed' : 'absolute',
-                    right: 0,
-                    top: isMobile ? 60 : 'calc(100% + 8px)',
-                    left: isMobile ? 0 : 'auto',
-                    bottom: isMobile ? 0 : 'auto',
-                    background: menuBg,
-                    border: isMobile ? 'none' : `1px solid ${menuBorder}`,
-                    borderTop: isMobile ? `1px solid ${menuBorder}` : undefined,
-                    borderRadius: isMobile ? 0 : 10,
-                    boxShadow: isMobile ? 'none' : '0 8px 40px rgba(0,0,0,0.20)',
-                    overflow: 'auto',
-                    minWidth: isMobile ? '100%' : 220,
-                    zIndex: 9999,
-                    padding: isMobile ? '20px 5%' : 0,
-                  }}>
+                <>
+                  {/* Backdrop (modale mobile) */}
+                  {isMobile && (
+                    <motion.div
+                      key="menu-backdrop"
+                      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      onClick={() => setMenuOpen(false)}
+                      style={{
+                        position: 'fixed', top: 60, left: 0, right: 0, bottom: 0,
+                        background: 'rgba(10,10,12,0.55)',
+                        backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
+                        zIndex: 9998,
+                      }}
+                    />
+                  )}
+
+                  <motion.div
+                    key="menu"
+                    initial={isMobile ? { opacity: 0, scale: 0.96, y: 10 } : { opacity: 0, y: 6, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={isMobile ? { opacity: 0, scale: 0.96, y: 10 } : { opacity: 0, y: 6, scale: 0.97 }}
+                    transition={{ duration: isMobile ? 0.26 : 0.2, ease: [0.16,1,0.3,1] }}
+                    style={ isMobile ? {
+                      position: 'fixed', top: 60, left: 0, right: 0, bottom: 0,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      padding: '16px 16px 96px', zIndex: 9999, pointerEvents: 'none',
+                    } : {
+                      position: 'absolute', right: 0, top: 'calc(100% + 8px)',
+                      background: menuBg, border: `1px solid ${menuBorder}`,
+                      borderRadius: 10, boxShadow: '0 8px 40px rgba(0,0,0,0.20)',
+                      overflow: 'auto', minWidth: 220, zIndex: 9999, padding: 0,
+                    }}>
+
+                    {/* Carte modale (mobile) */}
+                    <div style={ isMobile ? {
+                      pointerEvents: 'auto', width: '100%', maxWidth: 380, maxHeight: '100%',
+                      overflow: 'auto', background: menuBg, border: `1px solid ${menuBorder}`,
+                      borderRadius: 20, boxShadow: '0 24px 80px rgba(0,0,0,0.40)',
+                      padding: '14px 18px 20px', WebkitOverflowScrolling: 'touch',
+                    } : { display: 'contents' }}>
+
+                    {/* En-tête modale (mobile) */}
+                    {isMobile && (
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 6 }}>
+                        <div style={{ width: 36, height: 4, borderRadius: 100, background: menuBorder, marginBottom: 10 }} />
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+                          <span style={{ fontFamily: F, fontWeight: 700, fontSize: 16, color: menuText }}>
+                            {lang === 'fr' ? 'Menu' : lang === 'en' ? 'Menu' : lang === 'de' ? 'Menü' : 'Menú'}
+                          </span>
+                          <button onClick={() => setMenuOpen(false)} aria-label="Fermer le menu"
+                            style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: 20, color: menuText2, lineHeight: 1, padding: 6, marginRight: -6 }}>
+                            ✕
+                          </button>
+                        </div>
+                      </div>
+                    )}
 
                   {/* Mobile nav links */}
                   {isMobile && (
@@ -420,7 +464,10 @@ export default function Navbar() {
                       </div>
                     </>
                   )}
-                </motion.div>
+
+                    </div>
+                  </motion.div>
+                </>
               )}
             </AnimatePresence>
           </div>
