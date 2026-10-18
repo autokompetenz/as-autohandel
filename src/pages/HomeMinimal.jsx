@@ -236,7 +236,7 @@ export default function HomeMinimal() {
       </section>
 
       {/* ── CTA final : bloc noir ── */}
-      <section style={{ background:'#0A0A0A', padding: isMobile ? '72px 5%' : '120px 5%', textAlign:'center' }}>
+      <section style={{ background:'#2373F4', padding: isMobile ? '72px 5%' : '120px 5%', textAlign:'center' }}>
         <motion.div
           initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
           transition={{ duration:0.7 }}

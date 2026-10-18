@@ -83,7 +83,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
         </span>
       )}
       {car.promotional && (
-        <span style={{ background:'var(--red-light)', color:'#0A0A0A', fontSize:10, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase', padding:'3px 10px', borderRadius:100 }}>
+        <span style={{ background:'var(--red-light)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase', padding:'3px 10px', borderRadius:100 }}>
           {l==='fr'?'Promo':l==='en'?'Sale':l==='de'?'Aktion':l==='es'?'Oferta':l==='it'?'Promo':'Promoção'}
         </span>
       )}

@@ -10,9 +10,9 @@
   --font:         'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-title:   'Sora', 'Inter', 'Helvetica Neue', Arial, sans-serif;
 
-  /* Actions — noires (pilules), accent bleu #2373F4 */
-  --red:         #0A0A0A;
-  --red-dark:    #333333;
+  /* Actions — bleu #2373F4 (pilules, boutons, badges) */
+  --red:         #2373F4;
+  --red-dark:    #1A5FD0;
   --red-light:   #2373F4;
   --red-bg:      rgba(35,115,244,0.10);
   --red-border:  rgba(35,115,244,0.35);
@@ -72,8 +72,8 @@
   --shadow-xl:   0 16px 48px rgba(0,0,0,0.60);
 
   --green:       #22C55E;
-  --red:         #F2F3F5;
-  --red-dark:    #C9CDD2;
+  --red:         #2373F4;
+  --red-dark:    #1A5FD0;
   --red-light:   #2373F4;
   --red-bg:      rgba(35,115,244,0.14);
   --red-border:  rgba(35,115,244,0.40);
@@ -167,8 +167,8 @@ h1,h2,h3,h4,h5 { font-family:var(--font-title); font-weight:600; line-height:1.1
 }
 
 /* Option de filtre active — pilule noire, texte cyan (signature Spoticar) */
-.opt-active { background:var(--red) !important; color:var(--red-light) !important; border-radius:var(--radius-pill); }
-[data-theme="dark"] .opt-active { color:#0A0A0A !important; }
+.opt-active { background:var(--red) !important; color:#fff !important; border-radius:var(--radius-pill); }
+[data-theme="dark"] .opt-active { color:#fff !important; }
 
 /* ── Cards ── */
 .card {
