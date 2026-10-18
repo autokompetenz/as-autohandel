@@ -344,9 +344,11 @@ export default function Catalog() {
                     ))}
                   </div>
                 )}
-                <div style={{ minWidth:200 }}>
-                  {!isMobile && <SortSelect />}
-                </div>
+                {!isMobile && (
+                  <div style={{ minWidth:200 }}>
+                    <SortSelect />
+                  </div>
+                )}
               </div>
             </div>
 
@@ -368,7 +370,7 @@ export default function Catalog() {
                 gap: isMobile ? 12 : (view==='list' ? 12 : 18),
               }}>
                 <AnimatePresence>
-                  {cars.map((car, i) => <CarCard key={car.id} car={car} index={i} variant={isMobile || view === 'grid' ? 'grid' : 'row'} />)}
+                  {cars.map((car, i) => <CarCard key={car.id} car={car} index={i} variant={view === 'grid' && !isMobile ? 'grid' : 'row'} />)}
                 </AnimatePresence>
               </div>
             )}

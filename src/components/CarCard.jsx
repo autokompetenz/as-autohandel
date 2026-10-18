@@ -99,8 +99,9 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
   ].filter(Boolean);
 
   const Title = ({ size = 17 }) => (
-    <Link to={`/cars/${car.id}`} style={{ textDecoration:'none', display:'block' }}>
-      <h3 style={{ fontFamily:F, fontWeight:700, fontSize:size, color:'var(--text)', letterSpacing:'-0.02em', lineHeight:1.25, transition:'color 0.15s' }}
+    <Link to={`/cars/${car.id}`} style={{ textDecoration:'none', display:'block', minWidth:0 }}>
+      <h3 style={{ fontFamily:F, fontWeight:700, fontSize:size, color:'var(--text)', letterSpacing:'-0.02em', lineHeight:1.25, transition:'color 0.15s',
+        ...(isMobile ? { display:'-webkit-box', WebkitLineClamp:2, WebkitBoxOrient:'vertical', overflow:'hidden' } : {}) }}
         onMouseOver={e=>e.currentTarget.style.color='var(--red)'}
         onMouseOut={e=>e.currentTarget.style.color='var(--text)'}>
         {car.make} {car.model}
@@ -114,21 +115,21 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
         {formatEuro(car.price)}
       </div>
       {car.monthlyPayment && (
-        <div style={{ fontSize:12, color:'var(--text-3)', marginTop:5 }}>
+        <div style={{ fontSize: size < 20 ? 10 : 12, color:'var(--text-3)', marginTop: size < 20 ? 2 : 5 }}>
           {t('or', l)} {formatEuro(car.monthlyPayment)}{t('per_month', l)}
         </div>
       )}
     </div>
   );
 
-  const OrderBtn = ({ block }) => (
+  const OrderBtn = ({ block, compact }) => (
     <button onClick={order}
       style={{
         display:'flex', alignItems:'center', justifyContent:'center', gap:8,
         width: block ? '100%' : 'auto',
-        padding:'11px 22px', borderRadius:'var(--radius-pill)',
-        fontSize:14, fontWeight:700, cursor:'pointer', border:'none', fontFamily:F,
-        background:'var(--red)', color:'#fff', transition:'background 0.15s',
+        padding: compact ? '9px 16px' : '11px 22px', borderRadius:'var(--radius-pill)',
+        fontSize: compact ? 12 : 14, fontWeight:700, cursor:'pointer', border:'none', fontFamily:F,
+        background:'var(--red)', color:'#fff', transition:'background 0.15s', flexShrink:0, whiteSpace:'nowrap',
       }}
       onMouseOver={e=>e.currentTarget.style.background='var(--red-dark)'}
       onMouseOut={e=>e.currentTarget.style.background='var(--red)'}>
@@ -153,19 +154,21 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
           transition:'border-color 0.15s, box-shadow 0.15s',
         }}>
         {/* Visuel */}
-        <Link to={`/cars/${car.id}`} style={{ position:'relative', flexShrink:0, width: isMobile ? 120 : 250, display:'block', background:'var(--bg-card2)' }}>
+        <Link to={`/cars/${car.id}`} style={{ position:'relative', flexShrink:0, width: isMobile ? '38%' : 250, minWidth: isMobile ? 120 : undefined, maxWidth: isMobile ? 156 : undefined, display:'block', background:'var(--bg-card2)' }}>
           <img src={img} alt={`${car.make} ${car.model}`}
-            style={{ width:'100%', height: isMobile ? 120 : '100%', minHeight: isMobile ? 120 : 170, objectFit:'cover', display:'block' }} />
+            style={ isMobile
+              ? { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', display:'block' }
+              : { width:'100%', height:'100%', minHeight:170, objectFit:'cover', display:'block' } } />
           <div style={{ position:'absolute', top:8, left:8 }}><Badges stack /></div>
           <OverlayBtns small={isMobile} />
         </Link>
 
         {/* Infos */}
-        <div style={{ flex:1, minWidth:0, padding: isMobile ? '12px 14px' : '18px 22px', display:'flex', flexDirection:'column', gap:8 }}>
+        <div style={{ flex:1, minWidth:0, padding: isMobile ? '10px 12px' : '18px 22px', display:'flex', flexDirection:'column', gap: isMobile ? 6 : 8 }}>
           <div style={{ display:'flex', justifyContent:'space-between', gap:14, alignItems:'flex-start' }}>
             <div style={{ minWidth:0 }}>
               <Title size={isMobile ? 15 : 18} />
-              <p style={{ fontSize:13, color:'var(--text-3)', marginTop:2, fontWeight:500 }}>{car.category}</p>
+              <p style={{ fontSize: isMobile ? 11 : 13, color:'var(--text-3)', marginTop:2, fontWeight:500 }}>{car.category}</p>
             </div>
             {/* Prix — colonne droite (desktop) */}
             {!isMobile && (
@@ -177,21 +180,25 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
 
           {/* Caractéristiques en ligne */}
           <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
-            {specs.map((s, i) => (
-              <span key={i} className="mk-chip">{s}</span>
+            {specs.slice(0, isMobile ? 3 : 5).map((s, i) => (
+              <span key={i} className="mk-chip" style={isMobile ? { padding:'2px 9px', fontSize:11 } : undefined}>{s}</span>
             ))}
           </div>
 
           {/* Bas de ligne */}
-          <div style={{ marginTop:'auto', paddingTop:10, display:'flex', alignItems:'center', justifyContent:'space-between', gap:12, flexWrap:'wrap' }}>
-            <span style={{ fontSize:12, color:'var(--text-3)', display:'inline-flex', alignItems:'center', gap:6 }}>
-              📍 Offenbach am Main · 🛡️ {l==='fr'?'Garantie incluse':l==='en'?'Warranty included':l==='de'?'Garantie inklusive':'Garantía incluida'}
-            </span>
-            <div style={{ display:'flex', alignItems:'center', gap:10 }}>
-              {isMobile && <Price size={19} />}
+          {isMobile ? (
+            <div style={{ marginTop:'auto', paddingTop:4, display:'flex', alignItems:'center', justifyContent:'space-between', gap:8 }}>
+              <Price size={17} />
+              <OrderBtn compact />
+            </div>
+          ) : (
+            <div style={{ marginTop:'auto', paddingTop:10, display:'flex', alignItems:'center', justifyContent:'space-between', gap:12 }}>
+              <span style={{ fontSize:12, color:'var(--text-3)', display:'inline-flex', alignItems:'center', gap:6 }}>
+                📍 Offenbach am Main · 🛡️ {l==='fr'?'Garantie incluse':l==='en'?'Warranty included':l==='de'?'Garantie inklusive':'Garantía incluida'}
+              </span>
               <OrderBtn />
             </div>
-          </div>
+          )}
         </div>
       </motion.article>
     );
