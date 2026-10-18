@@ -39,30 +39,17 @@ export default function Navbar() {
 
   const handleLogout = () => { logout(); navigate('/'); setMenuOpen(false); };
 
-  const isHero = location.pathname === '/' && !scrolled;
   const F = "var(--font)";
 
-  const iconColor = scrolled
-    ? (isDark ? 'rgba(255,255,255,0.85)' : '#222')
-    : isHero ? '#fff'
-    : (isDark ? 'rgba(255,255,255,0.8)' : '#333');
+  const iconColor = isDark ? 'rgba(255,255,255,0.85)' : '#222222';
 
-  const navTextColor = scrolled
-    ? (isDark ? 'rgba(255,255,255,0.6)' : '#666')
-    : isHero ? 'rgba(255,255,255,0.7)'
-    : (isDark ? 'rgba(255,255,255,0.6)' : '#666');
+  const navTextColor = isDark ? 'rgba(255,255,255,0.6)' : '#4A4D52';
 
-  const btnBg = scrolled
-    ? (isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)')
-    : isHero ? 'rgba(255,255,255,0.08)'
-    : (isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)');
+  const btnBg = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(19,24,38,0.04)';
 
   const btnBorder = (open) => open
     ? 'var(--red)'
-    : scrolled
-    ? (isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)')
-    : isHero ? 'rgba(255,255,255,0.15)'
-    : (isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)');
+    : isDark ? 'rgba(255,255,255,0.08)' : 'rgba(19,24,38,0.10)';
 
   const menuBg     = isDark ? '#0f0f0f'                 : '#ffffff';
   const menuText   = isDark ? '#ffffff'                 : '#111111';
@@ -105,30 +92,21 @@ export default function Navbar() {
     <>
       <nav style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
-        background: 'transparent',
-        borderBottom: scrolled ? `1px solid ${menuBorder}` : '1px solid transparent',
-        transition: 'border-color 0.5s var(--ease)',
+        background: isDark ? 'rgba(10,10,11,0.96)' : 'rgba(255,255,255,0.97)',
+        backdropFilter: 'blur(16px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+        borderBottom: `1px solid ${menuBorder}`,
+        transition: 'border-color 0.3s var(--ease)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: isMobile ? '0 5%' : '0 6%', height: 60,
+        padding: isMobile ? '0 4%' : '0 5%', height: 60,
       }}>
-
-        {/* Blur layer */}
-        {scrolled && (
-          <div style={{
-            position: 'absolute', inset: 0, zIndex: -1,
-            backdropFilter: 'blur(24px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-            background: isDark ? 'rgba(10,10,11,0.96)' : 'rgba(255,255,255,0.96)',
-            transition: 'background 0.5s',
-          }} />
-        )}
 
         {/* Logo */}
         <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'baseline', gap: 6, flexShrink: 0, position: 'relative', zIndex: 1 }}>
           <span style={{
             fontFamily: F, fontSize: 15, fontWeight: 800,
-            color: scrolled ? (isDark ? '#fff' : '#111') : isHero ? '#fff' : (isDark ? '#fff' : '#111'),
-            letterSpacing: '0.08em', transition: 'color 0.4s',
+            color: isDark ? '#fff' : '#16171A',
+            letterSpacing: '0.08em', transition: 'color 0.3s',
           }}>
             AS AUTOHANDEL
           </span>
@@ -211,15 +189,15 @@ export default function Navbar() {
           {!isMobile && (
             <a href="tel:+491630436338" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: isHero ? '#fff' : 'var(--red)',
-              color: isHero ? 'var(--red)' : '#fff',
+              background: 'var(--red)',
+              color: '#fff',
               fontFamily: F, fontSize: 14, fontWeight: 700, letterSpacing: '-0.01em',
               textDecoration: 'none', padding: '9px 20px', borderRadius: 6,
               height: 38, transition: 'all 0.2s var(--ease)',
-              boxShadow: isHero ? '0 1px 3px rgba(0,0,0,0.2)' : '0 1px 2px rgba(219,48,0,0.25)',
+              boxShadow: '0 1px 2px rgba(219,48,0,0.3)',
             }}
-              onMouseOver={e => { e.currentTarget.style.background = isHero ? 'rgba(255,255,255,0.88)' : 'var(--red-dark)'; }}
-              onMouseOut={e => { e.currentTarget.style.background = isHero ? '#fff' : 'var(--red)'; }}>
+              onMouseOver={e => { e.currentTarget.style.background = 'var(--red-dark)'; }}
+              onMouseOut={e => { e.currentTarget.style.background = 'var(--red)'; }}>
               📞 +49 163 043 63 38
             </a>
           )}

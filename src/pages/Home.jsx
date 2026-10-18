@@ -752,6 +752,33 @@ export default function Home() {
               boxShadow: isDark ? '0 12px 32px rgba(0,0,0,0.4)' : '0 8px 28px rgba(19,24,38,0.14)',
             }}
           >
+            {/* Onglets — recherche rapide par catégorie */}
+            <div style={{ display:'flex', overflowX:'auto', borderBottom:'1px solid var(--border)', background:'var(--bg-card2)' }}>
+              {[
+                { v:'', label: l==='fr'?'Toutes':l==='en'?'All':l==='de'?'Alle':'Todas' },
+                { v:'Berline',   label:'Berline' },
+                { v:'SUV',       label:'SUV' },
+                { v:'Citadine',  label: l==='de'?'Kleinwagen':'Citadine' },
+                { v:'Break',     label: l==='de'?'Kombi':'Break' },
+                { v:'Utilitaire',label: l==='de'?'Transporter':'Utilitaire' },
+              ].map(({ v, label }) => {
+                const active = sf.category === v;
+                return (
+                  <button key={v || 'all'} onClick={() => setF('category', v)}
+                    style={{
+                      padding:'12px 16px', border:'none', cursor:'pointer', whiteSpace:'nowrap',
+                      background:'transparent', fontFamily:'var(--font)',
+                      fontSize:14, fontWeight: active ? 700 : 500,
+                      color: active ? 'var(--red)' : 'var(--text-2)',
+                      borderBottom:`2px solid ${active ? 'var(--red)' : 'transparent'}`,
+                      transition:'color 0.15s, border-color 0.15s',
+                    }}>
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+
             {/* Barre principale */}
             <div style={{ display:'flex', flexWrap:'wrap', gap:10, alignItems:'center', padding: isMobile ? '16px' : '16px 18px' }}>
               {/* Marque */}
@@ -931,6 +958,29 @@ export default function Home() {
               </motion.div>
             )}
           </motion.div>
+
+          {/* Tuiles de catégories */}
+          <div style={{ display:'grid', gridTemplateColumns: isMobile ? 'repeat(4,1fr)' : 'repeat(8,1fr)', gap:10, marginTop:22 }}>
+            {[
+              { c:'Berline',    i:'🚗' },
+              { c:'SUV',        i:'🛻' },
+              { c:'Citadine',   i:'🚙' },
+              { c:'Break',      i:'🚘' },
+              { c:'Coupe',      i:'🏎️' },
+              { c:'Monospace',  i:'🚐' },
+              { c:'Utilitaire', i:'🚚' },
+              { c:'FourX4',     i:'🏔️' },
+            ].map(({ c, i }) => (
+              <Link key={c} to={`/catalog?category=${encodeURIComponent(c)}`}
+                className="mk-panel"
+                style={{ padding: isMobile ? '12px 6px' : '16px 8px', textAlign:'center', textDecoration:'none', transition:'border-color 0.15s, box-shadow 0.15s' }}
+                onMouseOver={e => { e.currentTarget.style.borderColor = 'var(--red)'; }}
+                onMouseOut={e => { e.currentTarget.style.borderColor = 'var(--border)'; }}>
+                <div style={{ fontSize: isMobile ? 20 : 24, lineHeight:1 }}>{i}</div>
+                <div style={{ fontSize: isMobile ? 11 : 12, fontWeight:600, color:'var(--text-2)', marginTop:7 }}>{c}</div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

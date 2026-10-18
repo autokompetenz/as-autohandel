@@ -15,6 +15,7 @@ export default function Catalog() {
   const [total, setTotal]           = useState(0);
   const [loading, setLoading]       = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [view, setView]             = useState('list');
   const { lang } = useLangStore();
   const { isMobile, isTablet } = useBreakpoint();
   const l = lang || 'fr';
@@ -274,11 +275,25 @@ export default function Catalog() {
                   <span style={{ color:'var(--text-3)' }}> · {activeCount} {l==='fr'?'filtre actif':l==='en'?'active filter':l==='de'?'Filter aktiv':'filtros activos'}</span>
                 )}
               </p>
-              <div style={{ display:'flex', gap:8, alignItems:'center' }}>
+              <div style={{ display:'flex', gap:10, alignItems:'center' }}>
                 {!isMobile && (activeCount > 0) && (
                   <button onClick={resetAll} style={{ fontSize:13, color:'var(--red)', background:'none', border:'none', cursor:'pointer', fontFamily:"var(--font)", fontWeight:700 }}>
                     ✕ {t('reset', l)}
                   </button>
+                )}
+                {/* Bascule liste / grille */}
+                {!isMobile && (
+                  <div style={{ display:'flex', border:'1px solid var(--border)', borderRadius:'var(--radius)', overflow:'hidden' }}>
+                    {[['list','☰'],['grid','▦']].map(([v, ic]) => (
+                      <button key={v} onClick={() => setView(v)} title={v}
+                        style={{
+                          width:34, height:34, border:'none', cursor:'pointer', fontSize:14,
+                          background: view===v ? 'var(--red)' : 'var(--bg-card)',
+                          color: view===v ? '#fff' : 'var(--text-3)',
+                          transition:'all 0.15s',
+                        }}>{ic}</button>
+                    ))}
+                  </div>
                 )}
                 <div style={{ minWidth:200 }}>
                   <SortSelect />
@@ -298,9 +313,13 @@ export default function Catalog() {
                 <button onClick={resetAll} className="btn-primary">{t('reset', l)}</button>
               </div>
             ) : (
-              <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill,minmax(265px,1fr))', gap: isMobile ? 14 : 18 }}>
+              <div style={{
+                display:'grid',
+                gridTemplateColumns: (isMobile || view==='list') ? '1fr' : 'repeat(auto-fill,minmax(265px,1fr))',
+                gap: isMobile ? 12 : (view==='list' ? 12 : 18),
+              }}>
                 <AnimatePresence>
-                  {cars.map((car, i) => <CarCard key={car.id} car={car} index={i} />)}
+                  {cars.map((car, i) => <CarCard key={car.id} car={car} index={i} variant={view === 'grid' && !isMobile ? 'grid' : 'row'} />)}
                 </AnimatePresence>
               </div>
             )}

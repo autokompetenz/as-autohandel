@@ -2,115 +2,188 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { formatEuro } from '../utils/helpers';
-import { useAuthStore, useCartStore, useToastStore, useLangStore } from '../store';
+import { useLangStore } from '../store';
 import { t } from '../utils/i18n';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
-export default function CarCard({ car, index = 0 }) {
-  const { isAuthenticated } = useAuthStore();
-  const { addItem } = useCartStore();
-  const { addToast } = useToastStore();
+/* Fiche véhicule — style annuaire pro (AutoScout24)
+   variant="row"  → ligne horizontale dense (résultats de recherche)
+   variant="grid" → carte compacte (vitrines, accueil)                      */
+export default function CarCard({ car, index = 0, variant = 'grid' }) {
   const { lang } = useLangStore();
   const navigate = useNavigate();
-  const [adding, setAdding] = useState(false);
+  const { isMobile } = useBreakpoint();
   const [hovered, setHovered] = useState(false);
   const l = lang || 'fr';
 
-  const handleAddToCart = async (e) => {
+  const order = (e) => {
     e.preventDefault();
     e.stopPropagation();
     navigate(`/commander/${car.id}`);
   };
 
-  return (
-    <motion.div
-      initial={{ opacity:0, y:20 }}
-      animate={{ opacity:1, y:0 }}
-      transition={{ delay:index*0.08, duration:0.6, ease:[0.16,1,0.3,1] }}
-      onMouseOver={() => setHovered(true)}
-      onMouseOut={() => setHovered(false)}
-      className="car-card"
-      style={{
-        background:'var(--bg-card)', borderRadius:'var(--radius-lg)', overflow:'hidden',
-        border:`1px solid ${hovered?'var(--border-2)':'var(--border)'}`,
-        transition:'all 0.2s cubic-bezier(0.16,1,0.3,1)',
-        transform:hovered?'translateY(-2px)':'translateY(0)',
-        boxShadow:hovered?'var(--shadow-md)':'var(--shadow-sm)',
-      }}>
+  const F = "var(--font)";
+  const img = car.imageUrl || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=70';
 
-      {/* Image */}
-      <Link to={`/cars/${car.id}`} style={{ display:'block', position:'relative', overflow:'hidden' }}>
-        <img src={car.imageUrl || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=70'}
-          alt={`${car.make} ${car.model}`}
-          className="car-img-zoom"
-          style={{ width:'100%', height:200, objectFit:'cover', display:'block' }} />
-
-        {/* Badges — top left */}
-        <div style={{ position:'absolute', top:10, left:10, display:'flex', gap:6 }}>
-          {car.featured && (
-            <span style={{ background:'rgba(219,48,0,0.92)', backdropFilter:'blur(8px)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:4 }}>
-              ★ {l==='fr'?'À la une':l==='en'?'Featured':l==='de'?'Empfohlen':l==='es'?'Destacado':l==='it'?'In evidenza':'Destacado'}
-            </span>
-          )}
-          {car.promotional && (
-            <span style={{ background:'#350051', backdropFilter:'blur(8px)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:4 }}>
-              {l==='fr'?'Promo':l==='en'?'Sale':l==='de'?'Aktion':l==='es'?'Oferta':l==='it'?'Promo':'Promoção'}
-            </span>
-          )}
-        </div>
-
-        {/* Category — top right */}
-        <span style={{ position:'absolute', top:10, right:10, background:'rgba(255,255,255,0.92)', color:'var(--text-2)', fontSize:10, fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:4 }}>
-          {car.category}
+  const Badges = ({ stack }) => (
+    <div style={{ display:'flex', flexDirection: stack ? 'column' : 'row', gap:6, alignItems:'flex-start' }}>
+      {car.featured && (
+        <span style={{ background:'var(--red)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase', padding:'3px 8px', borderRadius:4 }}>
+          ★ {l==='fr'?'À la une':l==='en'?'Featured':l==='de'?'Empfohlen':l==='es'?'Destacado':l==='it'?'In evidenza':'Destacado'}
         </span>
+      )}
+      {car.promotional && (
+        <span style={{ background:'#350051', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.05em', textTransform:'uppercase', padding:'3px 8px', borderRadius:4 }}>
+          {l==='fr'?'Promo':l==='en'?'Sale':l==='de'?'Aktion':l==='es'?'Oferta':l==='it'?'Promo':'Promoção'}
+        </span>
+      )}
+    </div>
+  );
 
-        {/* Hover overlay */}
-        <div style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', opacity:hovered?1:0, transition:'opacity 0.2s', background:'rgba(219,48,0,0.18)' }}>
-          <span style={{ background:'#fff', color:'var(--red)', padding:'9px 24px', borderRadius:6, fontSize:13, fontWeight:700, transform:hovered?'translateY(0)':'translateY(6px)', transition:'transform 0.25s cubic-bezier(0.16,1,0.3,1)' }}>
-            {t('view_vehicle', l)} →
-          </span>
+  const specs = [
+    car.year,
+    car.mileage ? `${Number(car.mileage).toLocaleString('fr-FR')} km` : null,
+    car.fuelType,
+    car.transmission,
+    car.power ? `${car.power} ${l==='de'?'PS':'ch'}` : null,
+  ].filter(Boolean);
+
+  const Title = ({ size = 17 }) => (
+    <Link to={`/cars/${car.id}`} style={{ textDecoration:'none', display:'block' }}>
+      <h3 style={{ fontFamily:F, fontWeight:700, fontSize:size, color:'var(--text)', letterSpacing:'-0.02em', lineHeight:1.25, transition:'color 0.15s' }}
+        onMouseOver={e=>e.currentTarget.style.color='var(--red)'}
+        onMouseOut={e=>e.currentTarget.style.color='var(--text)'}>
+        {car.make} {car.model}
+      </h3>
+    </Link>
+  );
+
+  const Price = ({ size = 24 }) => (
+    <div>
+      <div style={{ fontFamily:F, fontWeight:800, fontSize:size, color:'var(--text)', letterSpacing:'-0.03em', lineHeight:1 }}>
+        {formatEuro(car.price)}
+      </div>
+      {car.monthlyPayment && (
+        <div style={{ fontSize:12, color:'var(--text-3)', marginTop:5 }}>
+          {t('or', l)} {formatEuro(car.monthlyPayment)}{t('per_month', l)}
         </div>
-      </Link>
+      )}
+    </div>
+  );
 
-      {/* Info */}
-      <div style={{ padding:'14px 16px 16px' }}>
-        <Link to={`/cars/${car.id}`} style={{ textDecoration:'none' }}>
-          <h3 style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:17, color:'var(--text)', letterSpacing:'-0.02em', marginBottom:3, lineHeight:1.25, transition:'color 0.2s' }}
-            onMouseOver={e=>e.target.style.color='var(--red)'} onMouseOut={e=>e.target.style.color='var(--text)'}>
-            {car.make} {car.model}
-          </h3>
+  const OrderBtn = ({ block }) => (
+    <button onClick={order}
+      style={{
+        display:'flex', alignItems:'center', justifyContent:'center', gap:8,
+        width: block ? '100%' : 'auto',
+        padding:'11px 20px', borderRadius:'var(--radius)',
+        fontSize:14, fontWeight:700, cursor:'pointer', border:'none', fontFamily:F,
+        background:'var(--red)', color:'#fff', transition:'background 0.15s',
+      }}
+      onMouseOver={e=>e.currentTarget.style.background='var(--red-dark)'}
+      onMouseOut={e=>e.currentTarget.style.background='var(--red)'}>
+      {l==='fr'?'Commander':l==='en'?'Order':l==='de'?'Bestellen':l==='es'?'Pedir':l==='it'?'Ordina':'Encomendar'}
+    </button>
+  );
+
+  /* ───────────────────────── LIGNE (résultats) ───────────────────────── */
+  if (variant === 'row') {
+    return (
+      <motion.article
+        initial={{ opacity:0, y:12 }}
+        animate={{ opacity:1, y:0 }}
+        transition={{ delay: Math.min(index,8)*0.05, duration:0.4, ease:[0.16,1,0.3,1] }}
+        onMouseOver={() => setHovered(true)}
+        onMouseOut={() => setHovered(false)}
+        style={{
+          display:'flex', gap:0, background:'var(--bg-card)',
+          border:`1px solid ${hovered ? 'var(--red)' : 'var(--border)'}`,
+          borderRadius:'var(--radius-lg)', overflow:'hidden',
+          boxShadow: hovered ? 'var(--shadow-md)' : 'var(--shadow-sm)',
+          transition:'border-color 0.15s, box-shadow 0.15s',
+        }}>
+        {/* Visuel */}
+        <Link to={`/cars/${car.id}`} style={{ position:'relative', flexShrink:0, width: isMobile ? 120 : 250, display:'block', background:'var(--bg-card2)' }}>
+          <img src={img} alt={`${car.make} ${car.model}`}
+            style={{ width:'100%', height: isMobile ? 120 : '100%', minHeight: isMobile ? 120 : 170, objectFit:'cover', display:'block' }} />
+          <div style={{ position:'absolute', top:8, left:8 }}><Badges stack /></div>
         </Link>
-        <p style={{ fontSize:13, color:'var(--text-3)', marginBottom:10, fontWeight:500 }}>
-          {car.year} · {car.fuelType} · {car.transmission}
-        </p>
 
-        {/* Spec chips — caractéristiques denses */}
-        <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
-          <span className="mk-chip">🛣 {car.mileage ? `${Number(car.mileage).toLocaleString('fr-FR')} km` : '—'}</span>
-          <span className="mk-chip">{car.fuelType}</span>
-          <span className="mk-chip">{car.transmission}</span>
-          {car.power && <span className="mk-chip">{car.power} {l==='de'?'PS':'ch'}</span>}
-        </div>
-
-        {/* Price row */}
-        <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', gap:10, marginTop:14, paddingTop:14, borderTop:'1px solid var(--border)' }}>
-          <div>
-            <div style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:23, color:'var(--text)', letterSpacing:'-0.03em', lineHeight:1 }}>
-              {formatEuro(car.price)}
+        {/* Infos */}
+        <div style={{ flex:1, minWidth:0, padding: isMobile ? '12px 14px' : '18px 22px', display:'flex', flexDirection:'column', gap:8 }}>
+          <div style={{ display:'flex', justifyContent:'space-between', gap:14, alignItems:'flex-start' }}>
+            <div style={{ minWidth:0 }}>
+              <Title size={isMobile ? 15 : 18} />
+              <p style={{ fontSize:13, color:'var(--text-3)', marginTop:2, fontWeight:500 }}>{car.category}</p>
             </div>
-            {car.monthlyPayment && (
-              <div style={{ fontSize:12, color:'var(--text-3)', marginTop:4 }}>
-                {t('or', l)} {formatEuro(car.monthlyPayment)}{t('per_month', l)}
+            {/* Prix — colonne droite (desktop) */}
+            {!isMobile && (
+              <div style={{ textAlign:'right', flexShrink:0 }}>
+                <Price size={26} />
               </div>
             )}
           </div>
-          <button onClick={handleAddToCart} disabled={adding}
-            style={{ padding:'9px 16px', borderRadius:6, fontSize:13, fontWeight:700, cursor:'pointer', border:'none', fontFamily:"var(--font)", transition:'all 0.2s', background:adding?'var(--red-dark)':'var(--red)', color:'#fff', flexShrink:0 }}
-            onMouseOver={e=>{ if(!adding) e.currentTarget.style.background='var(--red-dark)'; }}
-            onMouseOut={e=>{ if(!adding) e.currentTarget.style.background='var(--red)'; }}>
-            {adding?'...':(l==='fr'?'Commander':l==='en'?'Order':l==='de'?'Bestellen':'Pedir')}
-          </button>
+
+          {/* Caractéristiques en ligne */}
+          <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
+            {specs.map((s, i) => (
+              <span key={i} className="mk-chip">{s}</span>
+            ))}
+          </div>
+
+          {/* Bas de ligne */}
+          <div style={{ marginTop:'auto', paddingTop:10, display:'flex', alignItems:'center', justifyContent:'space-between', gap:12, flexWrap:'wrap' }}>
+            <span style={{ fontSize:12, color:'var(--text-3)', display:'inline-flex', alignItems:'center', gap:6 }}>
+              📍 Offenbach am Main · 🛡️ {l==='fr'?'Garantie incluse':l==='en'?'Warranty included':l==='de'?'Garantie inklusive':'Garantía incluida'}
+            </span>
+            <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+              {isMobile && <Price size={19} />}
+              <OrderBtn />
+            </div>
+          </div>
+        </div>
+      </motion.article>
+    );
+  }
+
+  /* ───────────────────────── CARTE (vitrine) ───────────────────────── */
+  return (
+    <motion.article
+      initial={{ opacity:0, y:16 }}
+      animate={{ opacity:1, y:0 }}
+      transition={{ delay: Math.min(index,8)*0.06, duration:0.5, ease:[0.16,1,0.3,1] }}
+      onMouseOver={() => setHovered(true)}
+      onMouseOut={() => setHovered(false)}
+      style={{
+        background:'var(--bg-card)', borderRadius:'var(--radius-lg)', overflow:'hidden',
+        border:`1px solid ${hovered ? 'var(--red)' : 'var(--border)'}`,
+        transition:'border-color 0.15s, box-shadow 0.15s',
+        boxShadow: hovered ? 'var(--shadow-md)' : 'var(--shadow-sm)',
+      }}>
+      {/* Image */}
+      <Link to={`/cars/${car.id}`} style={{ display:'block', position:'relative', overflow:'hidden' }}>
+        <img src={img} alt={`${car.make} ${car.model}`}
+          style={{ width:'100%', height:190, objectFit:'cover', display:'block', transition:'transform 0.4s var(--ease)' }} />
+        <div style={{ position:'absolute', top:10, left:10 }}><Badges /></div>
+        <span style={{ position:'absolute', top:10, right:10, background:'rgba(255,255,255,0.94)', color:'var(--text-2)', fontSize:10, fontWeight:700, letterSpacing:'0.04em', textTransform:'uppercase', padding:'3px 8px', borderRadius:4 }}>
+          {car.category}
+        </span>
+      </Link>
+
+      {/* Infos */}
+      <div style={{ padding:'14px 16px 16px', display:'flex', flexDirection:'column', gap:9 }}>
+        <div>
+          <Title />
+          <div style={{ display:'flex', flexWrap:'wrap', gap:6, marginTop:8 }}>
+            {specs.slice(0,4).map((s, i) => <span key={i} className="mk-chip">{s}</span>)}
+          </div>
+        </div>
+
+        <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', gap:10, paddingTop:12, marginTop:'auto', borderTop:'1px solid var(--border)' }}>
+          <Price size={22} />
+          <OrderBtn />
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
