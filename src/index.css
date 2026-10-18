@@ -303,7 +303,7 @@ textarea.input-luxury {
 
 /* ── Chatbot ── */
 .chat-btn {
-  position:fixed; bottom:28px; right:28px; z-index:999;
+  position:fixed; bottom:calc(76px + env(safe-area-inset-bottom)); right:14px; z-index: 960;
   width:60px; height:60px; border-radius:50%; background:var(--red);
   border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
   font-size:26px; box-shadow:0 8px 32px rgba(7,187,216,0.45);
@@ -317,7 +317,7 @@ textarea.input-luxury {
   display:flex; align-items:center; justify-content:center;
 }
 .chat-window {
-  position:fixed; bottom:106px; right:28px; z-index:998;
+  position:fixed; bottom:calc(144px + env(safe-area-inset-bottom)); right:28px; z-index: 959;
   width:370px; max-height:540px;
   background:var(--bg-card); border:1px solid var(--border-2);
   border-radius:16px; overflow:hidden;
@@ -511,8 +511,8 @@ input[type='range']::-moz-range-thumb {
   .toast-container { right:12px; left:12px; bottom:12px; align-items:center; }
 
   /* Chatbot */
-  .chat-btn { width:52px; height:52px; font-size:22px; bottom:calc(76px + env(safe-area-inset-bottom)); right:14px; }
-  .chat-window { width:calc(100vw - 28px); right:14px; bottom:calc(144px + env(safe-area-inset-bottom)); max-height:72vh; }
+  .chat-btn { width:52px; height:52px; font-size:22px; bottom:calc(76px + env(safe-area-inset-bottom)); right:14px; z-index: 960; }
+  .chat-window { width:calc(100vw - 28px); right:14px; bottom:calc(144px + env(safe-area-inset-bottom)); max-height:72vh; z-index: 959; }
 
   /* Admin */
   .admin-mobile-menu-btn { display: flex; }
