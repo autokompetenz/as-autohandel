@@ -18,7 +18,7 @@ export default function Faq() {
     text: 'var(--text)',
     text2: 'var(--text-2)',
     text3: 'var(--text-3)',
-    red: '#132853',
+    red: '#DB3000',
     shadow: '0 4px 24px rgba(0,0,0,0.08)',
   };
 
@@ -110,8 +110,8 @@ export default function Faq() {
           transition={{ duration:0.8, delay:0.2 }}
           style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(19,40,83,0.3)', border:'1px solid rgba(19,40,83,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
-            <span style={{ width:8, height:8, borderRadius:'50%', background:'#132853', display:'inline-block' }} />
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(219,48,0,0.3)', border:'1px solid rgba(219,48,0,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+            <span style={{ width:8, height:8, borderRadius:'50%', background:'#DB3000', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               FAQ
             </span>
@@ -142,7 +142,7 @@ export default function Faq() {
               style={{ marginBottom:40 }}
             >
               <div style={{ display:'flex', alignItems:'center', gap:14, marginBottom:16 }}>
-                <div style={{ width:44, height:44, borderRadius:12, background:'linear-gradient(135deg,#132853,#0E1E3D)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:20, flexShrink:0 }}>
+                <div style={{ width:44, height:44, borderRadius:12, background:'linear-gradient(135deg,#DB3000,#B02500)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:20, flexShrink:0 }}>
                   {cat.icon}
                 </div>
                 <h2 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize: isMobile ? 22 : 28, color:C.text }}>
@@ -155,7 +155,7 @@ export default function Faq() {
                   const isOpen = open === `${ci}-${i}`;
                   return (
                     <div key={i} style={{
-                      background:C.card, border:`1px solid ${isOpen ? 'rgba(19,40,83,0.35)' : C.border}`,
+                      background:C.card, border:`1px solid ${isOpen ? 'rgba(219,48,0,0.35)' : C.border}`,
                       borderRadius:14, overflow:'hidden', boxShadow:C.shadow, transition:'border-color 0.25s'
                     }}>
                       <button
@@ -169,7 +169,7 @@ export default function Faq() {
                         <span style={{ fontSize: isMobile ? 15 : 16, fontWeight:700, color:C.text, lineHeight:1.5 }}>{item.q}</span>
                         <span style={{
                           width:30, height:30, flexShrink:0, borderRadius:'50%',
-                          background: isOpen ? 'linear-gradient(135deg,#132853,#0E1E3D)' : C.card2,
+                          background: isOpen ? 'linear-gradient(135deg,#DB3000,#B02500)' : C.card2,
                           display:'flex', alignItems:'center', justifyContent:'center',
                           color: isOpen ? '#fff' : C.text2, fontSize:15, fontWeight:800,
                           transition:'all 0.25s', transform: isOpen ? 'rotate(45deg)' : 'none'
@@ -215,10 +215,10 @@ export default function Faq() {
             </p>
             <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
               <Link to="/contact" style={{
-                background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none',
+                background:'linear-gradient(135deg,#DB3000,#B02500)', color:'#fff', textDecoration:'none',
                 fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
                 borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
-                boxShadow:'0 4px 16px rgba(19,40,83,0.4)'
+                boxShadow:'0 4px 16px rgba(219,48,0,0.4)'
               }}>
                 {t({ fr:'Nous contacter', en:'Contact us', de:'Kontakt', es:'Contáctenos', it:'Contattaci', pt:'Fale connosco', ro:'Contactați-ne' })} →
               </Link>

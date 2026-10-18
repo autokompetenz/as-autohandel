@@ -18,7 +18,7 @@ export default function Sell() {
     text: 'var(--text)',
     text2: 'var(--text-2)',
     text3: 'var(--text-3)',
-    red: '#132853',
+    red: '#DB3000',
     shadow: '0 4px 24px rgba(0,0,0,0.08)',
   };
 
@@ -129,8 +129,8 @@ export default function Sell() {
           transition={{ duration:0.8, delay:0.2 }}
           style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(19,40,83,0.3)', border:'1px solid rgba(19,40,83,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
-            <span style={{ width:8, height:8, borderRadius:'50%', background:'#132853', display:'inline-block' }} />
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(219,48,0,0.3)', border:'1px solid rgba(219,48,0,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+            <span style={{ width:8, height:8, borderRadius:'50%', background:'#DB3000', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               {t({ fr:'Vendre mon véhicule', en:'Sell my vehicle', de:'Fahrzeug verkaufen', es:'Vender mi vehículo', it:'Vendi il tuo veicolo', pt:'Vender o meu veículo', ro:'Vindeți vehiculul meu' })}
             </span>
@@ -147,10 +147,10 @@ export default function Sell() {
           </p>
           <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
             <a href="#form" style={{
-              background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none',
+              background:'linear-gradient(135deg,#DB3000,#B02500)', color:'#fff', textDecoration:'none',
               fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
               borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
-              boxShadow:'0 4px 16px rgba(19,40,83,0.4)'
+              boxShadow:'0 4px 16px rgba(219,48,0,0.4)'
             }}>
               {t({ fr:'Estimer mon véhicule', en:'Estimate my vehicle', de:'Fahrzeug bewerten', es:'Estimar mi vehículo', it:'Stima il mio veicolo', pt:'Estimar o meu veículo', ro:'Estimează vehiculul meu' })} →
             </a>
@@ -195,14 +195,14 @@ export default function Sell() {
                   background:C.card, border:`1px solid ${C.border}`, borderRadius:16, padding:28,
                   boxShadow:C.shadow, transition:'all 0.3s'
                 }}
-                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(19,40,83,0.4)'; e.currentTarget.style.transform='translateY(-4px)';}}
+                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(219,48,0,0.4)'; e.currentTarget.style.transform='translateY(-4px)';}}
                 onMouseOut={e=>{e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform='none';}}
               >
-                <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(19,40,83,0.15),rgba(19,40,83,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:16 }}>
+                <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(219,48,0,0.15),rgba(219,48,0,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:16 }}>
                   {step.icon}
                 </div>
                 <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:10 }}>
-                  <span style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:14, color:'#fff', background:'#132853', borderRadius:'50%', width:26, height:26, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>{i+1}</span>
+                  <span style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:14, color:'#fff', background:'#DB3000', borderRadius:'50%', width:26, height:26, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>{i+1}</span>
                   <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:18, color:C.text }}>{step.title}</h3>
                 </div>
                 <p style={{ fontSize:14, color:C.text2, lineHeight:1.7 }}>{step.desc}</p>
@@ -322,10 +322,10 @@ export default function Sell() {
                 style={{ width:'100%', boxSizing:'border-box', resize:'none', fontSize:15, borderRadius:10, padding:'14px 18px', border:`1px solid ${C.border}`, background:C.bg, color:C.text, outline:'none', lineHeight:1.6 }} />
             </div>
             <button type="submit" disabled={submitting} style={{
-              width:'100%', padding:'18px 36px', background:'linear-gradient(135deg,#132853,#0E1E3D)',
+              width:'100%', padding:'18px 36px', background:'linear-gradient(135deg,#DB3000,#B02500)',
               color:'#fff', border:'none', borderRadius:10, fontSize:15, fontWeight:700,
               fontFamily:"var(--font)", cursor:'pointer', letterSpacing:'0.05em',
-              boxShadow:'0 4px 16px rgba(19,40,83,0.3)', opacity: submitting ? 0.6 : 1,
+              boxShadow:'0 4px 16px rgba(219,48,0,0.3)', opacity: submitting ? 0.6 : 1,
               transition:'all 0.3s'
             }}>
               {submitting

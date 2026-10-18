@@ -16,7 +16,7 @@ export default function Delivery() {
     text: 'var(--text)',
     text2: 'var(--text-2)',
     text3: 'var(--text-3)',
-    red: '#132853',
+    red: '#DB3000',
     shadow: '0 4px 24px rgba(0,0,0,0.08)',
   };
 
@@ -75,8 +75,8 @@ export default function Delivery() {
           transition={{ duration:0.8, delay:0.2 }}
           style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(19,40,83,0.3)', border:'1px solid rgba(19,40,83,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
-            <span style={{ width:8, height:8, borderRadius:'50%', background:'#132853', display:'inline-block' }} />
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(219,48,0,0.3)', border:'1px solid rgba(219,48,0,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+            <span style={{ width:8, height:8, borderRadius:'50%', background:'#DB3000', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               {t({ fr:'Livraison', en:'Delivery', de:'Lieferung', es:'Entrega', it:'Consegna', pt:'Entrega', ro:'Livrare' })}
             </span>
@@ -117,7 +117,7 @@ export default function Delivery() {
                 <div style={{ position:'absolute', top:20, right:20, fontFamily:"var(--font)", fontWeight:900, fontSize:40, color:C.card2, lineHeight:1 }}>
                   {String(i+1).padStart(2,'0')}
                 </div>
-                <div style={{ width:52, height:52, borderRadius:14, background:'linear-gradient(135deg,#132853,#0E1E3D)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:24, marginBottom:18 }}>
+                <div style={{ width:52, height:52, borderRadius:14, background:'linear-gradient(135deg,#DB3000,#B02500)', display:'flex', alignItems:'center', justifyContent:'center', fontSize:24, marginBottom:18 }}>
                   {s.icon}
                 </div>
                 <h3 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:17, color:C.text, marginBottom:10 }}>{s.title}</h3>
@@ -152,7 +152,7 @@ export default function Delivery() {
                   <span style={{ fontSize:22 }}>{c.flag}</span>
                   <span style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:14, color:C.text }}>{c.name}</span>
                 </div>
-                <span style={{ fontSize:12, fontWeight:700, color:'#132853', background:'rgba(19,40,83,0.1)', padding:'4px 10px', borderRadius:6, whiteSpace:'nowrap' }}>⏱ {c.time}</span>
+                <span style={{ fontSize:12, fontWeight:700, color:'#DB3000', background:'rgba(219,48,0,0.1)', padding:'4px 10px', borderRadius:6, whiteSpace:'nowrap' }}>⏱ {c.time}</span>
               </motion.div>
             ))}
           </div>
@@ -205,7 +205,7 @@ export default function Delivery() {
               {t({ fr:'Un conseiller dédié s\'occupe de tout : transport, assurance, immatriculation. Vous n\'avez qu\'à réceptionner les clés.', en:'A dedicated advisor handles everything: transport, insurance, registration. You just receive the keys.', de:'Ein persönlicher Berater kümmert sich um alles: Transport, Versicherung, Zulassung. Sie erhalten nur die Schlüssel.', es:'Un asesor dedicado se encarga de todo. Usted solo recibe las llaves.', it:'Un consulente dedicato si occupa di tutto. Voi ricevete solo le chiavi.', pt:'Um consultor dedicado trata de tudo. Só recebe as chaves.', ro:'Un consultant dedicat se ocupă de tot: transport, asigurare, înmatriculare. Voi trebuie doar să primiți cheile.' })}
             </p>
             <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
-              <Link to="/contact" style={{ background:'linear-gradient(135deg,#132853,#0E1E3D)', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
+              <Link to="/contact" style={{ background:'linear-gradient(135deg,#DB3000,#B02500)', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
                 {t({ fr:'Demander un devis', en:'Request a quote', de:'Angebot anfordern', es:'Solicitar presupuesto', it:'Richiedi preventivo', pt:'Pedir orçamento', ro:'Cereți o ofertă' })} →
               </Link>
               <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>

@@ -17,7 +17,7 @@ export default function Contact() {
     text: 'var(--text)',
     text2: 'var(--text-2)',
     text3: 'var(--text-3)',
-    red: '#132853',
+    red: '#DB3000',
     shadow: '0 4px 24px rgba(0,0,0,0.08)',
   };
 
@@ -117,8 +117,8 @@ export default function Contact() {
           transition={{ duration:0.8, delay:0.2 }}
           style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(19,40,83,0.3)', border:'1px solid rgba(19,40,83,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
-            <span style={{ width:8, height:8, borderRadius:'50%', background:'#132853', display:'inline-block' }} />
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(219,48,0,0.3)', border:'1px solid rgba(219,48,0,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+            <span style={{ width:8, height:8, borderRadius:'50%', background:'#DB3000', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               {t({ fr:'Nous contacter', en:'Contact us', de:'Kontakt', es:'Contáctenos', it:'Contattaci', pt:'Fale connosco', ro:'Contactați-ne' })}
             </span>
@@ -148,10 +148,10 @@ export default function Contact() {
                 viewport={{ once:true }}
                 transition={{ delay:i*0.08, duration:0.5 }}
                 style={{ textAlign:'center', background:C.card, border:`1px solid ${C.border}`, borderRadius:16, padding:28, boxShadow:C.shadow, transition:'all 0.3s' }}
-                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(19,40,83,0.4)'; e.currentTarget.style.transform='translateY(-4px)';}}
+                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(219,48,0,0.4)'; e.currentTarget.style.transform='translateY(-4px)';}}
                 onMouseOut={e=>{e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform='none';}}
               >
-                <div style={{ width:56, height:56, margin:'0 auto 16px', borderRadius:12, background:'linear-gradient(135deg,rgba(19,40,83,0.15),rgba(19,40,83,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:26 }}>
+                <div style={{ width:56, height:56, margin:'0 auto 16px', borderRadius:12, background:'linear-gradient(135deg,rgba(219,48,0,0.15),rgba(219,48,0,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:26 }}>
                   {card.icon}
                 </div>
                 <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:16, color:C.text, marginBottom:8 }}>{card.title}</h3>
@@ -212,10 +212,10 @@ export default function Contact() {
                   style={{ width:'100%', boxSizing:'border-box', resize:'none', fontSize:15, borderRadius:10, padding:'14px 18px', border:`1px solid ${C.border}`, background:C.bg, color:C.text, outline:'none', lineHeight:1.6 }} />
               </div>
               <button type="submit" disabled={submitting} style={{
-                width:'100%', padding:'18px 36px', background:'linear-gradient(135deg,#132853,#0E1E3D)',
+                width:'100%', padding:'18px 36px', background:'linear-gradient(135deg,#DB3000,#B02500)',
                 color:'#fff', border:'none', borderRadius:10, fontSize:15, fontWeight:700,
                 fontFamily:"var(--font)", cursor:'pointer', letterSpacing:'0.05em',
-                boxShadow:'0 4px 16px rgba(19,40,83,0.3)', opacity: submitting ? 0.6 : 1, transition:'all 0.3s'
+                boxShadow:'0 4px 16px rgba(219,48,0,0.3)', opacity: submitting ? 0.6 : 1, transition:'all 0.3s'
               }}>
                 {submitting
                   ? t({ fr:'Envoi en cours...', en:'Sending...', de:'Wird gesendet...', es:'Enviando...', it:'Invio...', pt:'A enviar...', ro:'Se trimite...' })

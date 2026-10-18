@@ -16,7 +16,7 @@ export default function Insurance() {
     text: 'var(--text)',
     text2: 'var(--text-2)',
     text3: 'var(--text-3)',
-    red: '#132853',
+    red: '#DB3000',
     shadow: '0 4px 24px rgba(0,0,0,0.08)',
   };
 
@@ -32,7 +32,7 @@ export default function Insurance() {
           <p style={{ fontSize:16, color:'rgba(255,255,255,0.7)', marginBottom:32, maxWidth:600 }}>
             {getText({ fr:'Solutions d\'assurance complètes pour protéger votre véhicule.', en:'Complete insurance solutions to protect your vehicle.', de:'Umfassende Versicherungslösungen zum Schutz Ihres Fahrzeugs.' })}
           </p>
-          <Link to="/catalog" style={{ background:'#132853', color:'#fff', textDecoration:'none', padding:'14px 28px', borderRadius:8, fontWeight:700 }}>
+          <Link to="/catalog" style={{ background:'#DB3000', color:'#fff', textDecoration:'none', padding:'14px 28px', borderRadius:8, fontWeight:700 }}>
             {getText({ fr:'Voir les véhicules', en:'View vehicles', de:'Fahrzeuge ansehen' })} →
           </Link>
         </motion.div>

@@ -216,7 +216,7 @@ export default function Navbar() {
               fontFamily: F, fontSize: 14, fontWeight: 700, letterSpacing: '-0.01em',
               textDecoration: 'none', padding: '9px 20px', borderRadius: 6,
               height: 38, transition: 'all 0.2s var(--ease)',
-              boxShadow: isHero ? '0 1px 3px rgba(0,0,0,0.2)' : '0 1px 2px rgba(19,40,83,0.25)',
+              boxShadow: isHero ? '0 1px 3px rgba(0,0,0,0.2)' : '0 1px 2px rgba(219,48,0,0.25)',
             }}
               onMouseOver={e => { e.currentTarget.style.background = isHero ? 'rgba(255,255,255,0.88)' : 'var(--red-dark)'; }}
               onMouseOut={e => { e.currentTarget.style.background = isHero ? '#fff' : 'var(--red)'; }}>
@@ -242,7 +242,7 @@ export default function Navbar() {
                 <>
                   <div style={{
                     width: 20, height: 20, borderRadius: '50%',
-                    background: 'linear-gradient(135deg,#0E1E3D,#132853)',
+                    background: 'linear-gradient(135deg,#B02500,#DB3000)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: 9, fontWeight: 700, color: '#fff', flexShrink: 0,
                   }}>
@@ -347,7 +347,7 @@ export default function Navbar() {
                     {isAdmin() && (
                       <Link to="/admin" onClick={() => setMenuOpen(false)}
                         style={{ ...itemStyle(isMobile), display: 'flex', color: 'var(--red)' }}
-                        onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = 'rgba(19,40,83,0.04)'; }}
+                        onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = 'rgba(219,48,0,0.04)'; }}
                         onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
                         <span style={{ fontSize: isMobile ? 20 : 15, width: isMobile ? 28 : 20, textAlign: 'center' }}>⚙</span>
                         {t('nav_admin', lang)}
@@ -389,8 +389,8 @@ export default function Navbar() {
                           style={{
                             display: 'flex', alignItems: 'center', gap: 7,
                             padding: isMobile ? '8px 10px' : '8px 10px',
-                            background: l.code === lang ? 'rgba(19,40,83,0.08)' : 'transparent',
-                            border: `1px solid ${l.code === lang ? 'rgba(19,40,83,0.2)' : 'var(--border)'}`,
+                            background: l.code === lang ? 'rgba(219,48,0,0.08)' : 'transparent',
+                            border: `1px solid ${l.code === lang ? 'rgba(219,48,0,0.2)' : 'var(--border)'}`,
                             borderRadius: 6, cursor: 'pointer',
                             fontSize: isMobile ? 16 : 12,
                             color: l.code === lang ? 'var(--red)' : menuText2,

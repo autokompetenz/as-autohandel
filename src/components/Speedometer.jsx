@@ -39,7 +39,7 @@ export default function Speedometer({
   const subColor = dark ? 'rgba(255,255,255,0.5)' : '#666666';
   const tickColor = dark ? 'rgba(255,255,255,0.28)' : 'rgba(0,0,0,0.22)';
   const trackColor = dark ? 'rgba(255,255,255,0.14)' : 'rgba(0,0,0,0.08)';
-  const accent = '#132853';
+  const accent = '#DB3000';
 
   const ticks = [0, 0.25, 0.5, 0.75, 1];
 

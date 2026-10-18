@@ -24,7 +24,7 @@ export default function AdminDashboard() {
   const statCards = [
     { icon:'👥', label:'Clients', value:stats?.totalClients || 0, color:'#60A5FA', sub:'Total inscrits' },
     { icon:'📦', label:'Commandes', value:stats?.totalOrders || 0, color:'#C084FC', sub:'Total des commandes' },
-    { icon:'💶', label:'Chiffre d\'affaires', value:formatEuro(stats?.totalRevenue || 0), color:'#132853', sub:'Hors annulées', wide:true },
+    { icon:'💶', label:'Chiffre d\'affaires', value:formatEuro(stats?.totalRevenue || 0), color:'#DB3000', sub:'Hors annulées', wide:true },
     { icon:'⏳', label:'En attente', value:stats?.pendingOrders || 0, color:(stats?.pendingOrders || 0) > 0 ? '#FFAA00' : '#22C55E', sub:(stats?.pendingOrders || 0) > 0 ? 'Action requise' : 'Aucune en attente' },
     { icon:'🚗', label:'Véhicules actifs', value:stats?.totalCars || 0, color:'#22C55E', sub:'En catalogue' },
   ];

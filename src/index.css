@@ -9,11 +9,11 @@
 :root {
   --font:         'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-  --red:         #132853;
-  --red-dark:    #0E1E3D;
-  --red-light:   #1E3A6E;
-  --red-bg:      rgba(19,40,83,0.06);
-  --red-border:  rgba(19,40,83,0.2);
+  --red:         #DB3000;
+  --red-dark:    #B02500;
+  --red-light:   #F0603A;
+  --red-bg:      rgba(219,48,0,0.06);
+  --red-border:  rgba(219,48,0,0.2);
 
   /* Surfaces — marketplace (fond gris clair, cartes blanches) */
   --bg:          #EBECEE;
@@ -39,8 +39,8 @@
   --shadow-xl:   0 16px 44px rgba(19,24,38,0.18);
 
   /* Special */
-  --link:        #132853;
-  --accent:      #132853;
+  --link:        #DB3000;
+  --accent:      #DB3000;
   --gold:        #C9A84C;
   --green:       #16A34A;
   --radius:      6px;
@@ -72,8 +72,13 @@
   --shadow-xl:   0 16px 48px rgba(0,0,0,0.60);
 
   --green:       #22C55E;
-  --link:        #7BA4F0;
-  --accent:      #7BA4F0;
+  --red:         #DB3000;
+  --red-dark:    #B02500;
+  --red-light:   #F0603A;
+  --red-bg:      rgba(255,106,60,0.12);
+  --red-border:  rgba(255,106,60,0.32);
+  --link:        #FF7A4A;
+  --accent:      #FF7A4A;
 }
 
 /* ── Base ── */
@@ -93,8 +98,8 @@ body {
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(19,40,83,0.2); border-radius: 2px; }
-::selection { background: rgba(19,40,83,0.15); color: var(--red-dark); }
+::-webkit-scrollbar-thumb { background: rgba(219,48,0,0.2); border-radius: 2px; }
+::selection { background: rgba(219,48,0,0.15); color: var(--red-dark); }
 
 /* ── Typography ── */
 h1,h2,h3,h4,h5 { font-family:var(--font); font-weight:800; line-height:1.05; letter-spacing:-0.025em; color: var(--text); }
@@ -107,9 +112,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font); font-weight:800; line-height:1.05; let
   letter-spacing:0.01em; text-decoration:none;
   padding:13px 28px; border-radius:var(--radius);
   transition:all 0.2s var(--ease);
-  box-shadow: 0 1px 2px rgba(19,40,83,0.25);
+  box-shadow: 0 1px 2px rgba(219,48,0,0.25);
 }
-.btn-primary:hover { background:var(--red-dark); transform:none; box-shadow:0 3px 10px rgba(19,40,83,0.3); }
+.btn-primary:hover { background:var(--red-dark); transform:none; box-shadow:0 3px 10px rgba(219,48,0,0.3); }
 
 .btn-ghost {
   display:inline-flex; align-items:center; gap:8px;
@@ -128,9 +133,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font); font-weight:800; line-height:1.05; let
   letter-spacing:0.02em; text-decoration:none;
   padding:12px 26px; border-radius:var(--radius);
   transition:all 0.2s var(--ease);
-  box-shadow: 0 1px 2px rgba(19,40,83,0.25);
+  box-shadow: 0 1px 2px rgba(219,48,0,0.25);
 }
-.btn-gold:hover { background:var(--red-dark); transform:none; box-shadow:0 3px 10px rgba(19,40,83,0.3); }
+.btn-gold:hover { background:var(--red-dark); transform:none; box-shadow:0 3px 10px rgba(219,48,0,0.3); }
 
 .btn-outline {
   display:inline-flex; align-items:center; gap:8px;
@@ -181,7 +186,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font); font-weight:800; line-height:1.05; let
   transition:all 0.3s; outline:none;
   -webkit-appearance: none;
 }
-.input-luxury:focus { border-color:var(--red); box-shadow:0 0 0 3px rgba(19,40,83,0.06); background: var(--bg-card); }
+.input-luxury:focus { border-color:var(--red); box-shadow:0 0 0 3px rgba(219,48,0,0.06); background: var(--bg-card); }
 .input-luxury::placeholder { color:var(--text-3); }
 
 /* Textarea specific fix — smooth typing */
@@ -297,7 +302,7 @@ textarea.input-luxury {
   position:fixed; bottom:28px; right:28px; z-index:999;
   width:60px; height:60px; border-radius:50%; background:var(--red);
   border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
-  font-size:26px; box-shadow:0 8px 32px rgba(19,40,83,0.45);
+  font-size:26px; box-shadow:0 8px 32px rgba(219,48,0,0.45);
   transition:all 0.3s; animation:float 3s ease-in-out infinite;
 }
 .chat-btn:hover { transform:scale(1.1)!important; animation:none; }
@@ -474,7 +479,7 @@ input[type='range']::-webkit-slider-thumb {
   -webkit-appearance:none; appearance:none;
   width:22px; height:22px;
   border-radius:50%; background:var(--red); cursor:pointer;
-  box-shadow:0 0 10px rgba(19,40,83,0.4);
+  box-shadow:0 0 10px rgba(219,48,0,0.4);
 }
 input[type='range']::-moz-range-thumb {
   width:22px; height:22px;

@@ -47,12 +47,12 @@ export default function CarCard({ car, index = 0 }) {
         {/* Badges — top left */}
         <div style={{ position:'absolute', top:10, left:10, display:'flex', gap:6 }}>
           {car.featured && (
-            <span style={{ background:'rgba(19,40,83,0.92)', backdropFilter:'blur(8px)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:4 }}>
+            <span style={{ background:'rgba(219,48,0,0.92)', backdropFilter:'blur(8px)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:4 }}>
               ★ {l==='fr'?'À la une':l==='en'?'Featured':l==='de'?'Empfohlen':l==='es'?'Destacado':l==='it'?'In evidenza':'Destacado'}
             </span>
           )}
           {car.promotional && (
-            <span style={{ background:'#E8590C', backdropFilter:'blur(8px)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:4 }}>
+            <span style={{ background:'#350051', backdropFilter:'blur(8px)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.04em', padding:'3px 9px', borderRadius:4 }}>
               {l==='fr'?'Promo':l==='en'?'Sale':l==='de'?'Aktion':l==='es'?'Oferta':l==='it'?'Promo':'Promoção'}
             </span>
           )}
@@ -64,7 +64,7 @@ export default function CarCard({ car, index = 0 }) {
         </span>
 
         {/* Hover overlay */}
-        <div style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', opacity:hovered?1:0, transition:'opacity 0.2s', background:'rgba(19,40,83,0.18)' }}>
+        <div style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', opacity:hovered?1:0, transition:'opacity 0.2s', background:'rgba(219,48,0,0.18)' }}>
           <span style={{ background:'#fff', color:'var(--red)', padding:'9px 24px', borderRadius:6, fontSize:13, fontWeight:700, transform:hovered?'translateY(0)':'translateY(6px)', transition:'transform 0.25s cubic-bezier(0.16,1,0.3,1)' }}>
             {t('view_vehicle', l)} →
           </span>

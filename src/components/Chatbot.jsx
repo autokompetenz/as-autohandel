@@ -272,10 +272,10 @@ export default function Chatbot() {
   const footerBg   = isDark ? '#141414'                 : '#f8f8f8';
   const footerBord = isDark ? 'rgba(255,255,255,0.06)'  : 'rgba(0,0,0,0.08)';
   const dotBg      = isDark ? '#555'                    : '#bbb';
-  const quickBg    = isDark ? 'rgba(19,40,83,0.08)'    : 'rgba(19,40,83,0.06)';
-  const quickBd    = isDark ? 'rgba(19,40,83,0.2)'     : 'rgba(19,40,83,0.25)';
-  const quickText  = isDark ? 'rgba(255,255,255,0.7)'   : '#132853';
-  const quickHoverBg= isDark ? 'rgba(19,40,83,0.18)'    : 'rgba(19,40,83,0.14)';
+  const quickBg    = isDark ? 'rgba(219,48,0,0.08)'    : 'rgba(219,48,0,0.06)';
+  const quickBd    = isDark ? 'rgba(219,48,0,0.2)'     : 'rgba(219,48,0,0.25)';
+  const quickText  = isDark ? 'rgba(255,255,255,0.7)'   : '#DB3000';
+  const quickHoverBg= isDark ? 'rgba(219,48,0,0.18)'    : 'rgba(219,48,0,0.14)';
 
   useEffect(() => {
     const lr = R[L] || R.fr;
@@ -353,7 +353,7 @@ export default function Chatbot() {
         style={{ background: winBg, border: `1px solid ${winBorder}`, boxShadow: isDark ? '0 20px 60px rgba(0,0,0,0.6)' : '0 20px 60px rgba(0,0,0,0.15)' }}
       >
         {/* Header */}
-        <div style={{ background: 'linear-gradient(135deg, #0E1E3D, #132853)', padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+        <div style={{ background: 'linear-gradient(135deg, #B02500, #DB3000)', padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
           <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0 }}>
             🔧
           </div>
@@ -384,7 +384,7 @@ export default function Chatbot() {
                   maxWidth: '88%', padding: '10px 14px', borderRadius: 10,
                   fontSize: 13.5, lineHeight: 1.6, whiteSpace: 'pre-wrap', wordBreak: 'break-word',
                   fontFamily: "var(--font)",
-                  background: m.from === 'bot' ? msgBotBg : '#132853',
+                  background: m.from === 'bot' ? msgBotBg : '#DB3000',
                   color: m.from === 'bot' ? msgBotText : '#fff',
                   alignSelf: m.from === 'bot' ? 'flex-start' : 'flex-end',
                   borderBottomLeftRadius: m.from === 'bot' ? 3 : 10,
@@ -417,7 +417,7 @@ export default function Chatbot() {
                   fontSize: 11.5, fontWeight: 600, padding: '5px 10px', borderRadius: 16,
                   cursor: 'pointer', fontFamily: "var(--font)", transition: 'all 0.15s',
                 }}
-                onMouseOver={e => { e.currentTarget.style.background = quickHoverBg; e.currentTarget.style.color = '#132853'; }}
+                onMouseOver={e => { e.currentTarget.style.background = quickHoverBg; e.currentTarget.style.color = '#DB3000'; }}
                 onMouseOut={e => { e.currentTarget.style.background = quickBg; e.currentTarget.style.color = quickText; }}>
                 {b.label}
               </button>
@@ -444,7 +444,7 @@ export default function Chatbot() {
               <textarea value={advisorForm.message} onChange={e => setAdvisorForm({...advisorForm, message: e.target.value})} placeholder={L==='fr'?'Votre message...':L==='en'?'Your message...':L==='de'?'Ihre Nachricht...':'Su mensaje...'} className="input-luxury" rows={3} style={{ fontSize:14, padding:'10px 12px' }} />
               <div style={{ display:'flex', gap:8 }}>
                 <button type="button" onClick={() => setAdvisor(false)} style={{ flex:1, padding:'10px', borderRadius:8, border:'1px solid var(--border)', background:'transparent', cursor:'pointer', fontSize:13 }}>{L==='fr'?'Annuler':L==='en'?'Cancel':L==='de'?'Abbrechen':'Cancelar'}</button>
-                <button type="submit" style={{ flex:2, padding:'10px', borderRadius:8, border:'none', background:'#132853', color:'#fff', fontWeight:700, cursor:'pointer', fontSize:13 }}>{L==='fr'?'Envoyer au conseiller':L==='en'?'Send to advisor':L==='de'?'Senden':'Enviar'}</button>
+                <button type="submit" style={{ flex:2, padding:'10px', borderRadius:8, border:'none', background:'#DB3000', color:'#fff', fontWeight:700, cursor:'pointer', fontSize:13 }}>{L==='fr'?'Envoyer au conseiller':L==='en'?'Send to advisor':L==='de'?'Senden':'Enviar'}</button>
               </div>
             </form>
           ) : (
@@ -460,7 +460,7 @@ export default function Chatbot() {
               borderRadius: 8, padding: '9px 12px', fontSize: 13.5, fontFamily: "var(--font)",
               outline: 'none', transition: 'border-color 0.15s',
             }}
-            onFocus={e => e.target.style.borderColor = '#132853'}
+            onFocus={e => e.target.style.borderColor = '#DB3000'}
             onBlur={e => e.target.style.borderColor = inputBorder}
           />
           <style>{`.chat-window input::placeholder { color: ${inputPh}; } @keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} }`}</style>
@@ -468,7 +468,7 @@ export default function Chatbot() {
             onClick={() => send()}
             disabled={!input.trim()}
             style={{
-              background: input.trim() ? '#132853' : (isDark ? 'rgba(19,40,83,0.3)' : 'rgba(19,40,83,0.2)'),
+              background: input.trim() ? '#DB3000' : (isDark ? 'rgba(219,48,0,0.3)' : 'rgba(219,48,0,0.2)'),
               border: 'none', borderRadius: 8, cursor: input.trim() ? 'pointer' : 'not-allowed',
               width: 38, height: 38, display: 'flex', alignItems: 'center', justifyContent: 'center',
               color: '#fff', fontSize: 16, flexShrink: 0, transition: 'background 0.15s',

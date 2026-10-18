@@ -94,7 +94,7 @@ export default function Simulation() {
 
       {/* Header */}
       <div style={{ padding: isMobile ? '48px 5% 36px' : '72px 6% 56px', background:'var(--bg-card2)', borderBottom:'1px solid var(--border)', position:'relative', overflow:'hidden' }}>
-        <div style={{ position:'absolute', top:0, right:0, bottom:0, width:'40%', background:'radial-gradient(ellipse at right, rgba(19,40,83,0.07), transparent 70%)', pointerEvents:'none' }} />
+        <div style={{ position:'absolute', top:0, right:0, bottom:0, width:'40%', background:'radial-gradient(ellipse at right, rgba(219,48,0,0.07), transparent 70%)', pointerEvents:'none' }} />
         <div style={{ position:'relative', zIndex:1, maxWidth:1100, margin:'0 auto' }}>
           <div className="section-eyebrow">{L.label[l]}</div>
           <h1 style={{ fontFamily:"var(--font)", fontWeight:900, fontSize:'clamp(40px,6vw,88px)', color:'var(--text)', letterSpacing:'-0.02em', lineHeight:1, marginBottom:16 }}>
