@@ -55,7 +55,7 @@ export default function Brands() {
           transition={{ duration:0.8, delay:0.2 }}
           style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(7,187,216,0.3)', border:'1px solid rgba(7,187,216,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(35,115,244,0.3)', border:'1px solid rgba(35,115,244,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
             <span style={{ width:8, height:8, borderRadius:'50%', background:'var(--red)', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               {t({ fr:'Marques', en:'Brands', de:'Marken', es:'Marcas', it:'Marchi', pt:'Marcas', ro:'Mărci' })}
@@ -156,7 +156,7 @@ export default function Brands() {
               background:'linear-gradient(135deg,var(--red),var(--red-dark))', color:'#fff', textDecoration:'none',
               fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
               borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
-              boxShadow:'0 4px 16px rgba(7,187,216,0.4)'
+              boxShadow:'0 4px 16px rgba(35,115,244,0.4)'
             }}>
               {t({ fr:'Voir tout le catalogue', en:'View full catalog', de:'Zum kompletten Katalog', es:'Ver catálogo completo', it:'Vedi catalogo completo', pt:'Ver catálogo completo', ro:'Vezi tot catalogul' })} →
             </Link>

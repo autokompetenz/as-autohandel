@@ -35,7 +35,7 @@ export default function Maintenance() {
         <motion.div initial={{ opacity:0, scale:1.1 }} animate={{ opacity:1, scale:1 }} transition={{ duration:1.2 }} style={{ position:'absolute', inset:0, backgroundImage:'url(https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?w=1800&q=80)', backgroundSize:'cover', backgroundPosition:'center', opacity:0.2 }} />
         <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 100%)' }} />
         <motion.div initial={{ opacity:0, y:40 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, delay:0.2 }} style={{ position:'relative', zIndex:2, padding:isMobile?'0 5%':'0 7%', maxWidth:900 }}>
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(7,187,216,0.3)', border:'1px solid rgba(7,187,216,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(35,115,244,0.3)', border:'1px solid rgba(35,115,244,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
             <span style={{ width:8, height:8, borderRadius:'50%', background:'var(--red)', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               {t({ fr:'Entretien & réparations', en:'Maintenance & repairs', de:'Wartung & Reparatur', es:'Mantenimiento y reparaciones', it:'Manutenzione e riparazioni', pt:'Manutenção e reparações',ro:'Întreținere și reparații' })}

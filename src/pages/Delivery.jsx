@@ -75,7 +75,7 @@ export default function Delivery() {
           transition={{ duration:0.8, delay:0.2 }}
           style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(7,187,216,0.3)', border:'1px solid rgba(7,187,216,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(35,115,244,0.3)', border:'1px solid rgba(35,115,244,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
             <span style={{ width:8, height:8, borderRadius:'50%', background:'var(--red)', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               {t({ fr:'Livraison', en:'Delivery', de:'Lieferung', es:'Entrega', it:'Consegna', pt:'Entrega', ro:'Livrare' })}
@@ -152,7 +152,7 @@ export default function Delivery() {
                   <span style={{ fontSize:22 }}>{c.flag}</span>
                   <span style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:14, color:C.text }}>{c.name}</span>
                 </div>
-                <span style={{ fontSize:12, fontWeight:700, color:'var(--red)', background:'rgba(7,187,216,0.1)', padding:'4px 10px', borderRadius:6, whiteSpace:'nowrap' }}>⏱ {c.time}</span>
+                <span style={{ fontSize:12, fontWeight:700, color:'var(--red)', background:'rgba(35,115,244,0.1)', padding:'4px 10px', borderRadius:6, whiteSpace:'nowrap' }}>⏱ {c.time}</span>
               </motion.div>
             ))}
           </div>

@@ -122,7 +122,7 @@ export default function Warranty() {
           transition={{ duration:0.8, delay:0.2 }}
           style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(7,187,216,0.2)', border:'1px solid rgba(7,187,216,0.4)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(35,115,244,0.2)', border:'1px solid rgba(35,115,244,0.4)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
             <span style={{ width:8, height:8, borderRadius:'50%', background:'var(--red)', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               {t({ fr:'Protection', en:'Protection', de:'Schutz', es:'Protección', it:'Protezione', pt:'Proteção', ro:'Protecție' })}
@@ -155,7 +155,7 @@ export default function Warranty() {
               display:'inline-flex', 
               alignItems:'center', 
               gap:8,
-              boxShadow:'0 4px 16px rgba(7,187,216,0.4)'
+              boxShadow:'0 4px 16px rgba(35,115,244,0.4)'
             }}>
               {t({ fr:'Voir les véhicules', en:'View vehicles', de:'Fahrzeuge ansehen', es:'Ver vehículos', it:'Vedi veicoli', pt:'Ver veículos', ro:'Vezi vehiculele' })} →
             </Link>
@@ -245,11 +245,11 @@ export default function Warranty() {
                   boxShadow:C.shadow,
                   transition:'all 0.3s'
                 }}
-                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(7,187,216,0.4)'; e.currentTarget.style.transform='translateY(-4px)';}}
+                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.4)'; e.currentTarget.style.transform='translateY(-4px)';}}
                 onMouseOut={e=>{e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform='none';}}
               >
                 <div style={{ display:'flex', gap:16, marginBottom:16 }}>
-                  <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, flexShrink:0 }}>
+                  <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, flexShrink:0 }}>
                     {item.icon}
                   </div>
                   <div>
@@ -302,7 +302,7 @@ export default function Warranty() {
                   position:'relative',
                   overflow:'hidden'
                 }}
-                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(7,187,216,0.4)'; e.currentTarget.style.transform='translateY(-6px)'; e.currentTarget.style.boxShadow='0 8px 32px rgba(7,187,216,0.15)';}}
+                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.4)'; e.currentTarget.style.transform='translateY(-6px)'; e.currentTarget.style.boxShadow='0 8px 32px rgba(35,115,244,0.15)';}}
                 onMouseOut={e=>{e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow=C.shadow;}}
               >
                 {i === 2 && (

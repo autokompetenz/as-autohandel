@@ -129,7 +129,7 @@ export default function Sell() {
           transition={{ duration:0.8, delay:0.2 }}
           style={{ position:'relative', zIndex:2, padding: isMobile ? '0 5%' : '0 7%', maxWidth:900 }}
         >
-          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(7,187,216,0.3)', border:'1px solid rgba(7,187,216,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
+          <div style={{ display:'inline-flex', alignItems:'center', gap:10, background:'rgba(35,115,244,0.3)', border:'1px solid rgba(35,115,244,0.5)', borderRadius:4, padding:'8px 18px', marginBottom:24 }}>
             <span style={{ width:8, height:8, borderRadius:'50%', background:'var(--red)', display:'inline-block' }} />
             <span style={{ fontSize:12, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.9)' }}>
               {t({ fr:'Vendre mon véhicule', en:'Sell my vehicle', de:'Fahrzeug verkaufen', es:'Vender mi vehículo', it:'Vendi il tuo veicolo', pt:'Vender o meu veículo', ro:'Vindeți vehiculul meu' })}
@@ -150,7 +150,7 @@ export default function Sell() {
               background:'linear-gradient(135deg,var(--red),var(--red-dark))', color:'#fff', textDecoration:'none',
               fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'14px 28px',
               borderRadius:8, display:'inline-flex', alignItems:'center', gap:8,
-              boxShadow:'0 4px 16px rgba(7,187,216,0.4)'
+              boxShadow:'0 4px 16px rgba(35,115,244,0.4)'
             }}>
               {t({ fr:'Estimer mon véhicule', en:'Estimate my vehicle', de:'Fahrzeug bewerten', es:'Estimar mi vehículo', it:'Stima il mio veicolo', pt:'Estimar o meu veículo', ro:'Estimează vehiculul meu' })} →
             </a>
@@ -195,10 +195,10 @@ export default function Sell() {
                   background:C.card, border:`1px solid ${C.border}`, borderRadius:16, padding:28,
                   boxShadow:C.shadow, transition:'all 0.3s'
                 }}
-                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(7,187,216,0.4)'; e.currentTarget.style.transform='translateY(-4px)';}}
+                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.4)'; e.currentTarget.style.transform='translateY(-4px)';}}
                 onMouseOut={e=>{e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform='none';}}
               >
-                <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:16 }}>
+                <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:16 }}>
                   {step.icon}
                 </div>
                 <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:10 }}>
@@ -325,7 +325,7 @@ export default function Sell() {
               width:'100%', padding:'18px 36px', background:'linear-gradient(135deg,var(--red),var(--red-dark))',
               color:'#fff', border:'none', borderRadius:10, fontSize:15, fontWeight:700,
               fontFamily:"var(--font)", cursor:'pointer', letterSpacing:'0.05em',
-              boxShadow:'0 4px 16px rgba(7,187,216,0.3)', opacity: submitting ? 0.6 : 1,
+              boxShadow:'0 4px 16px rgba(35,115,244,0.3)', opacity: submitting ? 0.6 : 1,
               transition:'all 0.3s'
             }}>
               {submitting

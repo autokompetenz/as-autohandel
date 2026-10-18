@@ -48,7 +48,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
         style={{
           width: small ? 30 : 34, height: small ? 30 : 34, borderRadius:'50%', border:'none', cursor:'pointer',
           background:'rgba(255,255,255,0.94)', display:'flex', alignItems:'center', justifyContent:'center',
-          fontSize: small ? 14 : 16, lineHeight:1, color: isFav ? '#07BBD8' : 'var(--text-2)', padding:0,
+          fontSize: small ? 14 : 16, lineHeight:1, color: isFav ? '#2373F4' : 'var(--text-2)', padding:0,
           transition:'color 0.15s, transform 0.15s',
         }}
         onMouseOver={e=>e.currentTarget.style.transform='scale(1.1)'}

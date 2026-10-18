@@ -65,7 +65,7 @@ export default function PendingOrderReminder() {
           width: 52, height: 52, borderRadius: '50%',
           background: 'var(--red)', color: '#fff', fontSize: 22,
           border: 'none', cursor: 'pointer',
-          boxShadow: '0 8px 24px rgba(7,187,216,0.4)',
+          boxShadow: '0 8px 24px rgba(35,115,244,0.4)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
         }}
         aria-label={t('reminder_title', l)}

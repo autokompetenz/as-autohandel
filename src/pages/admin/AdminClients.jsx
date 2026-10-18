@@ -74,7 +74,7 @@ export default function AdminClients() {
                         fontSize:16,
                         color:'#fff',
                         flexShrink:0,
-                        boxShadow:'0 4px 12px rgba(7,187,216,0.22)',
+                        boxShadow:'0 4px 12px rgba(35,115,244,0.22)',
                         border:'2px solid var(--red-border)',
                       }}>
                         {getInitials(client.firstName, client.lastName)}

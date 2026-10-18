@@ -272,10 +272,10 @@ export default function Chatbot() {
   const footerBg   = isDark ? '#141414'                 : '#f8f8f8';
   const footerBord = isDark ? 'rgba(255,255,255,0.06)'  : 'rgba(0,0,0,0.08)';
   const dotBg      = isDark ? '#555'                    : '#bbb';
-  const quickBg    = isDark ? 'rgba(7,187,216,0.08)'    : 'rgba(7,187,216,0.06)';
-  const quickBd    = isDark ? 'rgba(7,187,216,0.2)'     : 'rgba(7,187,216,0.25)';
+  const quickBg    = isDark ? 'rgba(35,115,244,0.08)'    : 'rgba(35,115,244,0.06)';
+  const quickBd    = isDark ? 'rgba(35,115,244,0.2)'     : 'rgba(35,115,244,0.25)';
   const quickText  = isDark ? 'rgba(255,255,255,0.7)'   : 'var(--red)';
-  const quickHoverBg= isDark ? 'rgba(7,187,216,0.18)'    : 'rgba(7,187,216,0.14)';
+  const quickHoverBg= isDark ? 'rgba(35,115,244,0.18)'    : 'rgba(35,115,244,0.14)';
 
   useEffect(() => {
     const lr = R[L] || R.fr;
@@ -468,7 +468,7 @@ export default function Chatbot() {
             onClick={() => send()}
             disabled={!input.trim()}
             style={{
-              background: input.trim() ? 'var(--red)' : (isDark ? 'rgba(7,187,216,0.3)' : 'rgba(7,187,216,0.2)'),
+              background: input.trim() ? 'var(--red)' : (isDark ? 'rgba(35,115,244,0.3)' : 'rgba(35,115,244,0.2)'),
               border: 'none', borderRadius: 8, cursor: input.trim() ? 'pointer' : 'not-allowed',
               width: 38, height: 38, display: 'flex', alignItems: 'center', justifyContent: 'center',
               color: '#fff', fontSize: 16, flexShrink: 0, transition: 'background 0.15s',

@@ -78,7 +78,7 @@ export default function AdminSidebar({ mobileOpen = false, onClose }) {
               fontSize: 17,
               color: '#fff',
               margin: '0 auto 12px',
-              boxShadow: '0 6px 18px rgba(7,187,216,0.28)',
+              boxShadow: '0 6px 18px rgba(35,115,244,0.28)',
             }}
           >
             {getInitials(user?.firstName, user?.lastName)}

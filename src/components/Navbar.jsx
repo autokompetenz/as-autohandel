@@ -182,7 +182,7 @@ export default function Navbar() {
       {isAdmin() && (
         <Link to="/admin" onClick={() => setMenuOpen(false)}
           style={{ ...itemStyle(isMobile), display: 'flex', color: 'var(--red)' }}
-          onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = 'rgba(7,187,216,0.04)'; }}
+          onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = 'rgba(35,115,244,0.04)'; }}
           onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
           <span style={{ fontSize: isMobile ? 20 : 15, width: isMobile ? 28 : 20, textAlign: 'center' }}>⚙</span>
           {t('nav_admin', lang)}
@@ -224,8 +224,8 @@ export default function Navbar() {
             style={{
               display: 'flex', alignItems: 'center', gap: 7,
               padding: isMobile ? '8px 10px' : '8px 10px',
-              background: l.code === lang ? 'rgba(7,187,216,0.08)' : 'transparent',
-              border: `1px solid ${l.code === lang ? 'rgba(7,187,216,0.2)' : 'var(--border)'}`,
+              background: l.code === lang ? 'rgba(35,115,244,0.08)' : 'transparent',
+              border: `1px solid ${l.code === lang ? 'rgba(35,115,244,0.2)' : 'var(--border)'}`,
               borderRadius: 6, cursor: 'pointer',
               fontSize: isMobile ? 16 : 12,
               color: l.code === lang ? 'var(--red)' : menuText2,

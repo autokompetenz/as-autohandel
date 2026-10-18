@@ -85,7 +85,7 @@ function RouteFallback() {
       <div style={{ textAlign: 'center' }}>
         <div style={{
           width: 40, height: 40, margin: '0 auto 16px', borderRadius: '50%',
-          border: '3px solid rgba(7,187,216,0.2)', borderTopColor: 'var(--red)',
+          border: '3px solid rgba(35,115,244,0.2)', borderTopColor: 'var(--red)',
           animation: 'automatik-spin 0.8s linear infinite',
         }} />
         <div style={{ fontFamily: "var(--font)", fontSize: 13, fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>

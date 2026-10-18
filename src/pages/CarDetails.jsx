@@ -279,7 +279,7 @@ export default function CarDetails() {
                       cursor: 'pointer', transition: 'all 0.2s ease',
                       padding: 0, background: C.card,
                     }}
-                    onMouseOver={e => { if (activeImg !== i) { e.currentTarget.style.opacity='0.85'; e.currentTarget.style.borderColor='rgba(7,187,216,0.35)'; }}}
+                    onMouseOver={e => { if (activeImg !== i) { e.currentTarget.style.opacity='0.85'; e.currentTarget.style.borderColor='rgba(35,115,244,0.35)'; }}}
                     onMouseOut={e => { if (activeImg !== i) { e.currentTarget.style.opacity='0.55'; e.currentTarget.style.borderColor=C.border; }}}
                   >
                     <img src={img} alt={`Vue ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -380,7 +380,7 @@ export default function CarDetails() {
               ].map(({ label, value, highlight }) => (
                 <div key={label}
                   style={{ background: C.card2, borderRadius: 8, padding: isMobile ? '12px 14px' : '14px 16px', display: 'flex', alignItems: 'center', gap: 10, transition: 'all 0.15s', border: '1px solid transparent' }}
-                  onMouseOver={e => { e.currentTarget.style.borderColor='rgba(7,187,216,0.15)'; }}
+                  onMouseOver={e => { e.currentTarget.style.borderColor='rgba(35,115,244,0.15)'; }}
                   onMouseOut={e => { e.currentTarget.style.borderColor='transparent'; }}
                 >
                   <div>
@@ -476,7 +476,7 @@ export default function CarDetails() {
                     ))}
                   </div>
                 ) : (
-                  <p style={{ fontSize: 15, color: C.text2, lineHeight: 1.75, whiteSpace: 'pre-line', borderLeft: '2px solid rgba(7,187,216,0.25)', paddingLeft: 18 }}>
+                  <p style={{ fontSize: 15, color: C.text2, lineHeight: 1.75, whiteSpace: 'pre-line', borderLeft: '2px solid rgba(35,115,244,0.25)', paddingLeft: 18 }}>
                     {car.description}
                   </p>
                 )}
@@ -575,14 +575,14 @@ export default function CarDetails() {
           {/* Main warranty card */}
           <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 16, padding: isMobile ? 24 : 32, marginBottom: 24, boxShadow: C.shadow }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
-              <div style={{ width: 56, height: 56, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>
+              <div style={{ width: 56, height: 56, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>
                 🛡️
               </div>
               <div>
                 <h3 style={{ fontFamily: "var(--font)", fontWeight: 700, fontSize: isMobile ? 18 : 22, color: C.text, marginBottom: 4 }}>
                   {lang === 'fr' ? 'Garantie basique AS Autohandel GmbH' : lang === 'en' ? 'AS Autohandel GmbH Basic Warranty' : lang === 'de' ? 'AS Autohandel GmbH Basisgarantie' : 'ضمان AS Autohandel GmbH الأساسي'}
                 </h3>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(7,187,216,0.1)', border: '1px solid rgba(7,187,216,0.25)', padding: '4px 12px', borderRadius: 6 }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'rgba(35,115,244,0.1)', border: '1px solid rgba(35,115,244,0.25)', padding: '4px 12px', borderRadius: 6 }}>
                   <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--red)' }}>
                     {lang === 'fr' ? '✓ Incluse dans toutes les commandes' : lang === 'en' ? '✓ Included in all orders' : lang === 'de' ? '✓ In allen Bestellungen enthalten' : '✓ مشمول في جميع الطلبات'}
                   </span>
@@ -605,7 +605,7 @@ export default function CarDetails() {
             </div>
 
             {/* Warranty badge */}
-            <div style={{ background: isDark ? 'rgba(7,187,216,0.1)' : 'rgba(7,187,216,0.08)', border: '1px solid rgba(7,187,216,0.25)', borderRadius: 10, padding: 16, textAlign: 'center' }}>
+            <div style={{ background: isDark ? 'rgba(35,115,244,0.1)' : 'rgba(35,115,244,0.08)', border: '1px solid rgba(35,115,244,0.25)', borderRadius: 10, padding: 16, textAlign: 'center' }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
                 <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--red)' }}>
                   {lang === 'fr' ? 'Garantie incluse – 12 mois' : lang === 'en' ? 'Warranty included – 12 months' : lang === 'de' ? 'Garantie enthalten – 12 Monate' : 'الضمان مشمول – 12 شهرًا'}
@@ -631,7 +631,7 @@ export default function CarDetails() {
                 { text: lang === 'fr' ? 'Climatisation' : lang === 'en' ? 'Air conditioning' : lang === 'de' ? 'Klimaanlage' : 'مكيف الهواء', icon: '❄️' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', background: C.card2, borderRadius: 10, transition: 'all 0.2s' }}
-                  onMouseOver={e => { e.currentTarget.style.borderColor='rgba(7,187,216,0.3)'; e.currentTarget.style.transform='translateY(-2px)'; }}
+                  onMouseOver={e => { e.currentTarget.style.borderColor='rgba(35,115,244,0.3)'; e.currentTarget.style.transform='translateY(-2px)'; }}
                   onMouseOut={e => { e.currentTarget.style.transform='translateY(0)'; }}>
                   <span style={{ fontSize: 22 }}>{item.icon}</span>
                   <span style={{ fontSize: 14, fontWeight: 600, color: C.text }}>{item.text}</span>
@@ -654,7 +654,7 @@ export default function CarDetails() {
                 { text: lang === 'fr' ? 'Garantie carrosserie' : lang === 'en' ? 'Body warranty' : lang === 'de' ? 'Karossergarantie' : 'ضمان الهيكل', icon: '🛡️' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', background: C.card2, borderRadius: 10, border: '1px solid transparent', transition: 'all 0.2s' }}
-                  onMouseOver={e => { e.currentTarget.style.borderColor='rgba(7,187,216,0.3)'; e.currentTarget.style.transform='translateY(-2px)'; }}
+                  onMouseOver={e => { e.currentTarget.style.borderColor='rgba(35,115,244,0.3)'; e.currentTarget.style.transform='translateY(-2px)'; }}
                   onMouseOut={e => { e.currentTarget.style.borderColor='transparent'; e.currentTarget.style.transform='translateY(0)'; }}>
                   <span style={{ fontSize: 22 }}>{item.icon}</span>
                   <span style={{ fontSize: 14, fontWeight: 600, color: C.text }}>{item.text}</span>
@@ -727,7 +727,7 @@ export default function CarDetails() {
             </div>
 
             {/* Info box */}
-            <div style={{ marginTop: 24, padding: 16, background: isDark ? 'rgba(7,187,216,0.08)' : 'rgba(7,187,216,0.05)', border: '1px solid rgba(7,187,216,0.2)', borderRadius: 10 }}>
+            <div style={{ marginTop: 24, padding: 16, background: isDark ? 'rgba(35,115,244,0.08)' : 'rgba(35,115,244,0.05)', border: '1px solid rgba(35,115,244,0.2)', borderRadius: 10 }}>
               <p style={{ fontSize: 14, color: C.text2, lineHeight: 1.6, textAlign: 'center' }}>
                 {lang === 'fr' ? 'Le véhicule est livré propre, avec le plein de carburant et tous les documents en règle. Un essai routier peut être effectué avant validation finale.' : lang === 'en' ? 'The vehicle is delivered clean, with a full tank of fuel and all documents in order. A road test can be performed before final validation.' : lang === 'de' ? 'Das Fahrzeug wird sauber übergeben, mit vollem Tank und allen ordnungsgemäßen Dokumenten. Vor der endgültigen Validierung kann eine Probefahrt durchgeführt werden.' : 'يتم تسليم المركبة نظيفة مع خزان وقود ممتلئ وجميع الوثائق مرتبة. يمكن إجراء اختبار طريق قبل التحقق النهائي.'}
               </p>
@@ -766,7 +766,7 @@ export default function CarDetails() {
               { text: lang === 'fr' ? '✓ Date au choix' : lang === 'en' ? '✓ Date of your choice' : lang === 'de' ? '✓ Datum nach Wahl' : '✓ تاريخ حسب اختيارك', color: 'var(--red)' },
               { text: lang === 'fr' ? '✓ Transaction sécurisée' : lang === 'en' ? '✓ Secure transaction' : lang === 'de' ? '✓ Sichere Transaktion' : '✓ معاملة آمنة', color: 'var(--red)' },
             ].map((badge, i) => (
-              <div key={i} style={{ padding: '10px 20px', background: isDark ? 'rgba(7,187,216,0.1)' : 'rgba(7,187,216,0.08)', border: '1px solid rgba(7,187,216,0.25)', borderRadius: 8, fontSize: 13, fontWeight: 700, color: badge.color }}>
+              <div key={i} style={{ padding: '10px 20px', background: isDark ? 'rgba(35,115,244,0.1)' : 'rgba(35,115,244,0.08)', border: '1px solid rgba(35,115,244,0.25)', borderRadius: 8, fontSize: 13, fontWeight: 700, color: badge.color }}>
                 {badge.text}
               </div>
             ))}
@@ -805,9 +805,9 @@ export default function CarDetails() {
                 { title: lang === 'fr' ? 'Pneus & jantes' : lang === 'en' ? 'Tires & wheels' : lang === 'de' ? 'Reifen & Felgen' : 'الإطارات والعجلات', desc: lang === 'fr' ? 'Contrôle usure et profondeur' : lang === 'en' ? 'Wear and depth check' : lang === 'de' ? 'Verschleiß- und Tiefenprüfung' : 'فحص التآكل والعمق', icon: '🛞' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: 16, padding: '20px', background: C.card2, borderRadius: 'var(--radius-lg)', transition: 'all 0.2s' }}
-                  onMouseOver={e => { e.currentTarget.style.borderColor='rgba(7,187,216,0.3)'; e.currentTarget.style.transform='translateY(-2px)'; }}
+                  onMouseOver={e => { e.currentTarget.style.borderColor='rgba(35,115,244,0.3)'; e.currentTarget.style.transform='translateY(-2px)'; }}
                   onMouseOut={e => { e.currentTarget.style.transform='translateY(0)'; }}>
-                  <div style={{ width: 52, height: 52, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, flexShrink: 0 }}>
+                  <div style={{ width: 52, height: 52, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, flexShrink: 0 }}>
                     {item.icon}
                   </div>
                   <div>
@@ -820,7 +820,7 @@ export default function CarDetails() {
           </div>
 
           {/* Certification badge */}
-          <div style={{ background: 'linear-gradient(135deg,rgba(7,187,216,0.1),rgba(7,187,216,0.05))', border: '2px solid rgba(7,187,216,0.3)', borderRadius: 16, padding: isMobile ? 28 : 36, textAlign: 'center' }}>
+          <div style={{ background: 'linear-gradient(135deg,rgba(35,115,244,0.1),rgba(35,115,244,0.05))', border: '2px solid rgba(35,115,244,0.3)', borderRadius: 16, padding: isMobile ? 28 : 36, textAlign: 'center' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
               <span style={{ fontSize: 48 }}>✓</span>
               <div style={{ textAlign: 'left' }}>
@@ -878,10 +878,10 @@ export default function CarDetails() {
               { title: lang === 'fr' ? 'Rapport acheteur' : lang === 'en' ? 'Buyer report' : lang === 'de' ? 'Käuferbericht' : 'تقرير المشتري', desc: lang === 'fr' ? 'Rapport d\'inspection remis à la livraison' : lang === 'en' ? 'Inspection report provided at delivery' : lang === 'de' ? 'Inspektionsbericht bei Lieferung übergeben' : 'تقرير الفحص مقدم عند التسليم', icon: '📄' },
             ].map((item, i) => (
               <div key={i} style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 14, padding: isMobile ? 24 : 28, boxShadow: C.shadow, transition: 'all 0.2s' }}
-                onMouseOver={e => { e.currentTarget.style.borderColor='rgba(7,187,216,0.4)'; e.currentTarget.style.transform='translateY(-4px)'; }}
+                onMouseOver={e => { e.currentTarget.style.borderColor='rgba(35,115,244,0.4)'; e.currentTarget.style.transform='translateY(-4px)'; }}
                 onMouseOut={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.transform='translateY(0)'; }}>
                 <div style={{ display: 'flex', gap: 16, marginBottom: 16 }}>
-                  <div style={{ width: 56, height: 56, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, flexShrink: 0 }}>
+                  <div style={{ width: 56, height: 56, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, flexShrink: 0 }}>
                     {item.icon}
                   </div>
                   <div>
@@ -957,7 +957,7 @@ export default function CarDetails() {
                   gap: 12,
                   transition: 'all 0.3s',
                 }}
-                onMouseOver={e => { e.currentTarget.style.borderColor = 'rgba(7,187,216,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                onMouseOver={e => { e.currentTarget.style.borderColor = 'rgba(35,115,244,0.4)'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
                 onMouseOut={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
                 <div style={{ fontSize: 40 }}>🚗</div>

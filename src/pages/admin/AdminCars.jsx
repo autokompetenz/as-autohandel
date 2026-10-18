@@ -132,7 +132,7 @@ export default function AdminCars() {
                           </span>
                         )}
                         {car.promotional && (
-                          <span style={{ fontSize: 10, fontWeight: 800, background: 'rgba(7,187,216,0.12)', color: 'var(--red)', border: '1px solid rgba(7,187,216,0.3)', padding: '3px 10px', borderRadius: 6, letterSpacing: '0.1em' }}>
+                          <span style={{ fontSize: 10, fontWeight: 800, background: 'rgba(35,115,244,0.12)', color: 'var(--red)', border: '1px solid rgba(35,115,244,0.3)', padding: '3px 10px', borderRadius: 6, letterSpacing: '0.1em' }}>
                             🔥 PROMO
                           </span>
                         )}

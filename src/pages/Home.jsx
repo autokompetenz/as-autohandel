@@ -210,7 +210,7 @@ function PurchaseStepsSection({ l, isMobile }) {
         {!isMobile ? (
           <div style={{ position:'relative' }}>
             {/* Centre line */}
-            <div style={{ position:'absolute', left:'50%', top:0, bottom:0, width:2, background:'linear-gradient(to bottom, rgba(7,187,216,0.08), rgba(7,187,216,0.4), rgba(7,187,216,0.08))', transform:'translateX(-50%)', pointerEvents:'none' }} />
+            <div style={{ position:'absolute', left:'50%', top:0, bottom:0, width:2, background:'linear-gradient(to bottom, rgba(35,115,244,0.08), rgba(35,115,244,0.4), rgba(35,115,244,0.08))', transform:'translateX(-50%)', pointerEvents:'none' }} />
 
             {steps.map((s, i) => {
               const isLeft = i % 2 === 0;
@@ -245,7 +245,7 @@ function PurchaseStepsSection({ l, isMobile }) {
                       width:56, height:56, borderRadius:'50%',
                       background:'linear-gradient(135deg, var(--red-dark), var(--red))',
                       display:'flex', alignItems:'center', justifyContent:'center',
-                      fontSize:22, boxShadow:'0 0 0 6px var(--bg), 0 0 0 8px rgba(7,187,216,0.2)',
+                      fontSize:22, boxShadow:'0 0 0 6px var(--bg), 0 0 0 8px rgba(35,115,244,0.2)',
                     }}>
                       {s.icon}
                     </div>
@@ -266,7 +266,7 @@ function PurchaseStepsSection({ l, isMobile }) {
         ) : (
           /* Mobile: vertical list */
           <div style={{ position:'relative', paddingLeft:52 }}>
-            <div style={{ position:'absolute', left:20, top:8, bottom:8, width:2, background:'linear-gradient(to bottom, rgba(7,187,216,0.08), rgba(7,187,216,0.4), rgba(7,187,216,0.08))' }} />
+            <div style={{ position:'absolute', left:20, top:8, bottom:8, width:2, background:'linear-gradient(to bottom, rgba(35,115,244,0.08), rgba(35,115,244,0.4), rgba(35,115,244,0.08))' }} />
             {steps.map((s, i) => {
               const data = getLang(s);
               return (
@@ -284,7 +284,7 @@ function PurchaseStepsSection({ l, isMobile }) {
                     width:36, height:36, borderRadius:'50%',
                     background:'linear-gradient(135deg, var(--red-dark), var(--red))',
                     display:'flex', alignItems:'center', justifyContent:'center',
-                    fontSize:16, boxShadow:'0 0 0 4px var(--bg), 0 0 0 6px rgba(7,187,216,0.15)',
+                    fontSize:16, boxShadow:'0 0 0 4px var(--bg), 0 0 0 6px rgba(35,115,244,0.15)',
                     zIndex:2,
                   }}>
                     {s.icon}
@@ -389,10 +389,10 @@ function FAQSection({ l, isMobile }) {
                 transition={{ duration:0.4, delay:i * 0.06 }}
                 style={{
                   background:'var(--bg-card)',
-                  border:`1px solid ${isOpen ? 'rgba(7,187,216,0.35)' : 'var(--border)'}`,
+                  border:`1px solid ${isOpen ? 'rgba(35,115,244,0.35)' : 'var(--border)'}`,
                   borderRadius:14,
                   overflow:'hidden',
-                  boxShadow: isOpen ? '0 4px 24px rgba(7,187,216,0.08)' : 'var(--shadow-sm)',
+                  boxShadow: isOpen ? '0 4px 24px rgba(35,115,244,0.08)' : 'var(--shadow-sm)',
                   transition:'border-color 0.3s, box-shadow 0.3s',
                 }}
               >
@@ -428,7 +428,7 @@ function FAQSection({ l, isMobile }) {
                   </div>
                   <div style={{
                     width:28, height:28, borderRadius:'50%', flexShrink:0,
-                    background: isOpen ? 'rgba(7,187,216,0.12)' : 'var(--bg-card2)',
+                    background: isOpen ? 'rgba(35,115,244,0.12)' : 'var(--bg-card2)',
                     border:'1px solid var(--border)',
                     display:'flex', alignItems:'center', justifyContent:'center',
                     transition:'all 0.3s',
@@ -475,7 +475,7 @@ function FAQSection({ l, isMobile }) {
           whileInView={{ opacity:1, y:0 }}
           viewport={{ once:true }}
           transition={{ duration:0.5, delay:0.3 }}
-          style={{ marginTop:40, textAlign:'center', padding: isMobile ? '24px 20px' : '32px 40px', background:'linear-gradient(135deg,rgba(7,187,216,0.06),rgba(7,187,216,0.02))', border:'1px solid rgba(7,187,216,0.15)', borderRadius:16 }}
+          style={{ marginTop:40, textAlign:'center', padding: isMobile ? '24px 20px' : '32px 40px', background:'linear-gradient(135deg,rgba(35,115,244,0.06),rgba(35,115,244,0.02))', border:'1px solid rgba(35,115,244,0.15)', borderRadius:16 }}
         >
           <p style={{ fontFamily:"var(--font)", fontWeight:700, fontSize: isMobile ? 15 : 17, color:'var(--text)', marginBottom:8 }}>
             {l==='fr'?'Une autre question ?':l==='en'?'Another question?':l==='de'?'Noch eine Frage?':l==='es'?'¿Otra pregunta?':l==='it'?'Un\'altra domanda?':'Outra pergunta?'}
@@ -1141,8 +1141,8 @@ export default function Home() {
               style={{ 
                 marginTop: 24, 
                 padding: '16px 20px', 
-                background: 'rgba(7,187,216,0.08)', 
-                border: '1px solid rgba(7,187,216,0.2)', 
+                background: 'rgba(35,115,244,0.08)', 
+                border: '1px solid rgba(35,115,244,0.2)', 
                 borderRadius: 12, 
                 textAlign: 'center' 
               }}
@@ -1195,7 +1195,7 @@ export default function Home() {
                     padding: isMobile ? '18px 8px' : '26px 12px', textAlign:'center', cursor:'pointer',
                     transition:'all 0.35s cubic-bezier(0.16,1,0.3,1)', height:'100%',
                   }}
-                    onMouseOver={e => { e.currentTarget.style.borderColor='rgba(7,187,216,0.2)'; e.currentTarget.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)'; e.currentTarget.style.transform='translateY(-3px)'; }}
+                    onMouseOver={e => { e.currentTarget.style.borderColor='rgba(35,115,244,0.2)'; e.currentTarget.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)'; e.currentTarget.style.transform='translateY(-3px)'; }}
                     onMouseOut={e => { e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.boxShadow='none'; e.currentTarget.style.transform='translateY(0)'; }}>
                     <div style={{ margin:'0 auto 10px', display:'flex', alignItems:'center', justifyContent:'center', minHeight: isMobile ? 26 : 34 }}>
                       <BrandLogo brand={b} height={isMobile ? 24 : 32} />
@@ -1372,7 +1372,7 @@ export default function Home() {
             {/* Banner CTA */}
             <motion.div
               initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:0.3 }}
-              style={{ marginTop:32, padding: isMobile ? '24px 20px' : '28px 40px', background:'linear-gradient(135deg,rgba(7,187,216,0.07),rgba(7,187,216,0.02))', border:'1px solid rgba(7,187,216,0.15)', borderRadius:16, display:'flex', alignItems:'center', justifyContent:'space-between', gap:20, flexWrap:'wrap' }}>
+              style={{ marginTop:32, padding: isMobile ? '24px 20px' : '28px 40px', background:'linear-gradient(135deg,rgba(35,115,244,0.07),rgba(35,115,244,0.02))', border:'1px solid rgba(35,115,244,0.15)', borderRadius:16, display:'flex', alignItems:'center', justifyContent:'space-between', gap:20, flexWrap:'wrap' }}>
               <div>
                 <p style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 16 : 18, color:'var(--text)', marginBottom:4 }}>
                   🚐 {l==='fr'?"L'aventure commence ici":l==='en'?'The adventure starts here':l==='de'?'Das Abenteuer beginnt hier':l==='es'?'La aventura empieza aquí':l==='it'?"L'avventura inizia qui":'A aventura começa aqui'}
@@ -1406,7 +1406,7 @@ export default function Home() {
             {SERVICES.map((s, i) => (
               <motion.div key={i} initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay:i*0.06, duration:0.5 }}
                 style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:12, padding:'24px 26px', transition:'all 0.35s cubic-bezier(0.16,1,0.3,1)' }}
-                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(7,187,216,0.12)'; e.currentTarget.style.transform='translateY(-2px)'; e.currentTarget.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)';}}
+                onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.12)'; e.currentTarget.style.transform='translateY(-2px)'; e.currentTarget.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)';}}
                 onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='none';}}>
                 <div style={{ fontSize:28, marginBottom:16 }}>{s.icon}</div>
                 <h3 style={{ fontFamily:"var(--font)", fontWeight:700, fontSize:17, color:'var(--text)', marginBottom:8 }}>{getServiceTitle(s)}</h3>
@@ -1479,7 +1479,7 @@ export default function Home() {
 
           {/* Stats Banner */}
           <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6, delay:0.6 }}
-            style={{ marginTop:48, padding: isMobile ? 28 : 36, background:'linear-gradient(135deg,rgba(7,187,216,0.08),rgba(7,187,216,0.03))', border:'2px solid rgba(7,187,216,0.2)', borderRadius:16, display:'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)', gap:24, textAlign:'center' }}>
+            style={{ marginTop:48, padding: isMobile ? 28 : 36, background:'linear-gradient(135deg,rgba(35,115,244,0.08),rgba(35,115,244,0.03))', border:'2px solid rgba(35,115,244,0.2)', borderRadius:16, display:'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)', gap:24, textAlign:'center' }}>
             {[
               { value:'10+', label:l==='fr'?'Années d\'expérience':l==='en'?'Years experience':l==='de'?'Jahre Erfahrung':l==='es'?'Años de experiencia':l==='it'?'Anni di esperienza':'Anos de experiência' },
               { value:'5000+', label:l==='fr'?'Clients satisfaits':l==='en'?'Happy clients':l==='de'?'Zufriedene Kunden':l==='es'?'Clientes satisfechos':l==='it'?'Clienti soddisfatti':'Clientes satisfeitos' },
@@ -1514,9 +1514,9 @@ export default function Home() {
             {/* Warranty Card */}
             <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5 }}
               style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:16, padding: isMobile ? 24 : 32, boxShadow:'var(--shadow-sm)', transition:'all 0.3s' }}
-              onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(7,187,216,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
+              onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
               onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='var(--shadow-sm)';}}>
-              <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>🛡️</div>
+              <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>🛡️</div>
               <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
                 {l==='fr'?'Garantie AS Autohandel GmbH':l==='en'?'AS Autohandel GmbH Warranty':l==='de'?'AS Autohandel GmbH Garantie':l==='es'?'Garantía AS Autohandel GmbH':l==='it'?'Garanzia AS Autohandel GmbH':'Garantia AS Autohandel GmbH'}
               </h3>
@@ -1536,9 +1536,9 @@ export default function Home() {
             {/* Extension Options */}
             <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:0.1 }}
               style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:16, padding: isMobile ? 24 : 32, boxShadow:'var(--shadow-sm)', transition:'all 0.3s' }}
-              onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(7,187,216,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
+              onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
               onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='var(--shadow-sm)';}}>
-              <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>📅</div>
+              <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>📅</div>
               <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
                 {l==='fr'?'Options d\'extension':l==='en'?'Extension options':l==='de'?'Erweiterungsoptionen':l==='es'?'Opciones de extensión':l==='it'?'Opzioni di estensione':'Opções de extensão'}
               </h3>
@@ -1558,9 +1558,9 @@ export default function Home() {
             {/* Insurance */}
             <motion.div initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:0.2 }}
               style={{ background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:16, padding: isMobile ? 24 : 32, boxShadow:'var(--shadow-sm)', transition:'all 0.3s' }}
-              onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(7,187,216,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
+              onMouseOver={e=>{e.currentTarget.style.borderColor='rgba(35,115,244,0.3)'; e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)';}}
               onMouseOut={e=>{e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='var(--shadow-sm)';}}>
-              <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(7,187,216,0.15),rgba(7,187,216,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>💳</div>
+              <div style={{ width:56, height:56, borderRadius:12, background:'linear-gradient(135deg,rgba(35,115,244,0.15),rgba(35,115,244,0.05))', display:'flex', alignItems:'center', justifyContent:'center', fontSize:28, marginBottom:20 }}>💳</div>
               <h3 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize: isMobile ? 18 : 20, color:'var(--text)', marginBottom:12 }}>
                 {l==='fr'?'Assurance véhicule':l==='en'?'Vehicle insurance':l==='de'?'Fahrzeugversicherung':l==='es'?'Seguro de vehículo':l==='it'?'Assicurazione veicolo':'Seguro veículo'}
               </h3>
@@ -1586,7 +1586,7 @@ export default function Home() {
               { text: l==='fr'?'✓ Assurance sur mesure':l==='en'?'✓ Tailored insurance':l==='de'?'✓ Maßgeschneiderte Versicherung':l==='es'?'✓ Seguro a medida':l==='it'?'✓ Assicurazione su misura':'✓ Seguro sob medida' },
               { text: l==='fr'?'✓ Assistance 24/7':l==='en'?'✓ 24/7 assistance':l==='de'?'✓ 24/7 Assistance':l==='es'?'✓ Asistencia 24/7':l==='it'?'✓ Assistenza 24/7':'✓ Assistência 24/7' },
             ].map((badge, i) => (
-              <div key={i} style={{ padding:'10px 20px', background:'var(--bg-card2)', border:'1px solid rgba(7,187,216,0.2)', borderRadius:8, fontSize:13, fontWeight:700, color:'var(--red)' }}>
+              <div key={i} style={{ padding:'10px 20px', background:'var(--bg-card2)', border:'1px solid rgba(35,115,244,0.2)', borderRadius:8, fontSize:13, fontWeight:700, color:'var(--red)' }}>
                 {badge.text}
               </div>
             ))}
