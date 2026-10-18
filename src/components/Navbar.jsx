@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuthStore, useLangStore, useThemeStore, useFavStore } from '../store';
 import { t, LANGUAGES } from '../utils/i18n';
 import { useBreakpoint } from '../hooks/useBreakpoint';
+import { createPortal } from 'react-dom';
 
 export default function Navbar() {
   const { user, isAuthenticated, logout, isAdmin } = useAuthStore();
@@ -39,6 +40,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const h = (e) => {
+      if (e.target && e.target.closest && e.target.closest('.nav-mobile-modal')) return; // modale mobile portée dans <body>
       if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
       if (plusRef.current && !plusRef.current.contains(e.target)) setPlusOpen(false);
     };
@@ -96,6 +98,166 @@ export default function Navbar() {
     background: 'transparent',
     border: 'none', cursor: 'pointer', width: '100%', textAlign: 'left',
   });
+
+  const menuContent = (
+    <>
+      {/* En-tête modale (mobile) */}
+      {isMobile && (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 6 }}>
+          <div style={{ width: 36, height: 4, borderRadius: 100, background: menuBorder, marginBottom: 10 }} />
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+            <span style={{ fontFamily: F, fontWeight: 700, fontSize: 16, color: menuText }}>
+              {lang === 'fr' ? 'Menu' : lang === 'en' ? 'Menu' : lang === 'de' ? 'Menü' : 'Menú'}
+            </span>
+            <button onClick={() => setMenuOpen(false)} aria-label="Fermer le menu"
+              style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: 20, color: menuText2, lineHeight: 1, padding: 6, marginRight: -6 }}>
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
+    {/* Mobile nav links */}
+    {isMobile && (
+      <div>
+        {/* Appel direct */}
+        <a href="tel:+491630436338"
+          onClick={() => setMenuOpen(false)}
+          style={{
+            display:'flex', alignItems:'center', justifyContent:'center', gap:10,
+            padding:'13px 0', marginBottom:14, borderRadius:'var(--radius)',
+            background:'var(--red)', color:'#fff', fontFamily:F,
+            fontSize:15, fontWeight:700, textDecoration:'none',
+          }}>
+          📞 +49 163 043 63 38
+        </a>
+
+        {[
+          { to: '/catalog',    icon: '🚗', label: t('nav_vehicles', lang) },
+          { to: '/simulation', icon: '💳', label: t('nav_financing', lang) },
+          { to: '/track',      icon: '📍', label: t('nav_track', lang) },
+          { to: '/contact',    icon: '📞', label: t('nav_contact', lang) },
+          { to: '/faq',        icon: '❓', label: t('nav_faq', lang) },
+          { to: '/favoris',    icon: '♥', label: lang==='fr'?'Mes favoris':lang==='en'?'My favorites':lang==='de'?'Meine Favoriten':lang==='es'?'Mis favoritos':lang==='it'?'I preferiti':lang==='pt'?'Meus favoritos':lang==='ro'?'Preferatele mele':'Favoris' },
+          { to: '/comparateur', icon: '⇄', label: lang==='fr'?'Comparateur':lang==='en'?'Comparison':lang==='de'?'Vergleich':lang==='es'?'Comparador':lang==='it'?'Confronto':lang==='pt'?'Comparador':lang==='ro'?'Comparator':'Comparison' },
+        ].map(({ to, icon, label }) => (
+          <Link key={to} to={to} onClick={() => setMenuOpen(false)}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 12,
+              padding: '10px 0', fontSize: 14,
+              color: menuText, textDecoration: 'none',
+              borderBottom: `1px solid ${menuBorder}`,
+              fontWeight: 500, fontFamily: F,
+            }}>
+            <span style={{ fontSize: 18, width: 22, textAlign: 'center' }}>{icon}</span> {label}
+          </Link>
+        ))}
+      </div>
+    )}
+
+    {/* User info */}
+    {isAuthenticated && (
+      <div style={{
+        padding: isMobile ? '0 0 16px' : '14px 18px',
+        borderBottom: `1px solid ${menuBorder}`,
+        background: isMobile ? 'transparent' : (isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.015)'),
+      }}>
+        <p style={{ fontSize: isMobile ? 16 : 13, fontWeight: 600, color: menuText, fontFamily: F }}>
+          {user?.firstName} {user?.lastName}
+        </p>
+        <p style={{ fontSize: isMobile ? 13 : 11, color: menuText3, marginTop: 2 }}>{user?.email}</p>
+      </div>
+    )}
+
+    {/* Account links */}
+    {isAuthenticated && (
+    <div style={{ padding: isMobile ? '16px 0' : '6px 0' }}>
+      <Link to="/mes-commandes" onClick={() => setMenuOpen(false)}
+        style={{ ...itemStyle(isMobile), display: 'flex', color: menuText2 }}
+        onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = menuHover; }}
+        onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
+        <span style={{ fontSize: isMobile ? 20 : 15, width: isMobile ? 28 : 20, textAlign: 'center' }}>📦</span>
+        {lang==='fr'?'Mes commandes':lang==='en'?'My orders':lang==='de'?'Meine Bestellungen':'Mis pedidos'}
+      </Link>
+      {isAdmin() && (
+        <Link to="/admin" onClick={() => setMenuOpen(false)}
+          style={{ ...itemStyle(isMobile), display: 'flex', color: 'var(--red)' }}
+          onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = 'rgba(7,187,216,0.04)'; }}
+          onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
+          <span style={{ fontSize: isMobile ? 20 : 15, width: isMobile ? 28 : 20, textAlign: 'center' }}>⚙</span>
+          {t('nav_admin', lang)}
+        </Link>
+      )}
+    </div>
+    )}
+
+    <div style={{ height: 1, background: menuBorder, margin: isMobile ? '8px 0' : 0 }} />
+
+    {/* Theme toggle */}
+    <div style={{ padding: isMobile ? '8px 0' : '6px 0' }}>
+      <button onClick={toggle} style={{ ...itemStyle(isMobile), width: '100%', color: menuText2 }}
+        onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = menuHover; }}
+        onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
+        <span style={{ fontSize: isMobile ? 20 : 15, width: isMobile ? 28 : 20, textAlign: 'center' }}>
+          {isDark ? '☀️' : '🌙'}
+        </span>
+        {isDark ? t('light_mode', lang) : t('dark_mode', lang)}
+      </button>
+    </div>
+
+    <div style={{ height: 1, background: menuBorder, margin: isMobile ? '8px 0' : 0 }} />
+
+    {/* Language selector */}
+    <div style={{ padding: isMobile ? '8px 0' : '8px 0' }}>
+      <p style={{
+        fontSize: 9, fontWeight: 700, letterSpacing: '0.25em',
+        textTransform: 'uppercase', color: menuText3,
+        padding: isMobile ? '4px 0 10px' : '4px 18px 8px',
+      }}>
+        {lang === 'fr' ? 'Langue' : lang === 'en' ? 'Language' : lang === 'de' ? 'Sprache' : 'Idioma'}
+      </p>
+      <div style={ isMobile
+        ? { display:'flex', gap:6, flexWrap:'wrap' }
+        : { display:'grid', gridTemplateColumns:'1fr 1fr', gap:4, padding:'0 10px 6px' } }>
+        {LANGUAGES.map(l => (
+          <button key={l.code} onClick={() => { setLang(l.code); setMenuOpen(false); }}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 7,
+              padding: isMobile ? '8px 10px' : '8px 10px',
+              background: l.code === lang ? 'rgba(7,187,216,0.08)' : 'transparent',
+              border: `1px solid ${l.code === lang ? 'rgba(7,187,216,0.2)' : 'var(--border)'}`,
+              borderRadius: 6, cursor: 'pointer',
+              fontSize: isMobile ? 16 : 12,
+              color: l.code === lang ? 'var(--red)' : menuText2,
+              fontFamily: F, fontWeight: l.code === lang ? 600 : 400,
+              transition: 'all 0.15s',
+            }}
+            onMouseOver={e => { if (l.code !== lang) e.currentTarget.style.background = menuHover; }}
+            onMouseOut={e => { if (l.code !== lang) e.currentTarget.style.background = 'transparent'; }}>
+            <span style={{ fontSize: isMobile ? 16 : 14 }}>{l.flag}</span>
+            {!isMobile && l.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    {/* Logout */}
+    {isAuthenticated && (
+      <>
+        <div style={{ height: 1, background: menuBorder, margin: isMobile ? '8px 0' : 0 }} />
+        <div style={{ padding: isMobile ? '8px 0' : '6px 0 8px' }}>
+          <button onClick={handleLogout}
+            style={{ ...itemStyle(isMobile), width: '100%', color: '#DC2626' }}
+            onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = 'rgba(239,68,68,0.04)'; }}
+            onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
+            <span style={{ fontSize: isMobile ? 20 : 15, width: isMobile ? 28 : 20, textAlign: 'center' }}>→</span>
+            {t('nav_logout', lang)}
+          </button>
+        </div>
+      </>
+    )}
+    </>
+  );
 
   return (
     <>
@@ -265,211 +427,67 @@ export default function Navbar() {
               )}
             </button>
 
-            <AnimatePresence>
-              {menuOpen && (
-                <>
-                  {/* Backdrop (modale mobile) */}
-                  {isMobile && (
-                    <motion.div
-                      key="menu-backdrop"
-                      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      onClick={() => setMenuOpen(false)}
-                      style={{
-                        position: 'fixed', top: 60, left: 0, right: 0, bottom: 0,
-                        background: 'rgba(10,10,12,0.55)',
-                        backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
-                        zIndex: 9998,
-                      }}
-                    />
-                  )}
-
+            {/* Menu mobile → modale portée dans <body> (la <nav> a un backdrop-filter qui crée un containing block pour position:fixed) */}
+            {isMobile && createPortal(
+              <AnimatePresence>
+                {menuOpen && (
                   <motion.div
-                    key="menu"
-                    initial={isMobile ? { opacity: 0, scale: 0.96, y: 10 } : { opacity: 0, y: 6, scale: 0.97 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={isMobile ? { opacity: 0, scale: 0.96, y: 10 } : { opacity: 0, y: 6, scale: 0.97 }}
-                    transition={{ duration: isMobile ? 0.26 : 0.2, ease: [0.16,1,0.3,1] }}
-                    style={ isMobile ? {
+                    key="menu-modal-overlay"
+                    className="nav-mobile-modal"
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                    transition={{ duration: 0.22 }}
+                    onClick={() => setMenuOpen(false)}
+                    style={{
                       position: 'fixed', top: 60, left: 0, right: 0, bottom: 0,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      padding: '16px 16px 96px', zIndex: 9999, pointerEvents: 'none',
-                    } : {
+                      background: 'rgba(10,10,12,0.55)',
+                      backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
+                      zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      padding: '16px 16px 96px', overflow: 'hidden',
+                    }}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0, y: 18, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 18, scale: 0.97 }}
+                      transition={{ duration: 0.26, ease: [0.16, 1, 0.3, 1] }}
+                      onClick={e => e.stopPropagation()}
+                      style={{
+                        width: '100%', maxWidth: 380, maxHeight: '100%', overflow: 'auto',
+                        background: menuBg, border: `1px solid ${menuBorder}`,
+                        borderRadius: 20, boxShadow: '0 24px 80px rgba(0,0,0,0.40)',
+                        padding: '14px 18px 20px', WebkitOverflowScrolling: 'touch',
+                      }}
+                    >
+                      {menuContent}
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>,
+              document.body
+            )}
+
+            {/* Menu desktop → dropdown classique sous le bouton */}
+            {!isMobile && (
+              <AnimatePresence>
+                {menuOpen && (
+                  <motion.div
+                    key="menu-desktop"
+                    initial={{ opacity: 0, y: 6, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    style={{
                       position: 'absolute', right: 0, top: 'calc(100% + 8px)',
                       background: menuBg, border: `1px solid ${menuBorder}`,
                       borderRadius: 10, boxShadow: '0 8px 40px rgba(0,0,0,0.20)',
                       overflow: 'auto', minWidth: 220, zIndex: 9999, padding: 0,
-                    }}>
-
-                    {/* Carte modale (mobile) */}
-                    <div style={ isMobile ? {
-                      pointerEvents: 'auto', width: '100%', maxWidth: 380, maxHeight: '100%',
-                      overflow: 'auto', background: menuBg, border: `1px solid ${menuBorder}`,
-                      borderRadius: 20, boxShadow: '0 24px 80px rgba(0,0,0,0.40)',
-                      padding: '14px 18px 20px', WebkitOverflowScrolling: 'touch',
-                    } : { display: 'contents' }}>
-
-                    {/* En-tête modale (mobile) */}
-                    {isMobile && (
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 6 }}>
-                        <div style={{ width: 36, height: 4, borderRadius: 100, background: menuBorder, marginBottom: 10 }} />
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                          <span style={{ fontFamily: F, fontWeight: 700, fontSize: 16, color: menuText }}>
-                            {lang === 'fr' ? 'Menu' : lang === 'en' ? 'Menu' : lang === 'de' ? 'Menü' : 'Menú'}
-                          </span>
-                          <button onClick={() => setMenuOpen(false)} aria-label="Fermer le menu"
-                            style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: 20, color: menuText2, lineHeight: 1, padding: 6, marginRight: -6 }}>
-                            ✕
-                          </button>
-                        </div>
-                      </div>
-                    )}
-
-                  {/* Mobile nav links */}
-                  {isMobile && (
-                    <div>
-                      {/* Appel direct */}
-                      <a href="tel:+491630436338"
-                        onClick={() => setMenuOpen(false)}
-                        style={{
-                          display:'flex', alignItems:'center', justifyContent:'center', gap:10,
-                          padding:'13px 0', marginBottom:14, borderRadius:'var(--radius)',
-                          background:'var(--red)', color:'#fff', fontFamily:F,
-                          fontSize:15, fontWeight:700, textDecoration:'none',
-                        }}>
-                        📞 +49 163 043 63 38
-                      </a>
-
-                      {[
-                        { to: '/catalog',    icon: '🚗', label: t('nav_vehicles', lang) },
-                        { to: '/simulation', icon: '💳', label: t('nav_financing', lang) },
-                        { to: '/track',      icon: '📍', label: t('nav_track', lang) },
-                        { to: '/contact',    icon: '📞', label: t('nav_contact', lang) },
-                        { to: '/faq',        icon: '❓', label: t('nav_faq', lang) },
-                        { to: '/favoris',    icon: '♥', label: lang==='fr'?'Mes favoris':lang==='en'?'My favorites':lang==='de'?'Meine Favoriten':lang==='es'?'Mis favoritos':lang==='it'?'I preferiti':lang==='pt'?'Meus favoritos':lang==='ro'?'Preferatele mele':'Favoris' },
-                        { to: '/comparateur', icon: '⇄', label: lang==='fr'?'Comparateur':lang==='en'?'Comparison':lang==='de'?'Vergleich':lang==='es'?'Comparador':lang==='it'?'Confronto':lang==='pt'?'Comparador':lang==='ro'?'Comparator':'Comparison' },
-                      ].map(({ to, icon, label }) => (
-                        <Link key={to} to={to} onClick={() => setMenuOpen(false)}
-                          style={{
-                            display: 'flex', alignItems: 'center', gap: 12,
-                            padding: '10px 0', fontSize: 14,
-                            color: menuText, textDecoration: 'none',
-                            borderBottom: `1px solid ${menuBorder}`,
-                            fontWeight: 500, fontFamily: F,
-                          }}>
-                          <span style={{ fontSize: 18, width: 22, textAlign: 'center' }}>{icon}</span> {label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* User info */}
-                  {isAuthenticated && (
-                    <div style={{
-                      padding: isMobile ? '0 0 16px' : '14px 18px',
-                      borderBottom: `1px solid ${menuBorder}`,
-                      background: isMobile ? 'transparent' : (isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.015)'),
-                    }}>
-                      <p style={{ fontSize: isMobile ? 16 : 13, fontWeight: 600, color: menuText, fontFamily: F }}>
-                        {user?.firstName} {user?.lastName}
-                      </p>
-                      <p style={{ fontSize: isMobile ? 13 : 11, color: menuText3, marginTop: 2 }}>{user?.email}</p>
-                    </div>
-                  )}
-
-                  {/* Account links */}
-                  {isAuthenticated && (
-                  <div style={{ padding: isMobile ? '16px 0' : '6px 0' }}>
-                    <Link to="/mes-commandes" onClick={() => setMenuOpen(false)}
-                      style={{ ...itemStyle(isMobile), display: 'flex', color: menuText2 }}
-                      onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = menuHover; }}
-                      onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
-                      <span style={{ fontSize: isMobile ? 20 : 15, width: isMobile ? 28 : 20, textAlign: 'center' }}>📦</span>
-                      {lang==='fr'?'Mes commandes':lang==='en'?'My orders':lang==='de'?'Meine Bestellungen':'Mis pedidos'}
-                    </Link>
-                    {isAdmin() && (
-                      <Link to="/admin" onClick={() => setMenuOpen(false)}
-                        style={{ ...itemStyle(isMobile), display: 'flex', color: 'var(--red)' }}
-                        onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = 'rgba(7,187,216,0.04)'; }}
-                        onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
-                        <span style={{ fontSize: isMobile ? 20 : 15, width: isMobile ? 28 : 20, textAlign: 'center' }}>⚙</span>
-                        {t('nav_admin', lang)}
-                      </Link>
-                    )}
-                  </div>
-                  )}
-
-                  <div style={{ height: 1, background: menuBorder, margin: isMobile ? '8px 0' : 0 }} />
-
-                  {/* Theme toggle */}
-                  <div style={{ padding: isMobile ? '8px 0' : '6px 0' }}>
-                    <button onClick={toggle} style={{ ...itemStyle(isMobile), width: '100%', color: menuText2 }}
-                      onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = menuHover; }}
-                      onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
-                      <span style={{ fontSize: isMobile ? 20 : 15, width: isMobile ? 28 : 20, textAlign: 'center' }}>
-                        {isDark ? '☀️' : '🌙'}
-                      </span>
-                      {isDark ? t('light_mode', lang) : t('dark_mode', lang)}
-                    </button>
-                  </div>
-
-                  <div style={{ height: 1, background: menuBorder, margin: isMobile ? '8px 0' : 0 }} />
-
-                  {/* Language selector */}
-                  <div style={{ padding: isMobile ? '8px 0' : '8px 0' }}>
-                    <p style={{
-                      fontSize: 9, fontWeight: 700, letterSpacing: '0.25em',
-                      textTransform: 'uppercase', color: menuText3,
-                      padding: isMobile ? '4px 0 10px' : '4px 18px 8px',
-                    }}>
-                      {lang === 'fr' ? 'Langue' : lang === 'en' ? 'Language' : lang === 'de' ? 'Sprache' : 'Idioma'}
-                    </p>
-                    <div style={ isMobile
-                      ? { display:'flex', gap:6, flexWrap:'wrap' }
-                      : { display:'grid', gridTemplateColumns:'1fr 1fr', gap:4, padding:'0 10px 6px' } }>
-                      {LANGUAGES.map(l => (
-                        <button key={l.code} onClick={() => { setLang(l.code); setMenuOpen(false); }}
-                          style={{
-                            display: 'flex', alignItems: 'center', gap: 7,
-                            padding: isMobile ? '8px 10px' : '8px 10px',
-                            background: l.code === lang ? 'rgba(7,187,216,0.08)' : 'transparent',
-                            border: `1px solid ${l.code === lang ? 'rgba(7,187,216,0.2)' : 'var(--border)'}`,
-                            borderRadius: 6, cursor: 'pointer',
-                            fontSize: isMobile ? 16 : 12,
-                            color: l.code === lang ? 'var(--red)' : menuText2,
-                            fontFamily: F, fontWeight: l.code === lang ? 600 : 400,
-                            transition: 'all 0.15s',
-                          }}
-                          onMouseOver={e => { if (l.code !== lang) e.currentTarget.style.background = menuHover; }}
-                          onMouseOut={e => { if (l.code !== lang) e.currentTarget.style.background = 'transparent'; }}>
-                          <span style={{ fontSize: isMobile ? 16 : 14 }}>{l.flag}</span>
-                          {!isMobile && l.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Logout */}
-                  {isAuthenticated && (
-                    <>
-                      <div style={{ height: 1, background: menuBorder, margin: isMobile ? '8px 0' : 0 }} />
-                      <div style={{ padding: isMobile ? '8px 0' : '6px 0 8px' }}>
-                        <button onClick={handleLogout}
-                          style={{ ...itemStyle(isMobile), width: '100%', color: '#DC2626' }}
-                          onMouseOver={e => { if (!isMobile) e.currentTarget.style.background = 'rgba(239,68,68,0.04)'; }}
-                          onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
-                          <span style={{ fontSize: isMobile ? 20 : 15, width: isMobile ? 28 : 20, textAlign: 'center' }}>→</span>
-                          {t('nav_logout', lang)}
-                        </button>
-                      </div>
-                    </>
-                  )}
-
-                    </div>
+                    }}
+                  >
+                    {menuContent}
                   </motion.div>
-                </>
-              )}
-            </AnimatePresence>
+                )}
+              </AnimatePresence>
+            )}
           </div>
         </div>
       </nav>
