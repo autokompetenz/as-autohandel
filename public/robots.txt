@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /mes-commandes
+Disallow: /order-confirm/
+Disallow: /commander/
+
+Sitemap: https://automatikgebrauchtwagen.com/sitemap.xml
