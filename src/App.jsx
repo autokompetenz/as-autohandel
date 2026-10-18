@@ -7,10 +7,13 @@ import Toast from './components/Toast';
 import Chatbot from './components/Chatbot';
 import PendingOrderReminder from './components/PendingOrderReminder';
 import ClientBottomNav, { useClientBottomNavPadding } from './components/ClientBottomNav';
+import CompareBar from './components/CompareBar';
 
 // Pages (code-split, chargées à la demande)
 const Home         = lazy(() => import('./pages/Home'));
 const HomeMinimal  = lazy(() => import('./pages/HomeMinimal'));
+const Favorites    = lazy(() => import('./pages/Favorites'));
+const Compare      = lazy(() => import('./pages/Compare'));
 const Catalog      = lazy(() => import('./pages/Catalog'));
 const CarDetails   = lazy(() => import('./pages/CarDetails'));
 const Simulation   = lazy(() => import('./pages/Simulation'));
@@ -131,6 +134,7 @@ function MainLayout({ children }) {
       <Navbar />
       <div style={paddingBottom ? { paddingBottom } : undefined}>{children}</div>
       <ClientBottomNav />
+      <CompareBar />
       <Chatbot />
     </>
   );
@@ -174,6 +178,8 @@ export default function App() {
         {/* Public */}
         <Route path="/"          element={<MainLayout><Home /></MainLayout>} />
         <Route path="/accueil2"  element={<MainLayout><HomeMinimal /></MainLayout>} />
+        <Route path="/favoris"   element={<MainLayout><Favorites /></MainLayout>} />
+        <Route path="/comparateur" element={<MainLayout><Compare /></MainLayout>} />
         <Route path="/catalog"   element={<MainLayout><Catalog /></MainLayout>} />
         <Route path="/cars/:id"  element={<MainLayout><CarDetails /></MainLayout>} />
         <Route path="/simulation"element={<MainLayout><Simulation /></MainLayout>} />

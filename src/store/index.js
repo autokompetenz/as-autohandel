@@ -98,3 +98,33 @@ export const useToastStore = create((set, get) => ({
   },
   removeToast: (id) => set({ toasts: get().toasts.filter(t => t.id !== id) }),
 }));
+
+// ─── Favoris Store (localStorage, sans compte client) ───────────────────────
+export const useFavStore = create((set, get) => ({
+  ids: JSON.parse(localStorage.getItem('ak_favs') || '[]'),
+  toggle: (id) => {
+    const ids = get().ids.includes(id)
+      ? get().ids.filter(x => x !== id)
+      : [...get().ids, id];
+    localStorage.setItem('ak_favs', JSON.stringify(ids));
+    set({ ids });
+    return ids.includes(id);
+  },
+  has: (id) => get().ids.includes(id),
+  clear: () => { localStorage.removeItem('ak_favs'); set({ ids: [] }); },
+}));
+
+// ─── Comparateur Store (max 3 véhicules, localStorage) ──────────────────────
+export const useCompareStore = create((set, get) => ({
+  ids: JSON.parse(localStorage.getItem('ak_cmp') || '[]'),
+  toggle: (id) => {
+    let ids = get().ids;
+    if (ids.includes(id)) ids = ids.filter(x => x !== id);
+    else ids = [...ids, id].slice(-3);           // jamais plus de 3
+    localStorage.setItem('ak_cmp', JSON.stringify(ids));
+    set({ ids });
+    return ids.includes(id);
+  },
+  has: (id) => get().ids.includes(id),
+  clear: () => { localStorage.removeItem('ak_cmp'); set({ ids: [] }); },
+}));

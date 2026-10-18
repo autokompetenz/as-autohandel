@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAuthStore, useLangStore, useThemeStore } from '../store';
+import { useAuthStore, useLangStore, useThemeStore, useFavStore } from '../store';
 import { t, LANGUAGES } from '../utils/i18n';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 
@@ -18,6 +18,7 @@ export default function Navbar() {
   const menuRef = useRef(null);
   const plusRef = useRef(null);
   const isDark = theme === 'dark';
+  const favCount = useFavStore(s => s.ids.length);
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
@@ -121,6 +122,25 @@ export default function Navbar() {
             <NavLink to="/catalog"     label={t('nav_vehicles', lang)} />
             <NavLink to="/simulation"  label={t('nav_financing', lang)} />
             <NavLink to="/contact"     label={t('nav_contact', lang)} />
+
+            {/* Favoris — cœur avec compteur */}
+            <Link to="/favoris"
+              title={lang==='fr'?'Mes favoris':lang==='en'?'My favorites':lang==='de'?'Meine Favoriten':lang==='es'?'Mis favoritos':lang==='it'?'I preferiti':lang==='pt'?'Meus favoritos':lang==='ro'?'Preferatele mele':'Favoris'}
+              style={{
+                position:'relative', display:'flex', alignItems:'center', textDecoration:'none',
+                fontSize:17, lineHeight:1, color: navTextColor, transition:'color 0.25s',
+              }}
+              onMouseOver={e => e.currentTarget.style.color = 'var(--red)'}
+              onMouseOut={e => e.currentTarget.style.color = navTextColor}>
+              {favCount > 0 ? '♥' : '♡'}
+              {favCount > 0 && (
+                <span style={{
+                  position:'absolute', top:-7, right:-10, background:'var(--red)', color:'#fff',
+                  fontSize:9, fontWeight:700, minWidth:15, height:15, padding:'0 4px',
+                  borderRadius:100, display:'flex', alignItems:'center', justifyContent:'center',
+                }}>{favCount}</span>
+              )}
+            </Link>
 
             {/* More dropdown */}
             <div style={{ position: 'relative' }} ref={plusRef}>
@@ -282,6 +302,8 @@ export default function Navbar() {
                         { to: '/track',      icon: '📍', label: t('nav_track', lang) },
                         { to: '/contact',    icon: '📞', label: t('nav_contact', lang) },
                         { to: '/faq',        icon: '❓', label: t('nav_faq', lang) },
+                        { to: '/favoris',    icon: '♥', label: lang==='fr'?'Mes favoris':lang==='en'?'My favorites':lang==='de'?'Meine Favoriten':lang==='es'?'Mis favoritos':lang==='it'?'I preferiti':lang==='pt'?'Meus favoritos':lang==='ro'?'Preferatele mele':'Favoris' },
+                        { to: '/comparateur', icon: '⇄', label: lang==='fr'?'Comparateur':lang==='en'?'Comparison':lang==='de'?'Vergleich':lang==='es'?'Comparador':lang==='it'?'Confronto':lang==='pt'?'Comparador':lang==='ro'?'Comparator':'Comparison' },
                       ].map(({ to, icon, label }) => (
                         <Link key={to} to={to} onClick={() => setMenuOpen(false)}
                           style={{

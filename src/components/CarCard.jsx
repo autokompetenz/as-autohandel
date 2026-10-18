@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { formatEuro } from '../utils/helpers';
-import { useLangStore } from '../store';
+import { useLangStore, useFavStore, useCompareStore } from '../store';
 import { t } from '../utils/i18n';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 
@@ -14,13 +14,63 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
   const navigate = useNavigate();
   const { isMobile } = useBreakpoint();
   const [hovered, setHovered] = useState(false);
+  const favIds = useFavStore(s => s.ids);
+  const toggleFav = useFavStore(s => s.toggle);
+  const cmpIds = useCompareStore(s => s.ids);
+  const toggleCmp = useCompareStore(s => s.toggle);
   const l = lang || 'fr';
+  const isFav = favIds.includes(car.id);
+  const isCmp = cmpIds.includes(car.id);
 
   const order = (e) => {
     e.preventDefault();
     e.stopPropagation();
     navigate(`/commander/${car.id}`);
   };
+
+  const onFav = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFav(car.id);
+  };
+
+  const onCmp = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleCmp(car.id);
+  };
+
+  /* Cœur favori + comparateur, superposés à l'image */
+  const OverlayBtns = ({ small }) => (
+    <div style={{ position:'absolute', top: small ? 8 : 10, right: small ? 8 : 10, display:'flex', flexDirection:'column', gap:6, zIndex:2 }}>
+      <button onClick={onFav}
+        aria-label="favori"
+        style={{
+          width: small ? 30 : 34, height: small ? 30 : 34, borderRadius:'50%', border:'none', cursor:'pointer',
+          background:'rgba(255,255,255,0.94)', display:'flex', alignItems:'center', justifyContent:'center',
+          fontSize: small ? 14 : 16, lineHeight:1, color: isFav ? '#07BBD8' : 'var(--text-2)', padding:0,
+          transition:'color 0.15s, transform 0.15s',
+        }}
+        onMouseOver={e=>e.currentTarget.style.transform='scale(1.1)'}
+        onMouseOut={e=>e.currentTarget.style.transform='none'}>
+        {isFav ? '♥' : '♡'}
+      </button>
+      <button onClick={onCmp}
+        aria-label="comparer"
+        style={{
+          width: small ? 30 : 34, height: small ? 30 : 34, borderRadius:'50%', border:'none', cursor:'pointer',
+          background: isCmp ? 'var(--red)' : 'rgba(255,255,255,0.94)',
+          color: isCmp ? '#fff' : 'var(--text-2)',
+          display:'flex', alignItems:'center', justifyContent:'center',
+          fontSize: small ? 13 : 14, lineHeight:1, padding:0,
+          transition:'background 0.15s, transform 0.15s',
+        }}
+        onMouseOver={e=>e.currentTarget.style.transform='scale(1.1)'}
+        onMouseOut={e=>e.currentTarget.style.transform='none'}>
+        ⇄
+      </button>
+    </div>
+  );
 
   const F = "var(--font)";
   const img = car.imageUrl || 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=70';
@@ -107,6 +157,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
           <img src={img} alt={`${car.make} ${car.model}`}
             style={{ width:'100%', height: isMobile ? 120 : '100%', minHeight: isMobile ? 120 : 170, objectFit:'cover', display:'block' }} />
           <div style={{ position:'absolute', top:8, left:8 }}><Badges stack /></div>
+          <OverlayBtns small={isMobile} />
         </Link>
 
         {/* Infos */}
@@ -165,7 +216,8 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
         <img src={img} alt={`${car.make} ${car.model}`}
           style={{ width:'100%', height:190, objectFit:'cover', display:'block', transition:'transform 0.4s var(--ease)' }} />
         <div style={{ position:'absolute', top:10, left:10 }}><Badges /></div>
-        <span style={{ position:'absolute', top:10, right:10, background:'rgba(255,255,255,0.94)', color:'var(--text-2)', fontSize:10, fontWeight:700, letterSpacing:'0.04em', textTransform:'uppercase', padding:'3px 10px', borderRadius:100 }}>
+        <OverlayBtns />
+        <span style={{ position:'absolute', bottom:10, right:10, background:'rgba(255,255,255,0.94)', color:'var(--text-2)', fontSize:10, fontWeight:700, letterSpacing:'0.04em', textTransform:'uppercase', padding:'3px 10px', borderRadius:100 }}>
           {car.category}
         </span>
       </Link>

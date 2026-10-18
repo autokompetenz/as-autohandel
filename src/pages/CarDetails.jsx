@@ -3,7 +3,7 @@ import { useBreakpoint } from '../hooks/useBreakpoint';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { carAPI } from '../services/api';
-import { useAuthStore, useCartStore, useToastStore, useLangStore, useThemeStore } from '../store';
+import { useAuthStore, useCartStore, useToastStore, useLangStore, useThemeStore, useFavStore, useCompareStore } from '../store';
 import { formatEuro, calculateMonthlyPayment } from '../utils/helpers';
 import { Loader } from '../components/UI';
 import CarCard from '../components/CarCard';
@@ -86,6 +86,12 @@ export default function CarDetails() {
   const SL = SPEC_LABELS[lang] || SPEC_LABELS.fr;
   const l = lang || 'fr';
   const { isMobile } = useBreakpoint();
+  const favIds = useFavStore(s => s.ids);
+  const toggleFav = useFavStore(s => s.toggle);
+  const cmpIds = useCompareStore(s => s.ids);
+  const toggleCmp = useCompareStore(s => s.toggle);
+  const isFav = car ? favIds.includes(car.id) : false;
+  const isCmp = car ? cmpIds.includes(car.id) : false;
 
   // Theme-aware color tokens — computed from isDark
   const C = {
@@ -310,13 +316,39 @@ export default function CarDetails() {
               )}
             </div>
 
+            {/* Favoris + comparateur */}
+            <div style={{ display:'flex', gap:10, marginBottom:24, flexWrap:'wrap' }}>
+              <button onClick={() => toggleFav(car.id)}
+                style={{
+                  display:'inline-flex', alignItems:'center', gap:8, padding:'9px 20px',
+                  borderRadius:'var(--radius-pill)', cursor:'pointer',
+                  border:`1px solid ${isFav ? 'var(--red-border)' : 'var(--border)'}`,
+                  background: isFav ? 'var(--red-bg)' : 'transparent',
+                  color: isFav ? 'var(--red-light)' : C.text2,
+                  fontFamily:'var(--font)', fontSize:14, fontWeight:700, transition:'all 0.15s',
+                }}>
+                {isFav ? '♥' : '♡'} {l==='fr'?'Favori':l==='en'?'Favorite':l==='de'?'Favorit':l==='es'?'Favorito':l==='it'?'Preferito':l==='pt'?'Favorito':l==='ro'?'Preferat':''}
+              </button>
+              <button onClick={() => toggleCmp(car.id)}
+                style={{
+                  display:'inline-flex', alignItems:'center', gap:8, padding:'9px 20px',
+                  borderRadius:'var(--radius-pill)', cursor:'pointer',
+                  border:`1px solid ${isCmp ? 'var(--red)' : 'var(--border)'}`,
+                  background: isCmp ? 'var(--red)' : 'transparent',
+                  color: isCmp ? '#fff' : C.text2,
+                  fontFamily:'var(--font)', fontSize:14, fontWeight:700, transition:'all 0.15s',
+                }}>
+                ⇄ {l==='fr'?'Comparer':l==='en'?'Compare':l==='de'?'Vergleichen':l==='es'?'Comparar':l==='it'?'Confronta':l==='pt'?'Comparar':l==='ro'?'Compară':''}
+              </button>
+            </div>
+
             {/* Calculateur de financement */}
             {(() => {
               const financed = Math.max(0, car.price * (1 - depositPct / 100));
               const monthly = calculateMonthlyPayment(financed, financeMonths, 0.06);
               return (
-                <div style={{ background: C.card2, border:'1px solid var(--border)', borderRadius:12, padding: isMobile ? '14px' : '16px 20px', marginBottom: 32 }}>
-                  <p style={{ fontSize:11, fontWeight:800, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)', marginBottom:12 }}>
+                <div style={{ background: C.card2, border:'1px solid var(--border)', borderRadius:'var(--radius-lg)', padding: isMobile ? '14px' : '16px 20px', marginBottom: 32 }}>
+                  <p style={{ fontSize:11, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)', marginBottom:12 }}>
                     {l==='fr'?'Simulateur de crédit':l==='en'?'Financing calculator':l==='de'?'Finanzierungsrechner':'Calculadora de financiación'}
                   </p>
                   <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:12, marginBottom:10 }}>
@@ -329,7 +361,7 @@ export default function CarDetails() {
                       <input type="range" min="12" max="84" step="12" value={financeMonths} onChange={e => setFinanceMonths(Number(e.target.value))} style={{ width:'100%' }} />
                     </div>
                   </div>
-                  <p style={{ fontSize: isMobile ? 20 : 24, fontWeight:800, color:C.text, fontFamily:"var(--font)" }}>
+                  <p style={{ fontSize: isMobile ? 20 : 24, fontWeight:700, color:C.text, fontFamily:"var(--font)" }}>
                     ≈ {formatEuro(monthly)}{l==='fr'?'/mois':l==='en'?'/month':l==='de'?'/Monat':'/mes'}
                     <span style={{ fontSize:12, fontWeight:500, color:C.text3, marginLeft:8 }}>(financement 6%/an, acompte {formatEuro(car.price * depositPct / 100)})</span>
                   </p>
@@ -361,8 +393,8 @@ export default function CarDetails() {
 
             {/* Caractéristiques techniques détaillées */}
             {(car.technicalData && Object.keys(car.technicalData).length > 0) || (specsFromDescription && Object.keys(specsFromDescription).length > 0) ? (
-              <div style={{ background: C.card2, border:'1px solid var(--border)', borderRadius:12, padding: isMobile ? '16px 14px' : '18px 20px', marginBottom:28 }}>
-                <p style={{ fontSize:11, fontWeight:800, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)', marginBottom:12 }}>
+              <div style={{ background: C.card2, border:'1px solid var(--border)', borderRadius:'var(--radius-lg)', padding: isMobile ? '16px 14px' : '18px 20px', marginBottom:28 }}>
+                <p style={{ fontSize:11, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)', marginBottom:12 }}>
                   {l==='fr'?'Caractéristiques détaillées':l==='en'?'Detailed specifications':l==='de'?'Detailspezifikationen':'Especificaciones detalladas'}
                 </p>
                 <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 8 : 12 }}>
@@ -378,8 +410,8 @@ export default function CarDetails() {
 
             {/* Historique du véhicule */}
             {(car.previousOwners != null || car.accidentFree !== undefined || car.serviceHistory !== undefined || car.historyNotes) && (
-              <div style={{ background: C.card2, border:'1px solid var(--border)', borderRadius:12, padding: isMobile ? '16px 14px' : '18px 20px', marginBottom:28 }}>
-                <p style={{ fontSize:11, fontWeight:800, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)', marginBottom:12 }}>
+              <div style={{ background: C.card2, border:'1px solid var(--border)', borderRadius:'var(--radius-lg)', padding: isMobile ? '16px 14px' : '18px 20px', marginBottom:28 }}>
+                <p style={{ fontSize:11, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)', marginBottom:12 }}>
                   {l==='fr'?'Historique du véhicule':l==='en'?'Vehicle history':l==='de'?'Fahrzeughistorie':'Historial del vehículo'}
                 </p>
                 <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)', gap:10 }}>
