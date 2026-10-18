@@ -484,7 +484,7 @@ function FAQSection({ l, isMobile }) {
             {l==='fr'?'Notre équipe répond sous 24h par WhatsApp ou email.':l==='en'?'Our team replies within 24h via WhatsApp or email.':l==='de'?'Unser Team antwortet innerhalb 24h per WhatsApp oder E-Mail.':l==='es'?'Nuestro equipo responde en 24h por WhatsApp o email.':l==='it'?'Il nostro team risponde entro 24h via WhatsApp o email.':'A nossa equipa responde em 24h por WhatsApp ou email.'}
           </p>
           <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
-            <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/4916366212318" target="_blank" rel="noopener noreferrer"
               style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:13, fontWeight:700, padding:'11px 22px', borderRadius:8, display:'inline-flex', alignItems:'center', gap:8 }}>
               💬 WhatsApp
             </a>
@@ -1639,7 +1639,7 @@ export default function Home() {
               {l==='fr'?'Notre équipe est à votre disposition pour vous accompagner dans votre projet automobile.':l==='en'?'Our team is at your disposal to help you with your car project.':l==='de'?'Unser Team steht Ihnen für Ihr Autoprojekt zur Verfügung.':l==='es'?'Nuestro equipo está a su disposición para ayudarle con su proyecto.':l==='it'?'Il nostro team è a vostra disposizione per il vostro progetto.':'Nossa equipe está à sua disposição para ajudá-lo com seu projeto.'}
             </p>
             <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
-              <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/4916366212318" target="_blank" rel="noopener noreferrer"
                 style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:13, fontWeight:600, padding:'14px 28px', borderRadius:8, display:'inline-flex', alignItems:'center', gap:8, letterSpacing:'0.02em' }}>
                 💬 WhatsApp
               </a>
@@ -1694,7 +1694,7 @@ export default function Home() {
                 <p style={{ fontSize:13, color:'var(--text-3)', lineHeight:1.8, fontWeight:400 }}>
                   📞 +49 163 043 63 38<br/>
                   ✉ info@as-autohandelgmbh.com<br/>
-                  💬 <a href="https://wa.me/491630436338" style={{ color:'var(--red)', textDecoration:'none' }}>WhatsApp</a>
+                  💬 <a href="https://wa.me/4916366212318" style={{ color:'var(--red)', textDecoration:'none' }}>WhatsApp</a>
                 </p>
               </div>
               <div>

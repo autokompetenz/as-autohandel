@@ -208,7 +208,7 @@ export default function Delivery() {
               <Link to="/contact" style={{ background:'linear-gradient(135deg,var(--red),var(--red-dark))', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
                 {t({ fr:'Demander un devis', en:'Request a quote', de:'Angebot anfordern', es:'Solicitar presupuesto', it:'Richiedi preventivo', pt:'Pedir orçamento', ro:'Cereți o ofertă' })} →
               </Link>
-              <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
+              <a href="https://wa.me/4916366212318" target="_blank" rel="noopener noreferrer" style={{ background:'#25D366', color:'#fff', textDecoration:'none', fontFamily:"var(--font)", fontSize:14, fontWeight:700, padding:'13px 26px', borderRadius:8 }}>
                 💬 WhatsApp
               </a>
             </div>

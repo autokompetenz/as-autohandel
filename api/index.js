@@ -106,6 +106,8 @@ function parseCarFormBody(data) {
 // CORS configuration
 const corsOptions = {
   origin: [
+    'https://www.as-autohandelgmbh.com',
+    'https://as-autohandelgmbh.com',
     'https://automatikgebrauchtwagen.com',
     'https://www.automatikgebrauchtwagen.com',
     'http://localhost:5173',
@@ -209,7 +211,7 @@ function requireAdmin(req, res, next) {
 app.get('/api', (req, res) => {
   res.json({ 
     status: 'ok', 
-    service: 'Automatik Gebrauchtwagen API', 
+    service: 'AS Autohandel API', 
     version: '2.0.0', 
     time: new Date().toISOString() 
   });

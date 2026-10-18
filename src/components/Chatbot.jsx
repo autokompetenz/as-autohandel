@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLangStore, useThemeStore } from '../store';
 
-const WA = '+491630436338';
-const WA_DISPLAY = '+49 163 043 63 38';
+const WA = '+4916366212318';
+const WA_DISPLAY = '+49 163 621 2318';
 const EMAIL = 'info@as-autohandelgmbh.com';
 const ADDRESS = 'Sprendlinger Straße 119, 63069 Offenbach am Main';
 const SITE_URL = 'as-autohandelgmbh.com';

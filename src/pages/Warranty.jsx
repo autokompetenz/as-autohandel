@@ -396,7 +396,7 @@ export default function Warranty() {
               {t({ fr:'Contactez-nous pour discuter des options de garantie adaptées à vos besoins.', en:'Contact us to discuss warranty options tailored to your needs.', de:'Kontaktieren Sie uns, um Garantieoptionen zu besprechen, die auf Ihre Bedürfnisse zugeschnitten sind.', es:'Contáctenos para discutir opciones de garantía adaptadas a sus necesidades.', it:'Contattateci per discutere le opzioni di garanzia adatte alle tue esigenze.', pt:'Entre em contato conosco para discutir opções de garantia adaptadas às suas necessidades.', ro:'Contactați-ne pentru a discuta despre opțiunile de garanție adaptate nevoilor dvs.' })}
             </p>
             <div style={{ display:'flex', gap:12, justifyContent:'center', flexWrap:'wrap' }}>
-              <a href="https://wa.me/491630436338" target="_blank" rel="noopener noreferrer" style={{ 
+              <a href="https://wa.me/4916366212318" target="_blank" rel="noopener noreferrer" style={{ 
                 background:'#25D366', 
                 color:'#fff', 
                 textDecoration:'none', 
