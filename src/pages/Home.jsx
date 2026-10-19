@@ -573,7 +573,7 @@ function VideoSection({ isMobile }) {
     }}>
       <video
         autoPlay muted loop playsInline preload="auto"
-        src="/hero-bmw.mp4"
+        src="/BMW.mp4"
         style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', display:'block' }}
       />
       <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.6) 100%)' }} />
