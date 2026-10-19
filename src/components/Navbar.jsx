@@ -121,7 +121,7 @@ export default function Navbar() {
     {isMobile && (
       <div>
         {/* Appel direct */}
-        <a href="https://wa.me/4916366212318"
+        <a href="https://wa.me/491636212318"
           target="_blank" rel="noopener noreferrer"
           onClick={() => setMenuOpen(false)}
           style={{
@@ -378,7 +378,7 @@ export default function Navbar() {
 
           {/* CTA — téléphone */}
           {!isMobile && (
-            <a href="https://wa.me/4916366212318" target="_blank" rel="noopener noreferrer" style={{
+            <a href="https://wa.me/491636212318" target="_blank" rel="noopener noreferrer" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: '#25D366',
               color: '#fff',
