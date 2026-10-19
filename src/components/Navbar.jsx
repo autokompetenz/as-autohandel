@@ -121,15 +121,16 @@ export default function Navbar() {
     {isMobile && (
       <div>
         {/* Appel direct */}
-        <a href="tel:+491630436338"
+        <a href="https://wa.me/4916366212318"
+          target="_blank" rel="noopener noreferrer"
           onClick={() => setMenuOpen(false)}
           style={{
             display:'flex', alignItems:'center', justifyContent:'center', gap:10,
             padding:'13px 0', marginBottom:14, borderRadius:'var(--radius)',
-            background:'var(--red)', color:'#fff', fontFamily:F,
+            background:'#25D366', color:'#fff', fontFamily:F,
             fontSize:15, fontWeight:700, textDecoration:'none',
           }}>
-          📞 +49 163 043 63 38
+          💬 WhatsApp
         </a>
 
         {[
@@ -377,17 +378,17 @@ export default function Navbar() {
 
           {/* CTA — téléphone */}
           {!isMobile && (
-            <a href="tel:+491630436338" style={{
+            <a href="https://wa.me/4916366212318" target="_blank" rel="noopener noreferrer" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'var(--red)',
+              background: '#25D366',
               color: '#fff',
               fontFamily: F, fontSize: 14, fontWeight: 600, letterSpacing: '0',
               textDecoration: 'none', padding: '9px 22px', borderRadius: 100,
               height: 38, transition: 'all 0.2s var(--ease)',
             }}
-              onMouseOver={e => { e.currentTarget.style.background = 'var(--red-dark)'; }}
-              onMouseOut={e => { e.currentTarget.style.background = 'var(--red)'; }}>
-              📞 +49 163 043 63 38
+              onMouseOver={e => { e.currentTarget.style.background = '#128C7E'; }}
+              onMouseOut={e => { e.currentTarget.style.background = '#25D366'; }}>
+              💬 WhatsApp
             </a>
           )}
 
