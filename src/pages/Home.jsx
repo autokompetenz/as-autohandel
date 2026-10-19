@@ -1789,7 +1789,7 @@ export default function Home() {
             <div style={{ marginTop:20, padding:'14px 18px', background:'var(--red-bg)', border:'1px solid var(--red-border)', borderRadius:8 }}>
               <p style={{ fontSize:13, color:'var(--text-2)', lineHeight:1.6 }}>
                 📍 Sprendlinger Straße 119, 63069 Offenbach am Main<br/>
-                📞 <a href="tel:+491630436338" style={{ color:'var(--red)', textDecoration:'none', fontWeight:600 }}>+49 163 043 63 38</a>
+                📞 <a href="https://wa.me/4916366212318" target="_blank" rel="noopener noreferrer" style={{ color:'var(--red)', textDecoration:'none', fontWeight:600 }}>+49 163 662 123 18</a>
               </p>
             </div>
           </div>
