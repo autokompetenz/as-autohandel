@@ -28,10 +28,11 @@ const upload = multer({
     // No files or fields limit — handled in route logic
   },
   fileFilter: (req, file, cb) => {
-    if (file.mimetype && file.mimetype.startsWith('image/')) {
+    const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/avif', 'image/bmp', 'image/svg+xml'];
+    if (allowedMimeTypes.includes(file.mimetype) || file.mimetype.startsWith('image/')) {
       cb(null, true);
     } else {
-      cb(new Error('Seuls les fichiers image sont autorisés'), false);
+      cb(new Error('Seuls les fichiers image (jpg, jpeg, png, gif, webp, avif, bmp, svg) sont autorisés'), false);
     }
   }
 });

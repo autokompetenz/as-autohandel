@@ -331,7 +331,7 @@ export default function AdminCarForm() {
               >
                 <input 
                   type="file" 
-                  accept="image/*" 
+                  accept="image/*,.webp,.avif,.jpg,.jpeg,.png,.gif,.bmp,.svg" 
                   multiple
                   onChange={handleImageChange}
                   id="images-input"
