@@ -123,7 +123,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
   );
 
   const OrderBtn = ({ block, compact, small }) => (
-    <button onClick={order}
+    <button type="button" onClick={order}
       style={{
         display:'flex', alignItems:'center', justifyContent:'center', gap:8,
         width: block ? '100%' : 'auto',

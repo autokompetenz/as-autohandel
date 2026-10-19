@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { carAPI } from '../../services/api';
 import { useToastStore } from '../../store';
@@ -65,11 +65,20 @@ export default function AdminCarForm() {
   const [existingImages, setExistingImages] = useState([]);
   const MAX_IMAGES = 20;
 
-  useEffect(() => () => {
-    previews.forEach(p => {
-      if (!p.isExisting && p.url?.startsWith('blob:')) URL.revokeObjectURL(p.url);
-    });
+  /* Nettoyage des aperçus — ne révoque que les images réellement retirées,
+     sinon les vignettes des lots déjà sélectionnés deviennent cassées. */
+  const previewUrlsRef = useRef([]);
+  useEffect(() => {
+    const current = previews.map(p => p.url).filter(u => u?.startsWith('blob:'));
+    previewUrlsRef.current
+      .filter(url => !current.includes(url))
+      .forEach(url => URL.revokeObjectURL(url));
+    previewUrlsRef.current = current;
   }, [previews]);
+
+  useEffect(() => () => {
+    previewUrlsRef.current.forEach(url => URL.revokeObjectURL(url));
+  }, []);
 
   useEffect(() => {
     if (isEdit) {
@@ -255,9 +264,6 @@ export default function AdminCarForm() {
         });
       } else {
         await carAPI.create(formData);
-        previews.forEach(p => {
-          if (!p.isExisting && p.url?.startsWith('blob:')) URL.revokeObjectURL(p.url);
-        });
         navigate('/admin/cars', {
           replace: true,
           state: { successMessage: 'Véhicule créé avec succès' },
