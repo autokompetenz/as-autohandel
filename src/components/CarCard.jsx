@@ -139,9 +139,13 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
 
   /* Bouton secondaire — ouvre la fiche véhicule */
   const DetailsBtn = ({ block, compact, short }) => (
-    <Link 
-      to={`/cars/${car.id}`}
-      onClick={(e) => { e.stopPropagation(); }}
+    <button
+      type="button"
+      onClick={(e) => { 
+        e.preventDefault(); 
+        e.stopPropagation(); 
+        navigate(`/cars/${car.id}`);
+      }}
       style={{
         display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8,
         width: block ? '100%' : 'auto',
@@ -158,7 +162,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
       {short
         ? (l==='fr'?'Détails':l==='en'?'Details':l==='de'?'Details':l==='es'?'Detalles':l==='it'?'Dettagli':'Detalhes')
         : (l==='fr'?'Voir les détails':l==='en'?'View details':l==='de'?'Details ansehen':l==='es'?'Ver detalles':l==='it'?'Vedi dettagli':'Ver detalhes')}
-    </Link>
+    </button>
   );
 
   /* ───────────────────────── LIGNE (résultats) ───────────────────────── */
