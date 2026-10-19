@@ -8,6 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "seed": "node prisma/seed.js",
+    "import:cars": "node scripts/import-automatik.cjs",
+    "import:cars:dry": "node scripts/import-automatik.cjs --dry",
     "postinstall": "prisma generate"
   },
   "dependencies": {
