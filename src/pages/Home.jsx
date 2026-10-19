@@ -1839,7 +1839,7 @@ export default function Home() {
 
             <div>
               <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'rgba(255,255,255,0.5)', marginBottom:18 }}>Navigation</p>
-              {[{to:'/catalog',label:t('nav_vehicles',l)},{to:'/simulation',label:t('nav_financing',l)},{to:'/track',label:t('nav_track',l)},{to:'/marques',label:t({fr:'Marques',en:'Brands',de:'Marken',es:'Marcas',it:'Marche',pt:'Marcas'},l)},{to:'/avis',label:t({fr:'Avis',en:'Reviews',de:'Bewertungen',es:'Opiniones',it:'Recensioni',pt:'Avaliações'},l)}].map(({to,label})=>(
+              {[{to:'/catalog',label:t('nav_vehicles',l)},{to:'/simulation',label:t('nav_financing',l)},{to:'/track',label:t('nav_track',l)},{to:'/marques',label:t('nav_brands',l)},{to:'/avis',label:t('reviews_label',l)}].map(({to,label})=>(
                 <Link key={to} to={to} style={{ display:'block', fontSize:14, color:'rgba(255,255,255,0.78)', textDecoration:'none', marginBottom:12, transition:'color 0.2s' }}
                   onMouseOver={e=>e.currentTarget.style.color='#fff'} onMouseOut={e=>e.currentTarget.style.color='rgba(255,255,255,0.78)'}>{label}</Link>
               ))}
@@ -1847,9 +1847,9 @@ export default function Home() {
 
             <div>
               <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'rgba(255,255,255,0.5)', marginBottom:18 }}>
-                {l==='fr'?'À propos':l==='en'?'About':l==='de'?'Über uns':l==='es'?'Acerca de':l==='it'?'Chi siamo':'Sobre nós'}
+                {l==='fr'?'À propos':l==='en'?'About':l==='de'?'Über uns':l==='es'?'Acerca de':l==='it'?'Chi siamo':l==='pt'?'Sobre nós':l==='ro'?'Despre noi':'À propos'}
               </p>
-              {[{to:'/a-propos',label:t({fr:'À propos',en:'About us',de:'Über uns',es:'Acerca de',it:'Chi siamo',pt:'Sobre nós'},l)},{to:'/faq',label:'FAQ'},{to:'/blog',label:'Blog'},{to:'/warranty',label:t({fr:'Garantie',en:'Warranty',de:'Garantie',es:'Garantía',it:'Garanzia',pt:'Garantia'},l)},{to:'/insurance',label:t({fr:'Assurance',en:'Insurance',de:'Versicherung',es:'Seguro',it:'Assicurazione',pt:'Seguro'},l)}].map(({to,label})=>(
+              {[{to:'/a-propos',label:t('nav_about',l)},{to:'/faq',label:t('nav_faq',l)},{to:'/blog',label:'Blog'},{to:'/warranty',label:t('nav_warranty',l)},{to:'/insurance',label:t('nav_insurance',l)}].map(({to,label})=>(
                 <Link key={to} to={to} style={{ display:'block', fontSize:14, color:'rgba(255,255,255,0.78)', textDecoration:'none', marginBottom:12, transition:'color 0.2s' }}
                   onMouseOver={e=>e.currentTarget.style.color='#fff'} onMouseOut={e=>e.currentTarget.style.color='rgba(255,255,255,0.78)'}>{label}</Link>
               ))}
@@ -1857,17 +1857,23 @@ export default function Home() {
 
             <div>
               <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'rgba(255,255,255,0.5)', marginBottom:18 }}>
-                {l==='fr'?'Informations légales':l==='en'?'Legal':l==='de'?'Rechtliches':l==='es'?'Legal':l==='it'?'Note legali':'Informações legais'}
+                {l==='fr'?'Informations légales':l==='en'?'Legal':l==='de'?'Rechtliches':l==='es'?'Legal':l==='it'?'Note legali':l==='pt'?'Informações legais':l==='ro'?'Informații legale':'Informations légales'}
               </p>
               <div>
                 {[
-                  { to:'/mentions-legales', fr:'Mentions légales', en:'Legal notice', de:'Impressum', pt:'Aviso legal' },
-                  { to:'/politique-de-vente', fr:'Politique de vente', en:'Sales policy', de:'Verkaufspolitik', pt:'Política de vendas' },
-                  { to:'/cgv', fr:'CGV', en:'Terms of sale', de:'AGB', pt:'Termos de venda' },
-                  { to:'/politique-confidentialite', fr:'Confidentialité', en:'Privacy', de:'Datenschutz', pt:'Privacidade' },
-                  { to:'/cookies', fr:'Cookies', en:'Cookies', de:'Cookies', pt:'Cookies' },
-                ].map(({ to, fr, en, de, pt }) => {
-                  const label = l === 'fr' ? fr : l === 'en' ? en : l === 'de' ? de : l === 'pt' ? pt : l === 'es' ? fr : l === 'it' ? en : fr;
+                  { to:'/mentions-legales', fr:'Mentions légales', en:'Legal notice', de:'Impressum', es:'Aviso legal', it:'Note legali', pt:'Aviso legal', ro:'Mențiuni legale' },
+                  { to:'/politique-de-vente', fr:'Politique de vente', en:'Sales policy', de:'Verkaufspolitik', es:'Política de ventas', it:'Politica di vendita', pt:'Política de vendas', ro:'Politica de vânzări' },
+                  { to:'/cgv', fr:'CGV', en:'Terms of sale', de:'AGB', es:'Términos de venta', it:'Condizioni di vendita', pt:'Termos de venda', ro:'Termeni de vânzare' },
+                  { to:'/politique-confidentialite', fr:'Confidentialité', en:'Privacy', de:'Datenschutz', es:'Privacidad', it:'Privacy', pt:'Privacidade', ro:'Confidențialitate' },
+                  { to:'/cookies', fr:'Cookies', en:'Cookies', de:'Cookies', es:'Cookies', it:'Cookies', pt:'Cookies', ro:'Cookies' },
+                ].map(({ to, fr, en, de, pt, es, it, ro }) => {
+                  let label = fr;
+                  if (l === 'en') label = en || fr;
+                  else if (l === 'de') label = de || fr;
+                  else if (l === 'pt') label = pt || fr;
+                  else if (l === 'es') label = es || fr;
+                  else if (l === 'it') label = it || fr;
+                  else if (l === 'ro') label = ro || fr;
                   return (
                     <Link key={to} to={to} style={{ display:'block', fontSize:14, color:'var(--text-3)', textDecoration:'none', marginBottom:8, transition:'color 0.2s' }}
                       onMouseOver={e=>{ e.currentTarget.style.color='var(--red)'; }}
