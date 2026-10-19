@@ -11,6 +11,7 @@ import Speedometer from '../components/Speedometer';
 import { useBreakpoint } from '../hooks/useBreakpoint';
 import { ALL_REVIEWS } from '../utils/reviews';
 import { HOME_BRANDS } from '../utils/brands';
+import { RevealTitle, CountUp, magnetProps, tiltProps } from '../components/motion';
 
 const SERVICES = [
   { icon:'🚗', fr:'Voitures Neuves',       en:'New Cars',           de:'Neuwagen',          es:'Coches Nuevos',       it:'Auto Nuove',         pt:'Carros Novos',       tag:'2024 Models',
@@ -508,11 +509,21 @@ const HERO_IMAGES = [
   'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1800&q=80&auto=format',
 ];
 
+// Titres du hero (mots-clés mis en bleu) — [avant, accent, après]
+const HERO_TITLE = {
+  fr:  ["Trouvez la ", "voiture", " qu'il vous faut"],
+  en:  ["Find the ", "car", " that fits you"],
+  de:  ["Finden Sie das ", "passende Auto", ""],
+  es:  ["Encuentre el ", "coche", " que necesita"],
+  it:  ["Trova l'", "auto", " che fa per voi"],
+  pt:  ["Encontre o ", "carro", " certo para si"],
+};
+
 function HeroSlider({ y }) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setIndex(i => (i + 1) % HERO_IMAGES.length), 2200);
+    const id = setInterval(() => setIndex(i => (i + 1) % HERO_IMAGES.length), 4600);
     return () => clearInterval(id);
   }, []);
 
@@ -536,13 +547,11 @@ function HeroSlider({ y }) {
         />
       </AnimatePresence>
 
-      <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.2) 100%)' }} />
-
-      <div style={{ position:'absolute', bottom:20, right:'8%', display:'flex', gap:6, zIndex:3 }}>
+      <div style={{ position:'absolute', bottom:16, right:16, display:'flex', gap:6, zIndex:3, background:'rgba(255,255,255,0.88)', backdropFilter:'blur(6px)', borderRadius:100, padding:'9px 13px' }}>
         {HERO_IMAGES.map((_, i) => (
           <span key={i} style={{
-            width: i===index ? 18 : 6, height:6, borderRadius:3,
-            background: i===index ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.35)',
+            width: i===index ? 16 : 6, height:6, borderRadius:3,
+            background: i===index ? 'var(--red)' : 'rgba(35,115,244,0.28)',
             transition:'width 0.4s, background 0.4s',
           }} />
         ))}
@@ -564,7 +573,7 @@ function VideoSection({ isMobile }) {
     }}>
       <video
         autoPlay muted loop playsInline preload="auto"
-        src="/promo.mp4"
+        src="/hero-bmw.mp4"
         style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', display:'block' }}
       />
       <div style={{ position:'absolute', inset:0, background:'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.6) 100%)' }} />
@@ -698,6 +707,48 @@ export default function Home() {
     accel: Math.max(3, Math.min(14, 13.5 - Number(showCar.power) * 0.029)).toFixed(1),
   } : null;
 
+  // Typewriter effect sur le titre du hero
+  const [typed, setTyped] = useState('');
+  const [cursor, setCursor] = useState(true);
+  const fullTitle = (HERO_TITLE[l] || HERO_TITLE.fr).join('');
+  useEffect(() => {
+    const text = (HERO_TITLE[l] || HERO_TITLE.fr).join('');
+    let i = 0;
+    let phase = 'type'; // 'type' | 'hold' | 'erase'
+    let timeout;
+    const step = () => {
+      if (phase === 'type') {
+        i++;
+        setTyped(text.slice(0, i));
+        if (i >= text.length) {
+          phase = 'hold';
+          timeout = setTimeout(step, 2400);
+        } else {
+          timeout = setTimeout(step, 70);
+        }
+      } else if (phase === 'hold') {
+        phase = 'erase';
+        timeout = setTimeout(step, 0);
+      } else { // 'erase'
+        i--;
+        setTyped(text.slice(0, i));
+        if (i <= 0) {
+          phase = 'type';
+          timeout = setTimeout(step, 500);
+        } else {
+          timeout = setTimeout(step, 35);
+        }
+      }
+    };
+    setTyped('');
+    timeout = setTimeout(step, 300);
+    return () => clearTimeout(timeout);
+  }, [l]);
+  useEffect(() => {
+    const id = setInterval(() => setCursor(c => !c), 450);
+    return () => clearInterval(id);
+  }, []);
+
   const getServiceTitle = (s) => s[l] || s.fr;
   const getServiceDesc  = (s) => s[`desc${l.charAt(0).toUpperCase()+l.slice(1)}`] || s.descFr;
   const getReviewText   = (r) => r[`text${l.charAt(0).toUpperCase()+l.slice(1)}`] || r.textFr;
@@ -705,37 +756,97 @@ export default function Home() {
   return (
     <div style={{ minHeight:'100vh', background:'var(--bg)' }}>
 
-      {/* ── HERO — template type Spoticar : photo pleine largeur + recherche en overlay ── */}
-      <section ref={heroRef} style={{ position:'relative', minHeight: isMobile ? 620 : 640, display:'flex', alignItems:'center', overflow:'hidden', paddingTop: 76 }}>
-        <HeroSlider y={heroY} />
-        <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.40)', zIndex:1 }} />
+      {/* ── HERO — split éditorial : typo + CTA à gauche, carte photo à droite, recherche en chevauchement ── */}
+      <section ref={heroRef} style={{ position:'relative', overflow:'hidden', background:'var(--bg)', paddingTop: isMobile ? 100 : 124, paddingBottom: isMobile ? 44 : 76 }}>
+        {/* Blob bleu décoratif */}
+        <div aria-hidden="true" style={{ position:'absolute', top:-160, right:-140, width:520, height:520, borderRadius:'50%', background:'radial-gradient(circle, rgba(35,115,244,0.13) 0%, rgba(35,115,244,0) 70%)', pointerEvents:'none' }} />
+        <div aria-hidden="true" style={{ position:'absolute', bottom:-120, left:-100, width:340, height:340, borderRadius:'50%', background:'radial-gradient(circle, rgba(35,115,244,0.07) 0%, rgba(35,115,244,0) 70%)', pointerEvents:'none' }} />
 
-        <motion.div style={{ position:'relative', zIndex:2, width:'100%', maxWidth:1160, margin:'0 auto', padding: isMobile ? '36px 4% 44px' : '48px 24px 56px', opacity: heroO }}>
-          <motion.div initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7, delay:0.1 }}>
-            <div style={{ display:'inline-flex', alignItems:'center', gap:8, marginBottom:18 }}>
-              <span style={{ width:24, height:1, background:'rgba(255,255,255,0.4)' }} />
-              <span style={{ fontSize:10, fontWeight:600, letterSpacing:'0.3em', textTransform:'uppercase', color:'rgba(255,255,255,0.7)' }}>
-                {t('hero_badge', l)}
-              </span>
-            </div>
-            <h1 style={{ fontFamily:"var(--font-title)", fontWeight:600, fontSize: isMobile ? 'clamp(28px,7vw,40px)' : 'clamp(34px,4vw,52px)', color:'#fff', letterSpacing:'-0.01em', lineHeight:1.12, marginBottom:12 }}>
-              {l==='fr'?'Trouvez la voiture qu\'il vous faut':l==='en'?'Find the car that fits you':l==='de'?'Finden Sie das passende Auto':l==='es'?'Encuentre el coche que necesita':l==='it'?'Trova l\'auto che fa per voi':'Encontre o carro certo para si'}
-            </h1>
-            <p style={{ fontSize: isMobile ? 14 : 16, color:'rgba(255,255,255,0.75)', lineHeight:1.6, marginBottom:26, maxWidth:560, fontWeight:400 }}>
-              {t('hero_subtitle', l)}
-            </p>
+        <div style={{ maxWidth:1240, margin:'0 auto', padding: isMobile ? '0 4%' : '0 24px' }}>
+          <motion.div style={{ opacity:heroO, display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1.02fr 1.1fr', gap: isMobile ? 30 : 52, alignItems:'center' }}>
+
+            {/* ── Colonne texte ── */}
+            <motion.div initial={{ opacity:0, y:22 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7, delay:0.05, ease:[0.16,1,0.3,1] }}>
+              {/* Pilule marque */}
+              <div style={{ display:'inline-flex', alignItems:'center', gap:9, background:'rgba(35,115,244,0.08)', border:'1px solid rgba(35,115,244,0.18)', borderRadius:100, padding:'8px 16px 8px 12px', marginBottom:22 }}>
+                <span style={{ width:7, height:7, borderRadius:'50%', background:'var(--red)', boxShadow:'0 0 0 4px rgba(35,115,244,0.15)' }} />
+                <span style={{ fontSize:11, fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', color:'var(--red)' }}>
+                  {t('hero_badge', l)}
+                </span>
+              </div>
+
+              <h1 style={{ fontFamily:"var(--font-title)", fontWeight:800, fontSize: isMobile ? 'clamp(30px,8vw,40px)' : 'clamp(36px,4.4vw,58px)', color:'var(--text)', letterSpacing:'-0.03em', lineHeight:1.04, marginBottom:18, minHeight: '1.1em' }}>
+                {(() => {
+                  const parts = (HERO_TITLE[l] || HERO_TITLE.fr);
+                  const p0 = parts[0] || '', p1 = parts[1] || '', p2 = parts[2] || '';
+                  const len0 = p0.length, len1 = p1.length;
+                  const t = typed;
+                  const c0 = Math.min(t.length, len0);
+                  const c1 = Math.min(Math.max(0, t.length - len0), len1);
+                  const c2 = Math.min(Math.max(0, t.length - len0 - len1), p2.length);
+                  const showCursor = cursor && t.length < (p0+p1+p2).length;
+                  return (
+                    <>
+                      <span>{p0.slice(0, c0)}</span>
+                      {c0 > 0 && len1 > 0 ? <span style={{ color:'var(--red)' }}>{p1.slice(0, c1)}</span> : (len1>0 && t.length >= len0 ? <span style={{ color:'var(--red)' }}>{p1.slice(0,c1)}</span> : null)}
+                      {t.length >= len0 + len1 && <span>{p2.slice(0, c2)}</span>}
+                      {showCursor && <span style={{ opacity: cursor ? 1 : 0, transition:'opacity .2s' }}>|</span>}
+                    </>
+                  );
+                })()}
+              </h1>
+
+              <p style={{ fontSize: isMobile ? 15 : 16, color:'var(--text-3)', lineHeight:1.65, marginBottom:28, maxWidth:480, fontWeight:400 }}>
+                {t('hero_subtitle', l)}
+              </p>
+
+              {/* CTA */}
+              <div style={{ display:'flex', gap:12, flexWrap:'wrap', marginBottom:26 }}>
+                <Link to="/catalog" className="btn-primary" style={{ padding:'15px 32px', fontSize:15, textDecoration:'none' }} {...magnetProps(0.28)}>
+                  {l==='fr'?'Voir le catalogue':l==='en'?'View catalogue':l==='de'?'Katalog anzeigen':l==='es'?'Ver catálogo':l==='it'?'Vedi catalogo':'Ver catálogo'} →
+                </Link>
+                <Link to="/simulation" className="btn-outline" style={{ padding:'15px 30px', fontSize:15, textDecoration:'none' }}>
+                  {l==='fr'?'Financement sur mesure':l==='en'?'Tailored financing':l==='de'?'Maßgeschneiderte Finanzierung':l==='es'?'Financiación a medida':l==='it'?'Finanziamento su misura':'Financiamento personalizado'}
+                </Link>
+              </div>
+
+              {/* Preuve sociale */}
+              <div style={{ display:'flex', alignItems:'center', gap:14, flexWrap:'wrap' }}>
+                <span style={{ fontSize:14, fontWeight:700, color:'var(--text)' }}>
+                  <span style={{ color:'#C9A84C', letterSpacing:'1px' }}>★★★★★</span> 4,9/5
+                </span>
+                <span style={{ width:4, height:4, borderRadius:2, background:'var(--border)', flexShrink:0 }} />
+                <span style={{ fontSize:13.5, color:'var(--text-3)', fontWeight:500 }}>✓ {l==='fr'?'150 points de contrôle':l==='en'?'150-point inspection':l==='de'?'150-Punkte-Inspektion':l==='es'?'Inspección de 150 puntos':l==='it'?'Ispezione di 150 punti':'Inspeção de 150 pontos'}</span>
+                <span style={{ width:4, height:4, borderRadius:2, background:'var(--border)', flexShrink:0 }} />
+                <span style={{ fontSize:13.5, color:'var(--text-3)', fontWeight:500 }}>✓ {l==='fr'?'Livraison partout en Europe':l==='en'?'Delivery across Europe':l==='de'?'Lieferung in ganz Europa':l==='es'?'Entrega en toda Europa':l==='it'?'Consegna in tutta Europa':'Entrega em toda a Europa'}</span>
+              </div>
+            </motion.div>
+
+            {/* ── Colonne image ── */}
+            <motion.div initial={{ opacity:0, y:28 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.8, delay:0.2, ease:[0.16,1,0.3,1] }} style={{ position:'relative' }}>
+              <div style={{ position:'relative', borderRadius: isMobile ? 20 : 28, overflow:'hidden', height: isMobile ? 250 : 480, border:'1px solid var(--border)', boxShadow:'0 32px 80px rgba(26,43,76,0.18)' }}>
+                <HeroSlider y={heroY} />
+              </div>
+              {/* Badge flottant garantie */}
+              <div style={{ position:'absolute', top:18, left:18, background:'rgba(255,255,255,0.94)', backdropFilter:'blur(8px)', borderRadius:100, padding:'11px 18px', display:'flex', alignItems:'center', gap:9, boxShadow:'0 10px 30px rgba(0,0,0,0.16)', fontSize:13, fontWeight:700, color:'#16171A' }}>
+                🛡️ {l==='fr'?'Garantie 12 mois incluse':l==='en'?'12-month warranty included':l==='de'?'12 Monate Garantie inklusive':l==='es'?'Garantía de 12 meses incluida':l==='it'?'Garanzia 12 mesi inclusa':'Garantia de 12 meses incluída'}
+              </div>
+            </motion.div>
+
           </motion.div>
+        </div>
 
-          {/* Panneau de recherche blanc en overlay */}
+        {/* ── Panneau de recherche — carte blanche chevauchant le bas du hero ── */}
+        <div style={{ marginTop: isMobile ? 26 : 32, maxWidth:1240, marginLeft:'auto', marginRight:'auto', padding: isMobile ? '0 4%' : '0 24px', position:'relative', zIndex:5 }}>
           <motion.div
             initial={{ opacity:0, y:24 }}
             animate={{ opacity:1, y:0 }}
-            transition={{ duration:0.6, delay:0.3 }}
+            transition={{ duration:0.6, delay:0.35, ease:[0.16,1,0.3,1] }}
             className="mk-panel"
-            style={{ borderRadius:'var(--radius-lg)', overflow:'hidden', maxWidth:920, boxShadow:'0 16px 48px rgba(0,0,0,0.28)' }}
+            style={{ borderRadius:24, overflow:'hidden', maxWidth:920, margin: '0', boxShadow:'0 24px 64px rgba(26,43,76,0.12)' }}
           >
-            {/* Onglets — pilule noire + texte cyan (Spoticar) */}
-            <div style={{ display:'flex', gap:8, padding:'16px 20px 0' }}>
+            {/* Onglets — contrôle segmenté (pilule grise, onglet actif bleu) */}
+            <div style={{ display:'inline-flex', background:'var(--bg-card2)', borderRadius:100, padding:4, margin:'18px 20px 0' }}>
               {[
                 { v:'prix',       label: l==='fr'?'Prix':l==='en'?'Price':l==='de'?'Preis':l==='es'?'Precio':l==='it'?'Prezzo':'Preço' },
                 { v:'mensualite', label: l==='fr'?'Mensualité':l==='en'?'Monthly payment':l==='de'?'Monatsrate':l==='es'?'Cuota mensual':l==='it'?'Rata mensile':'Prestação mensal' },
@@ -744,11 +855,11 @@ export default function Home() {
                 return (
                   <button key={tab.v} onClick={() => setSearchTab(tab.v)}
                     style={{
-                      border:'none', cursor:'pointer', padding:'9px 22px', borderRadius:100,
+                      border:'none', cursor:'pointer', padding:'9px 24px', borderRadius:100,
                       background: on ? 'var(--red)' : 'transparent',
-                      color: on ? 'var(--red-light)' : 'var(--text-2)',
-                      fontFamily:'var(--font)', fontSize:15, fontWeight: on ? 700 : 500,
-                      transition:'all 0.15s',
+                      color: on ? '#fff' : 'var(--text)',
+                      fontFamily:'var(--font)', fontSize:14, fontWeight: on ? 700 : 600,
+                      transition:'background 0.2s, color 0.2s',
                     }}>
                     {tab.label}
                   </button>
@@ -807,7 +918,7 @@ export default function Home() {
                 </select>
               </div>
 
-              <button
+              <button {...magnetProps(0.26)}
                 onClick={searchTab === 'prix' ? goSearch : goSearchMonthly}
                 className="btn-primary"
                 style={{ flex: isMobile ? '1 1 100%' : '0 0 auto', padding:'13px 30px', fontSize:15, borderRadius:100 }}
@@ -912,9 +1023,9 @@ export default function Home() {
             )}
           </motion.div>
 
-          {/* Suggestions — chips façon Spoticar */}
-          <div style={{ display:'flex', gap:8, flexWrap:'wrap', alignItems:'center', marginTop:18 }}>
-            <span style={{ fontSize:11, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'rgba(255,255,255,0.6)' }}>
+          {/* Suggestions — chips claires */}
+          <div style={{ display:'flex', gap:8, flexWrap:'wrap', alignItems:'center', marginTop:18, maxWidth:920, marginLeft: isMobile ? 'auto' : 24, marginRight: isMobile ? 'auto' : 'auto' }}>
+            <span style={{ fontSize:11, fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--text-3)' }}>
               {l==='fr'?'Suggestions':l==='en'?'Suggestions':l==='de'?'Vorschläge':l==='es'?'Sugerencias':l==='it'?'Suggerimenti':'Sugestões'}
             </span>
             {[
@@ -927,16 +1038,16 @@ export default function Home() {
               <Link key={s.to} to={s.to}
                 style={{
                   fontSize:13, fontWeight:600, padding:'8px 16px', borderRadius:100,
-                  background:'rgba(255,255,255,0.92)', color:'#101820', textDecoration:'none',
-                  border:'1px solid transparent', transition:'background 0.15s, border-color 0.15s',
+                  background:'var(--bg-card2)', color:'var(--text-2)', textDecoration:'none',
+                  border:'1px solid var(--border)', transition:'border-color 0.15s, color 0.15s',
                 }}
-                onMouseOver={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.borderColor = 'var(--red-light)'; }}
-                onMouseOut={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.92)'; e.currentTarget.style.borderColor = 'transparent'; }}>
+                onMouseOver={e => { e.currentTarget.style.borderColor = 'var(--red)'; e.currentTarget.style.color = 'var(--red)'; }}
+                onMouseOut={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-2)'; }}>
                 {s.label}
               </Link>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* ── CATÉGORIES ── */}
@@ -959,6 +1070,7 @@ export default function Home() {
               <Link key={c} to={`/catalog?category=${encodeURIComponent(c)}`}
                 className="mk-panel"
                 style={{ padding: isMobile ? '14px 6px' : '18px 8px', textAlign:'center', textDecoration:'none', borderRadius:'var(--radius-lg)', transition:'border-color 0.15s, box-shadow 0.15s' }}
+                {...tiltProps(8, 'border-color 0.15s, box-shadow 0.15s')}
                 onMouseOver={e => { e.currentTarget.style.borderColor = 'var(--red)'; }}
                 onMouseOut={e => { e.currentTarget.style.borderColor = 'var(--border)'; }}>
                 <div style={{ fontSize: isMobile ? 22 : 26, lineHeight:1 }}>{i}</div>
@@ -1093,11 +1205,11 @@ export default function Home() {
           <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', flexWrap:'wrap', gap:16, marginBottom:44 }}>
             <div>
               <div className="section-eyebrow">{t('catalog_title', l)}</div>
-              <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
+              <RevealTitle style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
                 {l==='fr'?'Nos Véhicules\nà la Une':l==='en'?'Featured\nVehicles':l==='de'?'Ausgewählte\nFahrzeuge':l==='es'?'Vehículos\nDestacados':l==='it'?'Veicoli\nin evidenza':'Veículos\nDestacados'}
-              </h2>
+              </RevealTitle>
             </div>
-            <Link to="/catalog" className="btn-outline">{t('see_all', l)} →</Link>
+            <Link to="/catalog" className="btn-outline" {...magnetProps(0.28)}>{t('see_all', l)} →</Link>
           </div>
           
           {loading ? (
@@ -1179,32 +1291,33 @@ export default function Home() {
               <div className="section-eyebrow">
                 {l==='fr'?'NOS MARQUES':l==='en'?'OUR BRANDS':l==='de'?'UNSERE MARKEN':l==='es'?'NUESTRAS MARCAS':l==='it'?'I NOSTRI MARCHI':'AS NOSSAS MARCAS'}
               </div>
-              <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
+              <RevealTitle style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
                 {l==='fr'?'Les plus grandes\nmarques':l==='en'?'The world\'s\nbiggest brands':l==='de'?'Die größten\nMarken der Welt':l==='es'?'Las marcas\nmás grandes':l==='it'?'I marchi più\ngrandi al mondo':'As maiores\nmarcas do mundo'}
-              </h2>
+              </RevealTitle>
             </div>
             <Link to="/marques" className="btn-outline">{t('see_all', l)} →</Link>
           </div>
 
-          <div style={{ display:'grid', gridTemplateColumns: isMobile ? 'repeat(3,1fr)' : isTablet ? 'repeat(4,1fr)' : 'repeat(6,1fr)', gap: isMobile ? 10 : 16 }}>
-            {HOME_BRANDS.map((b, i) => (
-              <motion.div key={i} initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.4, delay:(i%6)*0.05 }}>
-                <Link to={`/catalog?brand=${encodeURIComponent(b.name)}`} style={{ textDecoration:'none' }}>
+          <div className="mk-marquee" style={{ marginBottom: 16 }}>
+            <div className="mk-marquee-track" style={{ gap: isMobile ? 10 : 14 }}>
+              {[...HOME_BRANDS, ...HOME_BRANDS].map((b, i) => (
+                <Link key={i} to={`/catalog?brand=${encodeURIComponent(b.name)}`} style={{ textDecoration:'none', display:'block' }}>
                   <div style={{
                     background:'var(--bg-card)', border:'1px solid var(--border)', borderRadius:12,
-                    padding: isMobile ? '18px 8px' : '26px 12px', textAlign:'center', cursor:'pointer',
-                    transition:'all 0.35s cubic-bezier(0.16,1,0.3,1)', height:'100%',
-                  }}
-                    onMouseOver={e => { e.currentTarget.style.borderColor='rgba(35,115,244,0.2)'; e.currentTarget.style.boxShadow='0 4px 20px rgba(0,0,0,0.06)'; e.currentTarget.style.transform='translateY(-3px)'; }}
-                    onMouseOut={e => { e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.boxShadow='none'; e.currentTarget.style.transform='translateY(0)'; }}>
-                    <div style={{ margin:'0 auto 10px', display:'flex', alignItems:'center', justifyContent:'center', minHeight: isMobile ? 26 : 34 }}>
-                      <BrandLogo brand={b} height={isMobile ? 24 : 32} />
+                    padding: isMobile ? '16px 12px' : '22px 18px', textAlign:'center', cursor:'pointer',
+                    minWidth: isMobile ? 120 : 140,
+                    transition:'all 0.3s var(--ease)',
+                  }} {...tiltProps(6, 'all 0.3s var(--ease)')}
+                    onMouseOver={e => { e.currentTarget.style.borderColor='rgba(35,115,244,0.25)'; e.currentTarget.style.boxShadow='0 6px 22px rgba(0,0,0,0.06)'; }}
+                    onMouseOut={e => { e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.boxShadow='none'; }}>
+                    <div style={{ margin:'0 auto 8px', display:'flex', alignItems:'center', justifyContent:'center', minHeight: isMobile ? 24 : 30 }}>
+                      <BrandLogo brand={b} height={isMobile ? 22 : 28} />
                     </div>
-                    <div style={{ fontFamily:"var(--font)", fontWeight:600, fontSize: isMobile ? 12 : 14, color:'var(--text)', lineHeight:1.2 }}>{b.name}</div>
+                    <div style={{ fontFamily:"var(--font)", fontWeight:600, fontSize: isMobile ? 11 : 12, color:'var(--text)', lineHeight:1.2 }}>{b.name}</div>
                   </div>
                 </Link>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <motion.div initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:0.3 }}
@@ -1212,7 +1325,7 @@ export default function Home() {
             <p style={{ fontSize: isMobile ? 13 : 14, color:'var(--text-3)', margin:0 }}>
               {l==='fr'?'Votre marque n\'est pas dans la liste ?':l==='en'?'Your brand is not listed?':l==='de'?'Ihre Marke ist nicht dabei?':l==='es'?'¿Su marca no está en la lista?':l==='it'?'Il vostro marchio non è in elenco?':'A sua marca não está na lista?'}
             </p>
-            <Link to="/marques" style={{ fontSize:13, fontWeight:700, color:'var(--red)', textDecoration:'none', display:'inline-flex', alignItems:'center', gap:6 }}>
+            <Link to="/marques" {...magnetProps(0.22)} style={{ fontSize:13, fontWeight:700, color:'var(--red)', textDecoration:'none', display:'inline-flex', alignItems:'center', gap:6 }}>
               {l==='fr'?'Voir toutes les marques':l==='en'?'View all brands':l==='de'?'Alle Marken ansehen':l==='es'?'Ver todas las marcas':l==='it'?'Vedi tutti i marchi':'Ver todas as marcas'} →
             </Link>
           </motion.div>
@@ -1231,9 +1344,9 @@ export default function Home() {
                 <div className="section-eyebrow">
                   {l==='fr'?'PERFORMANCE':l==='en'?'PERFORMANCE':l==='de'?'LEISTUNG':l==='es'?'RENDIMIENTO':l==='it'?'PRESTAZIONI':'DESEMPENHO'}
                 </div>
-                <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
+                <RevealTitle style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
                   {l==='fr'?'La performance\nincarnée':l==='en'?'Performance\nembodied':l==='de'?'Leistung,\ndie man erlebt':l==='es'?'El rendimiento\nen su máxima expresión':l==='it'?'La prestazione\nin persona':'O desempenho\nencarnado'}
-                </h2>
+                </RevealTitle>
               </div>
               <Link to={`/cars/${showCar.id}`} className="btn-outline" style={{ whiteSpace:'nowrap' }}>
                 {l==='fr'?'Découvrir cette voiture':l==='en'?'Discover this car':l==='de'?'Dieses Auto entdecken':l==='es'?'Descubrir este coche':l==='it'?'Scopri questa auto':'Descobrir este carro'} →
@@ -1322,9 +1435,9 @@ export default function Home() {
                   <span style={{ width:20, height:1, background:'var(--red)' }} />
                   <span style={{ fontSize:10, fontWeight:600, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)' }}>PROMOTIONS</span>
                 </div>
-                <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
+                <RevealTitle style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
                   {l==='fr'?'Offres Spéciales':l==='en'?'Special Deals':l==='de'?'Angebote':l==='es'?'Ofertas Especiales':l==='it'?'Offerte Speciali':'Ofertas Especiais'}
-                </h2>
+                </RevealTitle>
               </div>
               <Link to="/catalog" className="btn-outline" style={{ borderColor:'var(--red)', color:'var(--red)' }}
                 onMouseOver={e => { e.currentTarget.style.background='var(--red)'; e.currentTarget.style.color='#fff'; }}
@@ -1353,9 +1466,9 @@ export default function Home() {
                 <div className="section-eyebrow">
                   {l==='fr'?'CAMPING CAR':l==='en'?'MOTORHOME':l==='de'?'WOHNMOBIL':l==='es'?'AUTOCARAVANA':l==='it'?'CAMPER':'AUTOCARAVANA'}
                 </div>
-                <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
+                <RevealTitle style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', lineHeight:1.05 }}>
                   {l==='fr'?'Nos Camping Cars':l==='en'?'Our Motorhomes':l==='de'?'Unsere Wohnmobile':l==='es'?'Nuestras Autocaravanas':l==='it'?'I Nostri Camper':'As Nossas Autocaravanas'}
-                </h2>
+                </RevealTitle>
               </div>
               <Link to="/camping-car" className="btn-outline">
                 {t('see_all', l)} →
@@ -1381,7 +1494,7 @@ export default function Home() {
                   {l==='fr'?"Découvrez toute notre gamme de camping cars disponibles à la vente.":l==='en'?'Browse our full range of motorhomes available for sale.':l==='de'?'Entdecken Sie unser komplettes Sortiment an Wohnmobilen.':l==='es'?'Descubra toda nuestra gama de autocaravanas disponibles.':l==='it'?'Scopri la nostra gamma completa di camper disponibili.':'Descubra toda a nossa gama de autocaravanas disponíveis.'}
                 </p>
               </div>
-              <Link to="/camping-car" className="btn-primary" style={{ fontSize:13, whiteSpace:'nowrap' }}>
+              <Link to="/camping-car" className="btn-primary" style={{ fontSize:13, whiteSpace:'nowrap' }} {...magnetProps(0.28)}>
                 {l==='fr'?'Voir le catalogue':l==='en'?'View catalogue':l==='de'?'Katalog anzeigen':l==='es'?'Ver catálogo':l==='it'?'Vedi catalogo':'Ver catálogo'} →
               </Link>
             </motion.div>
@@ -1397,9 +1510,9 @@ export default function Home() {
         <div className="mk-section" style={{ maxWidth:1300, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:52 }}>
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>{t('services_label', l)}</div>
-            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
+            <RevealTitle style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
               {l==='fr'?'Ce que nous faisons\npour vous':l==='en'?'What we do\nfor you':l==='de'?'Was wir für\nSie tun':l==='es'?'Lo que hacemos\npor usted':l==='it'?'Cosa facciamo\nper voi':'O que fazemos\npor você'}
-            </h2>
+            </RevealTitle>
             <p style={{ fontSize:15, color:'var(--text-3)', marginTop:14, maxWidth:480, margin:'14px auto 0', lineHeight:1.6 }}>{t('services_sub', l)}</p>
           </div>
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(3,1fr)', gap: isMobile ? 12 : 16 }}>
@@ -1428,12 +1541,15 @@ export default function Home() {
           <motion.div
             initial={{ opacity:0, y:20 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.6 }}
             style={{
+              position:'relative', overflow:'hidden',
               background:'linear-gradient(120deg, #2F80FF 0%, #2373F4 48%, #1A5FD0 100%)',
               borderRadius:24, color:'#fff', display:'flex', flexWrap:'wrap', alignItems:'center',
               gap: isMobile ? 30 : 48, padding: isMobile ? '34px 26px' : '52px 56px',
               boxShadow:'0 24px 60px rgba(35,115,244,0.25)',
-            }}>
-            <div style={{ flex:'1 1 320px', minWidth:0 }}>
+            }}
+>
+
+            <div style={{ flex:'1 1 320px', minWidth:0, position:'relative', zIndex:1 }}>
               <div style={{ display:'inline-flex', alignItems:'center', gap:10, fontSize:12, fontWeight:700, letterSpacing:'0.2em', textTransform:'uppercase', opacity:0.85, marginBottom:18 }}>
                 <span style={{ width:28, height:1, background:'rgba(255,255,255,0.65)' }} />
                 {l==='fr'?'Notre Force':l==='en'?'Our Strength':l==='de'?'Unsere Stärke':l==='es'?'Nuestra Fuerza':l==='it'?'La Nostra Forza':'Nossa Força'}
@@ -1445,7 +1561,7 @@ export default function Home() {
                 {l==='fr'?'Découvrez ce qui nous distingue et pourquoi des milliers de clients nous font confiance.':l==='en'?'Discover what sets us apart and why thousands of customers trust us.':l==='de'?'Entdecken Sie, was uns unterscheidet und warum uns tausende Kunden vertrauen.':l==='es'?'Descubre lo que nos distingue y por qué miles de clientes confían en nosotros.':l==='it'?'Scopri cosa ci distingue e perché migliaia di clienti si fidano di noi.':'Descubra o que nos diferencia e por que milhares de clientes confiam em nós.'}
               </p>
             </div>
-            <div style={{ flex:'1 1 300px', display:'grid', gridTemplateColumns:'1fr 1fr', gap: isMobile ? 22 : 30 }}>
+            <div style={{ flex:'1 1 300px', display:'grid', gridTemplateColumns:'1fr 1fr', gap: isMobile ? 22 : 30, position:'relative', zIndex:1 }}>
               {[
                 { value:'10+', label:l==='fr'?'Années d\'expérience':l==='en'?'Years experience':l==='de'?'Jahre Erfahrung':l==='es'?'Años de experiencia':l==='it'?'Anni di esperienza':'Anos de experiência' },
                 { value:'5000+', label:l==='fr'?'Clients satisfaits':l==='en'?'Happy clients':l==='de'?'Zufriedene Kunden':l==='es'?'Clientes satisfechos':l==='it'?'Clienti soddisfatti':'Clientes satisfeitos' },
@@ -1510,9 +1626,9 @@ export default function Home() {
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>
               {l==='fr'?'Protection':l==='en'?'Protection':l==='de'?'Schutz':l==='es'?'Protección':l==='it'?'Protezione':'Proteção'}
             </div>
-            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
+            <RevealTitle style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
               {l==='fr'?'Garanties &\nAssurances':l==='en'?'Warranties &\nInsurance':l==='de'?'Garantien &\nVersicherungen':l==='es'?'Garantías &\nSeguros':l==='it'?'Garanzie &\nAssicurazioni':'Garantias &\nSeguros'}
-            </h2>
+            </RevealTitle>
             <p style={{ fontSize:15, color:'var(--text-3)', marginTop:14, maxWidth:520, margin:'14px auto 0', lineHeight:1.6 }}>
               {l==='fr'?'Une protection complète pour votre véhicule, avec des garanties étendues et des options d\'assurance sur mesure.':l==='en'?'Complete protection for your vehicle with extended warranties and tailored insurance options.':l==='de'?'Umfassender Schutz für Ihr Fahrzeug mit erweiterten Garantien und maßgeschneiderten Versicherungsoptionen.':l==='es'?'Protección completa para su vehículo con garantías extendidas y opciones de seguro a medida.':l==='it'?'Protezione completa per il vostro veicolo con garanzie estese e opzioni assicurative su misura.':'Proteção completa para seu veículo com garantias estendidas e opções de seguro sob medida.'}
             </p>
@@ -1607,9 +1723,9 @@ export default function Home() {
         <div className="mk-section" style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:48 }}>
             <div className="section-eyebrow" style={{ justifyContent:'center' }}>{t('reviews_label', l)}</div>
-            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
+            <RevealTitle style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em' }}>
               {l==='fr'?'Ce que disent\nnos clients':l==='en'?'What our\ncustomers say':l==='de'?'Was unsere Kunden\nsagen':l==='es'?'Lo que dicen\nnuestros clientes':l==='it'?'Cosa dicono\ni nostri clienti':'O que dizem\nnosssos clientes'}
-            </h2>
+            </RevealTitle>
           </div>
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : isTablet ? '1fr 1fr' : 'repeat(3,1fr)', gap: isMobile ? 12 : 20 }}>
             {ALL_REVIEWS.slice(0, 6).map((r, i) => (
@@ -1642,9 +1758,9 @@ export default function Home() {
         <div className="mk-section" style={{ maxWidth:1100, margin:'0 auto', display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 36 : 64, alignItems:'center' }}>
           <div>
             <div className="section-eyebrow">{t('contact_label', l)}</div>
-            <h2 style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', marginBottom:20 }}>
+            <RevealTitle style={{ fontFamily:"var(--font)", fontWeight:800, fontSize:'clamp(28px,4vw,48px)', color:'var(--text)', letterSpacing:'-0.025em', marginBottom:20 }}>
               {t('contact_title', l)}
-            </h2>
+            </RevealTitle>
             <p style={{ fontSize:15, color:'var(--text-3)', lineHeight:1.7, marginBottom:32, fontWeight:300 }}>
               {l==='fr'?'Notre équipe est à votre disposition pour vous accompagner dans votre projet automobile.':l==='en'?'Our team is at your disposal to help you with your car project.':l==='de'?'Unser Team steht Ihnen für Ihr Autoprojekt zur Verfügung.':l==='es'?'Nuestro equipo está a su disposición para ayudarle con su proyecto.':l==='it'?'Il nostro team è a vostra disposizione per il vostro progetto.':'Nossa equipe está à sua disposição para ajudá-lo com seu projeto.'}
             </p>

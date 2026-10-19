@@ -563,3 +563,15 @@ body { max-width:100vw; overflow-x:hidden; }
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
   .toast-container { padding-bottom: env(safe-area-inset-bottom); }
 }
+
+/* ── Marquee des marques (défilement infini, pause au survol) ─────────────── */
+@keyframes mkMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.mk-marquee { overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%); }
+.mk-marquee-track { display:flex; width:max-content; will-change:transform; animation:mkMarquee 42s linear infinite; }
+.mk-marquee:hover .mk-marquee-track { animation-play-state:paused; }
+@media (prefers-reduced-motion: reduce) {
+  .mk-marquee-track { animation:none; }
+}
