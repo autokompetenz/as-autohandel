@@ -139,10 +139,11 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
 
   /* Bouton secondaire — ouvre la fiche véhicule */
   const DetailsBtn = ({ block, compact, short }) => (
-    <Link to={`/cars/${car.id}`}
-      onClick={e => e.stopPropagation()}
+    <Link 
+      to={`/cars/${car.id}`}
+      onClick={(e) => { e.stopPropagation(); }}
       style={{
-        display:'flex', alignItems:'center', justifyContent:'center', gap:8,
+        display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8,
         width: block ? '100%' : 'auto',
         padding: compact ? '9px 14px' : '11px 16px', borderRadius:'var(--radius-pill)',
         fontSize: compact ? 12 : 13, fontWeight:700, cursor:'pointer',
@@ -150,6 +151,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
         background:'transparent', color:'var(--red)',
         border:'1.5px solid var(--red-border)',
         transition:'background 0.15s, color 0.15s, border-color 0.15s',
+        lineHeight:1,
       }}
       onMouseOver={e=>{e.currentTarget.style.background='var(--red)';e.currentTarget.style.color='#fff';e.currentTarget.style.borderColor='var(--red)';}}
       onMouseOut={e=>{e.currentTarget.style.background='transparent';e.currentTarget.style.color='var(--red)';e.currentTarget.style.borderColor='var(--red-border)';}}>
