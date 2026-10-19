@@ -122,13 +122,13 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
     </div>
   );
 
-  const OrderBtn = ({ block, compact }) => (
+  const OrderBtn = ({ block, compact, small }) => (
     <button onClick={order}
       style={{
         display:'flex', alignItems:'center', justifyContent:'center', gap:8,
         width: block ? '100%' : 'auto',
-        padding: compact ? '9px 16px' : '11px 22px', borderRadius:'var(--radius-pill)',
-        fontSize: compact ? 12 : 14, fontWeight:700, cursor:'pointer', border:'none', fontFamily:F,
+        padding: (small||compact) ? '8px 12px' : compact ? '9px 16px' : '11px 22px', borderRadius:'var(--radius-pill)',
+        fontSize: (small||compact) ? 11 : compact ? 12 : 14, fontWeight:700, cursor:'pointer', border:'none', fontFamily:F,
         background:'var(--red)', color:'#fff', transition:'background 0.15s', flexShrink:0, whiteSpace:'nowrap',
       }}
       onMouseOver={e=>e.currentTarget.style.background='var(--red-dark)'}
@@ -147,10 +147,10 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
         navigate(`/cars/${car.id}`);
       }}
       style={{
-        display:'inline-flex', alignItems:'center', justifyContent:'center', gap:8,
+        display:'inline-flex', alignItems:'center', justifyContent:'center', gap:6,
         width: block ? '100%' : 'auto',
-        padding: compact ? '9px 14px' : '11px 16px', borderRadius:'var(--radius-pill)',
-        fontSize: compact ? 12 : 13, fontWeight:700, cursor:'pointer',
+        padding: compact ? '8px 10px' : '11px 16px', borderRadius:'var(--radius-pill)',
+        fontSize: compact ? 11 : 13, fontWeight:700, cursor:'pointer',
         fontFamily:F, textDecoration:'none', whiteSpace:'nowrap',
         background:'transparent', color:'var(--red)',
         border:'1.5px solid var(--red-border)',
@@ -216,11 +216,11 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
           {/* Bas de ligne */}
           {isMobile ? (
             <div style={{ marginTop:'auto', paddingTop:6, display:'flex', flexDirection:'column', gap:8 }}>
-              <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', gap:8 }}>
-                <Price size={17} />
+              <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', gap:6 }}>
+                <Price size={16} />
                 <DetailsBtn compact short />
               </div>
-              <OrderBtn compact block />
+              <OrderBtn small block />
             </div>
           ) : (
             <div style={{ marginTop:'auto', paddingTop:10, display:'flex', alignItems:'center', justifyContent:'space-between', gap:12 }}>
