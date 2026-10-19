@@ -1797,36 +1797,69 @@ export default function Home() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background:'var(--bg-card2)', borderTop:'1px solid var(--border)', padding: isMobile ? '40px 5% 28px' : '56px 7% 32px' }}>
-        <div style={{ maxWidth:1300, margin:'0 auto' }}>
-          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr auto', gap: isMobile ? 28 : 48, alignItems:'start' }}>
+      <footer style={{ background:'#0F172A', color:'#e6e9ef', padding: isMobile ? '48px 5% 24px' : '72px 7% 32px', overflow:'hidden' }}>
+        <div style={{ maxWidth:1300, margin:'0 auto', position:'relative' }}>
+          {/* Décor subtil */}
+          <div aria-hidden style={{ position:'absolute', top:-180, right:-140, width:360, height:360, borderRadius:'50%', background:'radial-gradient(circle, rgba(35,115,244,0.18) 0%, rgba(35,115,244,0) 70%)', pointerEvents:'none' }} />
+          <div aria-hidden style={{ position:'absolute', bottom:-220, left:-160, width:420, height:420, borderRadius:'50%', background:'radial-gradient(circle, rgba(35,115,244,0.08) 0%, rgba(35,115,244,0) 70%)', pointerEvents:'none' }} />
+
+          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1.2fr 0.8fr 0.8fr 1fr', gap: isMobile ? 40 : 64, alignItems:'start', position:'relative', zIndex:1 }}>
             <div>
-              <div style={{ fontFamily:"var(--font)", fontSize:15, fontWeight:800, color:'var(--text)', letterSpacing:'0.08em' }}>AS AUTOHANDEL</div>
-              <div style={{ fontSize:8, letterSpacing:'0.35em', color:'var(--red)', textTransform:'uppercase', marginTop:3, marginBottom:14, fontWeight:500 }}>GmbH · Offenbach am Main</div>
-              <p style={{ fontSize:13, color:'var(--text-3)', lineHeight:1.6, maxWidth:240, fontWeight:300 }}>
-                {l==='fr'?'Votre partenaire automobile de confiance en Allemagne.':l==='en'?'Your trusted car partner in Germany.':l==='de'?'Ihr vertrauenswürdiger Autopartner in Deutschland.':l==='es'?'Su socio de confianza en Alemania.':l==='it'?'Il vostro partner automobilistico di fiducia in Germania.':'Seu parceiro automobilístico de confiança na Alemanha.'}
+              <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:18 }}>
+                <img src="/logo.svg" alt="AS Autohandel GmbH" style={{ width:42, height:42, borderRadius:12 }} />
+                <div>
+                  <div style={{ fontFamily:"var(--font)", fontSize:14, fontWeight:800, letterSpacing:'0.08em' }}>AS AUTOHANDEL</div>
+                  <div style={{ fontSize:8, letterSpacing:'0.35em', color:'#8FA7FF', textTransform:'uppercase', marginTop:2, fontWeight:500 }}>GmbH · Offenbach am Main</div>
+                </div>
+              </div>
+              <p style={{ fontSize:14, color:'rgba(255,255,255,0.72)', lineHeight:1.8, maxWidth:320 }}>
+                {l==='fr'?'Votre partenaire automobile de confiance en Allemagne. Expertise, fiabilité et service client au cœur de nos engagements.'
+                  :l==='en'?'Your trusted car partner in Germany. Expertise, reliability and customer service at the heart of our commitments.'
+                  :l==='de'?'Ihr vertrauenswürdiger Autopartner in Deutschland. Expertise, Zuverlässigkeit und Kundenservice im Mittelpunkt.'
+                  :l==='es'?'Su socio de confianza en Alemania. Experiencia, fiabilidad y atención al cliente en el centro de nuestro compromiso.'
+                  :l==='it'?'Il vostro partner automobilistico di fiducia in Germania. Competenza, affidabilità e servizio clienti al centro dei nostri impegni.'
+                  :'Seu parceiro automobilístico de confiança na Alemanha. Expertise, fiabilidade e atendimento ao cliente no centro dos nossos compromissos.'}
               </p>
+
+              <div style={{ display:'flex', alignItems:'center', gap:8, marginTop:20, flexWrap:'wrap' }}>
+                <a href="https://wa.me/4916366212318" target="_blank" rel="noreferrer"
+                  style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'7px 12px', borderRadius:999, background:'rgba(255,255,255,0.08)', color:'#fff', textDecoration:'none', fontSize:12, fontWeight:600, transition:'background 0.2s', border:'1px solid rgba(255,255,255,0.12)' }}
+                  onMouseOver={e=>e.currentTarget.style.background='rgba(255,255,255,0.16)'}
+                  onMouseOut={e=>e.currentTarget.style.background='rgba(255,255,255,0.08)'}>
+                  💬 WhatsApp
+                </a>
+                <Link to="/contact"
+                  style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'7px 12px', borderRadius:999, background:'rgba(35,115,244,0.22)', color:'#fff', textDecoration:'none', fontSize:12, fontWeight:600, transition:'background 0.2s', border:'1px solid rgba(35,115,244,0.4)' }}
+                  onMouseOver={e=>e.currentTarget.style.background='rgba(35,115,244,0.32)'}
+                  onMouseOut={e=>e.currentTarget.style.background='rgba(35,115,244,0.22)'}>
+                  {l==='fr'?'Nous contacter':l==='en'?'Contact us':l==='de'?'Kontaktieren Sie uns':l==='es'?'Contáctanos':l==='it'?'Contattaci':'Contacte-nos'}
+                </Link>
+              </div>
             </div>
-            <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr 1fr', gap: isMobile ? 24 : 16, paddingLeft: isMobile ? 0 : 48 }}>
+
+            <div>
+              <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'rgba(255,255,255,0.5)', marginBottom:18 }}>Navigation</p>
+              {[{to:'/catalog',label:t('nav_vehicles',l)},{to:'/simulation',label:t('nav_financing',l)},{to:'/track',label:t('nav_track',l)},{to:'/marques',label:t({fr:'Marques',en:'Brands',de:'Marken',es:'Marcas',it:'Marche',pt:'Marcas'},l)},{to:'/avis',label:t({fr:'Avis',en:'Reviews',de:'Bewertungen',es:'Opiniones',it:'Recensioni',pt:'Avaliações'},l)}].map(({to,label})=>(
+                <Link key={to} to={to} style={{ display:'block', fontSize:14, color:'rgba(255,255,255,0.78)', textDecoration:'none', marginBottom:12, transition:'color 0.2s' }}
+                  onMouseOver={e=>e.currentTarget.style.color='#fff'} onMouseOut={e=>e.currentTarget.style.color='rgba(255,255,255,0.78)'}>{label}</Link>
+              ))}
+            </div>
+
+            <div>
+              <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'rgba(255,255,255,0.5)', marginBottom:18 }}>
+                {l==='fr'?'À propos':l==='en'?'About':l==='de'?'Über uns':l==='es'?'Acerca de':l==='it'?'Chi siamo':'Sobre nós'}
+              </p>
+              {[{to:'/a-propos',label:t({fr:'À propos',en:'About us',de:'Über uns',es:'Acerca de',it:'Chi siamo',pt:'Sobre nós'},l)},{to:'/faq',label:'FAQ'},{to:'/blog',label:'Blog'},{to:'/warranty',label:t({fr:'Garantie',en:'Warranty',de:'Garantie',es:'Garantía',it:'Garanzia',pt:'Garantia'},l)},{to:'/insurance',label:t({fr:'Assurance',en:'Insurance',de:'Versicherung',es:'Seguro',it:'Assicurazione',pt:'Seguro'},l)}].map(({to,label})=>(
+                <Link key={to} to={to} style={{ display:'block', fontSize:14, color:'rgba(255,255,255,0.78)', textDecoration:'none', marginBottom:12, transition:'color 0.2s' }}
+                  onMouseOver={e=>e.currentTarget.style.color='#fff'} onMouseOut={e=>e.currentTarget.style.color='rgba(255,255,255,0.78)'}>{label}</Link>
+              ))}
+            </div>
+
+            <div>
+              <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'rgba(255,255,255,0.5)', marginBottom:18 }}>
+                {l==='fr'?'Informations légales':l==='en'?'Legal':l==='de'?'Rechtliches':l==='es'?'Legal':l==='it'?'Note legali':'Informações legais'}
+              </p>
               <div>
-                <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:14 }}>Navigation</p>
-                {[{to:'/catalog',label:t('nav_vehicles',l)},{to:'/simulation',label:t('nav_financing',l)},{to:'/track',label:t('nav_track',l)}].map(({to,label})=>(
-                  <Link key={to} to={to} style={{ display:'block', fontSize:13, color:'var(--text-3)', textDecoration:'none', marginBottom:10, transition:'color 0.25s', fontWeight:400 }}
-                    onMouseOver={e=>e.currentTarget.style.color='var(--red)'} onMouseOut={e=>e.currentTarget.style.color='var(--text-3)'}>{label}</Link>
-                ))}
-              </div>
-              <div>
-                <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:14 }}>Contact</p>
-                <p style={{ fontSize:13, color:'var(--text-3)', lineHeight:1.8, fontWeight:400 }}>
-                  📞 +49 163 043 63 38<br/>
-                  ✉ info@as-autohandelgmbh.com<br/>
-                  💬 <a href="https://wa.me/4916366212318" style={{ color:'var(--red)', textDecoration:'none' }}>WhatsApp</a>
-                </p>
-              </div>
-              <div>
-                <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.3em', textTransform:'uppercase', color:'var(--text-3)', marginBottom:14 }}>
-                  {l==='fr'?'Informations légales':l==='en'?'Legal':l==='de'?'Rechtliches':l==='es'?'Legal':l==='it'?'Note legali':'Informações legais'}
-                </p>
                 {[
                   { to:'/mentions-legales', fr:'Mentions légales', en:'Legal notice', de:'Impressum', pt:'Aviso legal' },
                   { to:'/politique-de-vente', fr:'Politique de vente', en:'Sales policy', de:'Verkaufspolitik', pt:'Política de vendas' },
@@ -1846,10 +1879,17 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div style={{ height:1, background:'var(--border)', margin:'28px 0 20px' }} />
-          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:10 }}>
-            <p style={{ fontSize:12, color:'var(--text-3)' }}>© {new Date().getFullYear()} AS Autohandel GmbH. {t('copyright', l)}.</p>
-            <p style={{ fontSize:12, color:'var(--text-3)' }}>{t('made_in', l)}</p>
+          <div style={{ height:1, background:'rgba(255,255,255,0.12)', margin:'48px 0 20px' }} />
+          <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:12, flexDirection: isMobile ? 'column' : 'row' }}>
+            <p style={{ fontSize:12, color:'rgba(255,255,255,0.56)', margin:0 }}>© {new Date().getFullYear()} AS Autohandel GmbH. {t('copyright', l)}.</p>
+            <div style={{ display:'flex', alignItems:'center', gap:16, flexWrap:'wrap', justifyContent: isMobile ? 'center' : 'flex-end' }}>
+              <p style={{ fontSize:12, color:'rgba(255,255,255,0.56)', margin:0 }}>{t('made_in', l)}</p>
+              <div style={{ fontSize:12, color:'rgba(255,255,255,0.56)', display:'inline-flex', alignItems:'center', gap:8, flexWrap:'wrap', justifyContent:'center' }}>
+                <span>Sprendlinger Straße 119 · 63069 Offenbach am Main</span>
+                <span>•</span>
+                <span>HRB 50855 · dir. Ronny Reinsberger</span>
+              </div>
+            </div>
           </div>
         </div>
       </footer>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&display=swap" rel="stylesheet" />
+    <title>AS Autohandel GmbH — Véhicules neufs et d'occasion à Offenbach am Main, Allemagne</title>
+    <meta name="description" content="AS Autohandel GmbH — Concessionnaire automobile à Offenbach am Main (Allemagne). Véhicules neufs et d'occasion, financement sur mesure, reprise, livraison dans toute l'Europe. +49 163 043 63 38." />
+    <meta name="keywords" content="voiture, véhicule, neuf, occasion, financement, reprise, Offenbach am Main, Allemagne, Automatik, autohaus, gebrauchtwagen, neuwagen" />
+    <meta name="author" content="AS Autohandel GmbH" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <link rel="canonical" href="https://as-autohandelgmbh.com/" />
+    <meta name="geo.region" content="DE-HE" />
+    <meta name="geo.placename" content="Offenbach am Main" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AS Autohandel GmbH" />
+    <meta property="og:url" content="https://as-autohandelgmbh.com/" />
+    <meta property="og:title" content="AS Autohandel GmbH — Véhicules neufs et d'occasion à Offenbach am Main" />
+    <meta property="og:description" content="Concessionnaire automobile en Allemagne : véhicules neufs et d'occasion, financement sur mesure, livraison Europe." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="it_IT" />
+    <meta property="og:locale:alternate" content="pt_PT" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@asautohandel" />
+    <meta name="twitter:title" content="AS Autohandel GmbH — Véhicules neufs et d'occasion" />
+    <meta name="twitter:description" content="Concessionnaire automobile à Offenbach am Main. Neuf & occasion, financement, livraison Europe." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&h=630&fit=crop&q=80" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- App loading splash -->
+    <style>
+      #app-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        animation: appSplashFadeOut 0.45s ease 1.0s forwards;
+        pointer-events: none;
+      }
+      #app-splash.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      @keyframes appSplashFadeOut {
+        to { opacity: 0; visibility: hidden; }
+      }
+      .splash-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+      }
+      .splash-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 70px;
+        height: 70px;
+        border-radius: 16px;
+        background: radial-gradient(120% 120% at 50% 0%, #4D95FF 0%, #2373F4 60%, #1A5FD0 100%);
+        box-shadow: 0 16px 48px rgba(35, 115, 244, 0.22);
+        color: #ffffff;
+        font-family: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+      .splash-logo span {
+        transform: translateY(1px);
+      }
+      .splash-progress {
+        width: 110px;
+        height: 3px;
+        border-radius: 999px;
+        background: rgba(35, 115, 244, 0.12);
+        overflow: hidden;
+        position: relative;
+      }
+      .splash-progress::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(35, 115, 244, 0) 0%, #2373F4 50%, rgba(35, 115, 244, 0) 100%);
+        animation: splashProgress 1.0s ease-in-out infinite;
+        will-change: transform;
+      }
+      @keyframes splashProgress {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #app-splash { animation-duration: 0.2s; animation-delay: 0.4s; }
+        .splash-progress::after { animation: none; }
+      }
+    </style>
+
+
+    <!-- Structured data: AutoDealer -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutoDealer",
+      "name": "AS Autohandel GmbH",
+      "description": "Concessionnaire automobile : véhicules neufs et d'occasion, financement sur mesure, reprise et livraison en Europe.",
+      "url": "https://as-autohandelgmbh.com/",
+      "telephone": "+491630436338",
+      "email": "info@as-autohandelgmbh.com",
+      "priceRange": "€€",
+      "foundingDate": "2018-01-18",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Sprendlinger Straße 119",
+        "postalCode": "63069",
+        "addressLocality": "Offenbach am Main",
+        "addressCountry": "DE"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      ],
+      "areaServed": "Europe",
+      "sameAs": [
+        "https://wa.me/4916366212318"
+      ]
+    }
+    </script>
+    <script type="module" crossorigin src="/assets/index-DPqLC60f.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-DEkYVnee.js">
+    <link rel="modulepreload" crossorigin href="/assets/motion-BoksHqEz.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-C6oPaZWJ.css">
+  </head>
+  <body>
+
+    <div id="app-splash">
+      <div class="splash-inner">
+        <div class="splash-logo"><span>AS</span></div>
+        <div class="splash-progress"></div>
+      </div>
+    </div>
+    <div id="root"></div>
+  </body>
+</html>
