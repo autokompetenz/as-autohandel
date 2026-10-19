@@ -127,8 +127,8 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
       style={{
         display:'flex', alignItems:'center', justifyContent:'center', gap:8,
         width: block ? '100%' : 'auto',
-        padding: (small||compact) ? '8px 12px' : compact ? '9px 16px' : '11px 22px', borderRadius:'var(--radius-pill)',
-        fontSize: (small||compact) ? 11 : compact ? 12 : 14, fontWeight:700, cursor:'pointer', border:'none', fontFamily:F,
+        padding: compact ? '8px 10px' : '11px 22px', borderRadius:'var(--radius-pill)',
+        fontSize: compact ? 11 : 14, fontWeight:700, cursor:'pointer', border:'none', fontFamily:F,
         background:'var(--red)', color:'#fff', transition:'background 0.15s', flexShrink:0, whiteSpace:'nowrap',
       }}
       onMouseOver={e=>e.currentTarget.style.background='var(--red-dark)'}
@@ -220,7 +220,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
                 <Price size={16} />
                 <DetailsBtn compact short />
               </div>
-              <OrderBtn small block />
+              <OrderBtn compact block />
             </div>
           ) : (
             <div style={{ marginTop:'auto', paddingTop:10, display:'flex', alignItems:'center', justifyContent:'space-between', gap:12 }}>
