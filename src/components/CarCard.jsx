@@ -137,6 +137,28 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
     </button>
   );
 
+  /* Bouton secondaire — ouvre la fiche véhicule */
+  const DetailsBtn = ({ block, compact, short }) => (
+    <Link to={`/cars/${car.id}`}
+      onClick={e => e.stopPropagation()}
+      style={{
+        display:'flex', alignItems:'center', justifyContent:'center', gap:8,
+        width: block ? '100%' : 'auto',
+        padding: compact ? '9px 14px' : '11px 16px', borderRadius:'var(--radius-pill)',
+        fontSize: compact ? 12 : 13, fontWeight:700, cursor:'pointer',
+        fontFamily:F, textDecoration:'none', whiteSpace:'nowrap',
+        background:'transparent', color:'var(--red)',
+        border:'1.5px solid var(--red-border)',
+        transition:'background 0.15s, color 0.15s, border-color 0.15s',
+      }}
+      onMouseOver={e=>{e.currentTarget.style.background='var(--red)';e.currentTarget.style.color='#fff';e.currentTarget.style.borderColor='var(--red)';}}
+      onMouseOut={e=>{e.currentTarget.style.background='transparent';e.currentTarget.style.color='var(--red)';e.currentTarget.style.borderColor='var(--red-border)';}}>
+      {short
+        ? (l==='fr'?'Détails':l==='en'?'Details':l==='de'?'Details':l==='es'?'Detalles':l==='it'?'Dettagli':'Detalhes')
+        : (l==='fr'?'Voir les détails':l==='en'?'View details':l==='de'?'Details ansehen':l==='es'?'Ver detalles':l==='it'?'Vedi dettagli':'Ver detalhes')}
+    </Link>
+  );
+
   /* ───────────────────────── LIGNE (résultats) ───────────────────────── */
   if (variant === 'row') {
     return (
@@ -187,16 +209,22 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
 
           {/* Bas de ligne */}
           {isMobile ? (
-            <div style={{ marginTop:'auto', paddingTop:4, display:'flex', alignItems:'center', justifyContent:'space-between', gap:8 }}>
-              <Price size={17} />
-              <OrderBtn compact />
+            <div style={{ marginTop:'auto', paddingTop:6, display:'flex', flexDirection:'column', gap:8 }}>
+              <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', gap:8 }}>
+                <Price size={17} />
+                <DetailsBtn compact short />
+              </div>
+              <OrderBtn compact block />
             </div>
           ) : (
             <div style={{ marginTop:'auto', paddingTop:10, display:'flex', alignItems:'center', justifyContent:'space-between', gap:12 }}>
               <span style={{ fontSize:12, color:'var(--text-3)', display:'inline-flex', alignItems:'center', gap:6 }}>
                 📍 Offenbach am Main · 🛡️ {l==='fr'?'Garantie incluse':l==='en'?'Warranty included':l==='de'?'Garantie inklusive':'Garantía incluida'}
               </span>
-              <OrderBtn />
+              <div style={{ display:'flex', alignItems:'center', gap:8, flexShrink:0 }}>
+                <DetailsBtn />
+                <OrderBtn />
+              </div>
             </div>
           )}
         </div>
@@ -240,9 +268,12 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
           </div>
         </div>
 
-        <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', gap:10, paddingTop:12, marginTop:'auto', borderTop:'1px solid var(--border)' }}>
+        <div style={{ paddingTop:12, marginTop:'auto', borderTop:'1px solid var(--border)' }}>
           <Price size={22} />
-          <OrderBtn />
+          <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:8, marginTop:12 }}>
+            <DetailsBtn block />
+            <OrderBtn block />
+          </div>
         </div>
       </div>
     </motion.article>
