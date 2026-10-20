@@ -158,27 +158,63 @@ export default function CarDetails() {
     const knownLabels = [
       'Dernier entretien','Validité du contrôle technique','Première immatriculation',
       'Date de production','Kilométrage','Type de carburant','Type de transmission',
-      'Norme d\'émission de CO2','Émissions de CO2','Puissance','Cylindrée',
-      'Type de carrosserie','Portes','Nombre de places','Numéro de châssis',
-      'Numéro de châssis (court)','Nombre de clés','Couleur extérieure',
-      'Couleur de l\'intérieur','État','Spécifications',
+      'Norme d\'émission de CO2','Norme d\'émission de CO₂','Émissions de CO2','Émissions de CO₂',
+      'Emission CO2 (NEDC)','Émissions CO2 (NEDC)','Émissions CO2 (WLTP)','Quatre roues motrices',
+      'Puissance','Cylindrée','Type de carrosserie','Portes','Nombre de places',
+      'Numéro de châssis','Numéro de châssis (court)','Nombre de clés','Couleur extérieure',
+      'Couleur de l\'intérieur','État','Spécifications','Année','Carburant','Boîte de vitesse',
+      'Boîte','Puissance (CH)','Transmission','Année du modèle','Mise en circulation',
     ];
     const keys = new Set(knownLabels.map(k => k.toLowerCase()));
+
+    // Variantes d'un même libellé → libellé canonique affiché
+    const canonLabel = (raw) => {
+      const k = raw.toLowerCase().replace(/₂/g, '2');
+      const map = {
+        'année': 'Année', 'année du modèle': 'Année du modèle',
+        'carburant': 'Carburant', 'type de carburant': 'Type de carburant',
+        'boîte': 'Boîte de vitesse', 'boîte de vitesse': 'Boîte de vitesse',
+        'transmission': 'Type de transmission', 'type de transmission': 'Type de transmission',
+        'puissance': 'Puissance', 'puissance (ch)': 'Puissance',
+        'mise en circulation': 'Première immatriculation',
+      };
+      return map[k] || raw;
+    };
+
+    // Nettoie une valeur : retire emojis/espaces parasites
+    const cleanValue = (v) => String(v || '')
+      .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}]/gu, '')
+      .replace(/^[\s:•◾\-–—]+/, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+
     const lines = txt.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
     const obj = {};
     for (let i = 0; i < lines.length; i++) {
-      const l = lines[i];
-      if (keys.has(l.toLowerCase())) {
-        // skip headings if value unknown? tentative: if it's a heading line, assume next non-empty line is its value except if it's another known label
-        if (i + 1 < lines.length && !keys.has(lines[i + 1].toLowerCase())) {
-          obj[l] = lines[i + 1];
+      // 1) Format « Label : valeur » (avec emoji éventuel : 📍 Carburant : Diesel)
+      let raw = lines[i];
+      const colonIdx = raw.indexOf(':');
+      if (colonIdx > 0) {
+        const label = cleanValue(raw.slice(0, colonIdx));
+        const value = cleanValue(raw.slice(colonIdx + 1));
+        if (keys.has(label.replace(/₂/g, '2').toLowerCase()) && value) {
+          obj[canonLabel(label)] = value;
+          continue;
+        }
+      }
+      // 2) Format « Label » (ligne seule) suivi de la valeur sur la ligne suivante
+      const label = cleanValue(raw);
+      if (keys.has(label.replace(/₂/g, '2').toLowerCase())) {
+        const next = i + 1 < lines.length ? cleanValue(lines[i + 1]) : '';
+        const nextIsLabel = next && keys.has(next.replace(/₂/g, '2').toLowerCase());
+        if (next && !nextIsLabel && !/^\d{1,3}([ .]\d{3})*(,\d+)?\s*€$/.test(next)) {
+          obj[canonLabel(label)] = next;
           i++;
-        } else if (l.toLowerCase() !== 'état' && l.toLowerCase() !== 'spécifications') {
-          obj[l] = '';
         }
       }
     }
-    return obj;
+    // On retire les entrées sans valeur exploitable
+    return Object.fromEntries(Object.entries(obj).filter(([, v]) => v && v.trim()));
   };
 
   const specsFromDescription = (car?.technicalData && Object.keys(car.technicalData).length > 0)
@@ -193,10 +229,43 @@ export default function CarDetails() {
   // Caractéristiques détaillées : on masque les champs internes / techniques
   // (provenance de l'import, identifiant source…) et les valeurs vides.
   const HIDDEN_SPEC_KEYS = ['source', 'supabaseId', 'sourceFolder', 'id'];
+
+  // Repli : si la description ne contient pas de fiche technique exploitable,
+  // on reconstruit la fiche détaillée à partir des champs structurés du véhicule
+  // (couvre notamment les véhicules importés dont la description est rédigée en prose).
+  const buildSpecsFromCarFields = () => {
+    const L = {
+      fr: { year:'Année', mileage:'Kilométrage', power:'Puissance', fuel:'Carburant', transmission:'Boîte de vitesse', category:'Type de carrosserie', color:'Couleur extérieure', vin:'Numéro de châssis', firstReg:'Première immatriculation' },
+      en: { year:'Year', mileage:'Mileage', power:'Power', fuel:'Fuel', transmission:'Gearbox', category:'Body type', color:'Exterior colour', vin:'Chassis number', firstReg:'First registration' },
+      de: { year:'Baujahr', mileage:'Kilometerstand', power:'Leistung', fuel:'Kraftstoff', transmission:'Getriebe', category:'Karosserietyp', color:'Außenfarbe', vin:'Fahrgestellnummer', firstReg:'Erstzulassung' },
+      es: { year:'Año', mileage:'Kilometraje', power:'Potencia', fuel:'Combustible', transmission:'Cambio', category:'Tipo de carrocería', color:'Color exterior', vin:'Número de chasis', firstReg:'Primera matriculación' },
+      it: { year:'Anno', mileage:'Chilometraggio', power:'Potenza', fuel:'Carburante', transmission:'Cambio', category:'Tipo di carrozzeria', color:'Colore esterno', vin:'Numero di telaio', firstReg:'Prima immatricolazione' },
+      pt: { year:'Ano', mileage:'Quilometragem', power:'Potência', fuel:'Combustível', transmission:'Caixa', category:'Tipo de carroçaria', color:'Cor exterior', vin:'Número do chassi', firstReg:'Primeira matrícula' },
+      ar: { year:'السنة', mileage:'عداد المسافة', power:'القوة', fuel:'الوقود', transmission:'ناقل الحركة', category:'نوع الهيكل', color:'اللون الخارجي', vin:'رقم الهيكل', firstReg:'أول تسجيل' },
+    };
+    const labels = L[l] || L.fr;
+    const out = {};
+    const add = (label, value) => {
+      if (value == null || String(value).trim() === '' || String(value).trim() === '0') return;
+      out[label] = String(value).trim();
+    };
+    if (car.year) add(labels.year, car.year);
+    if (car.firstRegistration) add(labels.firstReg, new Date(car.firstRegistration).toLocaleDateString('fr-FR'));
+    if (car.mileage) add(labels.mileage, `${Number(car.mileage).toLocaleString('fr-FR')} km`);
+    if (car.power) add(labels.power, `${car.power} CH`);
+    if (car.fuelType) add(labels.fuel, car.fuelType);
+    if (car.transmission) add(labels.transmission, car.transmission);
+    if (car.category) add(labels.category, car.category);
+    if (car.color) add(labels.color, car.color);
+    if (car.vin) add(labels.vin, car.vin);
+    return out;
+  };
+
+  const parsedSpecs = car?.technicalData && Object.keys(car.technicalData).length > 0
+    ? car.technicalData
+    : (specsFromDescription || {});
   const detailSpecs = Object.entries(
-    car?.technicalData && Object.keys(car.technicalData).length > 0
-      ? car.technicalData
-      : (specsFromDescription || {})
+    Object.keys(parsedSpecs).length > 0 ? parsedSpecs : buildSpecsFromCarFields()
   ).filter(([key, value]) =>
     value != null && String(value).trim() !== '' && !HIDDEN_SPEC_KEYS.includes(key)
   );
@@ -411,7 +480,7 @@ export default function CarDetails() {
                 <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 8 : 12 }}>
                   {detailSpecs.map(([key, value]) => (
                     <div key={key} style={{ display:'flex', justifyContent:'space-between', gap:12, borderBottom:'1px solid var(--border)', paddingBottom:4 }}>
-                      <span style={{ fontSize:12, color:C.text3, textTransform:'capitalize' }}>{String(key).replace(/([A-Z])/g, ' $1').trim()}</span>
+                      <span style={{ fontSize:12, color:C.text3, textTransform:'capitalize' }}>{String(key).replace(/([A-ZÀ-Þ])/g, ' $1').replace(/\s+/g, ' ').trim().toLowerCase()}</span>
                       <span style={{ fontSize:12, fontWeight:700, color:C.text, textAlign:'right' }}>{typeof value === 'object' ? JSON.stringify(value) : String(value)}</span>
                     </div>
                   ))}
