@@ -14,7 +14,20 @@ const INFO_TITLE = {
   fr: 'Informations complémentaires sur le véhicule',
   en: 'Additional vehicle information',
   de: 'Zusätzliche Fahrzeuginformationen',
+  es: 'Información adicional del vehículo',
+  it: 'Informazioni aggiuntive sul veicolo',
+  pt: 'Informações adicionais do veículo',
   ar: 'معلومات إضافية عن المركبة',
+};
+
+const INFO_TOGGLE = {
+  fr: { more: 'Afficher', less: 'Masquer' },
+  en: { more: 'Show', less: 'Hide' },
+  de: { more: 'Anzeigen', less: 'Ausblenden' },
+  es: { more: 'Mostrar', less: 'Ocultar' },
+  it: { more: 'Mostra', less: 'Nascondi' },
+  pt: { more: 'Mostrar', less: 'Ocultar' },
+  ar: { more: 'إظهار', less: 'إخفاء' },
 };
 
 // Parse a pasted vehicle-info block made of sections and "Label : value" lines
@@ -73,6 +86,7 @@ export default function CarDetails() {
   const { lang } = useLangStore();
   const { theme } = useThemeStore();
   const [depositPct, setDepositPct] = useState(25);
+  const [infoOpen, setInfoOpen] = useState(false);
   const [financeMonths, setFinanceMonths] = useState(60);
   const isDark = theme === 'dark';
 
@@ -523,40 +537,59 @@ export default function CarDetails() {
             {/* Informations complémentaires */}
             {car.description && (
               <div style={{ marginBottom: 32 }}>
-                <h3 style={{
-                  fontFamily: "var(--font)", fontWeight: 700,
-                  fontSize: isMobile ? 18 : 20, color: C.text,
-                  letterSpacing: '-0.02em', marginBottom: 12, lineHeight: 1.2,
-                }}>
-                  {INFO_TITLE[lang] || INFO_TITLE.fr}
-                </h3>
-                {hasStructuredInfo ? (
-                  <div style={{ background: C.card2, border: `1px solid ${C.border}`, borderRadius: 'var(--radius-lg)', padding: isMobile ? '16px 14px' : '18px 20px' }}>
-                    {infoSections.map((sec, si) => (
-                      <div key={si} style={{ marginTop: si === 0 ? 0 : (isMobile ? 18 : 22) }}>
-                        {sec.title && (
-                          <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.red, marginBottom: 8 }}>
-                            {sec.title}
-                          </p>
-                        )}
-                        {sec.rows.map((row, ri) => (
-                          <div key={ri} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16, padding: '7px 0', borderBottom: `1px solid ${C.border}` }}>
-                            <span style={{ fontSize: 13, color: C.text3 }}>{row.label}</span>
-                            <span style={{ fontSize: 13, fontWeight: 600, color: C.text, textAlign: 'right' }}>{row.value}</span>
-                          </div>
-                        ))}
-                        {sec.notes.length > 0 && (
-                          <p style={{ fontSize: 14, color: C.text2, lineHeight: 1.7, marginTop: 6 }}>
-                            {sec.notes.join(' ')}
-                          </p>
-                        )}
-                      </div>
-                    ))}
+                <button
+                  type="button"
+                  onClick={() => setInfoOpen(o => !o)}
+                  aria-expanded={infoOpen}
+                  style={{
+                    width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
+                    background: C.card2, border: `1px solid ${C.border}`, borderRadius: infoOpen ? 'var(--radius-lg) var(--radius-lg) 0 0' : 'var(--radius-lg)',
+                    padding: isMobile ? '14px 14px' : '16px 20px', cursor: 'pointer', textAlign: 'left',
+                    fontFamily: 'var(--font)', transition: 'all 0.15s ease',
+                  }}
+                >
+                  <span style={{
+                    fontWeight: 700, fontSize: isMobile ? 16 : 18, color: C.text,
+                    letterSpacing: '-0.02em', lineHeight: 1.25,
+                  }}>
+                    {INFO_TITLE[lang] || INFO_TITLE.fr}
+                  </span>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0, color: C.red, fontSize: 12, fontWeight: 700 }}>
+                    {(INFO_TOGGLE[lang] || INFO_TOGGLE.fr)[infoOpen ? 'less' : 'more']}
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style={{ transform: infoOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}>
+                      <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                </button>
+                {infoOpen && (
+                  <div style={{ background: C.card2, border: `1px solid ${C.border}`, borderTop: 'none', borderRadius: '0 0 var(--radius-lg) var(--radius-lg)', padding: isMobile ? '16px 14px' : '18px 20px' }}>
+                    {hasStructuredInfo ? (
+                      infoSections.map((sec, si) => (
+                        <div key={si} style={{ marginTop: si === 0 ? 0 : (isMobile ? 18 : 22) }}>
+                          {sec.title && (
+                            <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.red, marginBottom: 8 }}>
+                              {sec.title}
+                            </p>
+                          )}
+                          {sec.rows.map((row, ri) => (
+                            <div key={ri} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 16, padding: '7px 0', borderBottom: `1px solid ${C.border}` }}>
+                              <span style={{ fontSize: 13, color: C.text3 }}>{row.label}</span>
+                              <span style={{ fontSize: 13, fontWeight: 600, color: C.text, textAlign: 'right' }}>{row.value}</span>
+                            </div>
+                          ))}
+                          {sec.notes.length > 0 && (
+                            <p style={{ fontSize: 14, color: C.text2, lineHeight: 1.7, marginTop: 6 }}>
+                              {sec.notes.join(' ')}
+                            </p>
+                          )}
+                        </div>
+                      ))
+                    ) : (
+                      <p style={{ fontSize: 15, color: C.text2, lineHeight: 1.75, whiteSpace: 'pre-line', borderLeft: '2px solid rgba(35,115,244,0.25)', paddingLeft: 18 }}>
+                        {car.description}
+                      </p>
+                    )}
                   </div>
-                ) : (
-                  <p style={{ fontSize: 15, color: C.text2, lineHeight: 1.75, whiteSpace: 'pre-line', borderLeft: '2px solid rgba(35,115,244,0.25)', paddingLeft: 18 }}>
-                    {car.description}
-                  </p>
                 )}
               </div>
             )}
