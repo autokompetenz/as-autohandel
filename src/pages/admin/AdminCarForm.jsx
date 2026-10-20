@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { carAPI } from '../../services/api';
 import { useToastStore } from '../../store';
 
-const EMPTY = { make:'', model:'', year:new Date().getFullYear(), price:'', description:'', fuelType:'Essence', transmission:'Automatique', mileage:0, color:'', power:'', category:'Berline', imageUrl:'', imageUrl2:'', imageUrl3:'', imageUrl4:'', imageUrl5:'', imageUrl6:'', imageUrl7:'', imageUrl8:'', imageUrl9:'', imageUrl10:'', imageUrl11:'', imageUrl12:'', imageUrl13:'', imageUrl14:'', imageUrl15:'', imageUrl16:'', imageUrl17:'', imageUrl18:'', imageUrl19:'', imageUrl20:'', minSalary:'', featured:false, promotional:false, isActive:true, previousOwners:'', accidentFree:false, serviceHistory:false, historyNotes:'', technicalData:'' };
+const EMPTY = { make:'', model:'', year:new Date().getFullYear(), price:'', description:'', fuelType:'Essence', transmission:'Automatique', mileage:0, color:'', power:'', category:'Berline', imageUrl:'', imageUrl2:'', imageUrl3:'', imageUrl4:'', imageUrl5:'', imageUrl6:'', imageUrl7:'', imageUrl8:'', imageUrl9:'', imageUrl10:'', imageUrl11:'', imageUrl12:'', imageUrl13:'', imageUrl14:'', imageUrl15:'', imageUrl16:'', imageUrl17:'', imageUrl18:'', imageUrl19:'', imageUrl20:'', minSalary:'', featured:false, promotional:false, isActive:true, previousOwners:'', accidentFree:true, serviceHistory:true, historyNotes:'', technicalData:'' };
 
 function Section({ title, children }) {
   return (

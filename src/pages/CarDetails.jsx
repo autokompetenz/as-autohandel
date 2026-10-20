@@ -489,38 +489,36 @@ export default function CarDetails() {
             ) : null}
 
             {/* Historique du véhicule */}
-            {(car.previousOwners != null || car.accidentFree !== undefined || car.serviceHistory !== undefined || car.historyNotes) && (
-              <div style={{ background: C.card2, border:'1px solid var(--border)', borderRadius:'var(--radius-lg)', padding: isMobile ? '16px 14px' : '18px 20px', marginBottom:28 }}>
-                <p style={{ fontSize:11, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)', marginBottom:12 }}>
-                  {l==='fr'?'Historique du véhicule':l==='en'?'Vehicle history':l==='de'?'Fahrzeughistorie':'Historial del vehículo'}
-                </p>
-                <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)', gap:10 }}>
-                  {car.previousOwners != null && (
-                    <div>
-                      <p style={{ fontSize:10, color:C.text3, textTransform:'uppercase', letterSpacing:'0.1em' }}>{l==='fr'?'Propriétaires':l==='en'?'Previous owners':l==='de'?'Vorbesitzer':'Propietarios'}</p>
-                      <p style={{ fontSize:15, fontWeight:700, color:C.text }}>{car.previousOwners}</p>
-                    </div>
-                  )}
+            <div style={{ background: C.card2, border:'1px solid var(--border)', borderRadius:'var(--radius-lg)', padding: isMobile ? '16px 14px' : '18px 20px', marginBottom:28 }}>
+              <p style={{ fontSize:11, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)', marginBottom:12 }}>
+                {l==='fr'?'Historique du véhicule':l==='en'?'Vehicle history':l==='de'?'Fahrzeughistorie':l==='es'?'Historial del vehículo':l==='it'?'Storico del veicolo':l==='pt'?'Histórico do veículo':'تاريخ المركبة'}
+              </p>
+              <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4,1fr)', gap:10 }}>
+                {car.previousOwners != null && (
                   <div>
-                    <p style={{ fontSize:10, color:C.text3, textTransform:'uppercase', letterSpacing:'0.1em' }}>{l==='fr'?'Sans accident':l==='en'?'Accident-free':l==='de'?'Unfallfrei':'Sin accidentes'}</p>
-                    <p style={{ fontSize:15, fontWeight:700, color: car.accidentFree ? '#16A34A' : C.text }}>{car.accidentFree ? '✓' : (l==='fr'?'Inconnu':l==='en'?'Unknown':l==='de'?'Unbekannt':'Desconocido')}</p>
+                    <p style={{ fontSize:10, color:C.text3, textTransform:'uppercase', letterSpacing:'0.1em' }}>{l==='fr'?'Propriétaires':l==='en'?'Previous owners':l==='de'?'Vorbesitzer':'Propietarios'}</p>
+                    <p style={{ fontSize:15, fontWeight:700, color:C.text }}>{car.previousOwners}</p>
                   </div>
-                  <div>
-                    <p style={{ fontSize:10, color:C.text3, textTransform:'uppercase', letterSpacing:'0.1em' }}>{l==='fr'?'Entretien suivi':l==='en'?'Service history':l==='de'?'Wartungshistorie':'Historial manten.'}</p>
-                    <p style={{ fontSize:15, fontWeight:700, color: car.serviceHistory ? '#16A34A' : C.text }}>{car.serviceHistory ? '✓' : '—'}</p>
-                  </div>
-                  {car.firstRegistration && (
-                    <div>
-                      <p style={{ fontSize:10, color:C.text3, textTransform:'uppercase', letterSpacing:'0.1em' }}>{l==='fr'?'1ère immatriculation':l==='en'?'First registration':l==='de'?'Erstzulassung':'1ª matricul.'}</p>
-                      <p style={{ fontSize:15, fontWeight:700, color:C.text }}>{new Date(car.firstRegistration).getFullYear()}</p>
-                    </div>
-                  )}
+                )}
+                <div>
+                  <p style={{ fontSize:10, color:C.text3, textTransform:'uppercase', letterSpacing:'0.1em' }}>{l==='fr'?'Sans accident':l==='en'?'Accident-free':l==='de'?'Unfallfrei':l==='es'?'Sin accidentes':l==='it'?'Senza incidenti':l==='pt'?'Sem acidentes':'بدون حوادث'}</p>
+                  <p style={{ fontSize:15, fontWeight:700, color:'#16A34A' }}>✓</p>
                 </div>
-                {car.historyNotes && (
-                  <p style={{ fontSize:13, color:C.text2, marginTop:12, lineHeight:1.6 }}>{car.historyNotes}</p>
+                <div>
+                  <p style={{ fontSize:10, color:C.text3, textTransform:'uppercase', letterSpacing:'0.1em' }}>{l==='fr'?'Entretien à jour':l==='en'?'Service up to date':l==='de'?'Wartung aktuell':l==='es'?'Mantenimiento al día':l==='it'?'Manutenzione aggiornata':l==='pt'?'Manutenção em dia':'الصيانة محدثة'}</p>
+                  <p style={{ fontSize:15, fontWeight:700, color:'#16A34A' }}>✓</p>
+                </div>
+                {car.firstRegistration && (
+                  <div>
+                    <p style={{ fontSize:10, color:C.text3, textTransform:'uppercase', letterSpacing:'0.1em' }}>{l==='fr'?'1ère immatriculation':l==='en'?'First registration':l==='de'?'Erstzulassung':'1ª matricul.'}</p>
+                    <p style={{ fontSize:15, fontWeight:700, color:C.text }}>{new Date(car.firstRegistration).getFullYear()}</p>
+                  </div>
                 )}
               </div>
-            )}
+              {car.historyNotes && (
+                <p style={{ fontSize:13, color:C.text2, marginTop:12, lineHeight:1.6 }}>{car.historyNotes}</p>
+              )}
+            </div>
 
             {/* Informations complémentaires */}
             {car.description && (
