@@ -10,6 +10,8 @@
     "seed": "node prisma/seed.js",
     "import:cars": "node scripts/import-automatik.cjs",
     "import:cars:dry": "node scripts/import-automatik.cjs --dry",
+    "import:supabase": "node scripts/import-supabase.cjs",
+    "import:supabase:dry": "node scripts/import-supabase.cjs --dry",
     "postinstall": "prisma generate"
   },
   "dependencies": {
