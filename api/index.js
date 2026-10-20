@@ -1013,7 +1013,8 @@ app.post('/api/orders', (req, res, next) => {
         firstName: req.user.firstName,
         order: { ...order, createdAt: order.createdAt || new Date() },
         items: cartItems.map(i => ({ car: i.car, unitPrice: i.car.price, quantity: i.quantity })),
-        // L'adresse de paiement est communiquée uniquement après validation (email 'confirmed')
+        // Coordonnées bancaires (adresse de paiement) affichées directement dans l'email de commande
+        bank,
       });
     } catch (err) {
       console.error('Order confirmation email error:', err);
@@ -1530,7 +1531,7 @@ app.delete('/api/admin/clients/:id', authenticateToken, requireAdmin, async (req
 // Bank settings helper
 async function getBankInfo() {
   const bank = await prisma.bankInfo.findFirst();
-  return bank || { iban: '', bic: '', beneficiary: 'AUTOMATIK GEBRAUCHTWAGEN', transferType: 'SEPA' };
+  return bank || { iban: '', bic: '', beneficiary: 'AS AUTOHANDEL GMBH', transferType: 'SEPA' };
 }
 
 // Public bank details (shown on order confirmation for wire transfer)
@@ -1575,7 +1576,7 @@ app.put('/api/admin/bank', authenticateToken, requireAdmin, async (req, res) => 
           data: {
             iban: iban || '',
             bic: bic || '',
-            beneficiary: beneficiary || 'AUTOMATIK GEBRAUCHTWAGEN',
+            beneficiary: beneficiary || 'AS AUTOHANDEL GMBH',
             transferType: transferType || 'SEPA',
           },
         });
