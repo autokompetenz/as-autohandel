@@ -182,7 +182,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
           transition:'border-color 0.15s, box-shadow 0.15s',
         }}>
         {/* Visuel */}
-        <Link to={`/cars/${car.id}`} style={{ position:'relative', flexShrink:0, width: isMobile ? '40%' : 250, maxWidth: isMobile ? 168 : undefined, minWidth: isMobile ? 128 : undefined, minHeight: isMobile ? 132 : undefined, display:'block', background:'var(--bg-card2)' }}>
+        <Link to={`/cars/${car.id}`} style={{ position:'relative', flexShrink:0, width: isMobile ? '60%' : 250, maxWidth: isMobile ? 260 : undefined, minWidth: isMobile ? 150 : undefined, minHeight: isMobile ? 140 : undefined, display:'block', background:'var(--bg-card2)' }}>
           <img src={img} alt={`${car.make} ${car.model}`}
             style={ isMobile
               ? { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', display:'block' }
