@@ -182,7 +182,7 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
           transition:'border-color 0.15s, box-shadow 0.15s',
         }}>
         {/* Visuel */}
-        <Link to={`/cars/${car.id}`} style={{ position:'relative', flexShrink:0, width: isMobile ? '38%' : 250, minWidth: isMobile ? 120 : undefined, maxWidth: isMobile ? 156 : undefined, display:'block', background:'var(--bg-card2)' }}>
+        <Link to={`/cars/${car.id}`} style={{ position:'relative', flexShrink:0, width: isMobile ? '40%' : 250, maxWidth: isMobile ? 168 : undefined, minWidth: isMobile ? 128 : undefined, minHeight: isMobile ? 132 : undefined, display:'block', background:'var(--bg-card2)' }}>
           <img src={img} alt={`${car.make} ${car.model}`}
             style={ isMobile
               ? { position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', display:'block' }
@@ -215,12 +215,12 @@ export default function CarCard({ car, index = 0, variant = 'grid' }) {
 
           {/* Bas de ligne */}
           {isMobile ? (
-            <div style={{ marginTop:'auto', paddingTop:6, display:'flex', flexDirection:'column', gap:8 }}>
-              <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', gap:6 }}>
-                <Price size={16} />
+            <div style={{ marginTop:'auto', paddingTop:6, display:'flex', flexDirection:'column', gap:6 }}>
+              <Price size={16} />
+              <div style={{ display:'flex', alignItems:'center', gap:6, marginTop:2 }}>
                 <DetailsBtn compact short />
+                <OrderBtn compact />
               </div>
-              <OrderBtn compact block />
             </div>
           ) : (
             <div style={{ marginTop:'auto', paddingTop:10, display:'flex', alignItems:'center', justifyContent:'space-between', gap:12 }}>
