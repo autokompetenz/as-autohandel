@@ -190,6 +190,17 @@ export default function CarDetails() {
 
   const images = IMAGE_FIELDS.map(f => car?.[f]).filter(Boolean);
 
+  // Caractéristiques détaillées : on masque les champs internes / techniques
+  // (provenance de l'import, identifiant source…) et les valeurs vides.
+  const HIDDEN_SPEC_KEYS = ['source', 'supabaseId', 'sourceFolder', 'id'];
+  const detailSpecs = Object.entries(
+    car?.technicalData && Object.keys(car.technicalData).length > 0
+      ? car.technicalData
+      : (specsFromDescription || {})
+  ).filter(([key, value]) =>
+    value != null && String(value).trim() !== '' && !HIDDEN_SPEC_KEYS.includes(key)
+  );
+
   const powerHp = Number(car?.power) || 0;
   const topSpeed = powerHp ? Math.min(250, Math.round(155 + powerHp * 0.34)) : 0;
   const accel = powerHp ? Math.max(3, Math.min(14, 13.5 - powerHp * 0.029)).toFixed(1) : '0.0';
@@ -392,16 +403,16 @@ export default function CarDetails() {
             </div>
 
             {/* Caractéristiques techniques détaillées */}
-            {(car.technicalData && Object.keys(car.technicalData).length > 0) || (specsFromDescription && Object.keys(specsFromDescription).length > 0) ? (
+            {detailSpecs.length > 0 ? (
               <div style={{ background: C.card2, border:'1px solid var(--border)', borderRadius:'var(--radius-lg)', padding: isMobile ? '16px 14px' : '18px 20px', marginBottom:28 }}>
                 <p style={{ fontSize:11, fontWeight:700, letterSpacing:'0.25em', textTransform:'uppercase', color:'var(--red)', marginBottom:12 }}>
                   {l==='fr'?'Caractéristiques détaillées':l==='en'?'Detailed specifications':l==='de'?'Detailspezifikationen':'Especificaciones detalladas'}
                 </p>
                 <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 8 : 12 }}>
-                  {Object.entries(car.technicalData && Object.keys(car.technicalData).length > 0 ? car.technicalData : specsFromDescription).map(([key, value]) => (
+                  {detailSpecs.map(([key, value]) => (
                     <div key={key} style={{ display:'flex', justifyContent:'space-between', gap:12, borderBottom:'1px solid var(--border)', paddingBottom:4 }}>
-                      <span style={{ fontSize:12, color:C.text3 }}>{key}</span>
-                      <span style={{ fontSize:12, fontWeight:700, color:C.text, textAlign:'right' }}>{value}</span>
+                      <span style={{ fontSize:12, color:C.text3, textTransform:'capitalize' }}>{String(key).replace(/([A-Z])/g, ' $1').trim()}</span>
+                      <span style={{ fontSize:12, fontWeight:700, color:C.text, textAlign:'right' }}>{typeof value === 'object' ? JSON.stringify(value) : String(value)}</span>
                     </div>
                   ))}
                 </div>
