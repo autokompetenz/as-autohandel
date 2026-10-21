@@ -12,6 +12,8 @@
     "import:cars:dry": "node scripts/import-automatik.cjs --dry",
     "import:supabase": "node scripts/import-supabase.cjs",
     "import:supabase:dry": "node scripts/import-supabase.cjs --dry",
+    "import:autopark": "node scripts/import-autopark.cjs",
+    "import:autopark:dry": "node scripts/import-autopark.cjs --dry",
     "postinstall": "prisma generate"
   },
   "dependencies": {

@@ -5,6 +5,7 @@ dist/
 .DS_Store
 .vercel
 prisma/migrations/
+scripts/.autopark-cache/
 
 .vercel
 .env*
