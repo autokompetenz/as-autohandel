@@ -254,7 +254,7 @@ export default function CarDetails() {
     /adjusted$/i.test(key);             // priceAdjusted…
 
   // Libellés lisibles pour les clés issues de technicalData (fiches AUTOMATIK…)
-  const SPEC_LABELS = {
+  const TECH_SPEC_LABELS = {
     awd: 'Quatre roues motrices', co2: 'Émissions de CO2', keys: 'Nombre de clés',
     doors: 'Nombre de portes', seats: 'Nombre de places', chassis: 'Numéro de châssis',
     inspection: 'Validité du contrôle technique', production: 'Date de production',
@@ -262,7 +262,7 @@ export default function CarDetails() {
     emissionNorm: "Norme d'émission", interiorColor: 'Couleur intérieure',
     firstRegistration: 'Première immatriculation',
   };
-  const specLabel = (key) => SPEC_LABELS[key]
+  const specLabel = (key) => TECH_SPEC_LABELS[key]
     || String(key).replace(/([A-ZÀ-Þ])/g, ' $1').replace(/\s+/g, ' ').trim().toLowerCase();
 
   // Repli : si la description ne contient pas de fiche technique exploitable,
