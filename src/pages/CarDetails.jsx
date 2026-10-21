@@ -240,13 +240,30 @@ export default function CarDetails() {
 
   const images = IMAGE_FIELDS.map(f => car?.[f]).filter(Boolean);
 
-  // Caractéristiques détaillées : on masque les champs internes / techniques
-  // (provenance de l'import, identifiant source…) et les valeurs vides.
-  const HIDDEN_SPEC_KEYS = ['source', 'supabaseId', 'autoparkId', 'sourceFolder', 'id', 'sourceId'];
+  // Caractéristiques détaillées : on masque les champs internes (provenance de
+  // l'import, identifiants source, marqueurs de traitement…) et les valeurs vides.
+  const HIDDEN_SPEC_KEYS = [
+    'source', 'sourceFolder', 'slug', 'folder',
+    'id', 'supabaseId', 'autoparkId', 'sourceId',
+    'priceAdjusted', 'chassisShort',
+  ];
   const isInternalSpecKey = (key) =>
     HIDDEN_SPEC_KEYS.includes(key) ||
-    /(^|_)id$/i.test(key) ||        // supabaseId, autoparkId, sourceId…
-    /^(source|folder|slug)$/i.test(key);
+    /(^|_)id$/i.test(key) ||            // supabaseId, autoparkId, sourceId…
+    /^(source|folder|slug)/i.test(key) || // source, sourceFolder, slug…
+    /adjusted$/i.test(key);             // priceAdjusted…
+
+  // Libellés lisibles pour les clés issues de technicalData (fiches AUTOMATIK…)
+  const SPEC_LABELS = {
+    awd: 'Quatre roues motrices', co2: 'Émissions de CO2', keys: 'Nombre de clés',
+    doors: 'Nombre de portes', seats: 'Nombre de places', chassis: 'Numéro de châssis',
+    inspection: 'Validité du contrôle technique', production: 'Date de production',
+    lastService: 'Dernier entretien', displacement: 'Cylindrée',
+    emissionNorm: "Norme d'émission", interiorColor: 'Couleur intérieure',
+    firstRegistration: 'Première immatriculation',
+  };
+  const specLabel = (key) => SPEC_LABELS[key]
+    || String(key).replace(/([A-ZÀ-Þ])/g, ' $1').replace(/\s+/g, ' ').trim().toLowerCase();
 
   // Repli : si la description ne contient pas de fiche technique exploitable,
   // on reconstruit la fiche détaillée à partir des champs structurés du véhicule
@@ -506,8 +523,11 @@ export default function CarDetails() {
                 <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 8 : 12 }}>
                   {detailSpecs.map(([key, value]) => (
                     <div key={key} style={{ display:'flex', justifyContent:'space-between', gap:12, borderBottom:'1px solid var(--border)', paddingBottom:4 }}>
-                      <span style={{ fontSize:12, color:C.text3, textTransform:'capitalize' }}>{String(key).replace(/([A-ZÀ-Þ])/g, ' $1').replace(/\s+/g, ' ').trim().toLowerCase()}</span>
-                      <span style={{ fontSize:12, fontWeight:700, color:C.text, textAlign:'right' }}>{typeof value === 'object' ? JSON.stringify(value) : String(value)}</span>
+                      <span style={{ fontSize:12, color:C.text3, textTransform:'capitalize' }}>{specLabel(key)}</span>
+                      <span style={{ fontSize:12, fontWeight:700, color:C.text, textAlign:'right' }}>
+                        {key === 'awd' ? (value === true || value === 'true' ? 'Oui' : 'Non')
+                          : (typeof value === 'object' ? JSON.stringify(value) : String(value))}
+                      </span>
                     </div>
                   ))}
                 </div>
