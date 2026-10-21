@@ -242,7 +242,11 @@ export default function CarDetails() {
 
   // Caractéristiques détaillées : on masque les champs internes / techniques
   // (provenance de l'import, identifiant source…) et les valeurs vides.
-  const HIDDEN_SPEC_KEYS = ['source', 'supabaseId', 'sourceFolder', 'id'];
+  const HIDDEN_SPEC_KEYS = ['source', 'supabaseId', 'autoparkId', 'sourceFolder', 'id', 'sourceId'];
+  const isInternalSpecKey = (key) =>
+    HIDDEN_SPEC_KEYS.includes(key) ||
+    /(^|_)id$/i.test(key) ||        // supabaseId, autoparkId, sourceId…
+    /^(source|folder|slug)$/i.test(key);
 
   // Repli : si la description ne contient pas de fiche technique exploitable,
   // on reconstruit la fiche détaillée à partir des champs structurés du véhicule
@@ -278,10 +282,18 @@ export default function CarDetails() {
   const parsedSpecs = car?.technicalData && Object.keys(car.technicalData).length > 0
     ? car.technicalData
     : (specsFromDescription || {});
+  // On ne garde des specs issues de technicalData que les clés réellement
+  // affichables : si la fiche ne contient que des champs internes (provenance de
+  // l'import), on bascule sur la fiche reconstruite à partir du véhicule.
+  const visibleTechSpecs = Object.fromEntries(
+    Object.entries(parsedSpecs).filter(([key, value]) =>
+      value != null && String(value).trim() !== '' && !isInternalSpecKey(key)
+    )
+  );
   const detailSpecs = Object.entries(
-    Object.keys(parsedSpecs).length > 0 ? parsedSpecs : buildSpecsFromCarFields()
+    Object.keys(visibleTechSpecs).length > 0 ? visibleTechSpecs : buildSpecsFromCarFields()
   ).filter(([key, value]) =>
-    value != null && String(value).trim() !== '' && !HIDDEN_SPEC_KEYS.includes(key)
+    value != null && String(value).trim() !== '' && !isInternalSpecKey(key)
   );
 
   const powerHp = Number(car?.power) || 0;
