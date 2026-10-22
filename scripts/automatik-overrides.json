@@ -1,0 +1,7 @@
+{
+  "_comment": "Corrections manuelles par dossier (clé = nom exact du dossier dans ~/Pictures). Champs possibles : power (CH), color, fuel, category, transmission, year, km.",
+  "2021 BMW X2 sDrive20i F2X (F39) Voiture - 11400€": {
+    "power": 192,
+    "color": "Gris"
+  }
+}
